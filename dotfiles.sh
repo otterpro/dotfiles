@@ -13,4 +13,4 @@ cd $(dirname $0) ; pwd -P
 find . -maxdepth 1 -mindepth 1 \! -name "*.git" -type d -exec rm -rf ~/{} ";" -exec ln -sf `pwd`/{} ~/{} ";"
 
 # create symlink for dotfiles (.bashrc, .vimrc, ...)
-find . -mindepth 1 -maxdepth 1 -type f -name ".*" -exec ln -sf `pwd`/{} ~/{} ";"
+find . -mindepth 1 -maxdepth 1 -type f -name ".*" ! -name ".git*" -exec ln -sf `pwd`/{} ~/{} ";"

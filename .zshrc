@@ -18,5 +18,7 @@ bindkey -e
 
 #aliases
 alias ls="ls -GF"
+alias ll="ls -lh"
+alias la="ls -lha"
 ##zsh specific options
 

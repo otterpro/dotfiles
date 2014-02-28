@@ -2,6 +2,10 @@
 PROMPT='%F{magenta}%~%f$ ' # default prompt
 #RPROMPT='%F{magenta}[%n@%m]%f' # right prompt
 
+# path
+
+export PATH=$PATH:~/bin
+
 #uses emacs
 bindkey -e
 
@@ -19,6 +23,14 @@ bindkey -e
 #aliases
 alias ls="ls -GF"
 alias ll="ls -lh"
-alias la="ls -lha"
+alias la="ls -a"
+alias lla="ls -lha"
+
 ##zsh specific options
+#
+
+# mac specific
+# $preview this.png
+alias preview="open -a Preview"
+
 

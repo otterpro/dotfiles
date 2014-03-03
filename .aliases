@@ -29,6 +29,14 @@ alias ....="cd ../../.."
 # You must install Pygments first - "sudo easy_install Pygments"
 alias c='pygmentize -O style=monokai -f console256 -g'
 
+# otter.pro: colored pygmentized less
+# replaced with .lessfilter script.
+# if LESS="-x4R" is not set, use less -x4R option. -N=line #.
+#cl() {
+#	pygmentize -O style=monokai -f console256 -g "$1" | less
+	# c "$1" | less
+#}
+
 # Git
 # You must install Git first - ""
 alias g="git"
@@ -51,3 +59,4 @@ alias view="vim -p -R"
 #color grep
 alias grep='GREP_COLOR="1;37;45" grep --color=auto'
 
+##############   END   #####################

@@ -23,6 +23,13 @@ bindkey -e
 
 source ~/.aliases
 
+#less.  -x4=tab 4space,R=ansi color, N=show line S=don't wrap text#
+# 
+# LESS="-x4NR"
+# LESSOPEN handles colorized less using pygment. Make sure .lessfilter is +x
+export LESS="-x4R"
+export LESSOPEN='|~/.lessfilter.sh %s'
+
 # https://github.com/rupa/z.git
 . ~/bin/z.sh
 

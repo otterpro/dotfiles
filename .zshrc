@@ -1,6 +1,7 @@
+
 #PROMPT='%{$fg[magenta]%}%n%{$reset_color%} at %{$fg[yellow]%}%m%{$reset_color%}' # default prompt
 PROMPT='%F{magenta}%~%f$ ' # default prompt
-#RPROMPT='%F{magenta}[%n@%m]%f' # right prompt
+RPROMPT='%F{magenta}[%n@%m]%f' # right prompt
 
 # path
 
@@ -20,17 +21,22 @@ bindkey -e
 # OR
 # bindkey '^r' history-incremental-search-backward
 
-#aliases
-alias ls="ls -GF"
-alias ll="ls -lh"
-alias la="ls -a"
-alias lla="ls -lha"
+source ~/.aliases
 
-##zsh specific options
-#
+# https://github.com/rupa/z.git
+. ~/bin/z.sh
 
-# mac specific
-# $preview this.png
-alias preview="open -a Preview"
-
+# OS Specific 
+case "$OSTYPE" in
+	darwin*) # mac-specific
+		# fix iTerm2 - show pwd in Tab
+		function precmd {
+			echo -ne "\033]0;$PWD\007"
+		}
+		;;	
+	linux*)	# linux-specific
+		;;
+	*)	# all other OS
+		;;
+esac
 

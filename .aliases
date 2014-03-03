@@ -1,4 +1,5 @@
 #aliases
+# ls
 alias ls="ls -GF"
 alias ll="ls -lh"
 alias la="ls -a"
@@ -7,10 +8,12 @@ alias lla="ls -lha"
 # mac specific
 # $preview this.png
 alias preview="open -a Preview"
-
 #alias s='open -a "Sublime Text"'
+# v is already used by ~/bin/v
+#alias v="mvim -p"
 
 # Quicker navigation
+alias ~="cd ~"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
@@ -28,8 +31,23 @@ alias c='pygmentize -O style=monokai -f console256 -g'
 
 # Git
 # You must install Git first - ""
+alias g="git"
 alias gs='git status'
 alias ga='git add .'
 alias gc='git commit -m' # requires you to type a commit message
 alias gp='git push'
+
+alias du="du -h"
+alias d="du -h -d=1"
+
+alias df="df -h"
+alias h="history"
+# tmux with -2=256 color
+alias tmux="tmux -2"
+
+#vi read-only
+alias view="vim -p -R"
+
+#color grep
+alias grep='GREP_COLOR="1;37;45" grep --color=auto'
 

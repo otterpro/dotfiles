@@ -133,7 +133,8 @@ set pastetoggle=<F2>
 " Folding
 " nnoremap <Space> za
 " vnoremap <Space> za
-"
+" dont fold by default
+set nofoldenable
 
 "  }}}
 
@@ -181,6 +182,10 @@ endif " has("autocmd")
 set laststatus=2
 
 "set runtimepath^=~/.vim/bundle/ctrlp.vim
+
+" vim-markdown: folding is enabled by default. disable now
+let g:vim_markdown_folding_disabled=1
+
 
 " NERDTree ========================
 let NERDTreeIgnore=['\~$', '^\.pyc','^\.git', '\.swp$', '\.DS_Store$']

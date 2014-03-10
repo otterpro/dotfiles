@@ -1,9 +1,15 @@
 #aliases
-# ls
-alias ls="ls -GF"
-alias ll="ls -lGFh"
-alias la="ls -aGF"
-alias lla="ls -lGFha"
+
+# ls, remember alias cascades.
+## OS Specific
+if [[ $OSTYPE == linux* ]] || [[ $OSTYPE == cygwin ]]; then
+	   alias ls='ls -F --color=auto'
+else
+	   alias ls='ls -GF'
+fi
+alias ll="ls -lh"
+alias la="ls -a"
+alias lla="ls -lha"
 
 # mac specific
 # $preview this.png

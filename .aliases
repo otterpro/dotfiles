@@ -1,9 +1,9 @@
 #aliases
 # ls
 alias ls="ls -GF"
-alias ll="ls -lh"
-alias la="ls -a"
-alias lla="ls -lha"
+alias ll="ls -lGFh"
+alias la="ls -aGF"
+alias lla="ls -lGFha"
 
 # mac specific
 # $preview this.png

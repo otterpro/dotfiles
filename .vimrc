@@ -94,7 +94,9 @@ set noswapfile
 
 set colorcolumn=80  "80 column shows vertical line
 " change the mapleader from \ to ,
-let mapleader=","
+" change the mapleader space
+" let mapleader=","
+let mapleader="\<Space>"
 let maplocalleader="\\"
 
 " make regex search compatible with php,perl,etc. using very magic
@@ -130,6 +132,13 @@ cnoremap w!! w !sudo tee % >/dev/null
 " <F2> will disable all indentation.
 set pastetoggle=<F2>
 
+" Map frequent actions
+"
+"Type <Space>o to open a new file:
+nnoremap <Leader>o :CtrlP<CR>
+"Type <Space>w to save file (lot faster than :w<Enter>):
+nnoremap <Leader>w :w<CR>
+"
 " Folding
 " nnoremap <Space> za
 " vnoremap <Space> za
@@ -186,11 +195,15 @@ set laststatus=2
 " vim-markdown: folding is enabled by default. disable now
 let g:vim_markdown_folding_disabled=1
 
+" tcomment
+nmap <Leader># gcc
+vmap # gc
 
 " NERDTree ========================
 let NERDTreeIgnore=['\~$', '^\.pyc','^\.git', '\.swp$', '\.DS_Store$']
 let NERDTreeShowHidden=1
-nmap <LocalLeader>nn :NERDTreeToggle<cr>
+"nmap <LocalLeader>nn :NERDTreeToggle<cr>
+nmap <Leader>e :NERDTreeToggle<cr>
 
 " enable pathogen ================
 call pathogen#infect()

@@ -1,6 +1,4 @@
-alias ls="ls -GF"
-alias ll="ls -GFl"
-alias la="ls -GFa"
+source ~/.aliases
 
 #mac specific
 # $preview this.png

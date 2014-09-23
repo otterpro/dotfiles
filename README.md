@@ -9,7 +9,8 @@ Download and install
 	
 Warning
 -------------
-I am not liable for any damage you do to your computer or files if you use these files.   Also, the dotfiles.sh will delete existing dot files and directories as it creates the symlinks.  You have been warned.
+I am not liable for any damage you do to your computer or files if you use these files.   
+Also, the dotfiles.sh will delete existing dot files and directories as it creates the symlinks.  You have been warned.
 
 Prerequisites
 ---------------
@@ -17,6 +18,7 @@ Prerequisites
 * git (obviously)
 * tmux, zsh
 * curl
+
 
 Symlinking these files
 -----------------------

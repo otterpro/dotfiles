@@ -14,6 +14,9 @@ I am not liable for any damage you do to your computer or files if you use these
 Prerequisites
 ---------------
 * vim
+* git (obviously)
+* tmux, zsh
+* curl
 
 Symlinking these files
 -----------------------

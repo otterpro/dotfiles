@@ -67,7 +67,7 @@ then
 fi
 
 echo "Instruct Vundle to download all the scripts"
-vim +BundleInstall +qall 
+vim +PluginInstall +qall 
 
 
 

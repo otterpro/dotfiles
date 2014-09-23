@@ -20,6 +20,12 @@ then
 elif [[ "$OSTYPE" == "linux-gnu" ]]
 then
     export OS="linux"
+elif [[ "$OSTYPE" == "cygwin" ]]
+then
+    export OS="cygwin"
+elif [[ "$OSTYPE" =~ "freebsd" ]]
+then
+    export OS="freebsd"
 else
     echo "Don't know what to do with '$OSTYPE' operating system"
     exit 1
@@ -37,6 +43,7 @@ then
     exit 1
 fi
 
+#vim backup - not as reliable...
 export VIM_BACKUP_DIR="$HOME/.vim_backup"
 mkdir -p $VIM_BACKUP_DIR
 echo "Backing up existing vim files to $VIM_BACKUP_DIR"

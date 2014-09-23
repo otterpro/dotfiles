@@ -7,9 +7,53 @@ if v:progname =~? "evim"
   finish
 endif
 
+
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
+
+filetype off " required here
+
+" {{{ Vundle
+"set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+" "call vundle#begin('~/some/path/here')
+"
+" " let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+Plugin 'docunext/closetag.vim.git'
+Plugin 'kien/ctrlp.vim'
+Plugin 'Raimondi/delimitMate.git'
+Plugin 'scrooloose/nerdtree.git'
+Plugin 'tomtom/tcomment_vim'
+Plugin 'tomtom/tlib_vim.git'
+Plugin 'MarcWeber/vim-addon-mw-utils.git'
+Plugin 'bling/vim-airline'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'tpope/vim-pathogen.git'
+Plugin 'garbas/vim-snipmate.git'
+Plugin 'honza/vim-snippets.git'
+Plugin 'tpope/vim-surround.git'
+call vundle#end()            " required"
+" }}}
+
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just
+" :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to
+" auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+" 
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -138,6 +182,9 @@ set pastetoggle=<F2>
 nnoremap <Leader>o :CtrlP<CR>
 "Type <Space>w to save file (lot faster than :w<Enter>):
 nnoremap <Leader>w :w<CR>
+
+<Space>r :!rake<CR>
+nnoremap <Leader>r :!rake<CR>
 "
 " Folding
 " nnoremap <Space> za
@@ -154,7 +201,7 @@ if has("autocmd")
   " Use the default filetype settings, so that mail gets 'tw' set to 72,
   " 'cindent' is on in C files, etc.
   " Also load indent files, to automatically do language-dependent indenting.
-  filetype plugin indent on
+  filetype plugin indent on  " required
 
   " Put these in an autocmd group, so that we can delete them easily.
   augroup vimrcEx
@@ -206,7 +253,5 @@ let NERDTreeShowHidden=1
 nmap <Leader>e :NERDTreeToggle<cr>
 
 " enable pathogen ================
-call pathogen#infect()
-call pathogen#helptags()
-"call pathogen#runtime_append_all_bundles() "deprecated - incubate
-"call pathogen#incubate() "lower-level than #infect()
+" call pathogen#infect()
+" call pathogen#helptags()

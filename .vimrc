@@ -183,7 +183,7 @@ nnoremap <Leader>o :CtrlP<CR>
 "Type <Space>w to save file (lot faster than :w<Enter>):
 nnoremap <Leader>w :w<CR>
 
-<Space>r :!rake<CR>
+" <Leader>r call rake
 nnoremap <Leader>r :!rake<CR>
 "
 " Folding

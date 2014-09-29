@@ -111,7 +111,11 @@ set nowrap
 " TAB setting"
 set tabstop=4	"hardtab width
 set shiftwidth=4
-set noexpandtab
+" make "tab" insert indents instead of tabs at the beginning of a line
+" set smarttab
+" " always uses spaces instead of tab characters
+" set expandtab
+" set noexpandtab
 "set expandtab	" use space instead of tab, enabled only for python.
 set softtabstop=4	"space used in softtab
 set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
@@ -223,7 +227,14 @@ if has("autocmd")
     \ endif
 
     "Python " 
-    autocmd filetype python set expandtab
+    autocmd filetype python setlocal ts=4 sw=4 sts=4 smarttab
+	"autocmd filetype python setlocal ts=2 sw=2 sts=2 expandtab
+
+    "Ruby" 
+    autocmd filetype ruby setlocal ts=2 sts=2 sw=2 expandtab 
+
+    "HTML" 
+    autocmd Filetype html setlocal ts=2 sts=2 sw=2 smarttab
 
     "automatically save document when it loses focus
     autocmd BufLeave,FocusLost * wall

@@ -227,14 +227,15 @@ if has("autocmd")
     \ endif
 
     "Python " 
-    autocmd filetype python setlocal ts=4 sw=4 sts=4 smarttab
+    autocmd filetype python setlocal ts=4 sw=4 sts=4 expandtab
 	"autocmd filetype python setlocal ts=2 sw=2 sts=2 expandtab
 
-    "Ruby" 
-    autocmd filetype ruby setlocal ts=2 sts=2 sw=2 expandtab 
+    "Ruby & rails" 
+    autocmd filetype ruby setlocal ts=2 sts=2 sw=2 expandtab
+    autocmd filetype eruby setlocal ts=2 sts=2 sw=2 expandtab
 
     "HTML" 
-    autocmd Filetype html setlocal ts=2 sts=2 sw=2 smarttab
+    autocmd Filetype html setlocal ts=2 sts=2 sw=2 expandtab
 
     "automatically save document when it loses focus
     autocmd BufLeave,FocusLost * wall

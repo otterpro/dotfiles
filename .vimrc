@@ -124,6 +124,8 @@ set ignorecase    " ignore case when searching
 set smartcase     " ignore case if search pattern is all lowercase,
                   "    case-sensitive otherwise
 set smarttab      " insert tabs on the start of a line according to shiftwidth, not tabstop
+set autoindent		" always set autoindenting on
+set smartindent
 set incsearch     " do incremental search / show search 
 
 "set hidden		"open new file without having to save current file
@@ -240,9 +242,9 @@ if has("autocmd")
     "automatically save document when it loses focus
     autocmd BufLeave,FocusLost * wall
   augroup END
-else
+else "if it doesn't have autocmd"
     
-  set autoindent		" always set autoindenting on
+	"set autoindent		" always set autoindenting on
 
 endif " has("autocmd")
 " vim-airline =====================

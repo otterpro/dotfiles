@@ -82,6 +82,13 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 # my own 
 source ~/.aliases
 
+# override fishy theme's prompt. Replace > with $
+#PROMPT='%n@%m %{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.>) '
+#%{$fg[red]%}]
+#%F{magenta}
+PROMPT='[%{$fg[yellow]%}%n%{$fg[red]%}@%m%{$fg[white]%}] %{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.$) '
+#PROMPT='%F{red}%[%n@%m] %{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.$) '
+
 #less.  -x4=tab 4space,R=ansi color, N=show line S=don't wrap text#
 # 
 # LESS="-x4NR"

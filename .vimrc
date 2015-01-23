@@ -32,7 +32,7 @@ Plugin 'tomtom/tlib_vim.git'
 Plugin 'MarcWeber/vim-addon-mw-utils.git'
 Plugin 'bling/vim-airline'
 Plugin 'plasticboy/vim-markdown'
-Plugin 'tpope/vim-pathogen.git'
+"Plugin 'tpope/vim-pathogen.git'
 Plugin 'garbas/vim-snipmate.git'
 Plugin 'honza/vim-snippets.git'
 Plugin 'tpope/vim-surround.git'
@@ -143,16 +143,22 @@ set noswapfile
 "set autowriteall    " saves all buffer before quit,new,etc
 
 set colorcolumn=80  "80 column shows vertical line
-" change the mapleader from \ to ,
+
 " change the mapleader space
 " let mapleader=","
 let mapleader="\<Space>"
 let maplocalleader="\\"
 
+" highlight cursorline
+" *Note: cursorline may cause slowdown in large file/ long text
+set cursorline
+hi CursorLine ctermbg=233  "cursorline color: grey7"
+
 " make regex search compatible with php,perl,etc. using very magic
-noremap / /\v
+nn / /\v
+
 " g, : clear search highlights
-nnoremap <leader>, :noh<cr> 
+nn <leader>, :noh<cr> 
 
 set termencoding=utf-8
 set encoding=utf-8
@@ -163,11 +169,11 @@ set gdefault    "assumes that %s/abc/def/ is %s/abc/def/g, (no need for g)
 
 "  shortcuts {{{
 "  use ; as : to save keystrokes. ex: :w can be ;w
-nnoremap ; :
+nn ; :
 
-" this makes j,k work properly in certain situations.
-nnoremap j gj
-nnoremap k gk
+" move vertically visual line, looks more natural when moving up/down. 
+nn j gj
+nn k gk
 
 " Don't use Ex mode, use Q for formatting
 vmap Q gq
@@ -184,13 +190,19 @@ set pastetoggle=<F2>
 
 " Map frequent actions
 "
-"Type <Space>o to open a new file:
-nnoremap <Leader>o :CtrlP<CR>
-"Type <Space>w to save file (lot faster than :w<Enter>):
-nnoremap <Leader>w :w<CR>
+"<Space>o to open a new file:
+nn <Leader>o :CtrlP<CR>
 
+"<Space>w to save file (lot faster than :w<Enter>):
+nn <Leader>w :w<CR>
+
+" Rails 
 " <Leader>r call rake
-nnoremap <Leader>r :!rake<CR>
+nn <Leader>r :!rake<CR>
+
+"<Space>n : toggle number
+nn <Leader>n :setlocal nonumber!<CR>
+
 "
 " Folding
 " nnoremap <Space> za
@@ -257,15 +269,17 @@ set laststatus=2
 let g:vim_markdown_folding_disabled=1
 
 " tcomment
-nmap <Leader># gcc
-vmap # gc
+nm <Leader># gcc
+vm # gc
 
 " NERDTree ========================
 let NERDTreeIgnore=['\~$', '^\.pyc','^\.git', '\.swp$', '\.DS_Store$']
 let NERDTreeShowHidden=1
 "nmap <LocalLeader>nn :NERDTreeToggle<cr>
-nmap <Leader>e :NERDTreeToggle<cr>
+nm <Leader>e :NERDTreeToggle<cr>
 
-" enable pathogen ================
+
+" removed pathgen for vundle
+" OLD: enable pathogen ================
 " call pathogen#infect()
 " call pathogen#helptags()

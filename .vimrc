@@ -143,6 +143,7 @@ set noswapfile
 "set autowriteall    " saves all buffer before quit,new,etc
 
 set colorcolumn=80  "80 column shows vertical line
+hi colorcolumn ctermbg=233
 
 " change the mapleader space
 " let mapleader=","
@@ -152,7 +153,7 @@ let maplocalleader="\\"
 " highlight cursorline
 " *Note: cursorline may cause slowdown in large file/ long text
 set cursorline
-hi CursorLine ctermbg=233  "cursorline color: grey7"
+hi CursorLine cterm=NONE ctermbg=233  "cursorline color: grey7"
 
 " make regex search compatible with php,perl,etc. using very magic
 nn / /\v
@@ -170,6 +171,10 @@ set gdefault    "assumes that %s/abc/def/ is %s/abc/def/g, (no need for g)
 "  shortcuts {{{
 "  use ; as : to save keystrokes. ex: :w can be ;w
 nn ; :
+vn ; :
+" also restore old ; by using ;; 
+nn ;; ; 
+
 
 " move vertically visual line, looks more natural when moving up/down. 
 nn j gj

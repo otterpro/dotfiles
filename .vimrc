@@ -190,8 +190,10 @@ nmap Q gqap
 cnoremap w!! w !sudo tee % >/dev/null
 
 " solve Paste problem with indents if autoindenting is enabled"
-" <F2> will disable all indentation.
+" <F2> will enable/disable all indentation.
 set pastetoggle=<F2>
+"<space>p toggles paste mode
+nn <Leader>p <F2>
 
 " Map frequent actions
 "

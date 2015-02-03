@@ -153,7 +153,8 @@ let maplocalleader="\\"
 " highlight cursorline
 " *Note: cursorline may cause slowdown in large file/ long text
 set cursorline
-hi CursorLine cterm=NONE ctermbg=233  "cursorline color: grey7"
+" hi CursorLine cterm=NONE ctermbg=233  "cursorline color: grey7"
+hi CursorLine cterm=NONE ctermbg=238 
 
 " make regex search compatible with php,perl,etc. using very magic
 nn / /\v

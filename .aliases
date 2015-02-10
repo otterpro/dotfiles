@@ -12,11 +12,13 @@ alias la="ls -a"
 alias lla="ls -lha"
 
 # mac specific
-# $preview this.png
-alias preview="open -a Preview"
-#alias s='open -a "Sublime Text"'
-# v is already used by ~/bin/v
-#alias v="mvim -p"
+if [[ $OSTYPE == darwin* ]]; then
+	# $preview this.png
+	alias preview="open -a Preview"
+	#alias s='open -a "Sublime Text"'
+	# v is already used by ~/bin/v
+	#alias v="mvim -p"
+fi
 
 # Quicker navigation
 alias ~="cd ~"
@@ -59,8 +61,8 @@ alias h="history"
 # tmux with -2=256 color
 alias tmux="tmux -2"
 
-#vi read-only
-alias view="vim -p -R"
+#vi read-only (there's already a /bin/view)
+#alias view="vim -p -R"
 
 #color grep
 alias grep='GREP_COLOR="1;37;45" grep --color=auto'

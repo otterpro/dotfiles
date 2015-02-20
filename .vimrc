@@ -292,5 +292,13 @@ nm <Leader>e :NERDTreeToggle<cr>
 " call pathogen#infect()
 " call pathogen#helptags()
 
-autocmd BufEnter * silent! lcd %:p:h
-"autocmd BufEnter * if &ft !~ '^nerdtree$' | silent! lcd %:p:h | endif
+
+" ctrl-p to search only cwd. autochdir & lcd will change cwd 
+" This changes cwd whenever file is loaded
+" autocmd BufEnter * silent! lcd %:p:h
+
+" instead, I just needed it to Dropbox/_notes
+" Should I just use a bash script instead?
+" nm <Leader>v :cd ~/Dropbox/_notes
+" YES.
+

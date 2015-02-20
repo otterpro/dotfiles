@@ -291,3 +291,6 @@ nm <Leader>e :NERDTreeToggle<cr>
 " OLD: enable pathogen ================
 " call pathogen#infect()
 " call pathogen#helptags()
+
+autocmd BufEnter * silent! lcd %:p:h
+"autocmd BufEnter * if &ft !~ '^nerdtree$' | silent! lcd %:p:h | endif

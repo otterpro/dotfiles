@@ -31,6 +31,8 @@ Plugin 'tomtom/tcomment_vim'
 Plugin 'tomtom/tlib_vim.git'
 Plugin 'MarcWeber/vim-addon-mw-utils.git'
 Plugin 'bling/vim-airline'
+
+Plugin 'godlygeek/tabular' "required for vim-markdown"
 Plugin 'plasticboy/vim-markdown'
 "Plugin 'tpope/vim-pathogen.git'
 Plugin 'garbas/vim-snipmate.git'
@@ -143,7 +145,7 @@ set noswapfile
 "set autowriteall    " saves all buffer before quit,new,etc
 
 set colorcolumn=80  "80 column shows vertical line
-hi colorcolumn ctermbg=233
+hi colorcolumn ctermbg=233 guibg=grey7
 
 " change the mapleader space
 " let mapleader=","
@@ -154,7 +156,7 @@ let maplocalleader="\\"
 " *Note: cursorline may cause slowdown in large file/ long text
 set cursorline
 " hi CursorLine cterm=NONE ctermbg=233  "cursorline color: grey7"
-hi CursorLine cterm=NONE ctermbg=238 
+hi CursorLine cterm=NONE ctermbg=238 guibg=grey7
 
 " make regex search compatible with php,perl,etc. using very magic
 nn / /\v
@@ -212,11 +214,62 @@ nn <Leader>r :!rake<CR>
 nn <Leader>n :setlocal nonumber!<CR>
 
 "
-" Folding
+" ====== Folding ===============================
 " nnoremap <Space> za
 " vnoremap <Space> za
-" dont fold by default
+
+" dont fold by default. If not set, it will open text as folded
 set nofoldenable
+" set color (one of dark grey=238)
+highlight Folded guibg=grey7 ctermbg=238
+"  Change foldtext (http://dhruvasagar.com/2013/03/28/vim-better-foldtext)
+function! NeatFoldText() 
+  let line = ' ' . substitute(getline(v:foldstart), '^\s*"\?\s*\|\s*"\?\s*{{' . '{\d*\s*', '', 'g') . ' '
+  let lines_count = v:foldend - v:foldstart + 1
+  let lines_count_text = '| ' . printf("%10s", lines_count . ' lines') . ' |'
+  let foldchar = matchstr(&fillchars, 'fold:\zs.')
+  let foldtextstart = strpart('+' . repeat(foldchar, v:foldlevel*2) . line, 0, (winwidth(0)*2)/3)
+  let foldtextend = lines_count_text . repeat(foldchar, 8)
+  let foldtextlength = strlen(substitute(foldtextstart . foldtextend, '.', 'x', 'g')) + &foldcolumn
+  return foldtextstart . repeat(foldchar, winwidth(0)-foldtextlength) . foldtextend
+endfunction
+" version from http://vim.wikia.com/wiki/Customize_text_for_closed_folds
+fu! MyFoldText()
+  let line = getline(v:foldstart)
+  if match( line, '^[ \t]*\(\/\*\|\/\/\)[*/\\]*[ \t]*$' ) == 0
+    let initial = substitute( line, '^\([ \t]\)*\(\/\*\|\/\/\)\(.*\)', '\1\2', '' )
+    let linenum = v:foldstart + 1
+    while linenum < v:foldend
+      let line = getline( linenum )
+      let comment_content = substitute( line, '^\([ \t\/\*]*\)\(.*\)$', '\2', 'g' )
+      if comment_content != ''
+        break
+      endif
+      let linenum = linenum + 1
+    endwhile
+    let sub = initial . ' ' . comment_content
+  else
+    let sub = line
+    let startbrace = substitute( line, '^.*{[ \t]*$', '{', 'g')
+    if startbrace == '{'
+      let line = getline(v:foldend)
+      let endbrace = substitute( line, '^[ \t]*}\(.*\)$', '}', 'g')
+      if endbrace == '}'
+        let sub = sub.substitute( line, '^[ \t]*}\(.*\)$', '...}\1', 'g')
+      endif
+    endif
+  endif
+  let n = v:foldend - v:foldstart + 1
+  let info = " " . n . " lines"
+  let sub = sub . "                                                                                                                  "
+  let num_w = getwinvar( 0, '&number' ) * getwinvar( 0, '&numberwidth' )
+  let fold_w = getwinvar( 0, '&foldcolumn' )
+  let sub = strpart( sub, 0, winwidth(0) - strlen( info ) - num_w - fold_w - 1 )
+  return sub . info
+endfunction
+
+set foldtext=NeatFoldText() " I like this better"
+"set foldtext=MyFoldText()
 
 "  }}}
 
@@ -237,6 +290,10 @@ if has("autocmd")
 
   " For all text files set 'textwidth' to 78 characters.
   autocmd FileType text setlocal textwidth=78
+
+  "treat all .txt file as markdown
+  "  filetype needs to be "mkd", not "markdown" for vim-markdown to work
+  autocmd BufNewFile,BufReadPost  *.txt set filetype=mkd
 
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler
@@ -274,7 +331,7 @@ set laststatus=2
 "set runtimepath^=~/.vim/bundle/ctrlp.vim
 
 " vim-markdown: folding is enabled by default. disable now
-let g:vim_markdown_folding_disabled=1
+"let g:vim_markdown_folding_disabled=1
 
 " tcomment
 nm <Leader># gcc

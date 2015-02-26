@@ -32,12 +32,21 @@ Plugin 'tomtom/tlib_vim.git'
 Plugin 'MarcWeber/vim-addon-mw-utils.git'
 Plugin 'bling/vim-airline'
 
+"Markdown
 Plugin 'godlygeek/tabular' "required for vim-markdown"
 Plugin 'plasticboy/vim-markdown'
-"Plugin 'tpope/vim-pathogen.git'
+
 Plugin 'garbas/vim-snipmate.git'
 Plugin 'honza/vim-snippets.git'
 Plugin 'tpope/vim-surround.git'
+
+" colorschemes-related 
+Plugin 'flazz/vim-colorschemes'
+Plugin 'xolox/vim-misc.git'  "switcher using F8
+Plugin 'xolox/vim-colorscheme-switcher.git'
+
+"Plugin 'tpope/vim-pathogen.git'  "Removed pathogen
+
 call vundle#end()            " required"
 " }}}
 
@@ -82,6 +91,11 @@ if has('mouse')
   set mouse=a
 endif
 
+"make sure color is running. doesn't seem to be necessary, as t_Co is set to 256.
+"if $TERM == "xterm-256color" || $TERM == "screen-256color" || $COLORTERM == "gnome-terminal"
+"	set t_Co=256
+"endif
+
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
 if &t_Co > 2 || has("gui_running")
@@ -91,6 +105,7 @@ endif
 
 "load color scheme from .vim/colors
 if &t_Co >= 256 || has("gui_running")
+	"echo "256 color mode"
     "colorscheme mustang    
 endif
 

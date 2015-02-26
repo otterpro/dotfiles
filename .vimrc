@@ -106,7 +106,7 @@ endif
 "load color scheme from .vim/colors
 if &t_Co >= 256 || has("gui_running")
 	"echo "256 color mode"
-    "colorscheme mustang    
+    colorscheme codeschool
 endif
 
 
@@ -194,7 +194,8 @@ vn ; :
 nn ;; ; 
 
 " remap ;; as Escape.  Convenient.
-inoremap ;; <esc>
+inoremap ;; <Esc>
+cnoremap ;; <C-c> " ESC acts as CR. Use C-c instead, to prevent execution.
 
 " move vertically visual line, looks more natural when moving up/down. 
 nn j gj

@@ -178,6 +178,8 @@ vn ; :
 " also restore old ; by using ;; 
 nn ;; ; 
 
+" remap ;; as Escape.  Convenient.
+inoremap ;; <esc>
 
 " move vertically visual line, looks more natural when moving up/down. 
 nn j gj
@@ -337,12 +339,12 @@ set laststatus=2
 nm <Leader># gcc
 vm # gc
 
-" NERDTree ========================
+" NERDTree ========================{{{
 let NERDTreeIgnore=['\~$', '^\.pyc','^\.git', '\.swp$', '\.DS_Store$']
 let NERDTreeShowHidden=1
 "nmap <LocalLeader>nn :NERDTreeToggle<cr>
 nm <Leader>e :NERDTreeToggle<cr>
-
+"}}}
 
 " removed pathgen for vundle
 " OLD: enable pathogen ================

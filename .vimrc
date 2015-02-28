@@ -77,6 +77,7 @@ set backspace=indent,eol,start
 set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
+set cryptmethod=blowfish		"encryption when using vim -x filename"
 
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
 " let &guioptions = substitute(&guioptions, "t", "", "g")
@@ -219,10 +220,12 @@ nn <Leader>p <F2>
 " Map frequent actions
 "
 "<Space>o to open a new file:
-nn <Leader>o :CtrlP<CR>
+nn <Leader>o :CtrlP<CR> "also <c-p> does the same"
 
 "<Space>w to save file (lot faster than :w<Enter>):
 nn <Leader>w :w<CR>
+vn <Leader>w :w<CR>
+" TODO: also map s to write - faster than w?
 
 " Rails 
 " <Leader>r call rake

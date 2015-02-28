@@ -63,7 +63,11 @@ done
 find . -maxdepth 1 -mindepth 1 \! -name "*.git" -type d -exec rm -rf ~/{} ";" -exec ln -sf `pwd`/{} ~/{} ";"
 
 # create symlink for dotfiles (.bashrc, .vimrc, ...)
-find . -mindepth 1 -maxdepth 1 -type f -name ".*" ! -name ".git*" -exec ln -sf `pwd`/{} ~/{} ";"
+# except for .git*. <-- however, temporaily I still want .gitconfig file
+# so I am copying .gitconfig
+# however, there could be other files such as .gitmodules.
+#find . -mindepth 1 -maxdepth 1 -type f -name ".*" ! -name ".git*" -exec ln -sf `pwd`/{} ~/{} ";"
+find . -mindepth 1 -maxdepth 1 -type f -name ".*" ! -name ".git" -exec ln -sf `pwd`/{} ~/{} ";"
 
 # vim Vundle
 echo "Download Vundle"

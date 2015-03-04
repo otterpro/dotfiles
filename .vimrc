@@ -1,6 +1,8 @@
-" .vimrc by codequickly
+" .vimrc by Daniel Kim (otter.pro)
 "
-" based on sample by Bram Moolenaar <Bram@vim.org>
+" Thanks to :
+" Bram Moolenaar <Bram@vim.org>
+"
 
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
@@ -15,6 +17,10 @@ set nocompatible
 filetype off " required here
 
 " {{{ Vundle
+" TODO: move it to ~/.vimrc.vundles
+" if filereadable(expand("~/.vimrc.bundles"))
+"   source ~/.vimrc.bundles
+"   endif
 "set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/vundle
 call vundle#begin()
@@ -99,7 +105,7 @@ endif
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
-if &t_Co > 2 || has("gui_running")
+if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
   syntax on
     set hlsearch      " highlight search terms
 endif
@@ -108,6 +114,8 @@ endif
 if &t_Co >= 256 || has("gui_running")
 	"echo "256 color mode"
     colorscheme codeschool
+	highlight NonText guibg=#060606
+	highlight Folded  guibg=#0A0A0A guifg=#9090D0
 endif
 
 
@@ -122,9 +130,10 @@ endif
 " disable insert
 set textwidth=0
 set wrapmargin=0
+set nowrap
 
 set number 		"always show number
-set nowrap
+set numberwidth=4	"4 digit"
 
 " TAB setting"
 set tabstop=4	"hardtab width
@@ -134,7 +143,7 @@ set shiftwidth=4
 " " always uses spaces instead of tab characters
 " set expandtab
 " set noexpandtab
-"set expandtab	" use space instead of tab, enabled only for python.
+"set expandtab	" use space instead of tab, enabled for ruby,python.
 set softtabstop=4	"space used in softtab
 set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
 set showmatch     " set show matching parenthesis
@@ -160,22 +169,25 @@ set noswapfile
 "set autowrite	    " saves before changing to another buffer
 "set autowriteall    " saves all buffer before quit,new,etc
 
-set colorcolumn=80  "80 column shows vertical line
+set colorcolumn=80  "column shows vertical line
+"set colorcolumn=+1	"column shows vertical line
 hi colorcolumn ctermbg=233 guibg=grey7
 
-" change the mapleader space
-" let mapleader=","
+" Leader is <Space> 
 let mapleader="\<Space>"
 let maplocalleader="\\"
 
-" highlight cursorline
-" *Note: cursorline may cause slowdown in large file/ long text
+" highlight cursorline  *Note: may cause slowdown in large file
 set cursorline
-" hi CursorLine cterm=NONE ctermbg=233  "cursorline color: grey7"
 hi CursorLine cterm=NONE ctermbg=238 guibg=grey7
 
+"=== Search ====
 " make regex search compatible with php,perl,etc. using very magic
+" uses magic. see help on "pattern" and "magic"
 nn / /\v
+" in Visual mode, allow selected text to become search text
+" by pressing // "slash twice"
+vn // y/<C-R>"<CR>
 
 " g, : clear search highlights
 nn <leader>, :noh<cr> 
@@ -226,6 +238,9 @@ nn <Leader>o :CtrlP<CR> "also <c-p> does the same"
 nn <Leader>w :w<CR>
 vn <Leader>w :w<CR>
 " TODO: also map s to write - faster than w?
+"
+" Switch between last two files
+nn <Leader><Leader> <c-^>
 
 " Rails 
 " <Leader>r call rake
@@ -234,16 +249,21 @@ nn <Leader>r :!rake<CR>
 "<Space>n : toggle number
 nn <Leader>n :setlocal nonumber!<CR>
 
+" Display extra whitespace
+" MAYBE: move it to code-specific files, setlocal
+" set list listchars=tab:»\ ,trail:·,nbsp:·
 "
 " ====== Folding ===============================
-" nnoremap <Space> za
-" vnoremap <Space> za
-
+" nn <Space> za
+" vn <Space> za
 " dont fold by default. If not set, it will open text as folded
 set nofoldenable
 " set color (one of dark grey=238)
 highlight Folded guibg=grey7 ctermbg=238
+
 "  Change foldtext (http://dhruvasagar.com/2013/03/28/vim-better-foldtext)
+"  TODO: MOVE TO .vimrc.fold
+"
 function! NeatFoldText() 
   let line = ' ' . substitute(getline(v:foldstart), '^\s*"\?\s*\|\s*"\?\s*{{' . '{\d*\s*', '', 'g') . ' '
   let lines_count = v:foldend - v:foldstart + 1
@@ -306,46 +326,58 @@ if has("autocmd")
   " Put these in an autocmd group, so that we can delete them easily.
   augroup vimrcEx
 
-    " Remove ALL autocommands for the current group
+  " Remove ALL autocommands for the current group
   au!	
 
-  " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
-
-  "treat all .txt file as markdown
-  "  filetype needs to be "mkd", not "markdown" for vim-markdown to work
-  autocmd BufNewFile,BufReadPost  *.txt set filetype=mkd
-
+  "General default behavior
+  "
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler
   " (happens when dropping a file on gvim).
   " Also don't do it when the mark is in the first line, that is the default
   " position when opening a file.
+  " Also don't do it on gitcommit messages
   autocmd BufReadPost *
-    \ if line("'\"") > 1 && line("'\"") <= line("$") |
+    \ if &ft != 'gitcommit' && line("'\"") > 1 && line("'\"") <= line("$") |
     \   exe "normal! g`\"" |
     \ endif
 
-    "Python " 
-    autocmd filetype python setlocal ts=4 sw=4 sts=4 expandtab
-	"autocmd filetype python setlocal ts=2 sw=2 sts=2 expandtab
+  "automatically save document when it loses focus
+  autocmd BufLeave,FocusLost * wall
 
-    "Ruby & rails" 
-    autocmd filetype ruby setlocal ts=2 sts=2 sw=2 expandtab
-    autocmd filetype eruby setlocal ts=2 sts=2 sw=2 expandtab
+  "======== text file ==========="
+  " force wrap at 80 characters for all text files
+  autocmd fileType text setlocal textwidth=80
 
-    "HTML" 
-    autocmd Filetype html setlocal ts=2 sts=2 sw=2 expandtab
+  "======== Markdown ============="
+  "treat all .txt file as markdown
+  "for some reason,filetype needs to be "mkd", not "markdown" for vim-markdown to work
+  autocmd BufNewFile,BufReadPost  *.txt set filetype=mkd
+  " enable spellchecking for markdown. TODO: spell file needed?
+  autocmd filetype mkd setlocal spell
+  " force text wrap at 80 columns
+  autocmd filetype mkd setlocal textwidth=80
 
-    "automatically save document when it loses focus
-    autocmd BufLeave,FocusLost * wall
-  augroup END
+  "========== Python ===============" 
+  autocmd filetype python setlocal ts=4 sw=4 sts=4 expandtab
+
+  "========= Ruby & rails ==============" 
+  autocmd filetype ruby setlocal ts=2 sts=2 sw=2 expandtab
+  autocmd filetype eruby setlocal ts=2 sts=2 sw=2 expandtab
+
+  "========== html & css  ===============" 
+  autocmd filetype html setlocal ts=2 sts=2 sw=2 expandtab
+  autocmd filetype css setlocal ts=2 sts=2 sw=2 expandtab
+
+augroup END
+
 else "if it doesn't have autocmd"
-    
-	"set autoindent		" always set autoindenting on
+
+	set autoindent		" always set autoindenting on
 
 endif " has("autocmd")
-" vim-airline =====================
+
+" ============== vim-airline =====================
 " vim-airline wasn't showing. This forces status to be always visible
 set laststatus=2
 
@@ -379,4 +411,34 @@ nm <Leader>e :NERDTreeToggle<cr>
 " Should I just use a bash script instead?
 " nm <Leader>v :cd ~/Dropbox/_notes
 " YES.
+"
+" Treat <li> and <p> tags like the block tags they are
+" this could be placed in .vim/after/indent/html.vim
+" also, .= means concat,
+" might be fixed in html5
+" let g:html_indent_tags .= 'li\|p\|nav'
+
+" Always use vertical diffs
+set diffopt+=vertical
+
+" spellfile 
+" set spellfile=$HOME/.vim-spell-en.utf-8.add
+"
+" ========= Ag ============="
+if executable('ag')
+  " Use Ag over Grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+
+
+" Local config
+if filereadable($HOME . "/.vimrc.local")
+   source ~/.vimrc.local
+endif
 

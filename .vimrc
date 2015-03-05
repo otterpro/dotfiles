@@ -211,9 +211,13 @@ if has("autocmd") " Only do this part when compiled with support for autocommand
   " Also load indent files, to automatically do language-dependent indenting.
 
   " Put these in an autocmd group, so that we can delete them easily.
+  "
+
+
   augroup vimrcEx
 
-    au! " Clear ALL previously set autocommands for the current group
+  " Clear ALL previously set autocommands for the current group
+	au! 
 
 	"General default behavior
 	"

@@ -1,93 +1,40 @@
 " .vimrc by Daniel Kim (otter.pro)
 "
-" Thanks to :
-" Bram Moolenaar <Bram@vim.org>
+" Thanks to many, including Bram Moolenaar <Bram@vim.org>
 "
-
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
   finish
 endif
 
-
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
-
 filetype off " required here
 
-" {{{ Vundle
-" TODO: move it to ~/.vimrc.vundles
-" if filereadable(expand("~/.vimrc.bundles"))
-"   source ~/.vimrc.bundles
-"   endif
-"set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/vundle
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-" "call vundle#begin('~/some/path/here')
-"
-" " let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-Plugin 'docunext/closetag.vim.git'
-Plugin 'kien/ctrlp.vim'
-Plugin 'Raimondi/delimitMate.git'
-Plugin 'scrooloose/nerdtree.git'
-Plugin 'tomtom/tcomment_vim'
-Plugin 'tomtom/tlib_vim.git'
-Plugin 'MarcWeber/vim-addon-mw-utils.git'
-Plugin 'bling/vim-airline'
-
-"Markdown
-Plugin 'godlygeek/tabular' "required for vim-markdown"
-Plugin 'plasticboy/vim-markdown'
-
-Plugin 'garbas/vim-snipmate.git'
-Plugin 'honza/vim-snippets.git'
-Plugin 'tpope/vim-surround.git'
-
-" colorschemes-related 
-Plugin 'flazz/vim-colorschemes'
-Plugin 'xolox/vim-misc.git'  "switcher using F8
-Plugin 'xolox/vim-colorscheme-switcher.git'
-
-"Plugin 'tpope/vim-pathogen.git'  "Removed pathogen
-
-call vundle#end()            " required"
-" }}}
+" load vundles in ~/.dotfiles/vim.vundle
+if filereadable(expand("~/.dotfiles/vim.vundle"))
+	source ~/.dotfiles/vim.vundle
+endif
 
 filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just
-" :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to
-" auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-" 
+" To ignore plugin indent changes, instead use: filetype plugin on
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
-" if has("vms")
-"   set nobackup		" do not keep a backup file, use versions instead
-" else
-"   set backup		" keep a backup file
-" endif
-set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set cryptmethod=blowfish		"encryption when using vim -x filename"
+set history=1000         " remember more commands and search history
+set undolevels=1000      " use many muchos levels of undo
+set wildignore=*.swp,*.bak,*.pyc,*.class
+set title                " change the terminal's title
+set visualbell           " don't beep
+set noerrorbells         " don't beep
 
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
 " let &guioptions = substitute(&guioptions, "t", "", "g")
-
 
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
@@ -132,17 +79,11 @@ set textwidth=0
 set wrapmargin=0
 set nowrap
 
-set number 		"always show number
-set numberwidth=4	"4 digit"
+set number numberwidth=4 "show line number and show 4 digit
 
 " TAB setting"
 set tabstop=4	"hardtab width
-set shiftwidth=4
-" make "tab" insert indents instead of tabs at the beginning of a line
-" set smarttab
-" " always uses spaces instead of tab characters
-" set expandtab
-" set noexpandtab
+set shiftwidth=4 " make "tab" insert indents instead of tabs at the beginning of a line
 "set expandtab	" use space instead of tab, enabled for ruby,python.
 set softtabstop=4	"space used in softtab
 set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
@@ -153,16 +94,9 @@ set smartcase     " ignore case if search pattern is all lowercase,
 set smarttab      " insert tabs on the start of a line according to shiftwidth, not tabstop
 set autoindent		" always set autoindenting on
 set smartindent
-set incsearch     " do incremental search / show search 
 
 "set hidden		"open new file without having to save current file
 
-set history=1000         " remember more commands and search history
-set undolevels=1000      " use many muchos levels of undo
-set wildignore=*.swp,*.bak,*.pyc,*.class
-set title                " change the terminal's title
-set visualbell           " don't beep
-set noerrorbells         " don't beep
 " disable autobackup"
 set nobackup
 set noswapfile
@@ -182,12 +116,18 @@ set cursorline
 hi CursorLine cterm=NONE ctermbg=238 guibg=grey7
 
 "=== Search ====
+set incsearch     " do incremental search / show search 
 " make regex search compatible with php,perl,etc. using very magic
 " uses magic. see help on "pattern" and "magic"
 nn / /\v
 " in Visual mode, allow selected text to become search text
 " by pressing // "slash twice"
 vn // y/<C-R>"<CR>
+" in visual mode, <C-r> to replace search text, based on selected text
+" http://stackoverflow.com/questions/676600/vim-search-and-replace-selected-text
+" vn <C-r> "hy:%s/<C-r>h//gc<left><left><left>
+" replaced above with this, to escape special characters like backslash
+vn <C-r> ""y:%s/<C-R>=escape(@", '/\')<CR>//g<Left><Left>")
 
 " g, : clear search highlights
 nn <leader>, :noh<cr> 
@@ -197,9 +137,8 @@ set encoding=utf-8
 
 set gdefault    "assumes that %s/abc/def/ is %s/abc/def/g, (no need for g)
 
-"set cmdheight=2 " status bar that is 2 rows
+"set cmdheight=2 " status bar that is 2 rows. However, this is too high
 
-"  shortcuts {{{
 "  use ; as : to save keystrokes. ex: :w can be ;w
 nn ; :
 vn ; :
@@ -224,9 +163,8 @@ nmap Q gqap
 cnoremap w!! w !sudo tee % >/dev/null
 
 " solve Paste problem with indents if autoindenting is enabled"
-" <F2> will enable/disable all indentation.
+" <F2> (or space-p) to go into paste mode. it en(dis)ables indentation.
 set pastetoggle=<F2>
-"<space>p toggles paste mode
 nn <Leader>p <F2>
 
 " Map frequent actions
@@ -258,130 +196,73 @@ nn <Leader>n :setlocal nonumber!<CR>
 " vn <Space> za
 " dont fold by default. If not set, it will open text as folded
 set nofoldenable
-" set color (one of dark grey=238)
-highlight Folded guibg=grey7 ctermbg=238
+highlight Folded guibg=grey7 ctermbg=238 " set color (one of dark grey=238)
 
 "  Change foldtext (http://dhruvasagar.com/2013/03/28/vim-better-foldtext)
-"  TODO: MOVE TO .vimrc.fold
-"
-function! NeatFoldText() 
-  let line = ' ' . substitute(getline(v:foldstart), '^\s*"\?\s*\|\s*"\?\s*{{' . '{\d*\s*', '', 'g') . ' '
-  let lines_count = v:foldend - v:foldstart + 1
-  let lines_count_text = '| ' . printf("%10s", lines_count . ' lines') . ' |'
-  let foldchar = matchstr(&fillchars, 'fold:\zs.')
-  let foldtextstart = strpart('+' . repeat(foldchar, v:foldlevel*2) . line, 0, (winwidth(0)*2)/3)
-  let foldtextend = lines_count_text . repeat(foldchar, 8)
-  let foldtextlength = strlen(substitute(foldtextstart . foldtextend, '.', 'x', 'g')) + &foldcolumn
-  return foldtextstart . repeat(foldchar, winwidth(0)-foldtextlength) . foldtextend
-endfunction
-" version from http://vim.wikia.com/wiki/Customize_text_for_closed_folds
-fu! MyFoldText()
-  let line = getline(v:foldstart)
-  if match( line, '^[ \t]*\(\/\*\|\/\/\)[*/\\]*[ \t]*$' ) == 0
-    let initial = substitute( line, '^\([ \t]\)*\(\/\*\|\/\/\)\(.*\)', '\1\2', '' )
-    let linenum = v:foldstart + 1
-    while linenum < v:foldend
-      let line = getline( linenum )
-      let comment_content = substitute( line, '^\([ \t\/\*]*\)\(.*\)$', '\2', 'g' )
-      if comment_content != ''
-        break
-      endif
-      let linenum = linenum + 1
-    endwhile
-    let sub = initial . ' ' . comment_content
-  else
-    let sub = line
-    let startbrace = substitute( line, '^.*{[ \t]*$', '{', 'g')
-    if startbrace == '{'
-      let line = getline(v:foldend)
-      let endbrace = substitute( line, '^[ \t]*}\(.*\)$', '}', 'g')
-      if endbrace == '}'
-        let sub = sub.substitute( line, '^[ \t]*}\(.*\)$', '...}\1', 'g')
-      endif
-    endif
-  endif
-  let n = v:foldend - v:foldstart + 1
-  let info = " " . n . " lines"
-  let sub = sub . "                                                                                                                  "
-  let num_w = getwinvar( 0, '&number' ) * getwinvar( 0, '&numberwidth' )
-  let fold_w = getwinvar( 0, '&foldcolumn' )
-  let sub = strpart( sub, 0, winwidth(0) - strlen( info ) - num_w - fold_w - 1 )
-  return sub . info
-endfunction
+if filereadable(expand("~/.dotfiles/vim.foldtext"))
+	source ~/.dotfiles/vim.foldtext
+endif
 
-set foldtext=NeatFoldText() " I like this better"
-"set foldtext=MyFoldText()
-
-"  }}}
-
-" Only do this part when compiled with support for autocommands.
-if has("autocmd")
+if has("autocmd") " Only do this part when compiled with support for autocommands.
 
   " Enable file type detection.
   " Use the default filetype settings, so that mail gets 'tw' set to 72,
   " 'cindent' is on in C files, etc.
   " Also load indent files, to automatically do language-dependent indenting.
-  filetype plugin indent on  " required
 
   " Put these in an autocmd group, so that we can delete them easily.
   augroup vimrcEx
 
-  " Remove ALL autocommands for the current group
-  au!	
+    au! " Clear ALL previously set autocommands for the current group
 
-  "General default behavior
-  "
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it when the position is invalid or when inside an event handler
-  " (happens when dropping a file on gvim).
-  " Also don't do it when the mark is in the first line, that is the default
-  " position when opening a file.
-  " Also don't do it on gitcommit messages
-  autocmd BufReadPost *
-    \ if &ft != 'gitcommit' && line("'\"") > 1 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
+	"General default behavior
+	"
+	" When editing a file, always jump to the last known cursor position.
+	" Don't do it when the position is invalid or when inside an event handler
+	" (happens when dropping a file on gvim).
+	" Also don't do it when the mark is in the first line, that is the default
+	" position when opening a file.
+	" Also don't do it on gitcommit messages
+	autocmd BufReadPost *
+		\ if &ft != 'gitcommit' && line("'\"") > 1 && line("'\"") <= line("$") |
+		\   exe "normal! g`\"" |
+		\ endif
 
-  "automatically save document when it loses focus
-  autocmd BufLeave,FocusLost * wall
+	"automatically save document when it loses focus
+	autocmd BufLeave,FocusLost * wall
 
-  "======== text file ==========="
-  " force wrap at 80 characters for all text files
-  autocmd fileType text setlocal textwidth=80
+	"======== text file ==========="
+	" force wrap at 80 characters for all text files
+	autocmd fileType text setlocal textwidth=80
 
-  "======== Markdown ============="
-  "treat all .txt file as markdown
-  "for some reason,filetype needs to be "mkd", not "markdown" for vim-markdown to work
-  autocmd BufNewFile,BufReadPost  *.txt set filetype=mkd
-  " enable spellchecking for markdown. TODO: spell file needed?
-  autocmd filetype mkd setlocal spell
-  " force text wrap at 80 columns
-  autocmd filetype mkd setlocal textwidth=80
+	"======== Markdown ============="
+	"treat all .txt file as markdown
+	"for some reason,filetype needs to be "mkd", not "markdown" for vim-markdown to work
+	autocmd BufNewFile,BufReadPost  *.txt set filetype=mkd
+	" enable spellchecking for markdown. TODO: spell file needed?
+	autocmd filetype mkd setlocal spell
+	" force text wrap at 80 columns
+	autocmd filetype mkd setlocal textwidth=80
 
-  "========== Python ===============" 
-  autocmd filetype python setlocal ts=4 sw=4 sts=4 expandtab
+	"========== Python ===============" 
+	autocmd filetype python setlocal ts=4 sw=4 sts=4 expandtab
 
-  "========= Ruby & rails ==============" 
-  autocmd filetype ruby setlocal ts=2 sts=2 sw=2 expandtab
-  autocmd filetype eruby setlocal ts=2 sts=2 sw=2 expandtab
+	"========= Ruby & rails ==============" 
+	autocmd filetype ruby setlocal ts=2 sts=2 sw=2 expandtab
+	autocmd filetype eruby setlocal ts=2 sts=2 sw=2 expandtab
 
-  "========== html & css  ===============" 
-  autocmd filetype html setlocal ts=2 sts=2 sw=2 expandtab
-  autocmd filetype css setlocal ts=2 sts=2 sw=2 expandtab
+	"========== html & css  ===============" 
+	autocmd filetype html setlocal ts=2 sts=2 sw=2 expandtab
+	autocmd filetype css setlocal ts=2 sts=2 sw=2 expandtab
 
-augroup END
+  augroup END
 
 else "if it doesn't have autocmd"
-
 	set autoindent		" always set autoindenting on
-
 endif " has("autocmd")
 
 " ============== vim-airline =====================
-" vim-airline wasn't showing. This forces status to be always visible
-set laststatus=2
-
-"set runtimepath^=~/.vim/bundle/ctrlp.vim
+set laststatus=2 "without it, status bar is hidden. it forces status to be always visible
 
 " vim-markdown: folding is enabled by default. disable now
 "let g:vim_markdown_folding_disabled=1
@@ -395,13 +276,6 @@ let NERDTreeIgnore=['\~$', '^\.pyc','^\.git', '\.swp$', '\.DS_Store$']
 let NERDTreeShowHidden=1
 "nmap <LocalLeader>nn :NERDTreeToggle<cr>
 nm <Leader>e :NERDTreeToggle<cr>
-"}}}
-
-" removed pathgen for vundle
-" OLD: enable pathogen ================
-" call pathogen#infect()
-" call pathogen#helptags()
-
 
 " ctrl-p to search only cwd. autochdir & lcd will change cwd 
 " This changes cwd whenever file is loaded
@@ -421,7 +295,7 @@ nm <Leader>e :NERDTreeToggle<cr>
 " Always use vertical diffs
 set diffopt+=vertical
 
-" spellfile 
+" spellfile. I don't have any spell file.
 " set spellfile=$HOME/.vim-spell-en.utf-8.add
 "
 " ========= Ag ============="

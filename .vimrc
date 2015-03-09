@@ -173,10 +173,13 @@ nn <Leader>p <F2>
 nn <Leader>o :CtrlP<CR> "also <c-p> does the same"
 
 "<Space>w to save file (lot faster than :w<Enter>):
-nn <Leader>w :w<CR>
-vn <Leader>w :w<CR>
+"nn <Leader>w :w<CR>
+"vn <Leader>w :w<CR>
 " C-s to save. TO use C-s, some terminals require "stty -ixon" in shell 
+" In some terminal, C-s disables all input, until C-q. 
 nn <C-s> :w<CR>
+vn <C-s> :w<CR>
+ino <C-s> <ESC>:w<CR>
 
 "
 " Switch between last two files
@@ -281,7 +284,12 @@ vm # gc
 let NERDTreeIgnore=['\~$', '^\.pyc','^\.git', '\.swp$', '\.DS_Store$']
 let NERDTreeShowHidden=1
 "nmap <LocalLeader>nn :NERDTreeToggle<cr>
-nm <Leader>e :NERDTreeToggle<cr>
+nn <Leader>e :NERDTreeToggle<cr>
+nn <C-e> :NERDTreeToggle<cr>
+vn <C-e> :NERDTreeToggle<cr>
+ino <C-e> <ESC>:NERDTreeToggle<cr>
+
+
 
 " ctrl-p to search only cwd. autochdir & lcd will change cwd 
 " This changes cwd whenever file is loaded

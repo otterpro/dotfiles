@@ -84,6 +84,8 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 # my own 
 source ~/.aliases
 
+stty -ixon
+
 # override fishy theme's prompt. Replace > with $
 #PROMPT='%n@%m %{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.>) '
 #%{$fg[red]%}]

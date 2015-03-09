@@ -175,7 +175,9 @@ nn <Leader>o :CtrlP<CR> "also <c-p> does the same"
 "<Space>w to save file (lot faster than :w<Enter>):
 nn <Leader>w :w<CR>
 vn <Leader>w :w<CR>
-" TODO: also map s to write - faster than w?
+" C-s to save. TO use C-s, some terminals require "stty -ixon" in shell 
+nn <C-s> :w<CR>
+
 "
 " Switch between last two files
 nn <Leader><Leader> <c-^>

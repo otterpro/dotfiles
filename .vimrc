@@ -22,6 +22,7 @@ filetype plugin indent on    " required
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
+"set backspace=2	"this should always be 2
 
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
@@ -63,6 +64,7 @@ if &t_Co >= 256 || has("gui_running")
     colorscheme codeschool
 	highlight NonText guibg=#060606
 	highlight Folded  guibg=#0A0A0A guifg=#9090D0
+	set background=dark
 endif
 
 
@@ -150,6 +152,7 @@ inoremap ;; <Esc>
 cnoremap ;; <C-c> " ESC acts as CR. Use C-c instead, to prevent execution.
 
 " move vertically visual line, looks more natural when moving up/down. 
+" similar to ^n, ^
 nn j gj
 nn k gk
 
@@ -172,9 +175,14 @@ nn <Leader>p <F2>
 nn <Leader>o :CtrlP<CR> "also <c-p> does the same"
 
 "<Space>w to save file (lot faster than :w<Enter>):
-nn <Leader>w :w<CR>
-vn <Leader>w :w<CR>
-" TODO: also map s to write - faster than w?
+"nn <Leader>w :w<CR>
+"vn <Leader>w :w<CR>
+" C-s to save. TO use C-s, some terminals require "stty -ixon" in shell 
+" In some terminal, C-s disables all input, until C-q. 
+nn <C-s> :w<CR>
+vn <C-s> :w<CR>
+ino <C-s> <ESC>:w<CR>
+
 "
 " Switch between last two files
 nn <Leader><Leader> <c-^>
@@ -278,7 +286,12 @@ vm # gc
 let NERDTreeIgnore=['\~$', '^\.pyc','^\.git', '\.swp$', '\.DS_Store$']
 let NERDTreeShowHidden=1
 "nmap <LocalLeader>nn :NERDTreeToggle<cr>
-nm <Leader>e :NERDTreeToggle<cr>
+nn <Leader>e :NERDTreeToggle<cr>
+nn <C-e> :NERDTreeToggle<cr>
+vn <C-e> :NERDTreeToggle<cr>
+ino <C-e> <ESC>:NERDTreeToggle<cr>
+
+
 
 " ctrl-p to search only cwd. autochdir & lcd will change cwd 
 " This changes cwd whenever file is loaded

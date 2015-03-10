@@ -22,6 +22,7 @@ filetype plugin indent on    " required
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
+"set backspace=2	"this should always be 2
 
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
@@ -63,6 +64,7 @@ if &t_Co >= 256 || has("gui_running")
     colorscheme codeschool
 	highlight NonText guibg=#060606
 	highlight Folded  guibg=#0A0A0A guifg=#9090D0
+	set background=dark
 endif
 
 
@@ -150,6 +152,7 @@ inoremap ;; <Esc>
 cnoremap ;; <C-c> " ESC acts as CR. Use C-c instead, to prevent execution.
 
 " move vertically visual line, looks more natural when moving up/down. 
+" similar to ^n, ^
 nn j gj
 nn k gk
 

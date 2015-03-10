@@ -1,7 +1,7 @@
 # .gitignore_global
 #
 # global gitignore
-# https://gist.github.com/octocat/9257657
+# modified from https://gist.github.com/octocat/9257657
 # also run git config --global core.excludesfile ~/.gitignore_global
 # Compiled source #
 ###################
@@ -11,6 +11,7 @@
 *.exe
 *.o
 *.so
+*.pyc
  
 # Packages #
 ############
@@ -30,6 +31,8 @@
   *.log
   *.sql
   *.sqlite
+
+# 
    
 # OS generated files #
 ######################
@@ -38,5 +41,6 @@
    ._*
    .Spotlight-V100
    .Trashes
+   Desktop.ini
    ehthumbs.db
    Thumbs.db

@@ -53,7 +53,7 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 export TERM="xterm-256color"
-
+export EDITOR=vim
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 # You may need to manually set your language environment
@@ -78,8 +78,8 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+# alias zshconfig="vi ~/.zshrc"
+# alias ohmyzsh="vi ~/.oh-my-zsh"
 #
 # my own 
 source ~/.aliases
@@ -108,8 +108,11 @@ case "$OSTYPE" in
                 function precmd {
                         echo -ne "\033]0;$PWD\007"
                 }
+				export EDITOR=mvim
+				export VISUAL=mvim
                 ;;      
         linux*) # linux-specific
+			#export VISUAL=gvim
                 ;;
         *)      # all other OS
                 ;;

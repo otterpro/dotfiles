@@ -157,9 +157,8 @@ nn k gk
 vmap Q gq
 nmap Q gqap
 
-"Sudo to write
+"Sudo to write. use w!! to write file if I forgot to sudo
 "Steve Losh's http://forrst.com/posts/Use_w_to_sudo_write_a_file_with_Vim-uAN
-" use w!! to write file I forgot to sudo
 cnoremap w!! w !sudo tee % >/dev/null
 
 " solve Paste problem with indents if autoindenting is enabled"

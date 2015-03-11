@@ -3,9 +3,9 @@ call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 " "call vundle#begin('~/some/path/here')
 "
-" " let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-Plugin 'docunext/closetag.vim.git'
+" let Vundle manage Vundle, required
+
+" Plugin 'docunext/closetag.vim.git'
 Plugin 'kien/ctrlp.vim'
 Plugin 'Raimondi/delimitMate.git'
 Plugin 'scrooloose/nerdtree.git'
@@ -26,8 +26,6 @@ Plugin 'tpope/vim-surround.git'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'xolox/vim-misc.git'  "switcher using F8
 Plugin 'xolox/vim-colorscheme-switcher.git'
-
-"Plugin 'tpope/vim-pathogen.git'  "Removed pathogen
 
 call vundle#end()            " required"
 

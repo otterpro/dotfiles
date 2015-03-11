@@ -34,7 +34,6 @@ set title                " change the terminal's title
 set visualbell           " don't beep
 set noerrorbells         " don't beep
 
-" For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
 " let &guioptions = substitute(&guioptions, "t", "", "g")
 
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
@@ -149,7 +148,8 @@ nn ;; ;
 
 " remap ;; as Escape.  Convenient.
 inoremap ;; <Esc>
-cnoremap ;; <C-c> " ESC acts as CR. Use C-c instead, to prevent execution.
+" ESC acts as CR. Use C-c instead, to prevent execution.
+cnoremap ;; <C-c> 
 
 " move vertically visual line, looks more natural when moving up/down. 
 " similar to ^n, ^
@@ -171,8 +171,8 @@ nn <Leader>p <F2>
 
 " Map frequent actions
 "
-"<Space>o to open a new file:
-nn <Leader>o :CtrlP<CR> "also <c-p> does the same"
+"<Space>o to open a new file: also <c-p> does the same"
+nn <Leader>o :CtrlP<CR> 
 
 "<Space>w to save file (lot faster than :w<Enter>):
 "nn <Leader>w :w<CR>
@@ -183,7 +183,6 @@ nn <C-s> :w<CR>
 vn <C-s> :w<CR>
 ino <C-s> <ESC>:w<CR>
 
-"
 " Switch between last two files
 nn <Leader><Leader> <c-^>
 
@@ -292,7 +291,6 @@ vn <C-e> :NERDTreeToggle<cr>
 ino <C-e> <ESC>:NERDTreeToggle<cr>
 
 
-
 " ctrl-p to search only cwd. autochdir & lcd will change cwd 
 " This changes cwd whenever file is loaded
 " autocmd BufEnter * silent! lcd %:p:h
@@ -326,9 +324,7 @@ if executable('ag')
   let g:ctrlp_use_caching = 0
 endif
 
-
-" Local config
-if filereadable($HOME . "/.vimrc.local")
-   source ~/.vimrc.local
-endif
-
+" Local config, not used yet.
+" if filereadable($HOME . "/.vimrc.local")
+"    source ~/.vimrc.local
+" endif

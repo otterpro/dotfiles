@@ -12,9 +12,9 @@ endif
 set nocompatible
 filetype off " required here
 
-" load vundles in ~/.dotfiles/vim.vundle
-if filereadable(expand("~/.dotfiles/vim.vundle"))
-	source ~/.dotfiles/vim.vundle
+" load vundles in ~/.dotfiles/vundle.vim
+if filereadable(expand("~/.dotfiles/vundle.vim"))
+	source ~/.dotfiles/vundle.vim
 endif
 
 filetype plugin indent on    " required
@@ -189,7 +189,7 @@ nn <Leader><Leader> <c-^>
 
 " Rails 
 " <Leader>r call rake
-nn <Leader>r :!rake<CR>
+" nn <Leader>r :!rake<CR>
 
 "<Space>n : toggle number
 nn <Leader>n :setlocal nonumber!<CR>
@@ -206,8 +206,8 @@ set nofoldenable
 highlight Folded guibg=grey7 ctermbg=238 " set color (one of dark grey=238)
 
 "  Change foldtext (http://dhruvasagar.com/2013/03/28/vim-better-foldtext)
-if filereadable(expand("~/.dotfiles/vim.foldtext"))
-	source ~/.dotfiles/vim.foldtext
+if filereadable(expand("~/.dotfiles/foldtext.vim"))
+	source ~/.dotfiles/foldtext.vim
 endif
 
 if has("autocmd") " Only do this part when compiled with support for autocommands.

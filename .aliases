@@ -19,7 +19,7 @@ if [[ $OSTYPE == darwin* ]]; then
 	# v is already used by ~/bin/v
 	#alias v="mvim -p"
 elif [[ $OSTYPE == freebsd* ]]; then
-	alias vi='vim '
+	alias vi='vim'
 fi
 
 # Quicker navigation
@@ -33,7 +33,8 @@ alias ....="cd ../../.."
 #alias sites="cd ~/Code/sites"
 
 # Enable aliases to be sudo’ed
-#alias sudo='sudo '
+# if not, aliases are lost when using sudo
+alias sudo='sudo '
 
 # Colored up cat!
 # You must install Pygments first - "sudo easy_install Pygments"

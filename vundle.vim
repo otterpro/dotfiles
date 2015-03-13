@@ -6,26 +6,34 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 
 " Plugin 'docunext/closetag.vim.git'
-Plugin 'kien/ctrlp.vim'
-Plugin 'Raimondi/delimitMate.git'
-Plugin 'scrooloose/nerdtree.git'
-Plugin 'tomtom/tcomment_vim'
-Plugin 'tomtom/tlib_vim.git'
-Plugin 'MarcWeber/vim-addon-mw-utils.git'
+
+
+" status line
 Plugin 'bling/vim-airline'
 
-"Markdown
+" File
+Plugin 'scrooloose/nerdtree.git'
+Plugin 'kien/ctrlp.vim'
+
+"coding
+Plugin 'Raimondi/delimitMate.git'
+Plugin 'tomtom/tcomment_vim'
+Plugin 'tpope/vim-surround.git'
+
+"Markdown and text formatting
 Plugin 'godlygeek/tabular' "required for vim-markdown"
 Plugin 'plasticboy/vim-markdown'
 
+"snippets
+Plugin 'tomtom/tlib_vim.git' " required for snipmate
+Plugin 'MarcWeber/vim-addon-mw-utils.git'	" required for snipmate
 Plugin 'garbas/vim-snipmate.git'
 Plugin 'honza/vim-snippets.git'
-Plugin 'tpope/vim-surround.git'
 
 " colorschemes-related 
 Plugin 'flazz/vim-colorschemes'
-Plugin 'xolox/vim-misc.git'  "switcher using F8
-Plugin 'xolox/vim-colorscheme-switcher.git'
+Plugin 'xolox/vim-misc'  " requierd for colorscheme-switcher
+Plugin 'xolox/vim-colorscheme-switcher' "quickly switch colorscheme with F8
 
 call vundle#end()            " required"
 

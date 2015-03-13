@@ -8,6 +8,8 @@
 #
 #set -xv #debugging
 # part of vim backup from https://github.com/swaroopch/dotvim/blob/master/install.sh
+#
+# also, make sure to get bin files first.  In Bin, we have z.sh
 
 #cd into script's path
 cd $(dirname $0) ; pwd -P
@@ -43,6 +45,10 @@ then
     exit 1
 fi
 
+
+# install oh-my-zsh
+curl -L http://install.ohmyz.sh | sh
+
 #vim backup - not as reliable...
 export VIM_BACKUP_DIR="$HOME/.vim_backup"
 mkdir -p $VIM_BACKUP_DIR
@@ -56,6 +62,20 @@ do
     [[ -s "$f" ]] && mv -f "$f" $VIM_BACKUP_DIR
 done
 
+# vim Vundle
+echo "Download Vundle"
+mkdir -p "$HOME/.vim/bundle"
+if [[ ! -d "$HOME/.vim/bundle/vundle" ]]
+then
+    git clone http://github.com/gmarik/vundle.git "$HOME/.vim/bundle/vundle"
+fi
+
+echo "Instruct Vundle to download all the scripts"
+vim +PluginInstall +qall 
+
+# make all the symlink. This step needs to come last, so it other install
+# such as vim and oh-my-zsh won't interfere.  
+#
 #echo "Ensuring backup directory exists"
 #mkdir -p "$HOME/.vim/backup"
 
@@ -68,17 +88,5 @@ find . -maxdepth 1 -mindepth 1 \! -name "*.git" -type d -exec rm -rf ~/{} ";" -e
 # however, there could be other files such as .gitmodules.
 #find . -mindepth 1 -maxdepth 1 -type f -name ".*" ! -name ".git*" -exec ln -sf `pwd`/{} ~/{} ";"
 find . -mindepth 1 -maxdepth 1 -type f -name ".*" ! -name ".git" -exec ln -sf `pwd`/{} ~/{} ";"
-
-# vim Vundle
-echo "Download Vundle"
-mkdir -p "$HOME/.vim/bundle"
-if [[ ! -d "$HOME/.vim/bundle/vundle" ]]
-then
-    git clone http://github.com/gmarik/vundle.git "$HOME/.vim/bundle/vundle"
-fi
-
-echo "Instruct Vundle to download all the scripts"
-vim +PluginInstall +qall 
-
 
 

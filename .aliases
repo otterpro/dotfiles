@@ -18,6 +18,8 @@ if [[ $OSTYPE == darwin* ]]; then
 	#alias s='open -a "Sublime Text"'
 	# v is already used by ~/bin/v
 	#alias v="mvim -p"
+elif [[ $OSTYPE == freebsd* ]]; then
+	alias vi='vim '
 fi
 
 # Quicker navigation

@@ -21,7 +21,7 @@ Plugin 'tomtom/tcomment_vim'
 Plugin 'tpope/vim-surround.git'
 
 "Markdown and text formatting
-Plugin 'godlygeek/tabular' "required for vim-markdown"
+Plugin 'godlygeek/tabular' "required for vim-markdown
 Plugin 'plasticboy/vim-markdown'
 
 "snippets
@@ -35,7 +35,7 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'xolox/vim-misc'  " requierd for colorscheme-switcher
 Plugin 'xolox/vim-colorscheme-switcher' "quickly switch colorscheme with F8
 
-call vundle#end()            " required"
+call vundle#end()            " required
 
 " Brief help
 " :PluginList       - lists configured plugins

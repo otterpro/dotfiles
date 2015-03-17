@@ -12,6 +12,8 @@ endif
 set nocompatible
 filetype off " required here
 
+set nomodeline  " turn-off modeline, which interpretes text file as vim setting
+
 " load vundles in ~/.dotfiles/vundle.vim
 if filereadable(expand("~/.dotfiles/vundle.vim"))
 	source ~/.dotfiles/vundle.vim

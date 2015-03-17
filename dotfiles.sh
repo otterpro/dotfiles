@@ -47,7 +47,7 @@ fi
 
 
 # install oh-my-zsh
-curl -L http://install.ohmyz.sh | sh
+#curl -L http://install.ohmyz.sh | sh
 
 #vim backup - not as reliable...
 export VIM_BACKUP_DIR="$HOME/.vim_backup"

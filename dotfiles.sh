@@ -64,7 +64,7 @@ done
 
 # vim Vundle
 echo "Download Vundle"
-mkdir -p "$HOME/.vim/bundle"
+mkdir -p $HOME/.vim/bundle
 if [[ ! -d "$HOME/.vim/bundle/vundle" ]]
 then
     git clone http://github.com/gmarik/vundle.git "$HOME/.vim/bundle/vundle"

@@ -120,6 +120,13 @@ case "$OSTYPE" in
                 ;;
 esac
 
+# misc 
+# see http://msol.io/blog/tech/2014/03/10/work-more-efficiently-on-your-mac-for-developers/
+# function f() { find . -iname "*$1*" ${@:2} }
+#	f png   # finds all png files
+#
+# function r() { grep "$1" ${@:2} -R . })}
+#	r xyz  # grep for xyz 
 #RVM
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"

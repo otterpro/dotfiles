@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 #
-#!/bin/sh
 # Daniel Kim 
 #
 # creates symlink of all dotfiles and also dot directories into home directory (~)

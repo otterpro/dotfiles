@@ -53,18 +53,19 @@ fi
 #curl -L http://install.ohmyz.sh | sh
 
 #vim backup - not as reliable...
-export VIM_BACKUP_DIR="$HOME/.vim_backup"
-mkdir -p $VIM_BACKUP_DIR
-echo "Backing up existing vim files to $VIM_BACKUP_DIR"
-for f in $(ls -a $VIM_BACKUP_DIR| grep -v '^.$' | grep -v '^..$')
-do
-    rm -rf "$VIM_BACKUP_DIR/$f"
-done
-for f in "$HOME/.vimrc" "$HOME/.gvimrc" "$HOME/.vimrc.local" "$HOME/.vim"
-do
-    [[ -s "$f" ]] && mv -f "$f" $VIM_BACKUP_DIR
-done
-
+# temporarily not using it.
+# export VIM_BACKUP_DIR="$HOME/.vim_backup"
+# mkdir -p $VIM_BACKUP_DIR
+# echo "Backing up existing vim files to $VIM_BACKUP_DIR"
+# for f in $(ls -a $VIM_BACKUP_DIR| grep -v '^.$' | grep -v '^..$')
+# do
+#     rm -rf "$VIM_BACKUP_DIR/$f"
+# done
+# for f in "$HOME/.vimrc" "$HOME/.gvimrc" "$HOME/.vimrc.local" "$HOME/.vim"
+# do
+#     [[ -s "$f" ]] && mv -f "$f" $VIM_BACKUP_DIR
+# done
+#
 # vim Vundle
 echo "Download Vundle"
 mkdir -p $HOME/.vim/bundle

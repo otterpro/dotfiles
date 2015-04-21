@@ -1,3 +1,7 @@
+#!/bin/bash
+#
+#
+# another alternative
 #!/usr/bin/env bash
 #
 # Daniel Kim 

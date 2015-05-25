@@ -70,4 +70,9 @@ alias tmux="tmux -2"
 #color grep
 alias grep='GREP_COLOR="1;37;45" grep --color=auto'
 
+# TODO: search for files with TODO / FIXME
+alias TODO='ag TODO'
+# or could be done via
+# alias TODO="grep -E 'FIXME|TODO'"
+
 ##############   END   #####################

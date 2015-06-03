@@ -17,7 +17,7 @@ if [[ $OSTYPE == darwin* ]]; then
 	alias preview="open -a Preview"
 	#alias s='open -a "Sublime Text"'
 	# v is already used by ~/bin/v
-	#alias v="mvim -p"
+	alias vi="mvim -p"
 elif [[ $OSTYPE == freebsd* ]]; then
 	alias vi='vim'
 fi
@@ -74,5 +74,6 @@ alias grep='GREP_COLOR="1;37;45" grep --color=auto'
 alias TODO='ag TODO'
 # or could be done via
 # alias TODO="grep -E 'FIXME|TODO'"
+# similar to 'rake notes'
 
 ##############   END   #####################

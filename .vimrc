@@ -87,7 +87,7 @@ set number numberwidth=4 "show line number and show 4 digit
 " TAB setting"
 set tabstop=4	"hardtab width
 set shiftwidth=4 " make "tab" insert indents instead of tabs at the beginning of a line
-"set expandtab	" use space instead of tab, enabled for ruby,python.
+"set expandtab	" use space instead of tab, also enabled for txt,md,ruby,python.
 set softtabstop=4	"space used in softtab
 set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
 set showmatch     " set show matching parenthesis
@@ -245,7 +245,7 @@ if has("autocmd") " Only do this part when compiled with support for autocommand
 
 	"======== text file ==========="
 	" force wrap at 80 characters for all text files
-	autocmd fileType text setlocal textwidth=80
+	autocmd fileType text setlocal textwidth=80 expandtab
 
 	"======== Markdown ============="
 	"treat all .txt file as markdown
@@ -254,7 +254,8 @@ if has("autocmd") " Only do this part when compiled with support for autocommand
 	" enable spellchecking for markdown. TODO: spell file needed?
 	autocmd filetype mkd setlocal spell
 	" force text wrap at 80 columns
-	autocmd filetype mkd setlocal textwidth=80
+	autocmd filetype mkd setlocal textwidth=80 expandtab
+	autocmd filetype md setlocal textwidth=80 expandtab
 
 	"========== Python ===============" 
 	autocmd filetype python setlocal ts=4 sw=4 sts=4 expandtab

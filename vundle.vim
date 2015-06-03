@@ -19,8 +19,8 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'Raimondi/delimitMate.git'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'tpope/vim-surround.git'
+Plugin 'tpope/vim-repeat.git'
 Plugin 'tpope/vim-fugitive'
-
 
 "Markdown and text formatting
 Plugin 'godlygeek/tabular' "required for vim-markdown

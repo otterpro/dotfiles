@@ -268,6 +268,9 @@ if has("autocmd") " Only do this part when compiled with support for autocommand
 	autocmd filetype html setlocal ts=2 sts=2 sw=2 expandtab
 	autocmd filetype css setlocal ts=2 sts=2 sw=2 expandtab
 
+	"optional, for closetag plugin
+	autocmd FileType html,htmldjango,jinjahtml,eruby,mako let b:closetag_html_style=1 
+
   augroup END
 
 else "if it doesn't have autocmd"

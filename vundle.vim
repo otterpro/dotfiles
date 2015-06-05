@@ -5,8 +5,7 @@ call vundle#begin()
 "
 " let Vundle manage Vundle, required
 
-" Plugin 'docunext/closetag.vim.git'
-
+Plugin 'docunext/closetag.vim.git'
 
 " status line
 Plugin 'bling/vim-airline'

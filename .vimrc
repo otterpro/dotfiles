@@ -36,6 +36,10 @@ set title                " change the terminal's title
 set visualbell           " don't beep
 set noerrorbells         " don't beep
 
+set termencoding=utf-8
+set encoding=utf-8
+
+
 " let &guioptions = substitute(&guioptions, "t", "", "g")
 
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
@@ -118,7 +122,7 @@ let maplocalleader="\\"
 set cursorline
 hi CursorLine cterm=NONE ctermbg=238 guibg=grey7
 
-"=== Search ====
+"================= Search ===============
 set incsearch     " do incremental search / show search 
 " make regex search compatible with php,perl,etc. using very magic
 " uses magic. see help on "pattern" and "magic"
@@ -135,13 +139,11 @@ vn <C-r> ""y:%s/<C-R>=escape(@", '/\')<CR>//g<Left><Left>")
 " g, : clear search highlights
 nn <leader>, :noh<cr> 
 
-set termencoding=utf-8
-set encoding=utf-8
-
 set gdefault    "assumes that %s/abc/def/ is %s/abc/def/g, (no need for g)
 
 "set cmdheight=2 " status bar that is 2 rows. However, this is too high
 
+"================== keyboard remapping ======================
 "  use ; as : to save keystrokes. ex: :w can be ;w
 nn ; :
 vn ; :
@@ -277,17 +279,23 @@ else "if it doesn't have autocmd"
 	set autoindent		" always set autoindenting on
 endif " has("autocmd")
 
+" ============== surround ====================
+" quickly enclosing 'vv' encloses current text with angled bracket <>
+" usually when pasting URL, Ctrl(or Cmd)V, then quickly hit 'vv'"
+imap vv <Esc>ysiW>
+nmap vv ysiW>
+
 " ============== vim-airline =====================
 set laststatus=2 "without it, status bar is hidden. it forces status to be always visible
 
 " vim-markdown: folding is enabled by default. disable now
 "let g:vim_markdown_folding_disabled=1
 
-" tcomment
+" ============== tcomment =======================
 nm <Leader># gcc
 vm # gc
 
-" NERDTree ========================{{{
+" ============== NERDTree ========================{{{
 let NERDTreeIgnore=['\~$', '^\.pyc','^\.git', '\.swp$', '\.DS_Store$']
 let NERDTreeShowHidden=1
 "nmap <LocalLeader>nn :NERDTreeToggle<cr>

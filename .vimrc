@@ -155,6 +155,11 @@ inoremap ;; <Esc>
 " ESC acts as CR. Use C-c instead, to prevent execution.
 cnoremap ;; <C-c> 
 
+" remap "aa" as Escape.  Convenient.
+inoremap aa <Esc>
+" ESC acts as CR. Use C-c instead, to prevent execution.
+cnoremap aa <C-c> 
+
 " move vertically visual line, looks more natural when moving up/down. 
 " similar to ^n, ^
 nn j gj

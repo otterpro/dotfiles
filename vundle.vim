@@ -5,7 +5,6 @@ call vundle#begin()
 "
 " let Vundle manage Vundle, required
 
-Plugin 'docunext/closetag.vim.git'
 
 " status line
 Plugin 'bling/vim-airline'
@@ -14,22 +13,27 @@ Plugin 'bling/vim-airline'
 Plugin 'scrooloose/nerdtree.git'
 Plugin 'kien/ctrlp.vim'
 
-"coding
-Plugin 'Raimondi/delimitMate.git'
+"coding & auto-completion
+Plugin 'docunext/closetag.vim.git'  "closes html tag"
+" Plugin 'Raimondi/delimitMate.git'	"closes < >, (), [], {}"
+" Temporarily disabled, until I can selectively close delimiters"
 Plugin 'tomtom/tcomment_vim'
-Plugin 'tpope/vim-surround.git'
+Plugin 'tpope/vim-surround.git'  "add surrounding brackets,quotes,tags"
 Plugin 'tpope/vim-repeat.git'
 Plugin 'tpope/vim-fugitive'
 
 "Markdown and text formatting
-Plugin 'godlygeek/tabular' "required for vim-markdown
-Plugin 'plasticboy/vim-markdown'
+" Plugin 'godlygeek/tabular' "required for vim-markdown
+" Plugin 'plasticboy/vim-markdown' "unfortunately,uses mkd, not markdown as filetype"
+" replaced with simpler plugin
+Plugin 'tpope/vim-markdown'
 
 "snippets
 Plugin 'tomtom/tlib_vim.git' " required for snipmate
 Plugin 'MarcWeber/vim-addon-mw-utils.git'	" required for snipmate
-Plugin 'garbas/vim-snipmate.git'
-Plugin 'honza/vim-snippets.git'
+Plugin 'garbas/vim-snipmate.git'  " SnipMate plugin"
+Plugin 'honza/vim-snippets.git'		" all snippets"
+
 
 " colorschemes-related 
 Plugin 'flazz/vim-colorschemes'

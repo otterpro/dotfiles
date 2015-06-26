@@ -252,17 +252,16 @@ if has("autocmd") " Only do this part when compiled with support for autocommand
 
 	"======== text file ==========="
 	" force wrap at 80 characters for all text files
+	" however, *.txt are considered as markdown. see below
 	autocmd fileType text setlocal textwidth=80 expandtab
 
 	"======== Markdown ============="
 	"treat all .txt file as markdown
-	"for some reason,filetype needs to be "mkd", not "markdown" for vim-markdown to work
-	autocmd BufNewFile,BufReadPost  *.txt set filetype=mkd
+	autocmd BufNewFile,BufReadPost  *.txt set filetype=markdown
 	" enable spellchecking for markdown. TODO: spell file needed?
-	autocmd filetype mkd setlocal spell
+	autocmd filetype markdown setlocal spell
 	" force text wrap at 80 columns
-	autocmd filetype mkd setlocal textwidth=80 expandtab
-	autocmd filetype md setlocal textwidth=80 expandtab
+	autocmd filetype markdown setlocal textwidth=80 expandtab
 
 	"========== Python ===============" 
 	autocmd filetype python setlocal ts=4 sw=4 sts=4 expandtab
@@ -290,11 +289,31 @@ endif " has("autocmd")
 imap vv <Esc>ysiW>
 nmap vv ysiW>
 
-" ============== vim-airline =====================
-set laststatus=2 "without it, status bar is hidden. it forces status to be always visible
+imap [[ <Esc>ysiW]<Esc>Ea
 
+" below doesn't work. not sure why.
+nmap [[ ysiW]<Esc>E
+
+imap '' <Esc>ysiW'Ea
+nmap '' ysiW'
+
+imap << <Esc>ysiW>Ea
+nmap <<  ysiW>
+
+imap "" <Esc>ysiW"Ea
+nmap ""  ysiW"
+
+
+"============= airline  ================
+set laststatus=2 "without it, status bar is hidden for airline plugin. it forces status to be always visible
+
+" ============== plasticboy/vim-markdown =====================
+" NOT USED ANYMORE
 " vim-markdown: folding is enabled by default. disable now
 "let g:vim_markdown_folding_disabled=1
+" let g:vim_markdown_frontmatter=1  "highlight jekyll frontmatter
+
+
 
 " ============== tcomment =======================
 nm <Leader># gcc

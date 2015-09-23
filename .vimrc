@@ -205,12 +205,12 @@ vn ; :
 " also restore old ; by using ;; 
 nn ;; ; 
 
-" remap ;; as Escape.  Convenient.
-inoremap ;; <Esc>
+" remap ;; as Escape. but removed - interferes with java/c-type language 
+" inoremap ;; <Esc>
 " ESC acts as CR. Use C-c instead, to prevent execution.
-cnoremap ;; <C-c> 
-
-" remap "aa" as Escape.  Convenient.
+" cnoremap ;; <C-c> 
+"
+" remap "aa" as Escape.  Convenient. replace ";;" 
 inoremap aa <Esc>
 " ESC acts as CR. Use C-c instead, to prevent execution.
 cnoremap aa <C-c> 

@@ -16,8 +16,15 @@ if [[ $OSTYPE == darwin* ]]; then
 	# $preview this.png
 	alias preview="open -a Preview"
 	#alias s='open -a "Sublime Text"'
+	# 
 	# v is already used by ~/bin/v
+	# which should open file in new tab in existing MacVim window
+	#
+	# simple macvim, -p = use tab to open multiple files
+	# Not sophisticated as ~/bin/v since it opens new MacVim instead of reusing
 	alias vi="mvim -p"
+	alias vim="mvim -p"
+
 elif [[ $OSTYPE == freebsd* ]]; then
 	alias vi='vim'
 fi

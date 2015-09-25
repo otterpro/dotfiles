@@ -92,10 +92,10 @@ stty -ixon #turn-off XOFF, so that vim can use Ctrl-S.
 #%F{magenta}
 #OLD
 #PROMPT='%F{red}%[%n@%m] %{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.$) '
-# v1	
-#PROMPT='[%{$fg[yellow]%}%n%{$fg[red]%}@%m%{$fg[white]%}] %{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.$) '
-# with emoji smiley
-PROMPT='[%{$fg[yellow]%}%n%{$fg[red]%}😜  %m%{$fg[white]%}] %{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.$) '
+#
+# default PROMPT just in case we don't use emoji
+PROMPT='[%{$fg[yellow]%}%n%{$fg[red]%}@%m%{$fg[white]%}] %{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.$) '
+
 
 #less.  -x4=tab 4space,R=ansi color, N=show line S=don't wrap text#
 # 
@@ -116,13 +116,22 @@ case "$OSTYPE" in
                 }
 				export EDITOR=mvim
 				export VISUAL=mvim
+				PROMPT_EMOJI='%F{white}%f' # unicode - apple logo
+				PROMPT_EMOJI='🍎'  # emoji-red apple
                 ;;      
         linux*) # linux-specific
 			#export VISUAL=gvim
+				PROMPT_EMOJI='🐧'  # emoji penguin
                 ;;
         *)      # all other OS
+				PROMPT_EMOJI='😜'	# emoji smiley tongue 
                 ;;
 esac
+
+# with emoji smiley
+PROMPT="[%{$fg[yellow]%}%n%{$fg[red]%} $PROMPT_EMOJI  %m%{$fg[white]%}] %{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.$) "
+PROMPT="[%{$fg[yellow]%}%n$PROMPT_EMOJI %{$fg[red]%}%m%{$fg[white]%}] %{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.$) "
+# using multi-part prompt instead
 
 # misc 
 # see http://msol.io/blog/tech/2014/03/10/work-more-efficiently-on-your-mac-for-developers/

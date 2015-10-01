@@ -33,6 +33,9 @@ Plugin 'bling/vim-airline'
 Plugin 'scrooloose/nerdtree.git'
 Plugin 'kien/ctrlp.vim'
 
+" Mini-Buffer Explorer Fork
+Plugin 'fholgado/minibufexpl.vim'
+
 "coding & auto-completion
 Plugin 'docunext/closetag.vim.git'  "closes html tag"
 " Plugin 'Raimondi/delimitMate.git'	"closes < >, (), [], {}"
@@ -59,6 +62,8 @@ Plugin 'honza/vim-snippets.git'		" all snippets"
 Plugin 'flazz/vim-colorschemes'
 Plugin 'xolox/vim-misc'  " requierd for colorscheme-switcher
 Plugin 'xolox/vim-colorscheme-switcher' "quickly switch colorscheme with F8
+
+
 
 call vundle#end()            " required
 
@@ -249,6 +254,13 @@ ino <C-s> <ESC>:w<CR>
 
 " Switch between last two files
 nn <Leader><Leader> <c-^>
+
+"
+" go to buffer quickly
+" control-] overrides tag lookup
+" control-[ overrides esc/etc
+nn <C-]> :bnext<CR>
+nn <C-[> :bprev<CR>
 
 " Rails 
 " <Leader>r call rake

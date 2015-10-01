@@ -96,7 +96,6 @@ stty -ixon #turn-off XOFF, so that vim can use Ctrl-S.
 # default PROMPT just in case we don't use emoji
 PROMPT='[%{$fg[yellow]%}%n%{$fg[red]%}@%m%{$fg[white]%}] %{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.$) '
 
-
 #less.  -x4=tab 4space,R=ansi color, N=show line S=don't wrap text#
 # 
 # LESS="-x4NR"
@@ -116,8 +115,11 @@ case "$OSTYPE" in
                 }
 				export EDITOR=mvim
 				export VISUAL=mvim
-				PROMPT_EMOJI='%F{white}%f' # unicode - apple logo
-				PROMPT_EMOJI='🍎'  # emoji-red apple
+				#PROMPT_EMOJI='%F{white}%f' # unicode - apple logo
+				#PROMPT_EMOJI='🍎'  # emoji-red apple
+				#PROMPT="[%{$fg[yellow]%}%n🍎 $fg[red]%}%m%{$fg[white]%}] %{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.$) "
+				#PROMPT='[%{$fg[yellow]%}%n%{$fg[red]%}@%m%{$fg[white]%}] %{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.$) '
+				PROMPT='[%{$fg[yellow]%}%n🍎 $fg[red]%}%m%{$fg[white]%}] %{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.$) '
                 ;;      
         linux*) # linux-specific
 			#export VISUAL=gvim
@@ -129,8 +131,7 @@ case "$OSTYPE" in
 esac
 
 # with emoji smiley
-PROMPT="[%{$fg[yellow]%}%n%{$fg[red]%} $PROMPT_EMOJI  %m%{$fg[white]%}] %{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.$) "
-PROMPT="[%{$fg[yellow]%}%n$PROMPT_EMOJI %{$fg[red]%}%m%{$fg[white]%}] %{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.$) "
+#PROMPT="[%{$fg[yellow]%}%n$PROMPT_EMOJI %{$fg[red]%}%m%{$fg[white]%}] %{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.$) "
 # using multi-part prompt instead
 
 # misc 

@@ -50,6 +50,9 @@ Plugin 'tpope/vim-fugitive'
 " Plugin 'plasticboy/vim-markdown' "unfortunately,uses mkd, not markdown as filetype"
 " replaced with simpler plugin
 Plugin 'tpope/vim-markdown'
+"folding is not in tpope's version. we need this to fold
+Plugin 'nelstrom/vim-markdown-folding'
+		
 
 "snippets
 Plugin 'tomtom/tlib_vim.git' " required for snipmate
@@ -131,6 +134,15 @@ if &t_Co >= 256 || has("gui_running")
 	highlight Folded  guibg=#0A0A0A guifg=#9090D0
 	set background=dark
 endif
+
+
+"wildmenu allows filename autocompletion with graphical menu
+set wildmenu 
+
+"lazyredraw - draws only when needed, faster for doing macro
+" if there's problem, then disable it
+set lazyredraw
+
 
 
 " Convenient command to see the difference between the current buffer and the
@@ -215,10 +227,11 @@ nn ;; ;
 " ESC acts as CR. Use C-c instead, to prevent execution.
 " cnoremap ;; <C-c> 
 "
-" remap "aa" as Escape.  Convenient. replace ";;" 
-inoremap aa <Esc>
+" remap "qq" as Escape.  Convenient. replace ";;" 
+" originally, was "aa", but it was typed too often
+inoremap qq <Esc>
 " ESC acts as CR. Use C-c instead, to prevent execution.
-cnoremap aa <C-c> 
+cnoremap qq <C-c> 
 
 " move vertically visual line, looks more natural when moving up/down. 
 " similar to ^n, ^
@@ -258,9 +271,8 @@ nn <Leader><Leader> <c-^>
 "
 " go to buffer quickly
 " control-] overrides tag lookup
-" control-[ overrides esc/etc
+" control-[ overrides esc/etc, but doesn't work. cannot override esc
 nn <C-]> :bnext<CR>
-nn <C-[> :bprev<CR>
 
 " Rails 
 " <Leader>r call rake
@@ -268,6 +280,7 @@ nn <C-[> :bprev<CR>
 
 "<Space>n : toggle number
 nn <Leader>n :setlocal nonumber!<CR>
+
 
 " Display extra whitespace
 " MAYBE: move it to code-specific files, setlocal
@@ -277,7 +290,11 @@ nn <Leader>n :setlocal nonumber!<CR>
 " nn <Space> za
 " vn <Space> za
 " dont fold by default. If not set, it will open text as folded
-set nofoldenable
+" set nofoldenable
+set foldenable
+set foldlevelstart=1
+set foldnestmax=10		" maximum folding level. beyond 10 is crazy
+
 highlight Folded guibg=grey7 ctermbg=238 " set color (one of dark grey=238)
 
 "  Change foldtext (http://dhruvasagar.com/2013/03/28/vim-better-foldtext)
@@ -358,18 +375,40 @@ imap vv <Esc>ysiW>
 nmap vv ysiW>
 
 imap [[ <Esc>ysiW]<Esc>Ea
+" below doesn't work. not sure why. "[{action}" is reserved, so...
+" nmap [[ ysiW]<Esc>E
+" this also won't work, as [ is reserved in Visual??? 
+" vmap [[ S]
 
-" below doesn't work. not sure why.
-nmap [[ ysiW]<Esc>E
 
 imap '' <Esc>ysiW'Ea
 nmap '' ysiW'
+vmap '' S'
+nmap <Leader>' ysiW'
 
 imap "" <Esc>ysiW"Ea
 nmap ""  ysiW"
+vmap "" S"
+nmap <Leader>" ysiW"
 
 imap \\ <Esc>ysiW`Ea
 nmap \\  ysiW`
+vmap `` S`
+
+nmap <Leader>) ysiW)
+nmap <Leader>] ysiW]
+nmap <Leader>> ysiW>
+nmap <Leader>} ysiW}
+
+" converts 2 lines into markdown URL [text](url) 
+" ex:  
+" line1: text something
+" line2: http://google.com
+" {action}
+" line1: [text something](http://google.com)
+" uses Surround plugin
+"<Space>n : toggle number
+nmap <Leader>j yss]jysiW)kJdlj
 
 
 "============= airline  ================

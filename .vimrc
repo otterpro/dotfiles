@@ -34,7 +34,8 @@ Plugin 'scrooloose/nerdtree.git'
 Plugin 'kien/ctrlp.vim'
 
 " Mini-Buffer Explorer Fork
-Plugin 'fholgado/minibufexpl.vim'
+" Removed - too much clutter on top
+" Plugin 'fholgado/minibufexpl.vim'
 
 "coding & auto-completion
 Plugin 'docunext/closetag.vim.git'  "closes html tag"

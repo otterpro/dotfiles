@@ -362,6 +362,10 @@ if has("autocmd") " Only do this part when compiled with support for autocommand
 	"optional, for closetag plugin
 	autocmd FileType html,htmldjango,jinjahtml,eruby,mako let b:closetag_html_style=1 
 
+	"========= nginx ==============="
+	au BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/* if &ft == '' | setfiletype nginx | endif 
+
+
   augroup END
 
 else "if it doesn't have autocmd"

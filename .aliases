@@ -39,6 +39,11 @@ alias ....="cd ../../.."
 #alias code="cd ~/Code"
 #alias sites="cd ~/Code/sites"
 
+# TODO: need to convert to function, as it doesn't function
+# due to alias sudo defined below
+# alias sudo vi='sudo -e'
+# alias sudo vim='sudo -e'
+
 # Enable aliases to be sudo’ed
 # if not, aliases are lost when using sudo
 alias sudo='sudo '

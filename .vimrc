@@ -303,6 +303,20 @@ if filereadable(expand("~/.dotfiles/foldtext.vim"))
 	source ~/.dotfiles/foldtext.vim
 endif
 
+"  Prettify XML (http://vim.wikia.com/wiki/Pretty-formatting_XML)
+"  <leader>x 
+"  TODO: use it in autocmd, 
+"		and use <leader><something> that prettifies all
+"		depending on the context
+"		for ex: json, xml, etc
+if filereadable(expand("~/.dotfiles/prettyxml.vim"))
+	source ~/.dotfiles/prettyxml.vim
+endif
+
+" prettify JSON
+"nmap <leader>j :%!python -m json.tool
+"map <Leader>j !python -m json.tool<CR>
+
 if has("autocmd") " Only do this part when compiled with support for autocommands.
 
   " Enable file type detection.

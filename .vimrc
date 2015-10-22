@@ -54,7 +54,6 @@ Plugin 'tpope/vim-markdown'
 "folding is not in tpope's version. we need this to fold
 Plugin 'nelstrom/vim-markdown-folding'
 		
-
 "snippets
 Plugin 'tomtom/tlib_vim.git' " required for snipmate
 Plugin 'MarcWeber/vim-addon-mw-utils.git'	" required for snipmate
@@ -173,7 +172,7 @@ set smartcase     " ignore case if search pattern is all lowercase,
                   "    case-sensitive otherwise
 set smarttab      " insert tabs on the start of a line according to shiftwidth, not tabstop
 set autoindent		" always set autoindenting on
-set smartindent
+"set smartindent	" disabled because it was not indenting # 
 
 "set hidden		"open new file without having to save current file
 

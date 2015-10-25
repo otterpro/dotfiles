@@ -119,6 +119,16 @@ endif
 "	set t_Co=256
 "endif
 
+" Disable BCE (background-color-erase), because it causes color problem in
+" tmux
+if &term =~ '256color'
+	" disable Background Color Erase (BCE) so that color schemes
+	" render properly when inside 256-color tmux and GNU screen.
+	" see also http://snk.tuxfamily.org/log/vim-256color-bce.html
+	set t_ut=
+endif
+
+
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
 if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")

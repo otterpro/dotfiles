@@ -106,6 +106,12 @@ export LESSOPEN='|~/.lessfilter.sh %s'
 # https://github.com/rupa/z.git
 . ~/bin/z.sh
 
+# virtualenv in tmux
+if [ -n "$VIRTUAL_ENV" ]; then
+    . "$VIRTUAL_ENV/bin/activate"
+fi
+
+
 # OS Specific 
 case "$OSTYPE" in
         darwin*) # mac-specific

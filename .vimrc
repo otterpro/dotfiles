@@ -45,6 +45,7 @@ Plugin 'tomtom/tcomment_vim'
 Plugin 'tpope/vim-surround.git'  "add surrounding brackets,quotes,tags"
 Plugin 'tpope/vim-repeat.git'
 Plugin 'tpope/vim-fugitive'
+Plugin 'majutsushi/tagbar'
 
 "Markdown and text formatting
 " Plugin 'godlygeek/tabular' "required for vim-markdown
@@ -59,7 +60,6 @@ Plugin 'tomtom/tlib_vim.git' " required for snipmate
 Plugin 'MarcWeber/vim-addon-mw-utils.git'	" required for snipmate
 Plugin 'garbas/vim-snipmate.git'  " SnipMate plugin"
 Plugin 'honza/vim-snippets.git'		" all snippets"
-
 
 " colorschemes-related 
 Plugin 'flazz/vim-colorschemes'
@@ -204,6 +204,9 @@ let maplocalleader="\\"
 set cursorline
 hi CursorLine cterm=NONE ctermbg=238 guibg=grey7
 
+" clipboard (macvim/ gvim)
+set clipboard=unnamed
+
 "================= Search ===============
 set incsearch     " do incremental search / show search 
 " make regex search compatible with php,perl,etc. using very magic
@@ -284,13 +287,15 @@ nn <Leader><Leader> <c-^>
 " control-[ overrides esc/etc, but doesn't work. cannot override esc
 nn <C-]> :bnext<CR>
 
+" Tagbar
+nnoremap <Leader>t :TagbarToggle<CR>
+
 " Rails 
 " <Leader>r call rake
 " nn <Leader>r :!rake<CR>
 
 "<Space>n : toggle number
 nn <Leader>n :setlocal nonumber!<CR>
-
 
 " Display extra whitespace
 " MAYBE: move it to code-specific files, setlocal

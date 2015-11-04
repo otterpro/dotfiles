@@ -1,7 +1,9 @@
 [user]
-	name = otterpro
-	email = coconutstudio@yahoo.com
+	name = otter.pro
+	email = codequickly@yahoo.com
 [color]
 	ui = true
 [core]
 	excludesfile = ~/.gitignore_global
+[push]
+	default = matching

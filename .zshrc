@@ -84,6 +84,9 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 # my own 
 source ~/.aliases
 
+# imagemagick resize script from Smashing
+source ~/.dotfiles/smartresize.sh
+
 stty -ixon #turn-off XOFF, so that vim can use Ctrl-S. 
 
 # override fishy theme's prompt. Replace > with $

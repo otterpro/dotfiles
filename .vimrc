@@ -29,23 +29,30 @@ call vundle#begin()
 " status line
 Plugin 'bling/vim-airline'
 
-" File
+" File and Buffer
 Plugin 'scrooloose/nerdtree.git'
 Plugin 'kien/ctrlp.vim'
 
 " Mini-Buffer Explorer Fork
 " Removed - too much clutter on top
 " Plugin 'fholgado/minibufexpl.vim'
+Plugin 'jlanzarotta/bufexplorer'
 
 "coding & auto-completion
 Plugin 'docunext/closetag.vim.git'  "closes html tag"
-" Plugin 'Raimondi/delimitMate.git'	"closes < >, (), [], {}"
-" Temporarily disabled, until I can selectively close delimiters"
 Plugin 'tomtom/tcomment_vim'
 Plugin 'tpope/vim-surround.git'  "add surrounding brackets,quotes,tags"
 Plugin 'tpope/vim-repeat.git'
 Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'majutsushi/tagbar'
+" Plugin 'Raimondi/delimitMate.git'	"closes < >, (), [], {}"
+" Temporarily disabled, until I can selectively close delimiters"
+
+Plugin 'scrooloose/syntastic'	"syntax checker engine
+Plugin 'nvie/vim-flake8'		" python syntax checker
+Plugin 'nathanaelkane/vim-indent-guides'   " show indent guidelines
+
 
 "Markdown and text formatting
 " Plugin 'godlygeek/tabular' "required for vim-markdown
@@ -377,7 +384,7 @@ if has("autocmd") " Only do this part when compiled with support for autocommand
 	autocmd filetype markdown setlocal textwidth=80 expandtab
 
 	"========== Python ===============" 
-	autocmd filetype python setlocal ts=4 sw=4 sts=4 expandtab
+	autocmd filetype python setlocal ts=4 sw=4 sts=4 expandtab fileformat=unix 
 
 	"========= Ruby & rails ==============" 
 	autocmd filetype ruby setlocal ts=2 sts=2 sw=2 expandtab
@@ -387,8 +394,13 @@ if has("autocmd") " Only do this part when compiled with support for autocommand
 	autocmd filetype html setlocal ts=2 sts=2 sw=2 expandtab
 	autocmd filetype css setlocal ts=2 sts=2 sw=2 expandtab
 
+	" au BufNewFile,BufRead *.js, *.html, *.css
+    " \ set tabstop=2
+    " \ set softtabstop=2
+    " \ set shiftwidth=2
+
 	"optional, for closetag plugin
-	autocmd FileType html,htmldjango,jinjahtml,eruby,mako let b:closetag_html_style=1 
+	autocmd FileType html,htmldjango,jinjahtml,eruby,mako let b:closetag_html_style=1 setlocal ts=2 sts=2 sw=2 expandtab
 
 	"========= nginx ==============="
 	au BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/* if &ft == '' | setfiletype nginx | endif 
@@ -398,6 +410,7 @@ if has("autocmd") " Only do this part when compiled with support for autocommand
 
 else "if it doesn't have autocmd"
 	set autoindent		" always set autoindenting on
+	" TODO:this is already set somewhere above(?), 
 endif " has("autocmd")
 
 " ============== surround ====================
@@ -443,6 +456,10 @@ nmap <Leader>} ysiW}
 "<Space>n : toggle number
 nmap <Leader>j yss]jysiW)kJdlj
 
+"
+"============= gitgutter ================
+" disable all gitguter mapping
+let g:gitgutter_map_keys = 0
 
 "============= airline  ================
 set laststatus=2 "without it, status bar is hidden for airline plugin. it forces status to be always visible

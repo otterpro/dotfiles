@@ -29,6 +29,9 @@ call vundle#begin()
 " status line
 Plugin 'bling/vim-airline'
 
+"Easy motion -- not working???
+"Plugin 'easymotion/vim-easymotion'  
+
 " File and Buffer
 Plugin 'scrooloose/nerdtree.git'
 Plugin 'kien/ctrlp.vim'
@@ -53,7 +56,6 @@ Plugin 'scrooloose/syntastic'	"syntax checker engine
 Plugin 'nvie/vim-flake8'		" python syntax checker
 Plugin 'nathanaelkane/vim-indent-guides'   " show indent guidelines
 
-
 "Markdown and text formatting
 " Plugin 'godlygeek/tabular' "required for vim-markdown
 " Plugin 'plasticboy/vim-markdown' "unfortunately,uses mkd, not markdown as filetype"
@@ -73,9 +75,15 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'xolox/vim-misc'  " requierd for colorscheme-switcher
 Plugin 'xolox/vim-colorscheme-switcher' "quickly switch colorscheme with F8
 
-
-
 call vundle#end()            " required
+
+"============= easymotion ================
+" not working???
+"let g:EasyMotion_do_mapping=0  " disable all default mapping/too many maps"
+"map <Leader>m <Plug>(easymotion-prefix)  
+"map s <Plug>(easymotion-prefix)
+								"<leader>m starts easy motion"
+"test something abc abcdef "
 
 " Brief help
 " :PluginList       - lists configured plugins
@@ -460,6 +468,8 @@ nmap <Leader>j yss]jysiW)kJdlj
 "============= gitgutter ================
 " disable all gitguter mapping
 let g:gitgutter_map_keys = 0
+
+
 
 "============= airline  ================
 set laststatus=2 "without it, status bar is hidden for airline plugin. it forces status to be always visible

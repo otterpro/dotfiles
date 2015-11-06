@@ -54,7 +54,12 @@ Plugin 'majutsushi/tagbar'
 
 Plugin 'scrooloose/syntastic'	"syntax checker engine
 Plugin 'nvie/vim-flake8'		" python syntax checker
+Plugin 'tmhedberg/SimpylFold'	" python folding
 Plugin 'nathanaelkane/vim-indent-guides'   " show indent guidelines
+
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'davidhalter/jedi-vim'
+
 
 "Markdown and text formatting
 " Plugin 'godlygeek/tabular' "required for vim-markdown
@@ -393,6 +398,8 @@ if has("autocmd") " Only do this part when compiled with support for autocommand
 
 	"========== Python ===============" 
 	autocmd filetype python setlocal ts=4 sw=4 sts=4 expandtab fileformat=unix 
+	autocmd BufWinEnter *.py setlocal foldexpr=SimpylFold(v:lnum) foldmethod=expr
+	autocmd BufWinLeave *.py setlocal foldexpr< foldmethod<
 
 	"========= Ruby & rails ==============" 
 	autocmd filetype ruby setlocal ts=2 sts=2 sw=2 expandtab

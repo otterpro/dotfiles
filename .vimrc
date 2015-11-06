@@ -81,7 +81,11 @@ Plugin 'xolox/vim-misc'  " requierd for colorscheme-switcher
 Plugin 'xolox/vim-colorscheme-switcher' "quickly switch colorscheme with F8
 
 "shell
-Plugin 'Shougo/vimshell'  " shell
+" Plugin 'Shougo/vimshell'  " shell
+" Plugin 'Shougo/vimproc'  "required by vimshell. also need to be 'make'
+
+"Plugin 'vim-scripts/Conque-Shell'  "shell, won't work in VUndle!
+Plugin 'lrvick/Conque-Shell'
 
 call vundle#end()            " required
 

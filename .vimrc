@@ -58,7 +58,7 @@ Plugin 'tmhedberg/SimpylFold'	" python folding
 Plugin 'nathanaelkane/vim-indent-guides'   " show indent guidelines
 
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'davidhalter/jedi-vim'
+" Plugin 'davidhalter/jedi-vim'
 
 
 "Markdown and text formatting
@@ -477,6 +477,11 @@ nmap <Leader>j yss]jysiW)kJdlj
 let g:gitgutter_map_keys = 0
 
 
+"============= youcompleteme ================
+let g:ycm_autoclose_preview_window_after_completion=1
+
+nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
+"		go to definition
 
 "============= airline  ================
 set laststatus=2 "without it, status bar is hidden for airline plugin. it forces status to be always visible

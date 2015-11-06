@@ -80,6 +80,9 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'xolox/vim-misc'  " requierd for colorscheme-switcher
 Plugin 'xolox/vim-colorscheme-switcher' "quickly switch colorscheme with F8
 
+"shell
+Plugin 'Shougo/vimshell'  " shell
+
 call vundle#end()            " required
 
 "============= easymotion ================

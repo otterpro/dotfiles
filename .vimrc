@@ -30,7 +30,7 @@ call vundle#begin()
 Plugin 'bling/vim-airline'
 
 "Easy motion -- not working???
-"Plugin 'easymotion/vim-easymotion'  
+Plugin 'easymotion/vim-easymotion'  
 
 " File and Buffer
 Plugin 'scrooloose/nerdtree.git'
@@ -62,13 +62,15 @@ Plugin 'Valloric/YouCompleteMe'
 
 
 "Markdown and text formatting
-" Plugin 'godlygeek/tabular' "required for vim-markdown
+Plugin 'godlygeek/tabular' "required for vim-markdown. 
 " Plugin 'plasticboy/vim-markdown' "unfortunately,uses mkd, not markdown as filetype"
 " replaced with simpler plugin
 Plugin 'tpope/vim-markdown'
 "folding is not in tpope's version. we need this to fold
 Plugin 'nelstrom/vim-markdown-folding'
-		
+
+Plugin 'dhruvasagar/vim-table-mode'    "Create table
+
 "snippets
 Plugin 'tomtom/tlib_vim.git' " required for snipmate
 Plugin 'MarcWeber/vim-addon-mw-utils.git'	" required for snipmate
@@ -81,21 +83,34 @@ Plugin 'xolox/vim-misc'  " requierd for colorscheme-switcher
 Plugin 'xolox/vim-colorscheme-switcher' "quickly switch colorscheme with F8
 
 "shell
-" Plugin 'Shougo/vimshell'  " shell
+" Plugin 'Shougo/vimshell'  " shell, not as useful
 " Plugin 'Shougo/vimproc'  "required by vimshell. also need to be 'make'
 
 "Plugin 'vim-scripts/Conque-Shell'  "shell, won't work in VUndle!
-Plugin 'lrvick/Conque-Shell'
+Plugin 'lrvick/Conque-Shell'	" conque shell fork, works
 
 call vundle#end()            " required
 
 "============= easymotion ================
 " not working???
-"let g:EasyMotion_do_mapping=0  " disable all default mapping/too many maps"
-"map <Leader>m <Plug>(easymotion-prefix)  
-"map s <Plug>(easymotion-prefix)
-								"<leader>m starts easy motion"
-"test something abc abcdef "
+let g:EasyMotion_do_mapping=0  " disable all default mapping/too many maps"
+
+" s<char> to jump to that char
+nmap s <Plug>(easymotion-s)
+
+" s<char><char> to jump to that char (2 letter)
+" nmap s <Plug>(easymotion-s2)
+
+" Turn on case insensitive feature
+let g:EasyMotion_smartcase = 1
+" Use uppercase target labels and type as a lower case
+let g:EasyMotion_use_upper = 1
+
+" JK motions: Line motions
+" map <Leader>j <Plug>(easymotion-j)
+" map <Leader>k <Plug>(easymotion-k)
+"
+								"
 
 " Brief help
 " :PluginList       - lists configured plugins
@@ -500,6 +515,8 @@ set laststatus=2 "without it, status bar is hidden for airline plugin. it forces
 " let g:vim_markdown_frontmatter=1  "highlight jekyll frontmatter
 
 
+" ============== vim-table-mode =======================
+let g:table_mode_corner="|" " make table compatible with Markdown.
 
 " ============== tcomment =======================
 nm <Leader># gcc

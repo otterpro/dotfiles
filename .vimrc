@@ -96,10 +96,14 @@ call vundle#end()            " required
 let g:EasyMotion_do_mapping=0  " disable all default mapping/too many maps"
 
 " s<char> to jump to that char
+nmap S <Plug>(easymotion-s2)
+	"search 2 char"
+	"Becareful, since S in Visual mode is used by Surround"
+	"Replaces S, which is same as 'cc'"
 nmap s <Plug>(easymotion-s)
-
-" s<char><char> to jump to that char (2 letter)
-" nmap s <Plug>(easymotion-s2)
+	" search 1 char"
+	"s replaces normal s where it deletes char and inserts.
+	"s is same as `cl`"
 
 " Turn on case insensitive feature
 let g:EasyMotion_smartcase = 1
@@ -338,6 +342,11 @@ nnoremap <Leader>t :TagbarToggle<CR>
 
 "<Space>n : toggle number
 nn <Leader>n :setlocal nonumber!<CR>
+
+"use <left> and <right> for my buffers.  Better use of arrows
+nnoremap <silent> <right> :bnext<cr>
+nnoremap <silent> <left> :bprev<cr>
+
 
 " Display extra whitespace
 " MAYBE: move it to code-specific files, setlocal

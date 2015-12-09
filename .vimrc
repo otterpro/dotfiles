@@ -114,7 +114,6 @@ let g:EasyMotion_use_upper = 1
 " map <Leader>j <Plug>(easymotion-j)
 " map <Leader>k <Plug>(easymotion-k)
 "
-								"
 
 " Brief help
 " :PluginList       - lists configured plugins
@@ -275,6 +274,13 @@ set gdefault    "assumes that %s/abc/def/ is %s/abc/def/g, (no need for g)
 "set cmdheight=2 " status bar that is 2 rows. However, this is too high
 
 "================== keyboard remapping ======================
+"  00 => ), 99=> (.  avoid pressing shift
+"inoremap 00 )
+"inoremap 99 (
+
+" remap <ctrl><space> to underscore, easier!!!
+inoremap <C-space> _
+
 "  use ; as : to save keystrokes. ex: :w can be ;w
 nn ; :
 vn ; :
@@ -289,8 +295,10 @@ nn ;; ;
 " remap "qq" as Escape.  Convenient. replace ";;" 
 " originally, was "aa", but it was typed too often
 inoremap qq <Esc>
-" ESC acts as CR. Use C-c instead, to prevent execution.
+" in cmd mode, ESC acts as CR. Use C-c instead, to prevent execution.
 cnoremap qq <C-c> 
+" also qq in normal mode was annoying, as it records macro. Disable it.
+nnoremap qq <Nop>
 
 " move vertically visual line, looks more natural when moving up/down. 
 " similar to ^n, ^
@@ -437,7 +445,8 @@ if has("autocmd") " Only do this part when compiled with support for autocommand
 	autocmd filetype eruby setlocal ts=2 sts=2 sw=2 expandtab
 
 	"========== html & css  ===============" 
-	autocmd filetype html setlocal ts=2 sts=2 sw=2 expandtab
+	"autocmd filetype html setlocal ts=2 sts=2 sw=2 expandtab
+	autocmd FileType html,htmldjango,jinjahtml,eruby,mako setlocal ts=2 sts=2 sw=2 expandtab
 	autocmd filetype css setlocal ts=2 sts=2 sw=2 expandtab
 
 	" au BufNewFile,BufRead *.js, *.html, *.css
@@ -446,7 +455,8 @@ if has("autocmd") " Only do this part when compiled with support for autocommand
     " \ set shiftwidth=2
 
 	"optional, for closetag plugin
-	autocmd FileType html,htmldjango,jinjahtml,eruby,mako let b:closetag_html_style=1 setlocal ts=2 sts=2 sw=2 expandtab
+	" Make sure to comment this out if not using closetag plugin.
+	"autocmd FileType html,htmldjango,jinjahtml,eruby,mako let b:closetag_html_style=1 setlocal ts=2 sts=2 sw=2 expandtab
 
 	"========= nginx ==============="
 	au BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/* if &ft == '' | setfiletype nginx | endif 

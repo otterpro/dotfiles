@@ -4,8 +4,11 @@
 ## OS Specific
 if [[ $OSTYPE == linux* ]] || [[ $OSTYPE == cygwin ]]; then
 	   alias ls='ls -F --color=auto'
+	   alias sed='sed -r'
 else
+	# MAC OSX/BSD
 	   alias ls='ls -GF'
+	   alias sed='sed -E'
 fi
 alias ll="ls -lh"
 alias la="ls -a"
@@ -73,14 +76,27 @@ alias d="du -h -d=1"
 
 alias df="df -h"
 alias h="history"
+
+#tmux
 # tmux with -2=256 color
+# not sure if needed, and instead use screen256 instead.
 alias tmux="tmux -2"
+
+alias tma='tmux attach -d -t'
+    # tma <tab> will do tab completion, useful for joining existing session
+
+alias tmn='tmux new -s $(basename $(pwd))'
 
 #vi read-only (there's already a /bin/view)
 #alias view="vim -p -R"
 
 #color grep
-alias grep='GREP_COLOR="1;37;45" grep --color=auto'
+#alias grep='GREP_COLOR="1;37;45" grep --color=auto'
+# replaced grep with egrep (or grep -E for extended regex)
+alias grep='GREP_COLOR="1;37;45" egrep --color=auto'
+
+# misc
+alias ffprobe='ffprobe -hide_banner'
 
 # TODO: search for files with TODO / FIXME
 alias TODO='ag TODO'

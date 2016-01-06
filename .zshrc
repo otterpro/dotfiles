@@ -98,6 +98,7 @@ stty -ixon #turn-off XOFF, so that vim can use Ctrl-S.
 #
 # default PROMPT just in case we don't use emoji
 PROMPT='[%{$fg[yellow]%}%n%{$fg[red]%}@%m%{$fg[white]%}] %{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.$) '
+# Note: it won't work if it is in multiple lines
 
 #less.  -x4=tab 4space,R=ansi color, N=show line S=don't wrap text#
 # 
@@ -124,15 +125,21 @@ case "$OSTYPE" in
                 }
 				export EDITOR=mvim
 				export VISUAL=mvim
-				#PROMPT_EMOJI='%F{white}%f' # unicode - apple logo
+				# PROMPT_EMOJI='%{$reset_color%}' # unicode - apple logo
+				# PROMPT_EMOJI='%{$reset_color%}⚛ '
+				# PROMPT_EMOJI='%{$reset_color%}⚛  '
+				PROMPT_EMOJI=''
+				#PROMPT_EMOJI='%{$reset_color%}%F{white}%f' # unicode - apple logo
 				#PROMPT_EMOJI='🍎'  # emoji-red apple
 				#PROMPT="[%{$fg[yellow]%}%n🍎 $fg[red]%}%m%{$fg[white]%}] %{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.$) "
 				#PROMPT='[%{$fg[yellow]%}%n%{$fg[red]%}@%m%{$fg[white]%}] %{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.$) '
 				#PROMPT='[%{$fg[yellow]%}%n🍎 $fg[red]%}%m%{$fg[white]%}] %{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.$) '
+				# PROMPT='%F{white}%f' # unicode - apple logo
                 ;;      
         linux*) # linux-specific
 			#export VISUAL=gvim
-				PROMPT_EMOJI='🐧'  # emoji penguin
+				PROMPT_EMOJI='🐧 '  # emoji penguin
+				# PROMPT_EMOJI='%{$reset_color%}⚛ '
                 ;;
         *)      # all other OS
 				PROMPT_EMOJI='😜'	# emoji smiley tongue 
@@ -140,8 +147,7 @@ case "$OSTYPE" in
 esac
 
 # with emoji smiley
-#PROMPT="[%{$fg[yellow]%}%n$PROMPT_EMOJI %{$fg[red]%}%m%{$fg[white]%}] %{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.$) "
-# using multi-part prompt instead
+PROMPT='[%{$fg[yellow]%}%n${PROMPT_EMOJI} %{$fg[red]%}%m%{$fg[white]%}] %{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.$) '
 
 # misc 
 # see http://msol.io/blog/tech/2014/03/10/work-more-efficiently-on-your-mac-for-developers/

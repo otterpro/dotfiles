@@ -51,6 +51,8 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'majutsushi/tagbar'
 " Plugin 'Raimondi/delimitMate.git'	"closes < >, (), [], {}"
 " Temporarily disabled, until I can selectively close delimiters"
+Plugin 'valloric/MatchTagAlways'  "HTML tag is highlighted
+" 
 
 Plugin 'scrooloose/syntastic'	"syntax checker engine
 Plugin 'nvie/vim-flake8'		" python syntax checker
@@ -523,6 +525,12 @@ let g:ycm_autoclose_preview_window_after_completion=1
 
 nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 "		go to definition
+"
+"========== snipmate =========================
+"YouCompleteMe causes conflict as it overrides TAB
+"replace tab with C-J instead
+imap <C-J> <Plug>snipMateNextOrTrigger
+smap <C-J> <Plug>snipMateNextOrTrigger
 
 "============= airline  ================
 set laststatus=2 "without it, status bar is hidden for airline plugin. it forces status to be always visible

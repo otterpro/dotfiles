@@ -95,13 +95,18 @@ alias tmn='tmux new -s $(basename $(pwd))'
 # replaced grep with egrep (or grep -E for extended regex)
 alias grep='GREP_COLOR="1;37;45" egrep --color=auto'
 
-# misc
+# ffmpeg/ffprobe
 alias ffprobe='ffprobe -hide_banner'
+
+# imagemagick
+alias resize='mogrify -filter Triangle -define filter:support=2 -thumbnail 1024 -unsharp 0.25x0.25+8+0.065 -dither None -posterize 136 -quality 82 -define jpeg:fancy-upsampling=off -define png:compression-filter=5 -define png:compression-level=9 -define png:compression-strategy=1 -define png:exclude-chunk=all -interlace none -colorspace sRGB -strip' 
 
 # TODO: search for files with TODO / FIXME
 alias TODO='ag TODO'
 # or could be done via
 # alias TODO="grep -E 'FIXME|TODO'"
 # similar to 'rake notes'
+#
+
 
 ##############   END   #####################

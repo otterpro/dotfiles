@@ -74,9 +74,15 @@ Plugin 'nelstrom/vim-markdown-folding'
 Plugin 'dhruvasagar/vim-table-mode'    "Create table
 
 "snippets
-Plugin 'tomtom/tlib_vim.git' " required for snipmate
-Plugin 'MarcWeber/vim-addon-mw-utils.git'	" required for snipmate
-Plugin 'garbas/vim-snipmate.git'  " SnipMate plugin"
+" Plugin 'tomtom/tlib_vim.git' " required for snipmate
+" Plugin 'MarcWeber/vim-addon-mw-utils.git'	" required for snipmate
+" Plugin 'garbas/vim-snipmate.git'  " SnipMate plugin"
+" http://jmatthews.us/blog/2013/03/10/managing-vim-python-plugins/
+if (has('python') || has('python3'))
+  Plugin 'SirVer/ultisnips'
+else
+  Plugin 'garbas/vim-snipmate'
+endif
 Plugin 'honza/vim-snippets.git'		" all snippets"
 
 " colorschemes-related 
@@ -311,6 +317,9 @@ nn k gk
 vmap Q gq
 nmap Q gqap
 
+" Capitalize the 1st letter of the line/sentence 
+nnoremap <Leader>U 0gUl
+
 "Sudo to write. use w!! to write file if I forgot to sudo
 "Steve Losh's http://forrst.com/posts/Use_w_to_sudo_write_a_file_with_Vim-uAN
 cnoremap w!! w !sudo tee % >/dev/null
@@ -519,18 +528,31 @@ nmap <Leader>j yss]jysiW)kJdlj
 " disable all gitguter mapping
 let g:gitgutter_map_keys = 0
 
-
 "============= youcompleteme ================
 let g:ycm_autoclose_preview_window_after_completion=1
 
 nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 "		go to definition
 "
-"========== snipmate =========================
+"========== snipmate/Utilsnips =========================
 "YouCompleteMe causes conflict as it overrides TAB
-"replace tab with C-J instead
-imap <C-J> <Plug>snipMateNextOrTrigger
-smap <C-J> <Plug>snipMateNextOrTrigger
+"replace tab with C-J instead for now
+"TODO: combine YouCompleteMe with UtilSnip's TAB
+"		https://github.com/Valloric/YouCompleteMe/issues/36
+if (has('python') || has('python3'))
+	"======== utilsnips ===================
+	let g:UltiSnipsExpandTrigger="<c-j>"
+	let g:UltiSnipsJumpForwardTrigger="<c-j>"
+	let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+	
+else
+	"======== snipmate ====================
+	"imap <C-J> <Plug>snipMateNextOrTrigger
+	" use below instead of above for now
+	imap <C-J> <esc>a<Plug>snipMateNextOrTrigger
+	smap <C-J> <Plug>snipMateNextOrTrigger
+endif
+
 
 "============= airline  ================
 set laststatus=2 "without it, status bar is hidden for airline plugin. it forces status to be always visible
@@ -596,3 +618,12 @@ endif
 " if filereadable($HOME . "/.vimrc.local")
 "    source ~/.vimrc.local
 " endif
+"
+"
+
+
+
+
+
+
+

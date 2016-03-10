@@ -11,7 +11,15 @@
 *.exe
 *.o
 *.so
-*.pyc
+
+# partially from https://github.com/github/gitignore
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+#*.pyc
+
+
  
 # Packages #
 ############
@@ -36,11 +44,42 @@
    
 # OS generated files #
 ######################
-   .DS_Store
-   .DS_Store?
-   ._*
-   .Spotlight-V100
-   .Trashes
-   Desktop.ini
-   ehthumbs.db
-   Thumbs.db
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Desktop.ini
+thumbs.db
+Thumbs.db
+.AppleDouble
+.LSOverride
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# vagrant's hidden files
+.vagrant/
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# intellij
+.idea/
+

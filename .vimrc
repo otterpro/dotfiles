@@ -318,10 +318,8 @@ vmap Q gq
 nmap Q gqap
 
 " Capitalize the 1st letter of the line/sentence 
-" nnoremap <Leader>U 0gUl
-" Override original U, which is to return the last line to undo.
-"	U isn't as useful, and rarely used.
-nnoremap U 0gUl
+" Instead, use "uu" to capitalize
+nnoremap uu 0gUl
 
 "Sudo to write. use w!! to write file if I forgot to sudo
 "Steve Losh's http://forrst.com/posts/Use_w_to_sudo_write_a_file_with_Vim-uAN

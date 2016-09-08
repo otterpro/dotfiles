@@ -135,6 +135,9 @@ case "$OSTYPE" in
 				#PROMPT='[%{$fg[yellow]%}%n%{$fg[red]%}@%m%{$fg[white]%}] %{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.$) '
 				#PROMPT='[%{$fg[yellow]%}%n🍎 $fg[red]%}%m%{$fg[white]%}] %{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.$) '
 				# PROMPT='%F{white}%f' # unicode - apple logo
+				
+				# Opt out of Homebrew analytics
+				export HOMEBREW_NO_ANALYTICS=1
                 ;;      
         linux*) # linux-specific
 			#export VISUAL=gvim

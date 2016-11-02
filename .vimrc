@@ -522,7 +522,9 @@ nmap <Leader>} ysiW}
 " line1: [text something](http://google.com)
 " uses Surround plugin
 "<Space>n : toggle number
-nmap <Leader>j yss]jysiW)kJdlj
+"nmap <Leader>j yss]jysiW)kJdlj
+nmap <Leader>j :call TrimWhitespace()<CR>yss]jysiW)kJdlj
+" updated so that it will trim trailing whitespace first
 
 "
 "============= gitgutter ================
@@ -557,6 +559,9 @@ endif
 
 "============= airline  ================
 set laststatus=2 "without it, status bar is hidden for airline plugin. it forces status to be always visible
+let g:airline#extensions#whitespace#enabled = 0  "disable whitespace detection
+	" and hides "mixed-indent [], trailing [] on the status line
+
 
 " ============== plasticboy/vim-markdown =====================
 " NOT USED ANYMORE
@@ -620,7 +625,13 @@ endif
 "    source ~/.vimrc.local
 " endif
 "
-"
+" Trim trailing whitespace
+"http://vi.stackexchange.com/a/456
+fun! TrimWhitespace()
+    let l:save = winsaveview()
+    %s/\s\+$//e
+    call winrestview(l:save)
+endfun
 
 
 

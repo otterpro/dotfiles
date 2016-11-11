@@ -34,7 +34,8 @@ Plugin 'easymotion/vim-easymotion'
 
 " File and Buffer
 Plugin 'scrooloose/nerdtree.git'
-Plugin 'kien/ctrlp.vim'
+" Plugin 'kien/ctrlp.vim'  "# no longer maintained?
+Plugin 'ctrlpvim/ctrlp.vim'  " replaces old ctrlp
 
 " Mini-Buffer Explorer Fork
 " Removed - too much clutter on top
@@ -42,6 +43,8 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'jlanzarotta/bufexplorer'
 
 "coding & auto-completion
+Plugin 'sheerun/vim-polyglot'		" loads 70+ languages
+
 Plugin 'docunext/closetag.vim.git'  "closes html tag"
 Plugin 'tomtom/tcomment_vim'
 Plugin 'tpope/vim-surround.git'  "add surrounding brackets,quotes,tags"
@@ -66,11 +69,13 @@ Plugin 'Valloric/YouCompleteMe'
 "Markdown and text formatting
 Plugin 'godlygeek/tabular' "required for vim-markdown. 
 " Plugin 'plasticboy/vim-markdown' "unfortunately,uses mkd, not markdown as filetype"
+"
+" Temporary disabled while using vim-polyglot
 " replaced with simpler plugin
-Plugin 'tpope/vim-markdown'
+" Plugin 'tpope/vim-markdown'
 "folding is not in tpope's version. we need this to fold
+"
 Plugin 'nelstrom/vim-markdown-folding'
-
 Plugin 'dhruvasagar/vim-table-mode'    "Create table
 
 "snippets
@@ -456,9 +461,9 @@ if has("autocmd") " Only do this part when compiled with support for autocommand
 	autocmd filetype ruby setlocal ts=2 sts=2 sw=2 expandtab
 	autocmd filetype eruby setlocal ts=2 sts=2 sw=2 expandtab
 
-	"========== html & css  ===============" 
+	"========== js,html & css  ===============" 
 	"autocmd filetype html setlocal ts=2 sts=2 sw=2 expandtab
-	autocmd FileType html,htmldjango,jinjahtml,eruby,mako setlocal ts=2 sts=2 sw=2 expandtab
+	autocmd FileType js,html,htmldjango,jinjahtml,eruby,mako setlocal ts=2 sts=2 sw=2 expandtab
 	autocmd filetype css setlocal ts=2 sts=2 sw=2 expandtab
 
 	" au BufNewFile,BufRead *.js, *.html, *.css

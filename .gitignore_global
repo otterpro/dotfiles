@@ -83,3 +83,7 @@ Temporary Items
 # intellij
 .idea/
 
+# node
+node_modules/
+#bundle.js
+

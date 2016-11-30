@@ -10,9 +10,11 @@ endif
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
-filetype off " required here
+filetype off " required here before plugin are loaded(?), but turned on later
 
 set nomodeline  " turn-off modeline, which interpretes text file as vim setting
+
+set path+=**	"for :find, Search down into subfolders, Provides tab-completion for all file-related tasks
 
 " load vundles in ~/.dotfiles/vundle.vim
 " if filereadable(expand("~/.dotfiles/vundle.vim"))
@@ -140,8 +142,9 @@ let g:EasyMotion_use_upper = 1
 " Put your non-Plugin stuff after this line
 " 
 
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use: filetype plugin on
+filetype plugin indent on    " required, enables all filetype detection based on	
+" file extension, turns on all including detection, plugin, and indent
+" To ignore indent , instead use just : filetype plugin on
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -152,7 +155,12 @@ set showcmd		" display incomplete commands
 set cryptmethod=blowfish		"encryption when using vim -x filename"
 set history=1000         " remember more commands and search history
 set undolevels=1000      " use many muchos levels of undo
-set wildignore=*.swp,*.bak,*.pyc,*.class
+
+" ignore files for ctrlp, etc
+set wildignore=*.swp,*.bak,*.pyc,*.class,node_modules
+						" node_modules: ignore node files
+						" also wildignore += to append
+
 set title                " change the terminal's title
 set visualbell           " don't beep
 set noerrorbells         " don't beep
@@ -323,8 +331,11 @@ vmap Q gq
 nmap Q gqap
 
 " Capitalize the 1st letter of the line/sentence 
-" Instead, use "uu" to capitalize
-nnoremap uu 0gUl
+" Current: <leader>u to capitalize
+" OLD: use "uu" to capitalize, annoying - undo took too long time
+" Note: U is mapped to repeat undo plugin
+nnoremap <Leader>u 0gUl
+"nnoremap uu 0gUl
 
 "Sudo to write. use w!! to write file if I forgot to sudo
 "Steve Losh's http://forrst.com/posts/Use_w_to_sudo_write_a_file_with_Vim-uAN
@@ -356,7 +367,9 @@ nn <Leader><Leader> <c-^>
 " go to buffer quickly
 " control-] overrides tag lookup
 " control-[ overrides esc/etc, but doesn't work. cannot override esc
-nn <C-]> :bnext<CR>
+" Decide to remove it for now, because it conflicts with ctag lookup
+" nn <C-]> :bnext<CR>
+" TODO: :b# as well
 
 " Tagbar
 nnoremap <Leader>t :TagbarToggle<CR>
@@ -463,7 +476,7 @@ if has("autocmd") " Only do this part when compiled with support for autocommand
 
 	"========== js,html & css  ===============" 
 	"autocmd filetype html setlocal ts=2 sts=2 sw=2 expandtab
-	autocmd FileType js,html,htmldjango,jinjahtml,eruby,mako setlocal ts=2 sts=2 sw=2 expandtab
+	autocmd FileType javascript,html,htmldjango,jinjahtml,eruby,mako setlocal ts=2 sts=2 sw=2 expandtab
 	autocmd filetype css setlocal ts=2 sts=2 sw=2 expandtab
 
 	" au BufNewFile,BufRead *.js, *.html, *.css
@@ -586,10 +599,16 @@ vm # gc
 let NERDTreeIgnore=['\~$', '^\.pyc','^\.git', '\.swp$', '\.DS_Store$']
 let NERDTreeShowHidden=1
 "nmap <LocalLeader>nn :NERDTreeToggle<cr>
-nn <Leader>e :NERDTreeToggle<cr>
-nn <C-e> :NERDTreeToggle<cr>
-vn <C-e> :NERDTreeToggle<cr>
-ino <C-e> <ESC>:NERDTreeToggle<cr>
+" added % at end of NERDTreeToggle so that it opens cwd(?) and not old dir
+nn <Leader>e :NERDTreeToggle %<cr>
+nn <C-e> :NERDTreeToggle %<cr>
+vn <C-e> :NERDTreeToggle %<cr>
+ino <C-e> <ESC>:NERDTreeToggle %<cr>
+
+" nn <Leader>e :NERDTreeToggle<cr>
+" nn <C-e> :NERDTreeToggle<cr>
+" vn <C-e> :NERDTreeToggle<cr>
+" ino <C-e> <ESC>:NERDTreeToggle<cr>
 
 
 " ctrl-p to search only cwd. autochdir & lcd will change cwd 

@@ -579,6 +579,10 @@ endif
 set laststatus=2 "without it, status bar is hidden for airline plugin. it forces status to be always visible
 let g:airline#extensions#whitespace#enabled = 0  "disable whitespace detection
 	" and hides "mixed-indent [], trailing [] on the status line
+let g:airline_detect_spell=0
+	" hide SPELL CHECKING status 
+let g:airline#extensions#wordcount#enabled = 0
+	" disable word counting. 
 
 
 " ============== plasticboy/vim-markdown =====================

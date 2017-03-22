@@ -152,6 +152,8 @@ esac
 # with emoji smiley
 PROMPT='[%{$fg[yellow]%}%n${PROMPT_EMOJI} %{$fg[red]%}%m%{$fg[white]%}] %{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.$) '
 
+export PATH="$PATH:/Volumes/Samsung128/Dropbox/app"
+
 # misc 
 # see http://msol.io/blog/tech/2014/03/10/work-more-efficiently-on-your-mac-for-developers/
 # function f() { find . -iname "*$1*" ${@:2} }

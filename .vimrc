@@ -1,21 +1,157 @@
+"=============================================================================
 " .vimrc by Daniel Kim (otter.pro)
 "
 " Thanks to many, including Bram Moolenaar <Bram@vim.org>
+"
+"=============================================================================
 "
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
   finish
 endif
 
+"=============================================================================
+" Global setting
+"=============================================================================
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
-filetype off " required here before plugin are loaded(?), but turned on later
-
 set nomodeline  " turn-off modeline, which interpretes text file as vim setting
+"set modelines=1	" enable modeline, interprets last line /commented as vim setting
+" disable autobackup"
+set nobackup
+set noswapfile
+"set autowrite	    " saves before changing to another buffer
+"set autowriteall    " saves all buffer before quit,new,etc
+"set hidden		"open new file without having to save current file
 
+"=============================================================================
+" Default Setting
+"=============================================================================
 set path+=**	"for :find, Search down into subfolders, Provides tab-completion for all file-related tasks
 
+"wildmenu allows filename autocompletion with graphical menu
+set wildmenu 
+
+"lazyredraw - draws only when needed, faster for doing macro
+" if there's problem, then disable it
+set lazyredraw
+
+" allow backspacing over everything in insert mode
+set backspace=indent,eol,start
+"set backspace=2	"this should always be 2
+
+set ruler		" show the cursor position all the time
+set showcmd		" display incomplete commands
+set cryptmethod=blowfish		"encryption when using vim -x filename"
+set history=1000         " remember more commands and search history
+set undolevels=1000      " use many muchos levels of undo
+
+" ignore files for ctrlp, etc
+set wildignore=*.swp,*.bak,*.pyc,*.class,node_modules
+						" node_modules: ignore node files
+						" also wildignore += to append
+
+set title                " change the terminal's title
+set visualbell           " don't beep
+set noerrorbells         " don't beep
+
+set termencoding=utf-8
+set encoding=utf-8
+
+" disable insert
+set textwidth=0
+set wrapmargin=0
+set nowrap
+
+set number numberwidth=4 "show line number and show 4 digit
+
+" TAB and indent setting"
+set tabstop=4	"hardtab width
+set shiftwidth=4 " make "tab" insert indents instead of tabs at the beginning of a line
+"set expandtab	" use space instead of tab, also enabled for txt,md,ruby,python.
+set softtabstop=4	"space used in softtab
+set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
+set ignorecase    " ignore case when searching
+set smartcase     " ignore case if search pattern is all lowercase,
+                  "    case-sensitive otherwise
+set smarttab      " insert tabs on the start of a line according to shiftwidth, not tabstop
+set autoindent		" always set autoindenting on
+"set smartindent	" disabled because it was not indenting # 
+"
+"
+"=============================================================================
+" Terminal setting, color, etc
+"=============================================================================
+" In many terminal emulators the mouse works just fine, thus enable it.
+if has('mouse')
+  set mouse=a
+endif
+
+"make sure color is running. doesn't seem to be necessary, as t_Co is set to 256.
+"if $TERM == "xterm-256color" || $TERM == "screen-256color" || $COLORTERM == "gnome-terminal"
+"	set t_Co=256
+"endif
+
+" Disable BCE (background-color-erase), because it causes color problem in
+" tmux
+if &term =~ '256color'
+	" disable Background Color Erase (BCE) so that color schemes
+	" render properly when inside 256-color tmux and GNU screen.
+	" see also http://snk.tuxfamily.org/log/vim-256color-bce.html
+	set t_ut=
+endif
+
+
+" Switch syntax highlighting on, when the terminal has colors
+" Also switch on highlighting the last used search pattern.
+if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
+	syntax on
+	set hlsearch      " highlight search terms
+endif
+
+" clipboard (macvim/ gvim)
+set clipboard=unnamed
+
+" When typing braces { }, [ ], etc, blink the matching brace
+" show matching parenthesis
+set showmatch
+" set matchtime=3		" blink 0.3 seconds
+"
+
+" Convenient command to see the difference between the current buffer and the
+" file it was loaded from, thus the changes you made.
+" Only define it when not defined already.
+if !exists(":DiffOrig")
+  command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
+		  \ | wincmd p | diffthis
+endif
+
+"vertical line - right margin
+set colorcolumn=80  
+"set colorcolumn=+1	"column shows vertical line
+hi colorcolumn ctermbg=233 guibg=grey7
+
+" highlight cursorline  *Note: may cause slowdown in large file
+set cursorline
+hi CursorLine cterm=NONE ctermbg=238 guibg=grey7
+
+" Treat <li> and <p> tags like the block tags they are
+" this could be placed in .vim/after/indent/html.vim
+" also, .= means concat,
+" might be fixed in html5
+" let g:html_indent_tags .= 'li\|p\|nav'
+
+" Always use vertical diffs
+set diffopt+=vertical
+
+" spellfile. I don't have any spell file.
+" set spellfile=$HOME/.vim-spell-en.utf-8.add
+
+"=============================================================================
+"	Vundle packages
+"=============================================================================
+filetype off " required here before plugin are loaded(?), but turned on later
 " load vundles in ~/.dotfiles/vundle.vim
 " if filereadable(expand("~/.dotfiles/vundle.vim"))
 " 	source ~/.dotfiles/vundle.vim
@@ -27,6 +163,11 @@ call vundle#begin()
 "
 " let Vundle manage Vundle, required
 
+"experimental - current
+" VimWiki
+Plugin 'vimwiki/vimwiki.git'
+let g:vimwiki_list = [{'path': '~/Dropbox/_notes/',
+                       \ 'syntax': 'markdown', 'ext': '.md'}]
 
 " status line
 Plugin 'bling/vim-airline'
@@ -66,7 +207,8 @@ Plugin 'nathanaelkane/vim-indent-guides'   " show indent guidelines
 
 Plugin 'Valloric/YouCompleteMe'
 " Plugin 'davidhalter/jedi-vim'
-
+"
+Plugin 'rking/ag.vim.git'	"silver searcher
 
 "Markdown and text formatting
 Plugin 'godlygeek/tabular' "required for vim-markdown. 
@@ -95,7 +237,7 @@ Plugin 'honza/vim-snippets.git'		" all snippets"
 " colorschemes-related 
 Plugin 'flazz/vim-colorschemes'
 Plugin 'xolox/vim-misc'  " requierd for colorscheme-switcher
-Plugin 'xolox/vim-colorscheme-switcher' "quickly switch colorscheme with F8
+Plugin 'xolox/vim-colorscheme-switcher' "quickly switch colorscheme with F8,sF8
 
 "shell
 " Plugin 'Shougo/vimshell'  " shell, not as useful
@@ -104,31 +246,8 @@ Plugin 'xolox/vim-colorscheme-switcher' "quickly switch colorscheme with F8
 "Plugin 'vim-scripts/Conque-Shell'  "shell, won't work in VUndle!
 Plugin 'lrvick/Conque-Shell'	" conque shell fork, works
 
+
 call vundle#end()            " required
-
-"============= easymotion ================
-" not working???
-let g:EasyMotion_do_mapping=0  " disable all default mapping/too many maps"
-
-" s<char> to jump to that char
-nmap S <Plug>(easymotion-s2)
-	"search 2 char"
-	"Becareful, since S in Visual mode is used by Surround"
-	"Replaces S, which is same as 'cc'"
-nmap s <Plug>(easymotion-s)
-	" search 1 char"
-	"s replaces normal s where it deletes char and inserts.
-	"s is same as `cl`"
-
-" Turn on case insensitive feature
-let g:EasyMotion_smartcase = 1
-" Use uppercase target labels and type as a lower case
-let g:EasyMotion_use_upper = 1
-
-" JK motions: Line motions
-" map <Leader>j <Plug>(easymotion-j)
-" map <Leader>k <Plug>(easymotion-k)
-"
 
 " Brief help
 " :PluginList       - lists configured plugins
@@ -140,138 +259,26 @@ let g:EasyMotion_use_upper = 1
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
-" 
 
 filetype plugin indent on    " required, enables all filetype detection based on	
 " file extension, turns on all including detection, plugin, and indent
 " To ignore indent , instead use just : filetype plugin on
 
-" allow backspacing over everything in insert mode
-set backspace=indent,eol,start
-"set backspace=2	"this should always be 2
 
-set ruler		" show the cursor position all the time
-set showcmd		" display incomplete commands
-set cryptmethod=blowfish		"encryption when using vim -x filename"
-set history=1000         " remember more commands and search history
-set undolevels=1000      " use many muchos levels of undo
-
-" ignore files for ctrlp, etc
-set wildignore=*.swp,*.bak,*.pyc,*.class,node_modules
-						" node_modules: ignore node files
-						" also wildignore += to append
-
-set title                " change the terminal's title
-set visualbell           " don't beep
-set noerrorbells         " don't beep
-
-set termencoding=utf-8
-set encoding=utf-8
-
-
+"=============================================================================
+" Settings to override after plugin installed
+"=============================================================================
 " let &guioptions = substitute(&guioptions, "t", "", "g")
-
-" CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
-" so that you can undo CTRL-U after inserting a line break.
-inoremap <C-U> <C-G>u<C-U>
-
-" In many terminal emulators the mouse works just fine, thus enable it.
-if has('mouse')
-  set mouse=a
-endif
-
-"make sure color is running. doesn't seem to be necessary, as t_Co is set to 256.
-"if $TERM == "xterm-256color" || $TERM == "screen-256color" || $COLORTERM == "gnome-terminal"
-"	set t_Co=256
-"endif
-
-" Disable BCE (background-color-erase), because it causes color problem in
-" tmux
-if &term =~ '256color'
-	" disable Background Color Erase (BCE) so that color schemes
-	" render properly when inside 256-color tmux and GNU screen.
-	" see also http://snk.tuxfamily.org/log/vim-256color-bce.html
-	set t_ut=
-endif
-
-
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
-if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
-  syntax on
-    set hlsearch      " highlight search terms
-endif
 
 "load color scheme from .vim/colors
 if &t_Co >= 256 || has("gui_running")
 	"echo "256 color mode"
-    colorscheme codeschool
+    "colorscheme slate
+    colorscheme darkblue
 	highlight NonText guibg=#060606
 	highlight Folded  guibg=#0A0A0A guifg=#9090D0
 	set background=dark
 endif
-
-
-"wildmenu allows filename autocompletion with graphical menu
-set wildmenu 
-
-"lazyredraw - draws only when needed, faster for doing macro
-" if there's problem, then disable it
-set lazyredraw
-
-
-
-" Convenient command to see the difference between the current buffer and the
-" file it was loaded from, thus the changes you made.
-" Only define it when not defined already.
-if !exists(":DiffOrig")
-  command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
-		  \ | wincmd p | diffthis
-endif
-
-" disable insert
-set textwidth=0
-set wrapmargin=0
-set nowrap
-
-set number numberwidth=4 "show line number and show 4 digit
-
-" TAB setting"
-set tabstop=4	"hardtab width
-set shiftwidth=4 " make "tab" insert indents instead of tabs at the beginning of a line
-"set expandtab	" use space instead of tab, also enabled for txt,md,ruby,python.
-set softtabstop=4	"space used in softtab
-set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
-set showmatch     " set show matching parenthesis
-set ignorecase    " ignore case when searching
-set smartcase     " ignore case if search pattern is all lowercase,
-                  "    case-sensitive otherwise
-set smarttab      " insert tabs on the start of a line according to shiftwidth, not tabstop
-set autoindent		" always set autoindenting on
-"set smartindent	" disabled because it was not indenting # 
-
-"set hidden		"open new file without having to save current file
-
-" disable autobackup"
-set nobackup
-set noswapfile
-"set autowrite	    " saves before changing to another buffer
-"set autowriteall    " saves all buffer before quit,new,etc
-
-set colorcolumn=80  "column shows vertical line
-"set colorcolumn=+1	"column shows vertical line
-hi colorcolumn ctermbg=233 guibg=grey7
-
-" Leader is <Space> 
-let mapleader="\<Space>"
-let maplocalleader="\\"
-
-" highlight cursorline  *Note: may cause slowdown in large file
-set cursorline
-hi CursorLine cterm=NONE ctermbg=238 guibg=grey7
-
-" clipboard (macvim/ gvim)
-set clipboard=unnamed
 
 "================= Search ===============
 set incsearch     " do incremental search / show search 
@@ -298,6 +305,14 @@ set gdefault    "assumes that %s/abc/def/ is %s/abc/def/g, (no need for g)
 "  00 => ), 99=> (.  avoid pressing shift
 "inoremap 00 )
 "inoremap 99 (
+"
+" CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
+" so that you can undo CTRL-U after inserting a line break.
+inoremap <C-U> <C-G>u<C-U>
+
+" Leader is <Space> 
+let mapleader="\<Space>"
+let maplocalleader="\\"
 
 " remap <ctrl><space> to underscore, easier!!!
 inoremap <C-space> _
@@ -385,6 +400,8 @@ nn <Leader>n :setlocal nonumber!<CR>
 nnoremap <silent> <right> :bnext<cr>
 nnoremap <silent> <left> :bprev<cr>
 
+" highlight last inserted text - does it work? 
+nnoremap gV `[v`]
 
 " Display extra whitespace
 " MAYBE: move it to code-specific files, setlocal
@@ -396,7 +413,7 @@ nnoremap <silent> <left> :bprev<cr>
 " dont fold by default. If not set, it will open text as folded
 " set nofoldenable
 set foldenable
-set foldlevelstart=1
+set foldlevelstart=10	"open most folds by default"
 set foldnestmax=10		" maximum folding level. beyond 10 is crazy
 
 highlight Folded guibg=grey7 ctermbg=238 " set color (one of dark grey=238)
@@ -406,6 +423,9 @@ if filereadable(expand("~/.dotfiles/foldtext.vim"))
 	source ~/.dotfiles/foldtext.vim
 endif
 
+"=============================================================================
+" 
+"=============================================================================
 "  Prettify XML (http://vim.wikia.com/wiki/Pretty-formatting_XML)
 "  <leader>x 
 "  TODO: use it in autocmd, 
@@ -420,6 +440,10 @@ endif
 "nmap <leader>j :%!python -m json.tool
 "map <Leader>j !python -m json.tool<CR>
 
+"=============================================================================
+" autocmd
+"=============================================================================
+
 if has("autocmd") " Only do this part when compiled with support for autocommands.
 
   " Enable file type detection.
@@ -428,8 +452,6 @@ if has("autocmd") " Only do this part when compiled with support for autocommand
   " Also load indent files, to automatically do language-dependent indenting.
 
   " Put these in an autocmd group, so that we can delete them easily.
-  "
-
 
   augroup vimrcEx
 
@@ -491,6 +513,18 @@ if has("autocmd") " Only do this part when compiled with support for autocommand
 	"========= nginx ==============="
 	au BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/* if &ft == '' | setfiletype nginx | endif 
 
+	"========= after grep,make, open quickfix window automatically ==============="
+	" http://vim.wikia.com/wiki/Automatically_open_the_quickfix_window_on_:make
+	" Automatically open, but do not go to (if there are errors) the quickfix /
+	" location list window, or close it when is has become empty.
+	"
+	" Note: Must allow nesting of autocmds to enable any customizations for quickfix
+	" buffers.
+	" Note: Normally, :cwindow jumps to the quickfix window if the command opens it
+	" (but not if it's already open). However, as part of the autocmd, this doesn't
+	" seem to happen.
+	autocmd QuickFixCmdPost [^l]* nested cwindow
+    autocmd QuickFixCmdPost l*    nested lwindow
 
   augroup END
 
@@ -499,6 +533,11 @@ else "if it doesn't have autocmd"
 	" TODO:this is already set somewhere above(?), 
 endif " has("autocmd")
 
+"=============================================================================
+"  plugin settings
+"=============================================================================
+"
+" 
 " ============== surround ====================
 " quickly enclosing 'vv' encloses current text with angled bracket <>
 " usually when pasting URL, Ctrl(or Cmd)V, then quickly hit 'vv'"
@@ -543,6 +582,30 @@ nmap <Leader>} ysiW}
 "nmap <Leader>j yss]jysiW)kJdlj
 nmap <Leader>j :call TrimWhitespace()<CR>yss]jysiW)kJdlj
 " updated so that it will trim trailing whitespace first
+"
+"============= easymotion ================
+" not working???
+let g:EasyMotion_do_mapping=0  " disable all default mapping/too many maps"
+
+" s<char> to jump to that char
+nmap S <Plug>(easymotion-s2)
+	"search 2 char"
+	"Becareful, since S in Visual mode is used by Surround"
+	"Replaces S, which is same as 'cc'"
+nmap s <Plug>(easymotion-s)
+	" search 1 char"
+	"s replaces normal s where it deletes char and inserts.
+	"s is same as `cl`"
+
+" Turn on case insensitive feature
+let g:EasyMotion_smartcase = 1
+" Use uppercase target labels and type as a lower case
+let g:EasyMotion_use_upper = 1
+
+" JK motions: Line motions
+" map <Leader>j <Plug>(easymotion-j)
+" map <Leader>k <Plug>(easymotion-k)
+"
 
 "
 "============= gitgutter ================
@@ -615,26 +678,18 @@ ino <C-e> <ESC>:NERDTreeToggle %<cr>
 " ino <C-e> <ESC>:NERDTreeToggle<cr>
 
 
+" ============== ctrlp ========================{{{
 " ctrl-p to search only cwd. autochdir & lcd will change cwd 
+"	autochdir breaks Nerdtree. using lcd instead
 " This changes cwd whenever file is loaded
-" autocmd BufEnter * silent! lcd %:p:h
+autocmd BufEnter * silent! lcd %:p:h
 
 " instead, I just needed it to Dropbox/_notes
 " Should I just use a bash script instead?
 " nm <Leader>v :cd ~/Dropbox/_notes
 " YES.
 "
-" Treat <li> and <p> tags like the block tags they are
-" this could be placed in .vim/after/indent/html.vim
-" also, .= means concat,
-" might be fixed in html5
-" let g:html_indent_tags .= 'li\|p\|nav'
 
-" Always use vertical diffs
-set diffopt+=vertical
-
-" spellfile. I don't have any spell file.
-" set spellfile=$HOME/.vim-spell-en.utf-8.add
 "
 " ========= Ag ============="
 if executable('ag')
@@ -662,8 +717,16 @@ fun! TrimWhitespace()
 endfun
 
 
+"================= settings that must override all ========================
+
+" Highlight matching braces { }, [ ], ( ), etc
+"let loaded_matchparen = 0
+"DoMatchParen
+hi MatchParen ctermbg=yellow ctermfg=blue guifg=blue guibg=yellow
+" set color for matching braces, etc
 
 
 
-
-
+"================== Must be last line and in quote and modelines=1 ======================
+" currently disabled, since I didn't want to use modelines
+" vim:foldmethod=marker:foldlevel=0

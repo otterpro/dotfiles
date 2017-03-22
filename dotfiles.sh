@@ -67,10 +67,10 @@ fi
 # done
 #
 # vim Vundle
-echo "Download Vundle"
+echo "Download VundleFinger PianFinger PianFinger Pianooo"
 mkdir -p $HOME/.vim/bundle
 #if [[ ! -d "$HOME/.vim/bundle/vundle" ]]
-[[  -d "$HOME/.vim/bundle/vundle" ]] || { echo "dir not found";exit 1;}
+[[  -d "$HOME/.vim/bundle/vundle" ]] || { echo ".vim/bundle/ dir not found";exit 1;}
 git clone http://github.com/gmarik/vundle.git "$HOME/.vim/bundle/vundle"
 
 echo "Instruct Vundle to download all the scripts"

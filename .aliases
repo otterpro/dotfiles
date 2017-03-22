@@ -25,6 +25,11 @@ if [[ $OSTYPE == darwin* ]]; then
 	#
 	# simple macvim, -p = use tab to open multiple files
 	# Not sophisticated as ~/bin/v since it opens new MacVim instead of reusing
+	
+	# mvim not working in certain situation, so I added alias here
+	alias mvim="/Applications/MacVim.app/Contents/MacOS/MacVim"
+
+	# normal mvim
 	alias vi="mvim -p"
 	alias vim="mvim -p"
 

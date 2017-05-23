@@ -1,5 +1,9 @@
 source ~/.aliases
 
+export TERM="xterm-256color" 
+export EDITOR=vim 
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+
 #mac specific
 # $preview this.png
 alias preview="open -a Preview"

@@ -243,9 +243,13 @@ Plugin 'xolox/vim-colorscheme-switcher' "quickly switch colorscheme with F8,sF8
 " Plugin 'Shougo/vimshell'  " shell, not as useful
 " Plugin 'Shougo/vimproc'  "required by vimshell. also need to be 'make'
 
-"Plugin 'vim-scripts/Conque-Shell'  "shell, won't work in VUndle!
-Plugin 'lrvick/Conque-Shell'	" conque shell fork, works
+" Removed for now
+" Plugin 'lrvick/Conque-Shell'	" conque shell fork, works
 
+"Plugin 'vim-scripts/Conque-Shell'  "shell, won't work in VUndle!
+
+" smooth scroll
+Plugin 'terryma/vim-smooth-scroll'
 
 call vundle#end()            " required
 
@@ -274,10 +278,12 @@ filetype plugin indent on    " required, enables all filetype detection based on
 if &t_Co >= 256 || has("gui_running")
 	"echo "256 color mode"
     "colorscheme slate
-    colorscheme darkblue
+    "colorscheme darkblue
+	colorscheme badwolf "colorscheme by Steve Losh
+	
 	highlight NonText guibg=#060606
 	highlight Folded  guibg=#0A0A0A guifg=#9090D0
-	set background=dark
+	set background=dark  "well-behaved colorschemes will respect it
 endif
 
 "================= Search ===============
@@ -551,7 +557,6 @@ imap [[ <Esc>ysiW]<Esc>Ea
 " this also won't work, as [ is reserved in Visual??? 
 " vmap [[ S]
 
-
 imap '' <Esc>ysiW'Ea
 nmap '' ysiW'
 vmap '' S'
@@ -668,15 +673,15 @@ let NERDTreeShowHidden=1
 "nmap <LocalLeader>nn :NERDTreeToggle<cr>
 " added % at end of NERDTreeToggle so that it opens cwd(?) and not old dir
 nn <Leader>e :NERDTreeToggle %<cr>
-nn <C-e> :NERDTreeToggle %<cr>
-vn <C-e> :NERDTreeToggle %<cr>
-ino <C-e> <ESC>:NERDTreeToggle %<cr>
+"nn <C-e> :NERDTreeToggle %<cr>
+"vn <C-e> :NERDTreeToggle %<cr>
+"ino <C-e> <ESC>:NERDTreeToggle %<cr>
 
+" old way - could be useful
 " nn <Leader>e :NERDTreeToggle<cr>
 " nn <C-e> :NERDTreeToggle<cr>
 " vn <C-e> :NERDTreeToggle<cr>
 " ino <C-e> <ESC>:NERDTreeToggle<cr>
-
 
 " ============== ctrlp ========================{{{
 " ctrl-p to search only cwd. autochdir & lcd will change cwd 
@@ -716,6 +721,16 @@ fun! TrimWhitespace()
     call winrestview(l:save)
 endfun
 
+"================= vim-smooth-scroll ========================
+" remap <c-b>,<c-f> vim scroll to plugin's smooth-scroll 
+"noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 10, 4)<CR>
+"noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 10, 4)<CR>
+
+noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
+noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
+noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
+noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
+
 
 "================= settings that must override all ========================
 
@@ -724,6 +739,12 @@ endfun
 "DoMatchParen
 hi MatchParen ctermbg=yellow ctermfg=blue guifg=blue guibg=yellow
 " set color for matching braces, etc
+
+" comments in italic
+let &t_ZH="\e[3m"
+let &t_ZR="\e[23m"
+highlight Comment cterm=italic gui=italic 
+
 
 
 

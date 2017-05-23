@@ -1,9 +1,15 @@
-"set bg=evening
-"set bg=darkblue
-"colorscheme darkblue
-colorscheme badwolf "colorscheme by Steve Losh
+".gvimrc: macVim and gvim (GUI) setting
+"
 
-set guifont=NanumGothicCoding:h16
+" colorscheme needs to come before all formating, to override defaults
+" colorscheme moved to .vimrc
+" set bg=evening
+" set bg=darkblue
 
-" Disable all cursro blinking:
+" fonts
+" set guifont=NanumGothicCoding:h16
+" set guifont=Ubuntu\ Mono:h16
+set guifont=Fantasque\ Sans\ Mono:h18
+
+" Disable all cursor blinking:
 :set guicursor+=a:blinkon0

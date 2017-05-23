@@ -27,7 +27,10 @@ if [[ $OSTYPE == darwin* ]]; then
 	# Not sophisticated as ~/bin/v since it opens new MacVim instead of reusing
 	
 	# mvim not working in certain situation, so I added alias here
-	alias mvim="/Applications/MacVim.app/Contents/MacOS/MacVim"
+	# Remove this line if mvim won't load properly
+	#alias mvim="/Applications/MacVim.app/Contents/MacOS/MacVim"
+	#alias mvim="/Applications/MacVim.app/Contents/MacOS/bin/gvim"
+	alias mvim="/Applications/MacVim.app/Contents/bin/gvim"
 
 	# normal mvim
 	alias vi="mvim -p"

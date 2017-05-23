@@ -25,6 +25,9 @@ set noswapfile
 "set autowriteall    " saves all buffer before quit,new,etc
 "set hidden		"open new file without having to save current file
 
+set fileformats=unix "wanted to make sure it's only UNIX, and not DOS format
+					" unix = LF, DOS= CRLF
+
 "=============================================================================
 " Default Setting
 "=============================================================================

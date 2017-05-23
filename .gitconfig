@@ -5,6 +5,8 @@
 	ui = true
 [core]
 	excludesfile = ~/.gitignore_global
+	eol = lf
+	autocrlf = false
 [push]
 	default = matching
 [alias]

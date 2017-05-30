@@ -9,7 +9,7 @@
 " fonts
 " set guifont=NanumGothicCoding:h16
 " set guifont=Ubuntu\ Mono:h16
-set guifont=Fantasque\ Sans\ Mono:h18
+set guifont=Fantasque\ Sans\ Mono:h12
 
 " Disable all cursor blinking:
 :set guicursor+=a:blinkon0

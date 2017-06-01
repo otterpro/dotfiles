@@ -492,7 +492,9 @@ if has("autocmd") " Only do this part when compiled with support for autocommand
 	"treat all .txt file as markdown
 	autocmd BufNewFile,BufReadPost  *.txt set filetype=markdown
 	" enable spellchecking for markdown. TODO: spell file needed?
-	autocmd filetype markdown setlocal spell
+	" autocmd filetype markdown setlocal spell
+	" However, I disabled it since I didn't have spell file
+	
 	" force text wrap at 80 columns
 	autocmd filetype markdown setlocal textwidth=80 expandtab
 

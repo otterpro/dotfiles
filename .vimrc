@@ -702,10 +702,26 @@ autocmd BufEnter * silent! lcd %:p:h
 " ========= Ag ============="
 if executable('ag')
   " Use Ag over Grep
+  " Original: works on Mac, Linux
+  " set grepprg=ag\ --nogroup\ --nocolor
   set grepprg=ag\ --nogroup\ --nocolor
 
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  "	original, works on Unix, Mac
+  "let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  "	if windows version won't work on Mac, change back to this or use
+  "	conditional
+  "	 if has( 'unix' )
+    "    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+    "elsif has( 'win32' )
+        " ?
+	"endif
+	
+
+  " windows version
+	let g:ctrlp_user_command = 'ag -l --nocolor -g "" %s'
 
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0

@@ -56,7 +56,7 @@ set wildignore=*.swp,*.bak,*.pyc,*.class,node_modules
 						" also wildignore += to append
 
 set title                " change the terminal's title
-set visualbell           " don't beep
+set novisualbell           " don't flash the screen for beep
 set noerrorbells         " don't beep
 
 set termencoding=utf-8

@@ -169,3 +169,7 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 #export NVM_DIR="/Users/otter/.nvm"
 export NVM_DIR="$HOME/.nvm"   # modeled after RVM
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# temporary fix for grep_options deprecated bug
+# which is still in Oh-My-ZSH
+unset GREP_OPTIONS

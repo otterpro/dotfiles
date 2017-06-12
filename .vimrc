@@ -58,6 +58,7 @@ set wildignore=*.swp,*.bak,*.pyc,*.class,node_modules
 set title                " change the terminal's title
 set novisualbell           " don't flash the screen for beep
 set noerrorbells         " don't beep
+set belloff=all
 
 set termencoding=utf-8
 set encoding=utf-8
@@ -211,7 +212,9 @@ Plugin 'nathanaelkane/vim-indent-guides'   " show indent guidelines
 Plugin 'Valloric/YouCompleteMe'
 " Plugin 'davidhalter/jedi-vim'
 "
-Plugin 'rking/ag.vim.git'	"silver searcher
+"Plugin 'rking/ag.vim.git'	"silver searcher
+" according to maintainer, it is deprecated due to licensing
+"
 
 "Markdown and text formatting
 Plugin 'godlygeek/tabular' "required for vim-markdown. 
@@ -704,9 +707,10 @@ autocmd BufEnter * silent! lcd %:p:h
 " ========= Ag ============="
 if executable('ag')
   " Use Ag over Grep
+  " note: the vim ag plugin was removed due to deprecation
   " Original: works on Mac, Linux
   " set grepprg=ag\ --nogroup\ --nocolor
-  set grepprg=ag\ --nogroup\ --nocolor
+  "set grepprg=ag\ --nogroup\ --nocolor
 
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
 

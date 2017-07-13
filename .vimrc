@@ -51,7 +51,7 @@ set history=1000         " remember more commands and search history
 set undolevels=1000      " use many muchos levels of undo
 
 " ignore files for ctrlp, etc
-set wildignore=*.swp,*.bak,*.pyc,*.class,node_modules
+set wildignore=*.swp,*.exe,*.dll,*.bak,*.pyc,*.class,node_modules
 						" node_modules: ignore node files
 						" also wildignore += to append
 
@@ -703,6 +703,12 @@ autocmd BufEnter * silent! lcd %:p:h
 " YES.
 "
 
+
+" ========= rg: ripgrep  ============="
+if executable('rg') 
+    set grepprg=rg\ --vimgrep
+endif
+
 "
 " ========= Ag ============="
 if executable('ag')
@@ -717,7 +723,6 @@ if executable('ag')
   "	original, works on Unix, Mac
   "let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
-  "	if windows version won't work on Mac, change back to this or use
   "	conditional
   "	 if has( 'unix' )
     "    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
@@ -726,11 +731,19 @@ if executable('ag')
 	"endif
 	
 
-  " windows version
+    if has( 'win32' )
+		" temporarily skip, if on Win
+		" but ag works fine, 
+		" just that ctrl/esc was too sensitive, and ag had a little bit of
+		" delay so it wasn't registereing fast enough sometimes
+		" but will go back to AG if ok
+  "	if windows version won't work on Mac, change back to this or use
+  else
 	let g:ctrlp_user_command = 'ag -l --nocolor -g "" %s'
 
   " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
+	let g:ctrlp_use_caching = 0
+	endif
 endif
 
 " Local config, not used yet.

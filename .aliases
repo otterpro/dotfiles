@@ -10,9 +10,9 @@ else
 	   alias ls='ls -GF'
 	   alias sed='sed -E'
 fi
-alias ll="ls -lhA"
-alias la="ls -A"
+alias ll="ls -lh"
 alias lla="ls -lhA"
+alias la="ls -A"
 alias l="ls"
 
 # mac specific

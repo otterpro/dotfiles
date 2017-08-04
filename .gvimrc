@@ -11,5 +11,9 @@
 " set guifont=Ubuntu\ Mono:h16
 set guifont=Fantasque\ Sans\ Mono:h12
 
+if has('nvim')
+	Guifont Fantasque\ Sans\ Mono:h12
+endif
+
 " Disable all cursor blinking:
 :set guicursor+=a:blinkon0

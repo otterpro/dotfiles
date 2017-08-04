@@ -170,8 +170,9 @@ call vundle#begin()
 "experimental - current
 " VimWiki
 Plugin 'vimwiki/vimwiki.git'
-let g:vimwiki_list = [{'path': '~/Dropbox/_notes/',
-                       \ 'syntax': 'markdown', 'ext': '.md'}]
+" let g:vimwiki_list = [{'path': '~/Dropbox/_notes/',
+"                        \ 'syntax': 'markdown', 'ext': '.md'}]
+" setting moved to end of file instead. Hopefully it is fine
 
 " status line
 Plugin 'bling/vim-airline'
@@ -769,6 +770,26 @@ noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
 noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
 noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 
+
+"================= VimWiki ========================
+let g:vimwiki_list = [{'path': '~/Dropbox/_notes/',
+                        \ 'syntax': 'markdown', 'ext': '.md' }]
+" disable mapping which I don't like, we need to map these
+" By mapping these to anything, it disables the mapping.  
+nmap <Leader>wb1 <Plug>VimwikiGoBackLink
+nmap <Leader>wn1 <Plug>VimwikiNextLink
+nmap <Leader>wp1 <Plug>VimwikiPrevLink
+nmap <Leader>wp-- <Plug>VimwikiRemoveHeaderLevel
+nmap <Leader>wp== <Plug>VimwikiAddHeaderLevel
+nmap <Leader>wp++ <Plug>VimwikiNormalizeLink
+nmap <Leader>wtl <Plug>VimwikiTableMoveColumnLeft
+nmap <Leader>wdp		<Plug>VimwikiDiaryPrevDay
+nmap <Leader>wdn		<Plug>VimwikiDiaryNextDay
+" imap <Leader>wp3 <Plug>VimwikiDecreaseLvlSingleItem
+" imap <Leader>wp4 <Plug>VimwikiIncreaseLvlSingleItem
+" imap <Leader>wp5 <Plug>VimwikiListNextSymbol
+" imap <Leader>wp6 <Plug>VimwikiListPrevSymbol
+" imap <Leader>wp7 <Plug>VimwikiListToggle
 
 "================= settings that must override all ========================
 

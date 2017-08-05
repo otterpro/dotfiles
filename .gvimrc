@@ -10,6 +10,9 @@
 " set guifont=NanumGothicCoding:h16
 " set guifont=Ubuntu\ Mono:h16
 set guifont=Fantasque\ Sans\ Mono:h12
+if has("gui_macvim")
+	set guifont=Fantasque\ Sans\ Mono:h18
+endif
 
 " Disable all cursor blinking:
 :set guicursor+=a:blinkon0

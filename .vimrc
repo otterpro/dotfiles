@@ -51,7 +51,7 @@ set history=1000         " remember more commands and search history
 set undolevels=1000      " use many muchos levels of undo
 
 " ignore files for ctrlp, etc
-set wildignore=*.swp,*.bak,*.pyc,*.class,node_modules
+set wildignore=*.swp,*.exe,*.dll,*.bak,*.pyc,*.class,node_modules
 						" node_modules: ignore node files
 						" also wildignore += to append
 
@@ -170,8 +170,9 @@ call vundle#begin()
 "experimental - current
 " VimWiki
 Plugin 'vimwiki/vimwiki.git'
-let g:vimwiki_list = [{'path': '~/Dropbox/_notes/',
-                       \ 'syntax': 'markdown', 'ext': '.md'}]
+" let g:vimwiki_list = [{'path': '~/Dropbox/_notes/',
+"                        \ 'syntax': 'markdown', 'ext': '.md'}]
+" setting moved to end of file instead. Hopefully it is fine
 
 " status line
 Plugin 'bling/vim-airline'
@@ -703,6 +704,12 @@ autocmd BufEnter * silent! lcd %:p:h
 " YES.
 "
 
+
+" ========= rg: ripgrep  ============="
+if executable('rg') 
+    set grepprg=rg\ --vimgrep
+endif
+
 "
 " ========= Ag ============="
 if executable('ag')
@@ -717,7 +724,6 @@ if executable('ag')
   "	original, works on Unix, Mac
   "let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
-  "	if windows version won't work on Mac, change back to this or use
   "	conditional
   "	 if has( 'unix' )
     "    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
@@ -726,11 +732,19 @@ if executable('ag')
 	"endif
 	
 
-  " windows version
+    if has( 'win32' )
+		" temporarily skip, if on Win
+		" but ag works fine, 
+		" just that ctrl/esc was too sensitive, and ag had a little bit of
+		" delay so it wasn't registereing fast enough sometimes
+		" but will go back to AG if ok
+  "	if windows version won't work on Mac, change back to this or use
+  else
 	let g:ctrlp_user_command = 'ag -l --nocolor -g "" %s'
 
   " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
+	let g:ctrlp_use_caching = 0
+	endif
 endif
 
 " Local config, not used yet.
@@ -756,6 +770,26 @@ noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
 noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
 noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 
+
+"================= VimWiki ========================
+let g:vimwiki_list = [{'path': '~/Dropbox/_notes/',
+                        \ 'syntax': 'markdown', 'ext': '.md' }]
+" disable mapping which I don't like, we need to map these
+" By mapping these to anything, it disables the mapping.  
+nmap <Leader>wb1 <Plug>VimwikiGoBackLink
+nmap <Leader>wn1 <Plug>VimwikiNextLink
+nmap <Leader>wp1 <Plug>VimwikiPrevLink
+nmap <Leader>wp-- <Plug>VimwikiRemoveHeaderLevel
+nmap <Leader>wp== <Plug>VimwikiAddHeaderLevel
+nmap <Leader>wp++ <Plug>VimwikiNormalizeLink
+nmap <Leader>wtl <Plug>VimwikiTableMoveColumnLeft
+nmap <Leader>wdp		<Plug>VimwikiDiaryPrevDay
+nmap <Leader>wdn		<Plug>VimwikiDiaryNextDay
+" imap <Leader>wp3 <Plug>VimwikiDecreaseLvlSingleItem
+" imap <Leader>wp4 <Plug>VimwikiIncreaseLvlSingleItem
+" imap <Leader>wp5 <Plug>VimwikiListNextSymbol
+" imap <Leader>wp6 <Plug>VimwikiListPrevSymbol
+" imap <Leader>wp7 <Plug>VimwikiListToggle
 
 "================= settings that must override all ========================
 

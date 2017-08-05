@@ -11,8 +11,9 @@ else
 	   alias sed='sed -E'
 fi
 alias ll="ls -lh"
-alias la="ls -a"
-alias lla="ls -lha"
+alias lla="ls -lhA"
+alias la="ls -A"
+alias l="ls"
 
 # mac specific
 if [[ $OSTYPE == darwin* ]]; then

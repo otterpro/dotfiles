@@ -14,5 +14,9 @@ if has("gui_macvim")
 	set guifont=Fantasque\ Sans\ Mono:h18
 endif
 
+if has('nvim')
+	Guifont Fantasque\ Sans\ Mono:h12
+endif
+
 " Disable all cursor blinking:
 :set guicursor+=a:blinkon0

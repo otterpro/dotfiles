@@ -169,10 +169,8 @@ call vundle#begin()
 
 "experimental - current
 " VimWiki
-Plugin 'vimwiki/vimwiki.git'
-" let g:vimwiki_list = [{'path': '~/Dropbox/_notes/',
-"                        \ 'syntax': 'markdown', 'ext': '.md'}]
-" setting moved to end of file instead. Hopefully it is fine
+" Plugin 'vimwiki/vimwiki.git'
+" included in Polyglot? I don't think so...
 
 " status line
 Plugin 'bling/vim-airline'
@@ -192,18 +190,16 @@ Plugin 'jlanzarotta/bufexplorer'
 
 "coding & auto-completion
 Plugin 'sheerun/vim-polyglot'		" loads 70+ languages
-
+Plugin 'tpope/vim-repeat.git'
 Plugin 'docunext/closetag.vim.git'  "closes html tag"
 Plugin 'tomtom/tcomment_vim'
 Plugin 'tpope/vim-surround.git'  "add surrounding brackets,quotes,tags"
-Plugin 'tpope/vim-repeat.git'
-Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'majutsushi/tagbar'
+Plugin 'tpope/vim-fugitive'
 " Plugin 'Raimondi/delimitMate.git'	"closes < >, (), [], {}"
 " Temporarily disabled, until I can selectively close delimiters"
 Plugin 'valloric/MatchTagAlways'  "HTML tag is highlighted
-" 
 
 Plugin 'scrooloose/syntastic'	"syntax checker engine
 Plugin 'nvie/vim-flake8'		" python syntax checker
@@ -215,19 +211,19 @@ Plugin 'Valloric/YouCompleteMe'
 "
 "Plugin 'rking/ag.vim.git'	"silver searcher
 " according to maintainer, it is deprecated due to licensing
-"
 
 "Markdown and text formatting
 Plugin 'godlygeek/tabular' "required for vim-markdown. 
-" Plugin 'plasticboy/vim-markdown' "unfortunately,uses mkd, not markdown as filetype"
-"
-" Temporary disabled while using vim-polyglot
-" replaced with simpler plugin
+Plugin 'plasticboy/vim-markdown' 
+" Plasticboy's markdown is included in Polyglot but that is missing features
+"	so it is loaded here
+
+" Tpope's version is now default Vim, so it is no longer needed
 " Plugin 'tpope/vim-markdown'
+
 "folding is not in tpope's version. we need this to fold
-"
-Plugin 'nelstrom/vim-markdown-folding'
-Plugin 'dhruvasagar/vim-table-mode'    "Create table
+" Plugin 'nelstrom/vim-markdown-folding'
+" Plugin 'dhruvasagar/vim-table-mode'    "Create table
 
 "snippets
 " Plugin 'tomtom/tlib_vim.git' " required for snipmate
@@ -295,9 +291,11 @@ endif
 
 "================= Search ===============
 set incsearch     " do incremental search / show search 
+
 " make regex search compatible with php,perl,etc. using very magic
 " uses magic. see help on "pattern" and "magic"
 nn / /\v
+
 " in Visual mode, allow selected text to become search text
 " by pressing // "slash twice"
 vn // y/<C-R>"<CR>
@@ -432,6 +430,7 @@ set foldnestmax=10		" maximum folding level. beyond 10 is crazy
 highlight Folded guibg=grey7 ctermbg=238 " set color (one of dark grey=238)
 
 "  Change foldtext (http://dhruvasagar.com/2013/03/28/vim-better-foldtext)
+"  TODO: improve folding, want hierarchical /tree structure instead
 if filereadable(expand("~/.dotfiles/foldtext.vim"))
 	source ~/.dotfiles/foldtext.vim
 endif
@@ -495,6 +494,10 @@ if has("autocmd") " Only do this part when compiled with support for autocommand
 	"======== Markdown ============="
 	"treat all .txt file as markdown
 	autocmd BufNewFile,BufReadPost  *.txt set filetype=markdown
+
+	" no longer needed? (was for TPope's md plugin)
+    "autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+	
 	" enable spellchecking for markdown. TODO: spell file needed?
 	" autocmd filetype markdown setlocal spell
 	" However, I disabled it since I didn't have spell file
@@ -560,6 +563,7 @@ endif " has("autocmd")
 imap vv <Esc>ysiW>
 nmap vv ysiW>
 
+" [[ will surround current typing text into [ xxx ]
 imap [[ <Esc>ysiW]<Esc>Ea
 " below doesn't work. not sure why. "[{action}" is reserved, so...
 " nmap [[ ysiW]<Esc>E
@@ -576,9 +580,14 @@ nmap ""  ysiW"
 vmap "" S"
 nmap <Leader>" ysiW"
 
+	" as testing this h
+" \\ => surround with `backtick` for markdown codes 
 imap \\ <Esc>ysiW`Ea
 nmap \\  ysiW`
-vmap `` S`
+"vmap `` S`
+vmap \\ S`
+" surround ` ` for entire line
+nmap <Leader>\ 0ys$`
 
 nmap <Leader>) ysiW)
 nmap <Leader>] ysiW]
@@ -666,8 +675,17 @@ let g:airline#extensions#wordcount#enabled = 0
 " NOT USED ANYMORE
 " vim-markdown: folding is enabled by default. disable now
 "let g:vim_markdown_folding_disabled=1
-" let g:vim_markdown_frontmatter=1  "highlight jekyll frontmatter
+let g:vim_markdown_frontmatter=1  "highlight jekyll frontmatter
 
+" [..](...) will follow without need for .MD extension
+let g:vim_markdown_no_extensions_in_markdown = 1
+
+" make sure to disable this, or $ will cause highlight to stop
+let g:vim_markdown_math = 0
+
+" increase markdown buffer so that highlighting doesn't break in long code
+syntax sync minlines=300
+let g:markdown_minlines = 100
 
 " ============== vim-table-mode =======================
 let g:table_mode_corner="|" " make table compatible with Markdown.
@@ -696,7 +714,15 @@ nn <Leader>e :NERDTreeToggle %<cr>
 " ctrl-p to search only cwd. autochdir & lcd will change cwd 
 "	autochdir breaks Nerdtree. using lcd instead
 " This changes cwd whenever file is loaded
-autocmd BufEnter * silent! lcd %:p:h
+" autocmd BufEnter * silent! lcd %:p:h
+	" *** above, completely disabled for now, and using noautchdir for now
+	" testing: see if it is ok.
+
+" not sure if I want dir changed when buffer loaded
+" not sure how this will affect above line
+set noautochdir
+" doesn't seem to work???
+" could be reset in ctrlp plugin
 
 " instead, I just needed it to Dropbox/_notes
 " Should I just use a bash script instead?
@@ -804,8 +830,8 @@ let &t_ZH="\e[3m"
 let &t_ZR="\e[23m"
 highlight Comment cterm=italic gui=italic 
 
-
-
+" conceals, hides markdown punctuations, etc
+set conceallevel=2
 
 "================== Must be last line and in quote and modelines=1 ======================
 " currently disabled, since I didn't want to use modelines

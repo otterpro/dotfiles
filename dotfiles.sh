@@ -8,6 +8,7 @@
 #
 # creates symlink of all dotfiles and also dot directories into home directory (~)
 # WARNING: This is a destructive process.  Any existing files or directories will be overwritten!!!
+# TODO: rename to install.sh 
 #
 #set -xv #debugging
 # part of vim backup from https://github.com/swaroopch/dotvim/blob/master/install.sh
@@ -22,6 +23,15 @@ cd $(dirname $0) ; pwd -P
 if [[ "$OSTYPE" =~ "darwin" ]]
 then
     export OS="mac"
+	# first install brew
+	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	# git, vim, etc
+	brew install git vim
+	# zsh
+    brew install zsh && \
+    sudo sh -c 'echo $(brew --prefix)/bin/zsh >> /etc/shells' && \
+    chsh -s $(brew --prefix)/bin/zsh
+
 elif [[ "$OSTYPE" == "linux-gnu" ]]
 then
     export OS="linux"
@@ -50,7 +60,8 @@ fi
 
 
 # install oh-my-zsh
-#curl -L http://install.ohmyz.sh | sh
+curl -L http://install.ohmyz.sh | sh
+# ? Perhaps install from brew?
 
 #vim backup - not as reliable...
 # temporarily not using it.
@@ -65,16 +76,13 @@ fi
 # do
 #     [[ -s "$f" ]] && mv -f "$f" $VIM_BACKUP_DIR
 # done
-#
-# vim Vundle
-echo "Download VundleFinger PianFinger PianFinger Pianooo"
-mkdir -p $HOME/.vim/bundle
-#if [[ ! -d "$HOME/.vim/bundle/vundle" ]]
-[[  -d "$HOME/.vim/bundle/vundle" ]] || { echo ".vim/bundle/ dir not found";exit 1;}
-git clone http://github.com/gmarik/vundle.git "$HOME/.vim/bundle/vundle"
 
-echo "Instruct Vundle to download all the scripts"
-vim +PluginInstall +qall 
+# vim Vundle  - no longer installed. 
+#echo "Download Vundle
+# mkdir -p $HOME/.vim/bundle
+# [[  -d "$HOME/.vim/bundle/vundle" ]] || { echo ".vim/bundle/ dir not found";exit 1;}
+# git clone http://github.com/gmarik/vundle.git "$HOME/.vim/bundle/vundle"
+
 
 # make all the symlink. This step needs to come last, so it other install
 # such as vim and oh-my-zsh won't interfere.  
@@ -92,4 +100,6 @@ find . -maxdepth 1 -mindepth 1 \! -name "*.git" -type d -exec rm -rf ~/{} ";" -e
 #find . -mindepth 1 -maxdepth 1 -type f -name ".*" ! -name ".git*" -exec ln -sf `pwd`/{} ~/{} ";"
 find . -mindepth 1 -maxdepth 1 -type f -name ".*" ! -name ".git" -exec ln -sf `pwd`/{} ~/{} ";"
 
-
+# Vim Plug
+echo "Vim-Plug: download all the scripts"
+vim +PlugInstall +qall 

@@ -153,123 +153,111 @@ set diffopt+=vertical
 " set spellfile=$HOME/.vim-spell-en.utf-8.add
 
 "=============================================================================
-"	Vundle packages
+"   Now using Plug, replacing Vundle
 "=============================================================================
 filetype off " required here before plugin are loaded(?), but turned on later
-" load vundles in ~/.dotfiles/vundle.vim
-" if filereadable(expand("~/.dotfiles/vundle.vim"))
-" 	source ~/.dotfiles/vundle.vim
-" endif
-set rtp+=~/.vim/bundle/vundle
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-" "call vundle#begin('~/some/path/here')
+" set rtp+=~/.vim/bundle/vundle
 "
-" let Vundle manage Vundle, required
+" call vundle#begin(): TODO: delete this line if vim-plugin is approved
 
-"experimental - current
-" VimWiki
-" Plugin 'vimwiki/vimwiki.git'
-" included in Polyglot? I don't think so...
+" install vim-plug if it is not installed (need curl!)
+if empty(glob("~/.vim/autoload/plug.vim"))
+	execute '!curl -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim'
+endif
+"call plug#begin('~/.vim/plugged')
+call plug#begin()
+" arbitrary directory. I'm using plugged/, which is same as example
+
+"Testing - 
+Plug 'ap/vim-css-color'
 
 " status line
-Plugin 'bling/vim-airline'
+" Plug 'bling/vim-airline'  "OLD name, plugin moved to new name
+Plug 'vim-airline/vim-airline'
 
 "Easy motion -- not working???
-Plugin 'easymotion/vim-easymotion'  
+Plug 'easymotion/vim-easymotion'  
 
 " File and Buffer
-Plugin 'scrooloose/nerdtree.git'
-" Plugin 'kien/ctrlp.vim'  "# no longer maintained?
-Plugin 'ctrlpvim/ctrlp.vim'  " replaces old ctrlp
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+" Plug 'kien/ctrlp.vim'  "# no longer maintained?
+Plug 'ctrlpvim/ctrlp.vim'  " replaces old ctrlp
 
 " Mini-Buffer Explorer Fork
 " Removed - too much clutter on top
-" Plugin 'fholgado/minibufexpl.vim'
-Plugin 'jlanzarotta/bufexplorer'
+" Plug 'fholgado/minibufexpl.vim'
+Plug 'jlanzarotta/bufexplorer'
 
 "coding & auto-completion
-Plugin 'sheerun/vim-polyglot'		" loads 70+ languages
-Plugin 'tpope/vim-repeat.git'
-Plugin 'docunext/closetag.vim.git'  "closes html tag"
-Plugin 'tomtom/tcomment_vim'
-Plugin 'tpope/vim-surround.git'  "add surrounding brackets,quotes,tags"
-Plugin 'airblade/vim-gitgutter'
-Plugin 'majutsushi/tagbar'
-Plugin 'tpope/vim-fugitive'
-" Plugin 'Raimondi/delimitMate.git'	"closes < >, (), [], {}"
+Plug 'sheerun/vim-polyglot'		" loads 70+ languages
+Plug 'tpope/vim-repeat'
+Plug 'docunext/closetag.vim'  "closes html tag"
+Plug 'tomtom/tcomment_vim'
+Plug 'tpope/vim-surround'  "add surrounding brackets,quotes,tags"
+Plug 'airblade/vim-gitgutter'
+Plug 'majutsushi/tagbar'
+Plug 'tpope/vim-fugitive'
+" Plug 'Raimondi/delimitMate.git'	"closes < >, (), [], {}"
 " Temporarily disabled, until I can selectively close delimiters"
-Plugin 'valloric/MatchTagAlways'  "HTML tag is highlighted
+Plug 'valloric/MatchTagAlways'  "HTML tag is highlighted
 
-Plugin 'scrooloose/syntastic'	"syntax checker engine
-Plugin 'nvie/vim-flake8'		" python syntax checker
-Plugin 'tmhedberg/SimpylFold'	" python folding
-Plugin 'nathanaelkane/vim-indent-guides'   " show indent guidelines
+Plug 'scrooloose/syntastic'	"syntax checker engine
+Plug 'nvie/vim-flake8'		" python syntax checker
+Plug 'tmhedberg/SimpylFold'	" python folding
+Plug 'nathanaelkane/vim-indent-guides'   " show indent guidelines
 
-Plugin 'Valloric/YouCompleteMe'
-" Plugin 'davidhalter/jedi-vim'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+" Plug 'davidhalter/jedi-vim'
 "
-"Plugin 'rking/ag.vim.git'	"silver searcher
+"Plug 'rking/ag.vim.git'	"silver searcher
 " according to maintainer, it is deprecated due to licensing
 
 "Markdown and text formatting
-Plugin 'godlygeek/tabular' "required for vim-markdown. 
-Plugin 'plasticboy/vim-markdown' 
+Plug 'godlygeek/tabular' "required for vim-markdown. 
+Plug 'plasticboy/vim-markdown' 
 " Plasticboy's markdown is included in Polyglot but that is missing features
-"	so it is loaded here
+"	so it is loaded here 
 
 " Tpope's version is now default Vim, so it is no longer needed
-" Plugin 'tpope/vim-markdown'
+" Plug 'tpope/vim-markdown'
 
 "folding is not in tpope's version. we need this to fold
-" Plugin 'nelstrom/vim-markdown-folding'
-" Plugin 'dhruvasagar/vim-table-mode'    "Create table
+" Plug 'nelstrom/vim-markdown-folding'
+" Plug 'dhruvasagar/vim-table-mode'    "Create table
 
 "snippets
-" Plugin 'tomtom/tlib_vim.git' " required for snipmate
-" Plugin 'MarcWeber/vim-addon-mw-utils.git'	" required for snipmate
-" Plugin 'garbas/vim-snipmate.git'  " SnipMate plugin"
 " http://jmatthews.us/blog/2013/03/10/managing-vim-python-plugins/
 if (has('python') || has('python3'))
-  Plugin 'SirVer/ultisnips'
+	Plug 'SirVer/ultisnips'
 else
-  Plugin 'garbas/vim-snipmate'
+	Plug 'MarcWeber/vim-addon-mw-utils' "pre-requisites
+	Plug' tomtom/tlib_vim' "pre-requisites
+	Plug 'garbas/vim-snipmate'
 endif
-Plugin 'honza/vim-snippets.git'		" all snippets"
+Plug 'honza/vim-snippets'		" all snippets"
 
 " colorschemes-related 
-Plugin 'flazz/vim-colorschemes'
-Plugin 'xolox/vim-misc'  " requierd for colorscheme-switcher
-Plugin 'xolox/vim-colorscheme-switcher' "quickly switch colorscheme with F8,sF8
+Plug 'flazz/vim-colorschemes'
+Plug 'xolox/vim-misc'  " requierd for colorscheme-switcher
+Plug 'xolox/vim-colorscheme-switcher' "quickly switch colorscheme with F8,sF8
 
 "shell
-" Plugin 'Shougo/vimshell'  " shell, not as useful
-" Plugin 'Shougo/vimproc'  "required by vimshell. also need to be 'make'
+" Plug 'Shougo/vimshell'  " shell, not as useful
+" Plug 'Shougo/vimproc'  "required by vimshell. also need to be 'make'
 
-" Removed for now
-" Plugin 'lrvick/Conque-Shell'	" conque shell fork, works
-
-"Plugin 'vim-scripts/Conque-Shell'  "shell, won't work in VUndle!
+" Plug 'lrvick/Conque-Shell'	" conque shell fork, works
+"Plug 'vim-scripts/Conque-Shell'  "shell, won't work in VUndle!
 
 " smooth scroll
-Plugin 'terryma/vim-smooth-scroll'
+Plug 'terryma/vim-smooth-scroll'
 
-call vundle#end()            " required
-
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just
-" :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to
-" auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+call plug#end()
+" call vundle#end()            " required
 
 filetype plugin indent on    " required, enables all filetype detection based on	
 " file extension, turns on all including detection, plugin, and indent
 " To ignore indent , instead use just : filetype plugin on
+" ME: not sure if this is needed. Vestige from Vundle???
 
 
 "=============================================================================

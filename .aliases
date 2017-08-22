@@ -35,10 +35,13 @@ if [[ $OSTYPE == darwin* ]]; then
 
 	# normal mvim
 	alias vi="mvim -p"
+	alias v="mvim -p"
 	alias vim="mvim -p"
 
-elif [[ $OSTYPE == freebsd* ]]; then
+#elif [[ $OSTYPE == freebsd* ]]; then
+else
 	alias vi='vim'
+	alias v='vim'
 fi
 
 # Quicker navigation

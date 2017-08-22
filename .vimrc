@@ -231,7 +231,7 @@ if (has('python') || has('python3'))
 	Plug 'SirVer/ultisnips'
 else
 	Plug 'MarcWeber/vim-addon-mw-utils' "pre-requisites
-	Plug' tomtom/tlib_vim' "pre-requisites
+	Plug 'tomtom/tlib_vim' "pre-requisites
 	Plug 'garbas/vim-snipmate'
 endif
 Plug 'honza/vim-snippets'		" all snippets"
@@ -275,6 +275,13 @@ if &t_Co >= 256 || has("gui_running")
 	highlight NonText guibg=#060606
 	highlight Folded  guibg=#0A0A0A guifg=#9090D0
 	set background=dark  "well-behaved colorschemes will respect it
+
+	"some of my highlighting
+	hi htmlH2 guifg=#afdf00 ctermfg=148
+	hi htmlH3 guifg=#afaf00 ctermfg=142
+	hi htmlH4 guifg=#af8700 ctermfg=136
+	hi htmlH5 guifg=#af5f00 ctermfg=130
+
 endif
 
 "================= Search ===============

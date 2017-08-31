@@ -205,8 +205,9 @@ Plug 'scrooloose/syntastic'	"syntax checker engine
 Plug 'nvie/vim-flake8'		" python syntax checker
 Plug 'tmhedberg/SimpylFold'	" python folding
 Plug 'nathanaelkane/vim-indent-guides'   " show indent guidelines
-
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+Plug 'ervandew/supertab'
+" Plug 'Shougo/neocomplete.vim'
+"Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 " Plug 'davidhalter/jedi-vim'
 "
 "Plug 'rking/ag.vim.git'	"silver searcher
@@ -366,6 +367,12 @@ cnoremap w!! w !sudo tee % >/dev/null
 " <F2> (or space-p) to go into paste mode. it en(dis)ables indentation.
 set pastetoggle=<F2>
 nn <Leader>p <F2>
+
+" refresh syntax highlighting - esp for long problemetic markdown
+" doesn't work always, and is also very slow operation
+" it's faster to :syntax sync minlines=500
+noremap <F5> <Esc>:syntax sync fromstart<CR>
+inoremap <F5> <C-o>:syntax sync fromstart<CR>
 
 " Map frequent actions
 "
@@ -643,9 +650,18 @@ nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 "		https://github.com/Valloric/YouCompleteMe/issues/36
 if (has('python') || has('python3'))
 	"======== utilsnips ===================
-	let g:UltiSnipsExpandTrigger="<c-j>"
+	" disable Trigger for normal / Supertab
+	" enable for YCM or others
+	" let g:UltiSnipsExpandTrigger="<c-j>"
+	" :
 	let g:UltiSnipsJumpForwardTrigger="<c-j>"
 	let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+	" keep all private snippets in .vim/Ultisnips/ 
+	" however, public snippets are still available
+	let g:UltiSnipsSnippetsDir="~/.vim/UltiSnips"
+	" :UltiSnipsEdit to split window.
+	let g:UltiSnipsEditSplit="vertical"
+
 	
 else
 	"======== snipmate ====================

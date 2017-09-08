@@ -319,6 +319,7 @@ inoremap <C-U> <C-G>u<C-U>
 
 " Leader is <Space> 
 let mapleader="\<Space>"
+" LocalLeader set to single backslash for now
 let maplocalleader="\\"
 
 " remap <ctrl><space> to underscore, easier!!!

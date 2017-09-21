@@ -201,6 +201,8 @@ Plug 'tpope/vim-fugitive'
 " Temporarily disabled, until I can selectively close delimiters"
 Plug 'valloric/MatchTagAlways'  "HTML tag is highlighted
 
+Plug 'prettier/vim-prettier'  "Prettief for Javascript
+
 Plug 'scrooloose/syntastic'	"syntax checker engine
 Plug 'nvie/vim-flake8'		" python syntax checker
 Plug 'tmhedberg/SimpylFold'	" python folding
@@ -559,11 +561,13 @@ endif " has("autocmd")
 "
 " 
 " ============== surround ====================
+" CURRENTLY just using LEADER > instead... sometimes vv slows down v
 " quickly enclosing 'vv' encloses current text with angled bracket <>
 " usually when pasting URL, Ctrl(or Cmd)V, then quickly hit 'vv'"
 " cannot use << since it is used for indenting 
-imap vv <Esc>ysiW>
-nmap vv ysiW>
+" 
+" imap vv <Esc>ysiW>
+" nmap vv ysiW>
 
 " [[ will surround current typing text into [ xxx ]
 imap [[ <Esc>ysiW]<Esc>Ea

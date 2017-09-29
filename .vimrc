@@ -376,6 +376,11 @@ nn <Leader>p <F2>
 noremap <F5> <Esc>:syntax sync fromstart<CR>
 inoremap <F5> <C-o>:syntax sync fromstart<CR>
 
+" when tabbing using > to indent, stay in visual mode. Normal behavior is to
+" get out of visual mode
+vn > >gv
+vn < <gv
+
 " Map frequent actions
 "
 "<Space>o to open a new file: also <c-p> does the same"

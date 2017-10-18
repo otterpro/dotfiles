@@ -3,6 +3,7 @@
 "
 " Thanks to many, including Bram Moolenaar <Bram@vim.org>
 "
+" TODO: move autcmd into separate language files
 "=============================================================================
 "
 " When started as "evim", evim.vim will already have done these settings.
@@ -25,8 +26,10 @@ set noswapfile
 "set autowriteall    " saves all buffer before quit,new,etc
 "set hidden		"open new file without having to save current file
 
-set fileformats=unix "wanted to make sure it's only UNIX, and not DOS format
+set fileformats=unix,dos "wanted to make sure it's only UNIX, and not DOS format
 					" unix = LF, DOS= CRLF
+					" by default, uses unix to read/write
+					" but also detects dos 
 
 "=============================================================================
 " Default Setting
@@ -161,9 +164,11 @@ filetype off " required here before plugin are loaded(?), but turned on later
 " call vundle#begin(): TODO: delete this line if vim-plugin is approved
 
 " install vim-plug if it is not installed (need curl!)
-if empty(glob("~/.vim/autoload/plug.vim"))
-	execute '!curl -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim'
-endif
+" But removed - causing problem with windows setup 
+" if empty(glob("~/.vim/autoload/plug.vim"))
+" 	execute '!curl -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim'
+" endif
+"
 "call plug#begin('~/.vim/plugged')
 call plug#begin()
 " arbitrary directory. I'm using plugged/, which is same as example
@@ -464,7 +469,6 @@ endif
 "=============================================================================
 " autocmd
 "=============================================================================
-
 if has("autocmd") " Only do this part when compiled with support for autocommands.
 
   " Enable file type detection.
@@ -518,6 +522,11 @@ if has("autocmd") " Only do this part when compiled with support for autocommand
 	autocmd filetype python setlocal ts=4 sw=4 sts=4 expandtab fileformat=unix 
 	autocmd BufWinEnter *.py setlocal foldexpr=SimpylFold(v:lnum) foldmethod=expr
 	autocmd BufWinLeave *.py setlocal foldexpr< foldmethod<
+
+	"========== Win/DOS ===============" 
+	" Dos batch, autohotkey, ps1 for now
+	" Note: PS1 is not built-in filetype, but is provided as part of polyglot plugin?
+	autocmd filetype dosbatch,autohotkey,ps1 setlocal ts=4 sw=4 sts=4 expandtab fileformat=dos
 
 	"========= Ruby & rails ==============" 
 	autocmd filetype ruby setlocal ts=2 sts=2 sw=2 expandtab
@@ -599,6 +608,10 @@ nmap \\  ysiW`
 vmap \\ S`
 " surround ` ` for entire line
 nmap <Leader>\ 0ys$`
+" remove surrounding backticks ` ` 
+" nmap d\ ds`
+" same as ||, but | must be escaped or use <bar>
+nmap <bar><bar> ds`
 
 nmap <Leader>) ysiW)
 nmap <Leader>] ysiW]

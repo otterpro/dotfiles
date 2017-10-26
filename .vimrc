@@ -219,6 +219,7 @@ Plug 'ervandew/supertab'
 "
 "Plug 'rking/ag.vim.git'	"silver searcher
 " according to maintainer, it is deprecated due to licensing
+" instead, use ack.vim to run ag.vim (as recommended)
 
 "Markdown and text formatting
 Plug 'godlygeek/tabular' "required for vim-markdown. 

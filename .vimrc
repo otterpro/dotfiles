@@ -356,6 +356,15 @@ nnoremap qq <Nop>
 nn j gj
 nn k gk
 
+" ctrl-J and ctrl-K as page down/up
+"nn <C-j> 
+"TODO: try alt/meta instead, as well
+" NOTE: <C-J> is also mapped to other pluggins in insert/ select mode/ NERDTREE, etc
+nn <C-J> <C-d>
+nn <C-K> <C-u>
+vn <C-J> <C-d>
+vn <C-K> <C-u>
+
 " Don't use Ex mode, use Q for formatting
 vmap Q gq
 nmap Q gqap
@@ -827,6 +836,7 @@ endfun
 
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
 noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
+
 noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
 noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 

@@ -5,8 +5,8 @@
 	ui = true
 [core]
 	excludesfile = ~/.gitignore_global
-	eol = lf
-	autocrlf = false
+	#eol = lf
+	autocrlf = input
 [push]
 	default = matching
 [alias]

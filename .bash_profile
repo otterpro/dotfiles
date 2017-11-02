@@ -13,6 +13,7 @@ alias preview="open -a Preview"
 export CLICOLOR=1
 
 #tell grep to higlight matches
-export GREP_OPTIONS='--color=auto'
+#export GREP_OPTIONS='--color=auto'
+# this is deprecated.
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*

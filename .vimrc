@@ -173,7 +173,7 @@ filetype off " required here before plugin are loaded(?), but turned on later
 call plug#begin()
 " arbitrary directory. I'm using plugged/, which is same as example
 
-"Testing - 
+" CSS-color, shows color for #ffffff
 Plug 'ap/vim-css-color'
 
 " status line
@@ -182,6 +182,9 @@ Plug 'vim-airline/vim-airline'
 
 "Easy motion -- not working???
 Plug 'easymotion/vim-easymotion'  
+
+" quick-scope for f,F,t,T, ;, movement
+Plug 'unblevable/quick-scope'  
 
 " File and Buffer
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -220,6 +223,8 @@ Plug 'ervandew/supertab'
 "Plug 'rking/ag.vim.git'	"silver searcher
 " according to maintainer, it is deprecated due to licensing
 " instead, use ack.vim to run ag.vim (as recommended)
+Plug 'mileszs/ack.vim'
+" somehow, the :Ack is not working at all
 
 "Markdown and text formatting
 Plug 'godlygeek/tabular' "required for vim-markdown. 
@@ -259,6 +264,19 @@ Plug 'xolox/vim-colorscheme-switcher' "quickly switch colorscheme with F8,sF8
 
 " smooth scroll
 Plug 'terryma/vim-smooth-scroll'
+
+" Wakatime plugin for monitoring programming activity
+" - Slows down load time, disabled!!!
+" Plug 'wakatime/vim-wakatime'
+
+" Undotree (Vim 7.0+)
+Plug 'mbbill/undotree'
+
+" Golden Ratio - automatically resize window to golden ratio
+Plug 'roman/golden-ratio'
+
+" testing for now
+Plug 'bagrat/vim-workspace'
 
 call plug#end()
 " call vundle#end()            " required
@@ -333,9 +351,11 @@ let maplocalleader="\\"
 " remap <ctrl><space> to underscore, easier!!!
 inoremap <C-space> _
 
+" semicolon to colon
 "  use ; as : to save keystrokes. ex: :w can be ;w
-nn ; :
-vn ; :
+"  disabled, now using ; to open buffer or MRU
+"nn ; :
+"vn ; :
 " also restore old ; by using ;; 
 nn ;; ; 
 
@@ -359,7 +379,7 @@ nn k gk
 
 " ctrl-J and ctrl-K as page down/up
 "nn <C-j> 
-"TODO: try alt/meta instead, as well
+"
 " NOTE: <C-J> is also mapped to other pluggins in insert/ select mode/ NERDTREE, etc
 nn <C-J> <C-d>
 nn <C-K> <C-u>
@@ -411,7 +431,7 @@ nn <C-s> :w<CR>
 vn <C-s> :w<CR>
 ino <C-s> <ESC>:w<CR>
 
-" Switch between last two files
+" Switch between last two files (:b#/:e#)
 nn <Leader><Leader> <c-^>
 
 "
@@ -555,7 +575,7 @@ if has("autocmd") " Only do this part when compiled with support for autocommand
 
 	"optional, for closetag plugin
 	" Make sure to comment this out if not using closetag plugin.
-	"autocmd FileType html,htmldjango,jinjahtml,eruby,mako let b:closetag_html_style=1 setlocal ts=2 sts=2 sw=2 expandtab
+	autocmd FileType html,htmldjango,jinjahtml,eruby,mako let b:closetag_html_style=1 setlocal ts=2 sts=2 sw=2 expandtab
 
 	"========= nginx ==============="
 	au BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/* if &ft == '' | setfiletype nginx | endif 
@@ -773,47 +793,48 @@ set noautochdir
 " nm <Leader>v :cd ~/Dropbox/_notes
 " YES.
 "
+" semicolon - open buffers list
+" OR if not, load MRU using :CtrlPMRU as an alternative
+nn ; :CtrlPBuffer<Enter>
+vn ; :CtrlPBuffer<Enter>
 
 
 " ========= rg: ripgrep  ============="
 if executable('rg') 
-    set grepprg=rg\ --vimgrep
+    set grepprg=rg\ --vimgrep\ -i
+	"removed because it is case-sensitive by default, but ag is not
 endif
 
+"temp testing
 "
-" ========= Ag ============="
+" ========= Ag silversearcher ============="
 if executable('ag')
   " Use Ag over Grep
-  " note: the vim ag plugin was removed due to deprecation
-  " Original: works on Mac, Linux
-  " set grepprg=ag\ --nogroup\ --nocolor
+	  " Problem with ag: some file with colon ":" not opening?
   "set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-
-  "	original, works on Unix, Mac
   "let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-  "	conditional
-  "	 if has( 'unix' )
-    "    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-    "elsif has( 'win32' )
-        " ?
-	"endif
-	
-
     if has( 'win32' )
 		" temporarily skip, if on Win
-		" but ag works fine, 
-		" just that ctrl/esc was too sensitive, and ag had a little bit of
-		" delay so it wasn't registereing fast enough sometimes
-		" but will go back to AG if ok
-  "	if windows version won't work on Mac, change back to this or use
+		" but ag works fine, but
+		"1. Too slow on Windows for file listing
+		"2. just that ctrl/esc was too sensitive, and ag had a little bit of
+		"		delay so it wasn't registereing fast enough sometimes
+		"		but will go back to AG if ok
+		"		if windows version won't work on Mac, change back to this or use
+		"TODO: change to rg?
   else
-	let g:ctrlp_user_command = 'ag -l --nocolor -g "" %s'
+	  " CtrlP uses ag if it can
+		" Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+	  let g:ctrlp_user_command = 'ag -l --nocolor -g "" %s'
+	  " ag is fast enough that CtrlP doesn't need to cache
+	  let g:ctrlp_use_caching = 0
 
-  " ag is fast enough that CtrlP doesn't need to cache
-	let g:ctrlp_use_caching = 0
+	  "replace grep
+		"set grepprg=ag\ --nogroup\ --nocolor
+
+	  " Ack should also use ag instead, although considering ripgrep
+	  let g:ackprg = 'ag --vimgrep'
+	  "let g:ackprg = 'rg\ --vimgrep'
 	endif
 endif
 
@@ -838,8 +859,12 @@ endfun
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
 noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
 
-noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
-noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
+" noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
+" noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
+"
+"================= quick-scope ========================
+" Trigger a highlight in the appropriate direction when pressing these keys:
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
 
 "================= VimWiki ========================

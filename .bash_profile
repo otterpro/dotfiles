@@ -17,3 +17,6 @@ export CLICOLOR=1
 # this is deprecated.
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+# fasd
+eval "$(fasd --init auto)"

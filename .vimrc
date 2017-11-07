@@ -67,9 +67,10 @@ set termencoding=utf-8
 set encoding=utf-8
 
 " disable insert
-set textwidth=0
-set wrapmargin=0
-set nowrap
+set textwidth=0		" set this to N to force wrap at this margin
+set wrapmargin=0	" Don't use this. For old vi compatibility
+set nowrap			" no word-wrap
+set nolist			" off by default, shows diff between tab and space
 
 set number numberwidth=4 "show line number and show 4 digit
 
@@ -416,6 +417,9 @@ inoremap <F5> <C-o>:syntax sync fromstart<CR>
 vn > >gv
 vn < <gv
 
+" toggle word-wrap
+nmap <Leader>w :set wrap!<CR>
+
 " Map frequent actions
 "
 "<Space>o to open a new file: also <c-p> does the same"
@@ -530,9 +534,10 @@ if has("autocmd") " Only do this part when compiled with support for autocommand
 	autocmd BufLeave,FocusLost * wall
 
 	"======== text file ==========="
-	" force wrap at 80 characters for all text files
 	" however, *.txt are considered as markdown. see below
-	autocmd fileType text setlocal textwidth=80 expandtab
+	autocmd fileType text setlocal expandtab
+	" temporary disabled: force wrap at 80 characters for all text files
+	"autocmd fileType text setlocal textwidth=80 expandtab
 
 	"======== Markdown ============="
 	"treat all .txt file as markdown
@@ -545,8 +550,9 @@ if has("autocmd") " Only do this part when compiled with support for autocommand
 	" autocmd filetype markdown setlocal spell
 	" However, I disabled it since I didn't have spell file
 	
-	" force text wrap at 80 columns
-	autocmd filetype markdown setlocal textwidth=80 expandtab
+	autocmd filetype markdown setlocal expandtab
+	" temporarily disabled: force text wrap at 80 columns?
+	"autocmd filetype markdown setlocal textwidth=80 expandtab
 
 	"========== Python ===============" 
 	autocmd filetype python setlocal ts=4 sw=4 sts=4 expandtab fileformat=unix 
@@ -754,6 +760,7 @@ let g:markdown_minlines = 100
 let g:table_mode_corner="|" " make table compatible with Markdown.
 
 " ============== tcomment =======================
+" This is not useful. More conveninet to use `gcc`
 nm <Leader># gcc
 vm # gc
 
@@ -791,7 +798,7 @@ set noautochdir
 " Should I just use a bash script instead?
 " nm <Leader>v :cd ~/Dropbox/_notes
 " YES.
-"
+
 " semicolon - open buffers list
 " OR if not, load MRU using :CtrlPMRU as an alternative
 nn ; :CtrlPBuffer<Enter>
@@ -851,6 +858,7 @@ fun! TrimWhitespace()
 endfun
 
 "================= vim-smooth-scroll ========================
+" I may get rid of it... not as useful...
 " remap <c-b>,<c-f> vim scroll to plugin's smooth-scroll 
 "noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 10, 4)<CR>
 "noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 10, 4)<CR>
@@ -901,6 +909,8 @@ highlight Comment cterm=italic gui=italic
 
 " conceals, hides markdown punctuations, etc
 set conceallevel=2
+
+
 
 "================== Must be last line and in quote and modelines=1 ======================
 " currently disabled, since I didn't want to use modelines

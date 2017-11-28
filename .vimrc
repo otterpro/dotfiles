@@ -276,8 +276,8 @@ Plug 'mbbill/undotree'
 " Golden Ratio - automatically resize window to golden ratio
 Plug 'roman/golden-ratio'
 
-" testing for now
-Plug 'bagrat/vim-workspace'
+" testing for now, not really worth it yet???
+" Plug 'bagrat/vim-workspace'
 
 call plug#end()
 " call vundle#end()            " required
@@ -580,7 +580,7 @@ if has("autocmd") " Only do this part when compiled with support for autocommand
 
 	"optional, for closetag plugin
 	" Make sure to comment this out if not using closetag plugin.
-	autocmd FileType html,htmldjango,jinjahtml,eruby,mako let b:closetag_html_style=1 setlocal ts=2 sts=2 sw=2 expandtab
+	autocmd FileType html,htmldjango,jinjahtml,eruby,mako let b:closetag_html_style=1 
 
 	"========= nginx ==============="
 	au BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/* if &ft == '' | setfiletype nginx | endif 
@@ -828,6 +828,9 @@ if executable('ag')
 		"		but will go back to AG if ok
 		"		if windows version won't work on Mac, change back to this or use
 		"TODO: change to rg?
+	  let g:ctrlp_user_command = 'ag -l --nocolor -g "" %s'
+	  " ag is not fast enough in Windows
+	  " let g:ctrlp_use_caching = 0
   else
 	  " CtrlP uses ag if it can
 		" Use ag in CtrlP for listing files. Lightning fast and respects .gitignore

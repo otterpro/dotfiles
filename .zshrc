@@ -47,6 +47,7 @@ ZSH_THEME="fishy"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
+plugins=(fasd)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -111,7 +112,8 @@ export LESSOPEN='|~/.lessfilter.sh %s'
 # . ~/bin/z.sh
 
 # fasd - replacing z.sh for now
-eval "$(fasd --init auto)"
+# eval "$(fasd --init auto)"
+# see plugin above
 
 # virtualenv in tmux
 if [ -n "$VIRTUAL_ENV" ]; then

@@ -9,7 +9,8 @@ set completion-ignore-case on
 # 
 set completion-ignore-case On
 set bell-style none
-set editing-mode vi
+# disabled vi-mode.  Prefer emacs? 
+#set editing-mode vi
 
 $if mode=vi
       set keymap vi-command

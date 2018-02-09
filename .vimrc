@@ -568,6 +568,10 @@ if has("autocmd") " Only do this part when compiled with support for autocommand
 	" Note: PS1 is not built-in filetype, but is provided as part of polyglot plugin?
 	autocmd filetype dosbatch,autohotkey,ps1 setlocal ts=4 sw=4 sts=4 expandtab fileformat=dos
 
+	"=============== GOLANG ================="
+	autocmd FileType go nmap <leader>b  <Plug>(go-build)
+	autocmd FileType go nmap <leader>r  <Plug>(go-run)
+
 	"========= Ruby & rails ==============" 
 	autocmd filetype ruby setlocal ts=2 sts=2 sw=2 expandtab
 	autocmd filetype eruby setlocal ts=2 sts=2 sw=2 expandtab

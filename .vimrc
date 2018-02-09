@@ -22,7 +22,8 @@ set nomodeline  " turn-off modeline, which interpretes text file as vim setting
 " disable autobackup"
 set nobackup
 set noswapfile
-"set autowrite	    " saves before changing to another buffer
+set autowrite	    " saves before changing to another buffer
+					" enabled on 2/2018, not sure how it will work
 "set autowriteall    " saves all buffer before quit,new,etc
 "set hidden		"open new file without having to save current file
 

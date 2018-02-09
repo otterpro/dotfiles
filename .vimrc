@@ -199,6 +199,7 @@ Plug 'jlanzarotta/bufexplorer'
 
 "coding & auto-completion
 Plug 'sheerun/vim-polyglot'		" loads 70+ languages
+Plug 'fatih/vim-go'				" loads full version. polyglot only gets highlight?
 Plug 'tpope/vim-repeat'
 Plug 'docunext/closetag.vim'  "closes html tag"
 Plug 'tomtom/tcomment_vim'
@@ -240,6 +241,7 @@ Plug 'plasticboy/vim-markdown'
 " Plug 'nelstrom/vim-markdown-folding'
 Plug 'dhruvasagar/vim-table-mode'    "Create table
 " was somewhat removed, but re-enabled it
+Plug 'dkarter/bullets.vim'		" bullet points
 
 "snippets
 " http://jmatthews.us/blog/2013/03/10/managing-vim-python-plugins/

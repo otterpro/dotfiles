@@ -240,6 +240,9 @@ Plug 'plasticboy/vim-markdown'
 " Plug 'nelstrom/vim-markdown-folding'
 " Plug 'dhruvasagar/vim-table-mode'    "Create table
 
+"bullets - add bullets easily and convert bullets easily
+Plug 'dkarter/bullets.vim'
+
 "snippets
 " http://jmatthews.us/blog/2013/03/10/managing-vim-python-plugins/
 if (has('python') || has('python3'))

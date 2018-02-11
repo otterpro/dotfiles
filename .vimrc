@@ -22,7 +22,8 @@ set nomodeline  " turn-off modeline, which interpretes text file as vim setting
 " disable autobackup"
 set nobackup
 set noswapfile
-"set autowrite	    " saves before changing to another buffer
+set autowrite	    " saves before changing to another buffer
+					" enabled on 2/2018, not sure how it will work
 "set autowriteall    " saves all buffer before quit,new,etc
 "set hidden		"open new file without having to save current file
 
@@ -199,6 +200,7 @@ Plug 'jlanzarotta/bufexplorer'
 
 "coding & auto-completion
 Plug 'sheerun/vim-polyglot'		" loads 70+ languages
+Plug 'fatih/vim-go'				" loads full version. polyglot only gets highlight?
 Plug 'tpope/vim-repeat'
 Plug 'docunext/closetag.vim'  "closes html tag"
 Plug 'tomtom/tcomment_vim'
@@ -238,7 +240,9 @@ Plug 'plasticboy/vim-markdown'
 
 "folding is not in tpope's version. we need this to fold
 " Plug 'nelstrom/vim-markdown-folding'
-" Plug 'dhruvasagar/vim-table-mode'    "Create table
+Plug 'dhruvasagar/vim-table-mode'    "Create table
+" was somewhat removed, but re-enabled it
+Plug 'dkarter/bullets.vim'		" bullet points
 
 "bullets - add bullets easily and convert bullets easily
 Plug 'dkarter/bullets.vim'
@@ -279,8 +283,8 @@ Plug 'mbbill/undotree'
 " Golden Ratio - automatically resize window to golden ratio
 Plug 'roman/golden-ratio'
 
-" testing for now
-Plug 'bagrat/vim-workspace'
+" testing for now, not really worth it yet???
+" Plug 'bagrat/vim-workspace'
 
 call plug#end()
 " call vundle#end()            " required
@@ -568,6 +572,10 @@ if has("autocmd") " Only do this part when compiled with support for autocommand
 	" Note: PS1 is not built-in filetype, but is provided as part of polyglot plugin?
 	autocmd filetype dosbatch,autohotkey,ps1 setlocal ts=4 sw=4 sts=4 expandtab fileformat=dos
 
+	"=============== GOLANG ================="
+	autocmd FileType go nmap <leader>b  <Plug>(go-build)
+	autocmd FileType go nmap <leader>r  <Plug>(go-run)
+
 	"========= Ruby & rails ==============" 
 	autocmd filetype ruby setlocal ts=2 sts=2 sw=2 expandtab
 	autocmd filetype eruby setlocal ts=2 sts=2 sw=2 expandtab
@@ -584,7 +592,7 @@ if has("autocmd") " Only do this part when compiled with support for autocommand
 
 	"optional, for closetag plugin
 	" Make sure to comment this out if not using closetag plugin.
-	autocmd FileType html,htmldjango,jinjahtml,eruby,mako let b:closetag_html_style=1 setlocal ts=2 sts=2 sw=2 expandtab
+	autocmd FileType html,htmldjango,jinjahtml,eruby,mako let b:closetag_html_style=1 
 
 	"========= nginx ==============="
 	au BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/* if &ft == '' | setfiletype nginx | endif 
@@ -832,6 +840,9 @@ if executable('ag')
 		"		but will go back to AG if ok
 		"		if windows version won't work on Mac, change back to this or use
 		"TODO: change to rg?
+	  let g:ctrlp_user_command = 'ag -l --nocolor -g "" %s'
+	  " ag is not fast enough in Windows
+	  " let g:ctrlp_use_caching = 0
   else
 	  " CtrlP uses ag if it can
 		" Use ag in CtrlP for listing files. Lightning fast and respects .gitignore

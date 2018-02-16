@@ -50,7 +50,9 @@ set backspace=indent,eol,start
 
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
-set cryptmethod=blowfish		"encryption when using vim -x filename"
+"set cryptmethod=blowfish		"encryption when using vim -x filename"
+"temporarily removed cryptmethod because of incompatibility with nvim
+
 set history=1000         " remember more commands and search history
 set undolevels=1000      " use many muchos levels of undo
 
@@ -210,7 +212,7 @@ Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-fugitive'
 " Plug 'Raimondi/delimitMate.git'	"closes < >, (), [], {}"
 " Temporarily disabled, until I can selectively close delimiters"
-Plug 'valloric/MatchTagAlways'  "HTML tag is highlighted
+Plug 'valloric/MatchTagAlways'  "HTML tag is highlighted, requires python
 
 Plug 'prettier/vim-prettier'  "Prettief for Javascript
 

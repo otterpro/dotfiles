@@ -241,11 +241,8 @@ Plug 'plasticboy/vim-markdown'
 "folding is not in tpope's version. we need this to fold
 " Plug 'nelstrom/vim-markdown-folding'
 Plug 'dhruvasagar/vim-table-mode'    "Create table
-" was somewhat removed, but re-enabled it
-Plug 'dkarter/bullets.vim'		" bullet points
-
 "bullets - add bullets easily and convert bullets easily
-Plug 'dkarter/bullets.vim'
+Plug 'dkarter/bullets.vim'		" bullet points
 
 "snippets
 " http://jmatthews.us/blog/2013/03/10/managing-vim-python-plugins/

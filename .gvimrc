@@ -1,5 +1,4 @@
 ".gvimrc: macVim and gvim (GUI) setting
-"
 
 " colorscheme needs to come before all formating, to override defaults
 " colorscheme moved to .vimrc
@@ -14,8 +13,9 @@ if has("gui_macvim")
 	set guifont=Fantasque\ Sans\ Mono:h18
 endif
 
+" v0.2.2 gets stuck if Guifont is in here, but works after nvim loads
 if has('nvim')
-	Guifont Fantasque\ Sans\ Mono:h12
+	"Guifont Fantasque\ Sans\ Mono:h12
 endif
 
 " Disable all cursor blinking:

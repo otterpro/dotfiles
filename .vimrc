@@ -192,6 +192,8 @@ Plug 'unblevable/quick-scope'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 " Plug 'kien/ctrlp.vim'  "# no longer maintained?
 Plug 'ctrlpvim/ctrlp.vim'  " replaces old ctrlp
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 " Mini-Buffer Explorer Fork
 " Removed - too much clutter on top

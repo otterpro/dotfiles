@@ -178,3 +178,5 @@ export NVM_DIR="$HOME/.nvm"   # modeled after RVM
 # temporary fix for grep_options deprecated bug
 # which is still in Oh-My-ZSH
 unset GREP_OPTIONS
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -290,6 +290,7 @@ Plug 'roman/golden-ratio'
 
 Plug 'suan/vim-instant-markdown'
 let g:instant_markdown_slow = 1 " recommended, esp for Windows
+let g:instant_markdown_autostart = 0  "don't autostart...
 
 " testing for now, not really worth it yet???
 " Plug 'bagrat/vim-workspace'

@@ -289,8 +289,6 @@ Plug 'roman/golden-ratio'
 " above works ok, but not live in windows
 
 Plug 'suan/vim-instant-markdown'
-let g:instant_markdown_slow = 1 " recommended, esp for Windows
-let g:instant_markdown_autostart = 0  "don't autostart...
 
 " testing for now, not really worth it yet???
 " Plug 'bagrat/vim-workspace'
@@ -519,7 +517,7 @@ endif
 
 function! s:Toc()
 	if &filetype == 'markdown'                                                                                                                                                      
-		autocmd! syntastic BufEnter
+		"autocmd! syntastic BufEnter
 		:Toc
 	endif
 endfunction
@@ -576,8 +574,8 @@ if has("autocmd") " Only do this part when compiled with support for autocommand
 	autocmd filetype markdown setlocal expandtab
 	" temporarily disabled: force text wrap at 80 columns?
 	"autocmd filetype markdown setlocal textwidth=80 expandtab
-	autocmd filetype markdown call s:Toc()
-    " autocmd BufWinEnter *.m* call s:Toc()
+    autocmd BufWinEnter *.md call s:Toc()
+    autocmd BufWinEnter *.txt call s:Toc()
 
 	"========== Python ===============" 
 	autocmd filetype python setlocal ts=4 sw=4 sts=4 expandtab fileformat=unix 
@@ -926,6 +924,10 @@ nmap <Leader>wdn		<Plug>VimwikiDiaryNextDay
 " imap <Leader>wp6 <Plug>VimwikiListPrevSymbol
 " imap <Leader>wp7 <Plug>VimwikiListToggle
 
+"============ instant-markdown-preview
+let g:instant_markdown_slow = 1 " recommended, esp for Windows
+let g:instant_markdown_autostart = 0  "don't autostart...
+nmap <Leader>m :InstantMarkdownPreview
 "================= settings that must override all ========================
 
 " Highlight matching braces { }, [ ], ( ), etc

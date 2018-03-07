@@ -289,8 +289,7 @@ Plug 'roman/golden-ratio'
 " above works ok, but not live in windows
 
 Plug 'suan/vim-instant-markdown'
-" * this needs to be moved to !!! 
-" ~\.vim\plugged\vim-instant-markdown\after\ftplugin\markdown\instant-markdown.vim.
+let g:instant_markdown_slow = 1 " recommended, esp for Windows
 
 " testing for now, not really worth it yet???
 " Plug 'bagrat/vim-workspace'

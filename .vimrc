@@ -285,7 +285,12 @@ Plug 'mbbill/undotree'
 Plug 'roman/golden-ratio'
 
 " testing livedown markdown preview
-Plug 'shime/vim-livedown'
+" Plug 'shime/vim-livedown'
+" above works ok, but not live in windows
+
+Plug 'suan/vim-instant-markdown'
+" * this needs to be moved to !!! 
+" ~\.vim\plugged\vim-instant-markdown\after\ftplugin\markdown\instant-markdown.vim.
 
 " testing for now, not really worth it yet???
 " Plug 'bagrat/vim-workspace'

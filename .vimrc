@@ -284,6 +284,9 @@ Plug 'mbbill/undotree'
 " Golden Ratio - automatically resize window to golden ratio
 Plug 'roman/golden-ratio'
 
+" testing livedown markdown preview
+Plug 'shime/vim-livedown'
+
 " testing for now, not really worth it yet???
 " Plug 'bagrat/vim-workspace'
 
@@ -400,8 +403,8 @@ vmap Q gq
 nmap Q gqap
 
 " Capitalize the 1st letter of the line/sentence 
-" Current: <leader>u to capitalize
-" OLD: use "uu" to capitalize, annoying - undo took too long time
+" Current: <leader>u to capitalize OLD: use "uu" to capitalize, annoying -
+" undo took too long time
 " Note: U is mapped to repeat undo plugin
 nnoremap <Leader>u 0gUl
 "nnoremap uu 0gUl
@@ -509,6 +512,12 @@ endif
 "nmap <leader>j :%!python -m json.tool
 "map <Leader>j !python -m json.tool<CR>
 
+function! s:Toc()
+	if &filetype == 'markdown'                                                                                                                                                      
+		autocmd! syntastic BufEnter
+		:Toc
+	endif
+endfunction
 "=============================================================================
 " autocmd
 "=============================================================================
@@ -562,6 +571,8 @@ if has("autocmd") " Only do this part when compiled with support for autocommand
 	autocmd filetype markdown setlocal expandtab
 	" temporarily disabled: force text wrap at 80 columns?
 	"autocmd filetype markdown setlocal textwidth=80 expandtab
+	autocmd filetype markdown call s:Toc()
+    " autocmd BufWinEnter *.m* call s:Toc()
 
 	"========== Python ===============" 
 	autocmd filetype python setlocal ts=4 sw=4 sts=4 expandtab fileformat=unix 

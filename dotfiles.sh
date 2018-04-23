@@ -18,8 +18,19 @@
 #cd into script's path
 cd $(dirname $0) ; pwd -P
 
-## Check OS
+# Git and Curl required
+if [[ $(which git) == "" ]]
+then
+    echo "Install git ( http://git-scm.com ) first"
+    exit 1
+fi
+if [[ $(which curl) == "" ]]
+then
+    echo "Install curl ( http://curl.haxx.se ) first"
+    exit 1
+fi
 
+## Check OS, OS-dependent code
 if [[ "$OSTYPE" =~ "darwin" ]]
 then
     export OS="mac"
@@ -31,6 +42,11 @@ then
     brew install zsh && \
     sudo sh -c 'echo $(brew --prefix)/bin/zsh >> /etc/shells' && \
     chsh -s $(brew --prefix)/bin/zsh
+
+	#Visual Code - assuming it exists. Hopefully it does
+	ln -sf `pwd`/VSCode/settings.json ~/Library/Application\ Support/Code/User/settings.json
+	ln -sf `pwd`/.dotfiles/VSCode/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json
+	ln -sf `pwd`/.dotfiles/VSCode/snippets/ ~/Library/Application\ Support/Code/User/snippets
 
 elif [[ "$OSTYPE" == "linux-gnu" ]]
 then
@@ -46,22 +62,8 @@ else
     exit 1
 fi
 
-# Git and Curl required
-if [[ $(which git) == "" ]]
-then
-    echo "Install git ( http://git-scm.com ) first"
-    exit 1
-fi
-if [[ $(which curl) == "" ]]
-then
-    echo "Install curl ( http://curl.haxx.se ) first"
-    exit 1
-fi
-
-
-# install oh-my-zsh
+# oh-my-zsh
 curl -L http://install.ohmyz.sh | sh
-# ? Perhaps install from brew?
 
 #vim backup - not as reliable...
 # temporarily not using it.

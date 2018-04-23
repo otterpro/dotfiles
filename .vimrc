@@ -556,7 +556,10 @@ if has("autocmd") " Only do this part when compiled with support for autocommand
 
 	"======== text file ==========="
 	" however, *.txt are considered as markdown. see below
-	autocmd fileType text setlocal expandtab
+	
+	"disabled expandtab for now
+	"autocmd fileType text setlocal expandtab
+
 	" temporary disabled: force wrap at 80 characters for all text files
 	"autocmd fileType text setlocal textwidth=80 expandtab
 
@@ -571,7 +574,9 @@ if has("autocmd") " Only do this part when compiled with support for autocommand
 	" autocmd filetype markdown setlocal spell
 	" However, I disabled it since I didn't have spell file
 	
-	autocmd filetype markdown setlocal expandtab
+	"disabled expandtab for now
+	"autocmd filetype markdown setlocal expandtab
+	
 	" temporarily disabled: force text wrap at 80 columns?
 	"autocmd filetype markdown setlocal textwidth=80 expandtab
     autocmd BufWinEnter *.md call s:Toc()

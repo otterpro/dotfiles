@@ -1,6 +1,6 @@
 // Place your settings in this file to overwrite the default settings
 {
     // disable all telemetry
-"telemetry.enableCrashReporter": true,
-"telemetry.enableTelemetry": true
+"telemetry.enableCrashReporter": false,
+"telemetry.enableTelemetry": false
 }

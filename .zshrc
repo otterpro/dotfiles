@@ -97,7 +97,9 @@ stty -ixon #turn-off XOFF, so that vim can use Ctrl-S.
 #OLD
 #PROMPT='%F{red}%[%n@%m] %{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.$) '
 #
+#
 # default PROMPT just in case we don't use emoji
+# This will be overriden below in Mac, Linux.  
 PROMPT='[%{$fg[yellow]%}%n%{$fg[red]%}@%m%{$fg[white]%}] %{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.$) '
 # Note: it won't work if it is in multiple lines
 
@@ -155,7 +157,10 @@ case "$OSTYPE" in
 esac
 
 # with emoji smiley
+# [otter ottermbp] ~$  
 PROMPT='[%{$fg[yellow]%}%n${PROMPT_EMOJI} %{$fg[red]%}%m%{$fg[white]%}] %{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.$) '
+# shortened version [] ~$  , override above
+PROMPT='[%{$fg[yellow]%}%n${PROMPT_EMOJI}] %{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.$) '
 
 export PATH="$PATH:/Volumes/Samsung128/Dropbox/app"
 

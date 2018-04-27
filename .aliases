@@ -5,6 +5,14 @@
 if [[ $OSTYPE == linux* ]] || [[ $OSTYPE == cygwin ]]; then
 	   alias ls='ls -F --color=auto'
 	   alias sed='sed -r'
+
+	   # if encountering Mac/BSD scripts...
+	   # alternative: sudo ln -s $(which date) /bin/gdate
+	   #		`ln` works across system/shell, unlike alias
+	   alias gfind='find'
+	   alias gdate='date'
+	   #alias gsed, gtar, gmake
+	   
 else
 	# MAC OSX/BSD
 	   alias ls='ls -GF'
@@ -14,6 +22,8 @@ alias ll="ls -lh"
 alias lla="ls -lhA"
 alias la="ls -A"
 alias l="ls"
+
+alias tree="tree -FC"
 
 # mac specific
 if [[ $OSTYPE == darwin* ]]; then
@@ -118,7 +128,6 @@ alias TODO='ag TODO'
 # or could be done via
 # alias TODO="grep -E 'FIXME|TODO'"
 # similar to 'rake notes'
-#
 
 # fasd
 alias fv='fasd -f -e vim' # quick opening files with vim

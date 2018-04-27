@@ -930,9 +930,9 @@ nmap <Leader>wdn		<Plug>VimwikiDiaryNextDay
 " imap <Leader>wp7 <Plug>VimwikiListToggle
 
 "============ instant-markdown-preview
-if has( 'win32' )
+"if has( 'win32' )
 	let g:instant_markdown_slow = 1 " recommended, esp for Windows
-endif
+"endif
 let g:instant_markdown_autostart = 0  "don't autostart...
 nmap <Leader>m :InstantMarkdownPreview
 "================= settings that must override all ========================

@@ -1,29 +1,70 @@
-#aliases
-
-# ls, remember alias cascades.
-## OS Specific
+### aliases #####################################
+# ls, remembers alias cascades.
 if [[ $OSTYPE == linux* ]] || [[ $OSTYPE == cygwin ]]; then
 	   alias ls='ls -F --color=auto'
 	   alias sed='sed -r'
-
 	   # if encountering Mac/BSD scripts...
 	   # alternative: sudo ln -s $(which date) /bin/gdate
 	   #		`ln` works across system/shell, unlike alias
 	   alias gfind='find'
 	   alias gdate='date'
 	   #alias gsed, gtar, gmake
-	   
 else
 	# MAC OSX/BSD
 	   alias ls='ls -GF'
 	   alias sed='sed -E'
 fi
+
 alias ll="ls -lh"
 alias lla="ls -lhA"
 alias la="ls -A"
 alias l="ls"
 
 alias tree="tree -FC"
+
+alias du="du -h"
+alias du1="du -h -d=1"
+
+alias df="df -h"
+alias h="history"
+
+alias f="find . -name"
+
+# Quicker navigation
+alias ~="cd ~"
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+
+# Colored up cat!
+# You must install Pygments first - "sudo easy_install Pygments"
+alias c='pygmentize -O style=monokai -f console256 -g'
+
+#color grep
+#alias grep='GREP_COLOR="1;37;45" grep --color=auto'
+# replaced grep with egrep (or grep -E for extended regex)
+alias grep='GREP_COLOR="1;37;45" egrep --color=auto'
+
+# otter.pro: colored pygmentized less
+# replaced with .lessfilter script.
+# if LESS="-x4R" is not set, use less -x4R option. -N=line #.
+#cl() {
+#	pygmentize -O style=monokai -f console256 -g "$1" | less
+	# c "$1" | less
+#}
+
+# Shortcuts to my Code folder in my home directory
+#alias code="cd ~/Code"
+#alias sites="cd ~/Code/sites"
+
+# TODO: need to convert to function, as it doesn't function
+# due to alias sudo defined below
+# alias sudo vi='sudo -e'
+# alias sudo vim='sudo -e'
+
+# Enable aliases to be sudo’ed
+# if not, aliases are lost when using sudo
+alias sudo='sudo '
 
 # mac specific
 if [[ $OSTYPE == darwin* ]]; then
@@ -53,39 +94,10 @@ else
 	alias vi='vim'
 	alias v='vim'
 fi
+#vi read-only (there's already a /bin/view)
+#alias view="vim -p -R"
 
-# Quicker navigation
-alias ~="cd ~"
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-
-# Shortcuts to my Code folder in my home directory
-#alias code="cd ~/Code"
-#alias sites="cd ~/Code/sites"
-
-# TODO: need to convert to function, as it doesn't function
-# due to alias sudo defined below
-# alias sudo vi='sudo -e'
-# alias sudo vim='sudo -e'
-
-# Enable aliases to be sudo’ed
-# if not, aliases are lost when using sudo
-alias sudo='sudo '
-
-# Colored up cat!
-# You must install Pygments first - "sudo easy_install Pygments"
-alias c='pygmentize -O style=monokai -f console256 -g'
-
-# otter.pro: colored pygmentized less
-# replaced with .lessfilter script.
-# if LESS="-x4R" is not set, use less -x4R option. -N=line #.
-#cl() {
-#	pygmentize -O style=monokai -f console256 -g "$1" | less
-	# c "$1" | less
-#}
-
-# Git
+########  Git ##################################################
 # You must install Git first - ""
 alias g="git"
 alias gs='git status'
@@ -93,13 +105,7 @@ alias ga='git add -A'
 alias gc='git commit -m' # requires you to type a commit message
 alias gp='git push'
 
-alias du="du -h"
-alias d="du -h -d=1"
-
-alias df="df -h"
-alias h="history"
-
-#tmux
+####### tmux ###################################################
 # tmux with -2=256 color
 # not sure if needed, and instead use screen256 instead.
 alias tmux="tmux -2"
@@ -109,14 +115,8 @@ alias tma='tmux attach -d -t'
 
 alias tmn='tmux new -s $(basename $(pwd))'
 
-#vi read-only (there's already a /bin/view)
-#alias view="vim -p -R"
 
-#color grep
-#alias grep='GREP_COLOR="1;37;45" grep --color=auto'
-# replaced grep with egrep (or grep -E for extended regex)
-alias grep='GREP_COLOR="1;37;45" egrep --color=auto'
-
+################## Third-party app ################################
 # ffmpeg/ffprobe
 alias ffprobe='ffprobe -hide_banner'
 

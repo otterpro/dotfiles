@@ -617,6 +617,10 @@ if has("autocmd") " Only do this part when compiled with support for autocommand
 	"========= nginx ==============="
 	au BufRead,BufNewFile /etc/nginx/*,/usr/local/nginx/conf/* if &ft == '' | setfiletype nginx | endif 
 
+	"============ crontab ============="
+	autocmd FileType crontab setlocal nowritebackup	
+	" This is specific to Mac
+
 	"========= after grep,make, open quickfix window automatically ==============="
 	" http://vim.wikia.com/wiki/Automatically_open_the_quickfix_window_on_:make
 	" Automatically open, but do not go to (if there are errors) the quickfix /

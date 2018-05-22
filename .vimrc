@@ -209,14 +209,16 @@ Plug 'tpope/vim-repeat'
 Plug 'docunext/closetag.vim'  "closes html tag"
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-surround'  "add surrounding brackets,quotes,tags"
-Plug 'airblade/vim-gitgutter'
+
+Plug 'airblade/vim-gitgutter' " Temp disabled for perf check
+
 Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-fugitive'
 " Plug 'Raimondi/delimitMate.git'	"closes < >, (), [], {}"
 " Temporarily disabled, until I can selectively close delimiters"
 Plug 'valloric/MatchTagAlways'  "HTML tag is highlighted, requires python
 
-Plug 'prettier/vim-prettier'  "Prettief for Javascript
+Plug 'prettier/vim-prettier'  "Prettier for Javascript
 
 Plug 'scrooloose/syntastic'	"syntax checker engine
 Plug 'nvie/vim-flake8'		" python syntax checker
@@ -245,6 +247,7 @@ Plug 'plasticboy/vim-markdown'
 "folding is not in tpope's version. we need this to fold
 " Plug 'nelstrom/vim-markdown-folding'
 Plug 'dhruvasagar/vim-table-mode'    "Create table
+
 "bullets - add bullets easily and convert bullets easily
 Plug 'dkarter/bullets.vim'		" bullet points
 
@@ -365,6 +368,9 @@ let maplocalleader="\\"
 
 " remap <ctrl><space> to underscore, easier!!!
 inoremap <C-space> _
+
+" similar to <C-u> but it deletes entire line, not just up to cursor
+inoremap <C-l> <C-o>dd
 
 " semicolon to colon
 "  use ; as : to save keystrokes. ex: :w can be ;w
@@ -567,6 +573,12 @@ if has("autocmd") " Only do this part when compiled with support for autocommand
 	"treat all .txt file as markdown
 	autocmd BufNewFile,BufReadPost  *.txt set filetype=markdown
 
+	" fix indent issue with bullet 
+	"also can be placed in .vim/after/indent/markdown.vim:
+	autocmd filetype markdown setlocal formatoptions=tqlnrcj comments=b:>
+	" ME: added 'j' to join comments without comment leaders
+	
+
 	" no longer needed? (was for TPope's md plugin)
     "autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 	
@@ -579,8 +591,12 @@ if has("autocmd") " Only do this part when compiled with support for autocommand
 	
 	" temporarily disabled: force text wrap at 80 columns?
 	"autocmd filetype markdown setlocal textwidth=80 expandtab
+	
+	" Force all opened doc to show Toc. Is this useful???
     autocmd BufWinEnter *.md call s:Toc()
     autocmd BufWinEnter *.txt call s:Toc()
+
+	" Fix bullet point list issue
 
 	"========== Python ===============" 
 	autocmd filetype python setlocal ts=4 sw=4 sts=4 expandtab fileformat=unix 
@@ -715,6 +731,7 @@ nmap s <Plug>(easymotion-s)
 	" search 1 char"
 	"s replaces normal s where it deletes char and inserts.
 	"s is same as `cl`"
+	"not as useful, since `t` or `f` can be highlighted using `Quickscope` plugin
 
 " Turn on case insensitive feature
 let g:EasyMotion_smartcase = 1
@@ -724,9 +741,7 @@ let g:EasyMotion_use_upper = 1
 " JK motions: Line motions
 " map <Leader>j <Plug>(easymotion-j)
 " map <Leader>k <Plug>(easymotion-k)
-"
 
-"
 "============= gitgutter ================
 " disable all gitguter mapping
 let g:gitgutter_map_keys = 0
@@ -748,8 +763,10 @@ if (has('python') || has('python3'))
 	" enable for YCM or others
 	" let g:UltiSnipsExpandTrigger="<c-j>"
 	" :
+	" Instead of <TAB>, use <C-j> since Tab is taken by 
 	let g:UltiSnipsJumpForwardTrigger="<c-j>"
 	let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+
 	" keep all private snippets in .vim/Ultisnips/ 
 	" however, public snippets are still available
 	let g:UltiSnipsSnippetsDir="~/.vim/UltiSnips"
@@ -777,7 +794,6 @@ let g:airline#extensions#wordcount#enabled = 0
 
 
 " ============== plasticboy/vim-markdown =====================
-" NOT USED ANYMORE
 " vim-markdown: folding is enabled by default. disable now
 "let g:vim_markdown_folding_disabled=1
 let g:vim_markdown_frontmatter=1  "highlight jekyll frontmatter
@@ -789,8 +805,16 @@ let g:vim_markdown_no_extensions_in_markdown = 1
 let g:vim_markdown_math = 0
 
 " increase markdown buffer so that highlighting doesn't break in long code
-syntax sync minlines=300
-let g:markdown_minlines = 100
+" Temp disabled both lines to check perf
+" syntax sync minlines=300
+" let g:markdown_minlines = 100
+
+" fix issues with bullet point * and unwanted indents 
+" [Vim with Markdown, how to remove blankspace after bullet point? - Stack Overflow](https://stackoverflow.com/questions/46876387/vim-with-markdown-how-to-remove-blankspace-after-bullet-point)
+" also can be placed in .vim/ftplugin/markdown.vim
+let g:vim_markdown_new_list_item_indent = 0
+
+" also see autocmd above for additional `setlocal`
 
 " ============== vim-table-mode =======================
 let g:table_mode_corner="|" " make table compatible with Markdown.

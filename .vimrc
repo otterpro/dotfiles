@@ -368,6 +368,7 @@ let maplocalleader="\\"
 
 " remap <ctrl><space> to underscore, easier!!!
 inoremap <C-space> _
+" also it is same as <C-@>
 
 " similar to <C-u> but it deletes entire line, not just up to cursor
 inoremap <C-l> <C-o>dd
@@ -406,6 +407,9 @@ nn <C-J> <C-d>
 nn <C-K> <C-u>
 vn <C-J> <C-d>
 vn <C-K> <C-u>
+
+" common remap, also found in :help yank
+nn Y y$
 
 " Don't use Ex mode, use Q for formatting
 vmap Q gq
@@ -453,7 +457,11 @@ nn <Leader>o :CtrlP<CR>
 " In some terminal, C-s disables all input, until C-q. 
 nn <C-s> :w<CR>
 vn <C-s> :w<CR>
-ino <C-s> <ESC>:w<CR>
+" in insert mode, save and return to insert mode
+" Before: stay at NORMAL mode after saving
+" ino <C-s> <ESC>:w<CR>
+" After: return to INSERT mode after saving
+ino <C-s> <C-o>:w<CR>
 
 " Switch between last two files (:b#/:e#)
 nn <Leader><Leader> <c-^>

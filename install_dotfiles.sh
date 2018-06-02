@@ -1,16 +1,11 @@
-#!/bin/bash
-#
-#
-# another alternative
 #!/usr/bin/env bash
 #
 # Daniel Kim 
 #
 # creates symlink of all dotfiles and also dot directories into home directory (~)
 # WARNING: This is a destructive process.  Any existing files or directories will be overwritten!!!
-# TODO: rename to install.sh 
 #
-#set -xv #debugging
+# set -xv #debugging
 # part of vim backup from https://github.com/swaroopch/dotvim/blob/master/install.sh
 #
 # also, make sure to get bin files first.  In Bin, we have z.sh
@@ -55,17 +50,16 @@ then
 	ln -sf `pwd`/.dotfiles/VSCode/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json
 	ln -sf `pwd`/.dotfiles/VSCode/snippets/ ~/Library/Application\ Support/Code/User/snippets
 
-elif [[ "$OSTYPE" == "linux-gnu" ]]
-then
+elif [[ "$OSTYPE" == "linux-gnu" ]]; then
     export OS="linux"
-elif [[ "$OSTYPE" == "cygwin" ]]
-then
+elif [[ "$OSTYPE" == "cygwin" ]]; then
     export OS="cygwin"
-elif [[ "$OSTYPE" =~ "freebsd" ]]
-then
+	# enable symlink in cygwin
+	export CYGWIN="winsymlinks:nativestrict"
+elif [[ "$OSTYPE" =~ "freebsd" ]]; then
     export OS="freebsd"
 else
-    echo "Don't know what to do with '$OSTYPE' operating system"
+    echo "Don't know what to do with '$OSTYPE' operating system. Need to implement this"
     exit 1
 fi
 

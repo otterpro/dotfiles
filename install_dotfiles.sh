@@ -46,16 +46,19 @@ then
     chsh -s $(brew --prefix)/bin/zsh
 
 	#Visual Code - assuming it exists. Hopefully it does
-	ln -sf `pwd`/VSCode/settings.json ~/Library/Application\ Support/Code/User/settings.json
-	ln -sf `pwd`/.dotfiles/VSCode/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json
-	ln -sf `pwd`/.dotfiles/VSCode/snippets/ ~/Library/Application\ Support/Code/User/snippets
+	# moved to install_vscode.sh in ~/bin
+	# ln -sf `pwd`/VSCode/settings.json ~/Library/Application\ Support/Code/User/settings.json
+	# ln -sf `pwd`/.dotfiles/VSCode/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json
+	# ln -sf `pwd`/.dotfiles/VSCode/snippets/ ~/Library/Application\ Support/Code/User/snippets
 
 elif [[ "$OSTYPE" == "linux-gnu" ]]; then
     export OS="linux"
 elif [[ "$OSTYPE" == "cygwin" ]]; then
     export OS="cygwin"
-	# enable symlink in cygwin
+
+	# enable symlink in cygwin!!! this is needed for "ln -s" later here...
 	export CYGWIN="winsymlinks:nativestrict"
+
 elif [[ "$OSTYPE" =~ "freebsd" ]]; then
     export OS="freebsd"
 else
@@ -94,7 +97,9 @@ curl -L http://install.ohmyz.sh | sh
 #mkdir -p "$HOME/.vim/backup"
 
 # create symlink for all directories (.vim, ...)
-find . -maxdepth 1 -mindepth 1 \! -name "*.git" -type d -exec rm -rf ~/{} ";" -exec ln -sf `pwd`/{} ~/{} ";"
+# EXCEPT for all Directory that starts with underscore (such as _mac, _win, _optional)
+# and EXCEPT .git folder
+find . -maxdepth 1 -mindepth 1 \! -name "*.git" \! -name "_*" -type d -exec rm -rf ~/{} ";" -exec ln -sf `pwd`/{} ~/{} ";"
 
 # create symlink for dotfiles (.bashrc, .vimrc, ...)
 # except for .git*. <-- however, temporaily I still want .gitconfig file
@@ -106,3 +111,4 @@ find . -mindepth 1 -maxdepth 1 -type f -name ".*" ! -name ".git" -exec ln -sf `p
 # Vim Plug
 echo "Vim-Plug: download all the scripts"
 vim +PlugInstall +qall 
+

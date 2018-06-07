@@ -16,10 +16,10 @@ cd $(dirname $0) ; pwd -P
 # Git and Curl required
 # note: command -v is better than `which`	
 
-if command -v git &> /dev/null; then
-    echo "Install git ( http://git-scm.com ) first"
-    exit 1
-fi
+#if command -v git &> /dev/null; then
+#    echo "Install git ( http://git-scm.com ) first"
+#    exit 1
+#fi
 
 # if [[ $(which curl) == "" ]]
 # then
@@ -27,11 +27,11 @@ fi
 #     exit 1
 # fi
 
-if command -v curl &> /dev/null; then
-    echo "Install curl ( http://curl.haxx.se ) first"
-    exit 1
-fi
-
+#if command -v curl &> /dev/null; then
+#    echo "Install curl ( http://curl.haxx.se ) first"
+#    exit 1
+#fi
+#
 ## Check OS, OS-dependent code
 if [[ "$OSTYPE" =~ "darwin" ]]
 then

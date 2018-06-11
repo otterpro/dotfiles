@@ -8,8 +8,7 @@
 " fonts
 " set guifont=NanumGothicCoding:h16
 " set guifont=Ubuntu\ Mono:h16
-"  was 12, but changed to 10 on Windows, it was too big
-set guifont=Fantasque\ Sans\ Mono:h10
+set guifont=Fantasque\ Sans\ Mono:h12
 if has("gui_macvim")
 	set guifont=Fantasque\ Sans\ Mono:h18
 endif

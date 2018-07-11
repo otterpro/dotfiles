@@ -207,6 +207,9 @@ Plug 'sheerun/vim-polyglot'		" loads 70+ languages
 Plug 'fatih/vim-go'				" loads full version. polyglot only gets highlight?
 Plug 'tpope/vim-repeat'
 Plug 'docunext/closetag.vim'  "closes html tag"
+
+"Plug 'townk/vim-autoclose'    " close (,{, ... (Not tested yet)
+
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-surround'  "add surrounding brackets,quotes,tags"
 
@@ -214,7 +217,7 @@ Plug 'airblade/vim-gitgutter' " Temp disabled for perf check
 
 Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-fugitive'
-" Plug 'Raimondi/delimitMate.git'	"closes < >, (), [], {}"
+Plug 'Raimondi/delimitMate'  "closes < >, (), [], {}
 " Temporarily disabled, until I can selectively close delimiters"
 Plug 'valloric/MatchTagAlways'  "HTML tag is highlighted, requires python
 

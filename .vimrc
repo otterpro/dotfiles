@@ -723,8 +723,10 @@ nmap <Leader>} ysiW}
 " uses Surround plugin
 "<Space>n : toggle number
 "nmap <Leader>j yss]jysiW)kJdlj
-nmap <Leader>j :call TrimWhitespace()<CR>yss]jysiW)kJdlj
-" updated so that it will trim trailing whitespace first
+" updated so that it will trim trailing witespace first
+"nmap <Leader>j :call TrimWhitespace()<CR>yss]jysiW)kJdlj
+" updated, strangely it stopped going to first column, so force it to go to first column 
+nmap <Leader>j :call TrimWhitespace()<CR>0yss]jysiW)kJdlj
 "
 "============= easymotion ================
 " not working???

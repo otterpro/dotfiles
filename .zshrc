@@ -111,7 +111,7 @@ export LESS="-x4R"
 export LESSOPEN='|~/.lessfilter.sh %s'
 
 # https://github.com/rupa/z.git
-# . ~/bin/z.sh
+. ~/bin/z.sh
 
 # fasd - replacing z.sh for now
 # eval "$(fasd --init auto)"

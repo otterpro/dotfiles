@@ -18,3 +18,5 @@ export CLICOLOR=1
 # eval "$(fasd --init auto)"
 # disabled, because it slowed down the bash in Cygwin; introduces some delay
 
+# z.sh
+. ~/bin/z.sh

@@ -19,6 +19,10 @@ alias ll="ls -lh"
 alias lla="ls -lhA"
 alias la="ls -A"
 alias l="ls"
+# show only dir
+alias lsd="ls -d */"
+# show hidden files / dotfiles only
+alias lsh="ls -ad .*"
 
 alias tree="tree -FC"
 

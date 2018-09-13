@@ -992,8 +992,6 @@ highlight Comment cterm=italic gui=italic
 " conceals, hides markdown punctuations, etc
 set conceallevel=2
 
-
-
 "================== Must be last line and in quote and modelines=1 ======================
 " currently disabled, since I didn't want to use modelines
 " vim:foldmethod=marker:foldlevel=0

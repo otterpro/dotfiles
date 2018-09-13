@@ -1,14 +1,137 @@
 // Place your settings in this file to overwrite the default settings
 {
-    // disable all telemetry
+// disable all telemetry
 "telemetry.enableCrashReporter": false,
 "telemetry.enableTelemetry": false,
-"todo-tree.defaultHighlight": {
-    "foreground": "green",
-    "type": "none"
+
+    "editor.fontFamily": "'Fantasque Sans Mono', Consolas, 'Courier New', monospace",
+    "editor.fontSize": 15,
+    "editor.lineHeight": 18,
+    "editor.insertSpaces": false, // use tab by default
+    // When opening a file, `editor.tabSize` and `editor.insertSpaces`
+    // will be detected based on the file contents. Set to false to keep
+    // the values you've explicitly set, above.
+    "editor.detectIndentation": false,
+// "todo-tree.defaultHighlight": {
+//     "foreground": "green",
+//     "type": "none"
+// },
+// "todo-tree.customHighlight": {
+//     "TODO": {},
+//     "FIXME": {}
+// },
+// =======================================================
+// MARKDOWN
+  "[markdown]": {
+    "editor.wordWrap": "off",
+    "editor.quickSuggestions": false,
+    "editor.insertSpaces": false, // Use Tab, not Space
+    "editor.tabSize": 4,
+  },
+// =======================================================
+// SYNC
+"sync.gist": "189e10d475483bc6274a4581c37579c4",
+"sync.quietSync": false,
+"sync.removeExtensions": true,
+"sync.syncExtensions": true,
+"sync.autoDownload": false,
+"sync.autoUpload": true,
+"sync.forceDownload": false,
+"vim.leader": "<space>",
+"vim.useSystemClipboard": true,
+"vim.handleKeys": {
+    "<C-a>": false,
+    "<C-f>": false
 },
-"todo-tree.customHighlight": {
-    "TODO": {},
-    "FIXME": {}
-}
+// =======================================================
+// VIM
+"vim.sneak": true,
+
+  // Remapped keys in normal mode. Allows mapping to vim commands or vscode actions. See README for more.
+  "vim.normalModeKeyBindingsNonRecursive": [
+        // scroll up and down with C-j, C-k
+        {
+            "before": ["<C-j>"],
+            //"after": ["<C-d>"]
+            "after": ["1","0","j"]
+        },
+        {
+            "before": ["<C-k>"],
+            //"after": ["<C-u>"]
+            "after": ["1","0","k"]
+        },
+        // " \\ => surround with `backtick` for markdown codes 
+        {
+            // nmap \\  ysiW`
+            "before": ["\\","\\"],
+            "after": ["y","s","i","W","`"]
+        },
+        // " surround ` ` for entire line
+        {
+            // nmap <Leader>\ 0ys$`
+            "before": ["leader","\\"],
+            "after": ["0","y","s","$","`"]
+        },
+        // " delete surrounding backticks ` ` 
+        // " nmap d\ ds`, but somehow not working! 
+        // TODO: Not working
+        // deleting entire line, but ds` works by itself
+        // should I use it in recursive instead?
+        {
+            "before": ["d","\\"],
+            "after": ["d","s","`"]
+        },
+        // " same as ||, but | must be escaped or use `<bar>`
+        // TODO: NOt working
+        {
+            // nmap <bar><bar> ds` , but `<bar>` is not supported on VSCodeVim?
+            "before": ["bar","bar"],
+            "after": ["d","s","`"]
+        },
+        // join line and make into markdown link
+        {
+            //nmap <Leader>j :call TrimWhitespace()<CR>0yss]jysiW)kJdlj
+            "before": ["leader","j"],
+            "after": ["0","y","s","s","]","j","y","s","i","W",")","k","J","d","l","j"]
+        },
+        {
+            "before": ["leader","m"],
+            "commands": [ "markdown.showPreviewToSide","workbench.action.previousEditor"]
+                //" workbench.action.showCommands", ]
+		},
+        {
+            "before": ["leader","o"],
+            "commands": [ "outline.focus"]
+                //" workbench.action.showCommands", ]
+		},
+		 
+    ],
+"vim.insertModeKeyBindingsNonRecursive": [
+        {
+            // " \\ => surround with `backtick` for markdown codes 
+            // imap \\ <Esc>ysiW`Ea
+            "before": ["\\","\\"],
+            "after": ["<Esc>","y","s","i","W","`","E","a"]
+        },
+        // {
+        //     "before": ["k"],
+        //     "after": ["g","k"]
+        //    // "commands": [ "workbench.action.showCommands", ]
+        // }
+    ],
+
+"vim.visualModeKeyBindingsNonRecursive": [
+        {
+            // " \\ => surround with `backtick` for markdown codes 
+            // vmap \\ S`
+            "before": ["\\","\\"],
+            "after": ["S","`"]
+        },
+        // {
+        //     "before": ["k"],
+        //     "after": ["g","k"]
+        //    // "commands": [ "workbench.action.showCommands", ]
+        // }
+	],
+	"window.zoomLevel": 0,
 }

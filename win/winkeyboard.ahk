@@ -350,9 +350,12 @@ return
 ;#IfWinActive, OneNote ; Only apply this script to onenote.
 
 ;=========================================================================
-; Google Chrome
+; Google Chrome, but ignore VSCode, and Electron apps
 ;-------------------------------------------------------------------------
-#IfWinActive, ahk_class Chrome_WidgetWin_1
+; use chrome.exe instead, as it Chrome_WidgetWin_1 works on all Electron app, including VSCode
+; I don't want to apply it to VSCode
+; #IfWinActive, ahk_class Chrome_WidgetWin_1
+#IfWinActive, ahk_exe chrome.exe
 ; Show Web Developer Tools with cmd + alt + i
 ^!i::Send {F12}
 ; Show source code with cmd + alt + u
@@ -448,5 +451,9 @@ $^}::Send ^+{Tab}
 $^{::Send ^+{Tab}
 
 #IfWinActive
-; Nothing else below
+; End app-specific code here
 
+
+;--------------------------
+; EOF: Nothing else below
+;--------------------------

@@ -383,10 +383,9 @@ inoremap <C-space> <c-o>
 " disabled: instead use <C-space>dd above (which is <C-o>dd)"
 " inoremap <C-l> <C-o>dd
 
-" remap ctrl-[ and ctrl-] to tab/untab in insert"
-" NOTE: <c-[> unmaps ESC associated with it"
-" inoremap <C-<> <C-D>
-" inoremap <C->> <C-T>
+" remap << and >> to tab/untab in insert"
+inoremap << <C-D>
+inoremap >> <C-T>
 
 " semicolon to colon
 "  use ; as : to save keystrokes. ex: :w can be ;w

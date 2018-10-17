@@ -182,7 +182,8 @@ RCtrl & down::Send ^{end}
 ; * was using Win+j/k but it felt it could be app-specific
 ;===========================================================================
 ;use menu key to open taskview
-AppsKey::#Tab
+;AppsKey::#Tab
+
 ; Ctrl+Tab
 ; move through desktop spaces
 ;RCtrl & Tab::send #A
@@ -383,14 +384,24 @@ $!{::Send ^+{Tab}
 ;--------------------------------------------
 ; Cut,copy,paste
 ;Copy, paste, cut in WinVim
+
 ;using Right control + C/V/X
 ;{Shift down}{Insert}{Shift Up} is causing problem with shift getting stuck
 ;$>^c:: Send {Ctrl Down}{Insert}{Ctrl Up}
 ;$>^v::Send {Shift down}{Insert}{Shift Up}
 ;$>^x::Send {Shift Down}{Del}{Shift Up}
 ; so instead, use +{Insert} instead
-$>^c:: Send ^{Insert}
-$>^v::Send +{Insert}
+$>^c:: Send ^{Ins}
+; issue with ctrl-v
+; for some weird reason, ctrl+v sometimes get stuck with ctrl down
+; could be acting like CapsLock?  
+; or shift causing it to get stuck as capslock?
+;$>^v::Send {Esc}+{Ins}{Esc}
+;$>^v::Send "{+}gP
+; temporary solution: use mouse middle-button to paste (which is default behavior)
+; or use <leader>v to paste
+; TODO: when I get a new programmable keyboard, try again
+
 $>^x::Send +{Del}
 
 ;; Use ALT+C/V/X

@@ -37,14 +37,15 @@
 "sync.autoDownload": false,
 "sync.autoUpload": true,
 "sync.forceDownload": false,
+// =======================================================
+// VIM
 "vim.leader": "<space>",
 "vim.useSystemClipboard": true,
 "vim.handleKeys": {
-    "<C-a>": false,
-    "<C-f>": false
+    "<C-a>": false, // useful for 
+    "<C-f>": false,
+    //"<C-w>": false,
 },
-// =======================================================
-// VIM
 "vim.sneak": true,
 
   // Remapped keys in normal mode. Allows mapping to vim commands or vscode actions. See README for more.
@@ -87,16 +88,36 @@
             // nmap <bar><bar> ds` , but `<bar>` is not supported on VSCodeVim?
             "before": ["bar","bar"],
             "after": ["d","s","`"]
+		},
+		// "double-quote"
+		{
+            // nmap \\  ysiW"
+            "before": ["\"","\""],
+            "after": ["y","s","i","W","\""]
         },
+		// 'single-quote'
+		{
+            // nmap \\  ysiW'
+            "before": ["'","'"],
+            "after": ["y","s","i","W","'"]
+		},
+		// leader-leader (open )
+        {
+            "before": ["leader","leader"],
+			"commands": [ "workbench.action.openPreviousEditorFromHistory"]
+                //" workbench.action.showCommands", ]
+		},
         // join line and make into markdown link
         {
-            //nmap <Leader>j :call TrimWhitespace()<CR>0yss]jysiW)kJdlj
+			//nmap <Leader>j :call TrimWhitespace()<CR>0yss]jysiW)kJdlj
+			// TrimWhiteSpace is available, but not sure how to combine commands with after 
             "before": ["leader","j"],
             "after": ["0","y","s","s","]","j","y","s","i","W",")","k","J","d","l","j"]
         },
         {
             "before": ["leader","m"],
-            "commands": [ "markdown.showPreviewToSide","workbench.action.previousEditor"]
+            //"commands": [ "markdown.showPreviewToSide","workbench.action.previousEditor"]
+            "commands": [ "markdown.showPreviewToSide","workbench.action.focusFirstEditorGroup"]
                 //" workbench.action.showCommands", ]
 		},
         {
@@ -134,4 +155,6 @@
         // }
 	],
 	"window.zoomLevel": 0,
+	"breadcrumbs.enabled": true,
+	"workbench.statusBar.feedback.visible": false,
 }

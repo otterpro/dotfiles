@@ -370,11 +370,23 @@ let mapleader="\<Space>"
 let maplocalleader="\\"
 
 " remap <ctrl><space> to underscore, easier!!!
-inoremap <C-space> _
 " also it is same as <C-@>
+" disabled: not used, underscore is rarely used and easy reach for finger"
+" also wanted to use <c-o>"
+" inoremap <C-space> _
 
-" similar to <C-u> but it deletes entire line, not just up to cursor
-inoremap <C-l> <C-o>dd
+" remap <ctrl><space> to <c-o> insert
+" hard to remember <c-o> during insert mode"
+inoremap <C-space> <c-o>
+
+" I want to use <C-d> but that is taken by indent"
+" disabled: instead use <C-space>dd above (which is <C-o>dd)"
+" inoremap <C-l> <C-o>dd
+
+" remap ctrl-[ and ctrl-] to tab/untab in insert"
+" NOTE: <c-[> unmaps ESC associated with it"
+" inoremap <C-<> <C-D>
+" inoremap <C->> <C-T>
 
 " semicolon to colon
 "  use ; as : to save keystrokes. ex: :w can be ;w
@@ -384,14 +396,16 @@ inoremap <C-l> <C-o>dd
 " also restore old ; by using ;; 
 nn ;; ; 
 
+" <ESC> alternative
 " remap ;; as Escape. but removed - interferes with java/c-type language 
 " inoremap ;; <Esc>
 " ESC acts as CR. Use C-c instead, to prevent execution.
 " cnoremap ;; <C-c> 
-"
 " remap "qq" as Escape.  Convenient. replace ";;" 
 " originally, was "aa", but it was typed too often
-inoremap qq <Esc>
+" disabled because typing q was slow"
+" inoremap qq <Esc>
+
 " in cmd mode, ESC acts as CR. Use C-c instead, to prevent execution.
 cnoremap qq <C-c> 
 " also qq in normal mode was annoying, as it records macro. Disable it.
@@ -403,13 +417,19 @@ nn j gj
 nn k gk
 
 " ctrl-J and ctrl-K as page down/up
-"nn <C-j> 
-"
 " NOTE: <C-J> is also mapped to other pluggins in insert/ select mode/ NERDTREE, etc
+" Also on other system, I use 10j, 10k instead, moving only certain # of lines
 nn <C-J> <C-d>
 nn <C-K> <C-u>
 vn <C-J> <C-d>
 vn <C-K> <C-u>
+
+" <c-j>, <c-k> moves cursor up/down a line while in insert"
+inoremap <C-J> <down>
+inoremap <C-K> <up>
+" <c-h>, <c-l> moves cursor left/right while in insert"
+inoremap <C-h> <left>
+inoremap <C-l> <right>
 
 " common remap, also found in :help yank
 nn Y y$
@@ -469,6 +489,9 @@ ino <C-s> <C-o>:w<CR>
 " Switch between last two files (:b#/:e#)
 nn <Leader><Leader> <c-^>
 
+" highlighted text - remove all empty lines
+vn <Leader>d :g/^$/d<CR>
+
 "
 " go to buffer quickly
 " control-] overrides tag lookup
@@ -487,9 +510,16 @@ nnoremap <Leader>t :TagbarToggle<CR>
 "<Space>n : toggle number
 nn <Leader>n :setlocal nonumber!<CR>
 
+"<Space>v : paste from clipboard
+" added because in Windows, Shift+Insert was awkward
+" and Autohotkey's ctrl-v got ctrl key stuck on down position
+" TODO: when I get a programmable keyboard, this can be removed...
+nn <Leader>v "+gP
+
 "use <left> and <right> for my buffers.  Better use of arrows
-nnoremap <silent> <right> :bnext<cr>
-nnoremap <silent> <left> :bprev<cr>
+" but disabled, as sometimes, I want to use arrow for moving cursors
+" nnoremap <silent> <right> :bnext<cr>
+" nnoremap <silent> <left> :bprev<cr>
 
 " highlight last inserted text - does it work? 
 nnoremap gV `[v`]

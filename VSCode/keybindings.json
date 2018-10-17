@@ -42,8 +42,19 @@
 		"when": "editorFocus"
 	},
 	{
-		"key": "alt+w",
+		"key": "ctrl+a ctrl+b",
+		"command": "workbench.action.openPreviousEditorFromHistory"
+	},
+	{
+		"key": "ctrl+a ctrl+a",
+		"command": "workbench.action.openPreviousRecentlyUsedEditor"
+	},
+	/* 
+	Handled by vim key instead
+	{
+		"key": "alt+w w",
 		"command": "outline.focus",
 		"when": "editorFocus"
 	}
+	*/
 ]

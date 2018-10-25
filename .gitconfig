@@ -11,3 +11,5 @@
 	default = matching
 [alias]
 	hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+	unstage = reset HEAD --
+	ignore = update-index --assume-unchanged

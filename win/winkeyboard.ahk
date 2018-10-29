@@ -458,8 +458,12 @@ $!q::Send #{f4}
 ; only works one direction for now...
 ; $!}::Send ^+{Tab}
 ; $!{::Send ^+{Tab}
+
+; ctrl+shift+tab
+; was disabled: was using conemu's own hotkey instead of autohotkey
+; not perfect, but better than nothing
 $^}::Send ^+{Tab}
-$^{::Send ^+{Tab}
+$^{::Send ^{Tab}
 
 #IfWinActive
 ; End app-specific code here

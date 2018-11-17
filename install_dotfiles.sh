@@ -53,14 +53,18 @@ then
 
 elif [[ "$OSTYPE" == "linux-gnu" ]]; then
     export OS="linux"
+	chsh -s $(which zsh)
 elif [[ "$OSTYPE" == "cygwin" ]]; then
     export OS="cygwin"
 
 	# enable symlink in cygwin!!! this is needed for "ln -s" later here...
 	export CYGWIN="winsymlinks:nativestrict"
+	# TODO: chsh is not possible in cygwin?
 
 elif [[ "$OSTYPE" =~ "freebsd" ]]; then
     export OS="freebsd"
+	# TODO: verify if chsh worked in FreeBSD
+	chsh -s $(which zsh)
 else
     echo "Don't know what to do with '$OSTYPE' operating system. Need to implement this"
     exit 1

@@ -1,6 +1,10 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
+# Setting for the new UTF-8 terminal support in Lion
+LC_CTYPE=en_US.UTF-8
+LC_ALL=en_US.UTF-8
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each

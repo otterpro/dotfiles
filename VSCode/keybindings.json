@@ -49,8 +49,13 @@
 		"key": "ctrl+a ctrl+a",
 		"command": "workbench.action.openPreviousRecentlyUsedEditor"
 	},
+
+	// {
+	// 	"key": "f7",
+	// 	"command": "workbench.action.focusSideBar"
+	// },
 	/* 
-	Handled by vim key instead
+	Handled by vim plugin key instead
 	{
 		"key": "alt+w w",
 		"command": "outline.focus",

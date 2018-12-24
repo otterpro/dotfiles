@@ -4,9 +4,12 @@
 "telemetry.enableCrashReporter": false,
 "telemetry.enableTelemetry": false,
 
-    "editor.fontFamily": "'Fantasque Sans Mono', Consolas, 'Courier New', monospace",
-    "editor.fontSize": 15,
-    "editor.lineHeight": 18,
+"editor.fontFamily": "'Fantasque Sans Mono', Consolas, 'Courier New', monospace",
+"editor.fontSize": 15,
+"editor.lineHeight": 18,
+// Render vertical rulers 
+"editor.rulers": [80,120],
+
 // "todo-tree.defaultHighlight": {
 //     "foreground": "green",
 //     "type": "none"
@@ -37,8 +40,11 @@
 "vim.leader": "<space>",
 "vim.useSystemClipboard": true,
 "vim.handleKeys": {
-    "<C-a>": false, // useful for 
-    "<C-f>": false,
+    "<C-a>": false, // use native Select All
+    "<C-f>": false,  // use native FIND
+    // "<C-k>": false, // use native menu item, but cannot use it since 
+                    // I mapped it to move up
+    "<C-s>": false,  // use native Save
     //"<C-w>": false,
 },
 "vim.sneak": true,
@@ -153,5 +159,6 @@
 	"breadcrumbs.enabled": true,
 	"workbench.statusBar.feedback.visible": false,
 	"editor.renderControlCharacters": true,
-	"editor.renderWhitespace": "none",
+    "editor.renderWhitespace": "none",
+    "workbench.colorTheme": "Cobalt2",
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <key name="Software">
 	<key name="ConEmu">
-		<key name=".Vanilla" modified="2019-02-22 11:00:08" build="190217">
+		<key name=".Vanilla" modified="2019-02-22 11:03:20" build="190217">
 			<value name="StartType" type="hex" data="02"/>
 			<value name="CmdLine" type="string" data=""/>
 			<value name="StartTasksFile" type="string" data=""/>
@@ -746,8 +746,8 @@
 			</key>
 			<value name="CmdLineHistory" type="multi">
 				<line data="{Otter::Powershell (Admin)}"/>
-				<line data="{Shells::PowerShell}"/>
 				<line data="{Otter::PowerShell}"/>
+				<line data="{Shells::PowerShell}"/>
 				<line data="{Otter::WSL bash}"/>
 				<line data="{Bash::bash}"/>
 				<line data="{Helper::Show ANSI colors}"/>

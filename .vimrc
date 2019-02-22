@@ -32,6 +32,8 @@ set fileformats=unix,dos "wanted to make sure it's only UNIX, and not DOS format
 					" by default, uses unix to read/write
 					" but also detects dos 
 
+
+set regexpengine=1 " use old regex engine, supports everything - faster in some cases"
 "=============================================================================
 " Default Setting
 "=============================================================================
@@ -249,6 +251,7 @@ Plug 'plasticboy/vim-markdown'
 
 "folding is not in tpope's version. we need this to fold
 " Plug 'nelstrom/vim-markdown-folding'
+
 Plug 'dhruvasagar/vim-table-mode'    "Create table
 
 "bullets - add bullets easily and convert bullets easily
@@ -298,6 +301,16 @@ Plug 'suan/vim-instant-markdown'
 
 " testing for now, not really worth it yet???
 " Plug 'bagrat/vim-workspace'
+
+" --- TO TRY ------
+" improve folding speed, as too many fold slows down 
+" Plug 'Konfekt/FastFold'
+
+" highlight sections/paragraphs
+" Plug 'limelight.vim'
+
+"Remember setting esp folded state
+" Plug 'zhimsel/vim-stay'
 
 call plug#end()
 " call vundle#end()            " required

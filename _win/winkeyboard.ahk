@@ -34,19 +34,19 @@
 ;=========================================================================
 ; Recommended system-wide setting
 ;=========================================================================
-SendMode Input
+SendMode Input          ; recommended for input
 #NoEnv
-#SingleInstance Force ; SingleInstance makes the script automatically reload?.
-; make sure only one instance of this script is running!!!
+#SingleInstance Force ; it make sure only one instance of this script is running
 
 ;-------------------------------------------------------------------------
 ;[PAUSE/BREAK]
 ; Pressing Pause/Break will toggle AHK script; Useful when you want to quickly switch off AHK, esp when you want to share the keyboard with someone else
+; Suspend means all hotkeys are disabled
 ;-------------------------------------------------------------------------
 Pause::Suspend
 
 ;-------------------------------------------------------------------------
-; swap Alt with Win
+; DISABLED: swap Alt with Win
 ; NOTE: doesn't seem to trigger win key mapping
 ;-------------------------------------------------------------------------
 ;RAlt::RWin
@@ -65,8 +65,8 @@ Pause::Suspend
 ; LCtrl & Tab:: AltTab -- this doesn't work in Admin mode in PS, CMD.exe
 ; Use RCtrl so that LCtrl is used for LCtrl-C for Stop, and RCtrl-C for copy
 
-Ctrl & tab:: AltTab ; Using all Ctrl instead of ALT
-; RCtrl & tab:: AltTab ; Using RCtrl instead of ALT
+; Ctrl & tab:: AltTab ; Using all Ctrl instead of ALT
+RCtrl & tab:: AltTab ; Using RCtrl instead of ALT
     ; this was needed when LAlt was mapped to RCTRL
 ; LWin & tab:: AltTab ; Windows key version
 
@@ -79,7 +79,7 @@ Ctrl & tab:: AltTab ; Using all Ctrl instead of ALT
 */
 
 ;-------------------------------------------------------------------------
-; Copy/Cut/Paste using ALT key
+; Copy/Cut/Paste using ALT key -- note: causes problem with console, where ALT keys are intercepted???
 ;$!a::Send ^a
 ;$!c::Send ^c
 ;$!v::Send ^v
@@ -229,27 +229,29 @@ RCtrl & down::Send ^{end}
 ; DUal function - CTRL as both ESC and CTRL
 ;===========================================================================
 ;-------------------------------------------------------
-; LCtrl - dual function - original, but not working well
-; use this only if the trick* doesn't work
+; NOTE: trick* - it works for some reason, but only on hardware CTRL (unmapped)
+; for weird reason it works as momentary ESC/CTRL
+; sometimes LCtrl works. Sometimes CTRL works
+;-------------------------------------------------------
+Ctrl::Send {esc}    ; sometimes only this works (normal keyboard)
+    ; currently disabled since I'm running DZ60/QMK keyboard
+;-------------------------------------------------------
+; Alternative settings
+;-------------------------------------------------------
+;LCtrl::Send {esc}   ;sometimes only this works (ex: Leopold keyboard)
+;-------------------------------------------------------
+; original, but not working well ; use this only if the trick* doesn't work
 ;-------------------------------------------------------
 ; *LCtrl::
 ;     Send {Blind}{LCtrl Down}
 ;     cDown := A_TickCount
 ; Return
-;
 ; *LCtrl up::
 ;     If ((A_TickCount-cDown)<200)  ; Modify press time as needed (milliseconds)
 ;         Send {Blind}{LCtrl Up}{Esc}
 ;     Else
 ;         Send {Blind}{LCtrl Up}
 ; Return
-;-------------------------------------------------------
-; NOTE: trick* - it works for some reason, but only on hardware CTRL (unmapped)
-; for weird reason it works as momentary ESC/CTRL
-; sometimes LCtrl works. Sometimes CTRL works
-;-------------------------------------------------------
-;LCtrl::Send {esc}   ;sometimes only this works (Leopold)
-Ctrl::Send {esc}    ; sometimes only this works (normal keyboard)
 
 ;===========================================================================
 ; Shift only as ( )

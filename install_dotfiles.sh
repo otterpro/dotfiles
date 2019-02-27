@@ -103,14 +103,11 @@ curl -L http://install.ohmyz.sh | sh
 # create symlink for all directories (.vim, ...)
 # EXCEPT for all Directory that starts with underscore (such as _mac, _win, _optional)
 # and EXCEPT .git folder
+# TODO: instead of all folders except for underscore, just copy all folders starting with dot
 find . -maxdepth 1 -mindepth 1 \! -name "*.git" \! -name "_*" -type d -exec rm -rf ~/{} ";" -exec ln -sf `pwd`/{} ~/{} ";"
 
 # create symlink for dotfiles (.bashrc, .vimrc, ...)
-# except for .git*. <-- however, temporaily I still want .gitconfig file
-# so I am copying .gitconfig
-# however, there could be other files such as .gitmodules.
-#find . -mindepth 1 -maxdepth 1 -type f -name ".*" ! -name ".git*" -exec ln -sf `pwd`/{} ~/{} ";"
-find . -mindepth 1 -maxdepth 1 -type f -name ".*" ! -name ".git" -exec ln -sf `pwd`/{} ~/{} ";"
+find . -mindepth 1 -maxdepth 1 -type f -name ".*" ! -name ".DS_Store" -exec ln -sf `pwd`/{} ~/{} ";"
 
 # Vim Plug
 echo "Vim-Plug: download all the scripts"

@@ -52,8 +52,8 @@ source $ZSH/oh-my-zsh.sh
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
-plugins=(fasd)
+plugins=(git z)
+# plugins=(fasd)  #disabled for now due to cygwin's performance issue, using z for now
 
 # User configuration
 
@@ -86,8 +86,11 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 # alias zshconfig="vi ~/.zshrc"
 # alias ohmyzsh="vi ~/.oh-my-zsh"
 #
-# my own 
-source ~/.aliases
+# load my own aliases
+if [ -f ~/.aliases ]; then
+	. ~/.aliases
+fi
+# source ~/.aliases
 
 # imagemagick resize script from Smashing
 # source ~/.dotfiles/smartresize.sh

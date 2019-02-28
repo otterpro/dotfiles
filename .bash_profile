@@ -1,4 +1,7 @@
-source ~/.aliases
+# Load aliases
+if [ -f ~/.aliases ]; then
+	. ~/.aliases
+fi
 
 export TERM="xterm-256color" 
 export EDITOR=vim 

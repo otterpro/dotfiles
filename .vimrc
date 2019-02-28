@@ -205,7 +205,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'jlanzarotta/bufexplorer'
 
 "coding & auto-completion
-Plug 'sheerun/vim-polyglot'		" loads 70+ languages
+Plug 'sheerun/vim-polyglot'		" loads 70+ languages , disabled because it was causing slow loading of big files
 Plug 'fatih/vim-go'				" loads full version. polyglot only gets highlight?
 Plug 'tpope/vim-repeat'
 Plug 'docunext/closetag.vim'  "closes html tag"
@@ -215,7 +215,7 @@ Plug 'docunext/closetag.vim'  "closes html tag"
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-surround'  "add surrounding brackets,quotes,tags"
 
-Plug 'airblade/vim-gitgutter' " Temp disabled for perf check
+Plug 'airblade/vim-gitgutter' " Temp disabled for perf check? so far, not too bad
 
 Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-fugitive'
@@ -244,12 +244,11 @@ Plug 'mileszs/ack.vim'
 Plug 'godlygeek/tabular' "required for vim-markdown. 
 Plug 'plasticboy/vim-markdown' 
 " Plasticboy's markdown is included in Polyglot but that is missing features
-"	so it is loaded here 
+" such as TOC, so it is loaded here 
 
 " Tpope's version is now default Vim, so it is no longer needed
 " Plug 'tpope/vim-markdown'
-
-"folding is not in tpope's version. we need this to fold
+"folding is not in tpope's version. we need this to fold, but we're using plasticboy so this is not needed?
 " Plug 'nelstrom/vim-markdown-folding'
 
 Plug 'dhruvasagar/vim-table-mode'    "Create table
@@ -575,11 +574,15 @@ endif
 "map <Leader>j !python -m json.tool<CR>
 
 function! s:Toc()
+	" allows Toc to be loaded when document is opened, see autocmd below
+	" however, it seems to be slow, esp on bigger document
+	" and adds 1 second of delay 
 	if &filetype == 'markdown'                                                                                                                                                      
 		"autocmd! syntastic BufEnter
 		:Toc
 	endif
 endfunction
+
 "=============================================================================
 " autocmd
 "=============================================================================
@@ -646,8 +649,10 @@ if has("autocmd") " Only do this part when compiled with support for autocommand
 	"autocmd filetype markdown setlocal textwidth=80 expandtab
 	
 	" Force all opened doc to show Toc. Is this useful???
-    autocmd BufWinEnter *.md call s:Toc()
-    autocmd BufWinEnter *.txt call s:Toc()
+	" should be disabled, as it was slowing the load time of large files
+	" increases load time by 1 second on large file
+	" autocmd BufWinEnter *.md call s:Toc()
+    " autocmd BufWinEnter *.txt call s:Toc()
 
 	" Fix bullet point list issue
 
@@ -847,6 +852,9 @@ let g:airline_detect_spell=0
 let g:airline#extensions#wordcount#enabled = 0
 	" disable word counting. 
 
+" ============== polyglot ==========================
+let g:polyglot_disabled = ['markdown']
+" since it is handled by plasticboy plugin. Polyglot's markdown conflicts with Plasticboy's -- causes slowdown?
 
 " ============== plasticboy/vim-markdown =====================
 " vim-markdown: folding is enabled by default. disable now
@@ -870,6 +878,10 @@ let g:vim_markdown_math = 0
 let g:vim_markdown_new_list_item_indent = 0
 
 " also see autocmd above for additional `setlocal`
+
+" folding had to be disabled, as it was causing vim to slow down on any large files
+" it only affects plasticboy's plugin, as Foldexpr_markdown() was causing problems
+let g:vim_markdown_folding_disabled = 1
 
 " ============== vim-table-mode =======================
 let g:table_mode_corner="|" " make table compatible with Markdown.

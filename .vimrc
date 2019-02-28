@@ -244,6 +244,7 @@ Plug 'mileszs/ack.vim'
 " somehow, the :Ack is not working at all
 
 "Markdown and text formatting
+Plug 'SidOfc/mkdx'   " New Markdown "
 Plug 'godlygeek/tabular' "required for vim-markdown. 
 Plug 'plasticboy/vim-markdown' 
 " Plasticboy's markdown is included in Polyglot but that is missing features
@@ -292,7 +293,7 @@ Plug 'terryma/vim-smooth-scroll'
 " Undotree (Vim 7.0+)
 Plug 'mbbill/undotree'
 
-" Golden Ratio - automatically resize window to golden ratio
+"Golden Ratio - automatically resize window to golden ratio
 Plug 'roman/golden-ratio'
 
 " testing livedown markdown preview
@@ -654,8 +655,8 @@ if has("autocmd") " Only do this part when compiled with support for autocommand
 	" Force all opened doc to show Toc. Is this useful???
 	" should be disabled, as it was slowing the load time of large files
 	" increases load time by 1 second on large file
-	" autocmd BufWinEnter *.md call s:Toc()
-    " autocmd BufWinEnter *.txt call s:Toc()
+	autocmd BufWinEnter *.md call s:Toc()
+    autocmd BufWinEnter *.txt call s:Toc()
 
 	" Fix bullet point list issue
 
@@ -891,6 +892,9 @@ let g:vim_markdown_emphasis_multiline = 0
 " folding had to be disabled, as it was causing vim to slow down on any large files
 " it only affects plasticboy's plugin, as Foldexpr_markdown() was causing problems
 let g:vim_markdown_folding_disabled = 1
+
+" see if TOC autofit works well
+let g:vim_markdown_toc_autofit = 1
 
 " ============== vim-table-mode =======================
 let g:table_mode_corner="|" " make table compatible with Markdown.

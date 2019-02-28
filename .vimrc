@@ -33,7 +33,8 @@ set fileformats=unix,dos "wanted to make sure it's only UNIX, and not DOS format
 					" but also detects dos 
 
 
-set regexpengine=1 " use old regex engine, supports everything - faster in some cases"
+"set regexpengine=1 " 1=use old regex engine, supports everything - faster in some cases"
+
 "=============================================================================
 " Default Setting
 "=============================================================================
@@ -180,7 +181,8 @@ call plug#begin()
 " arbitrary directory. I'm using plugged/, which is same as example
 
 " CSS-color, shows color for #ffffff
-Plug 'ap/vim-css-color'
+Plug 'ap/vim-css-color'  
+" disabled for performance issue
 
 " status line
 " Plug 'bling/vim-airline'  "OLD name, plugin moved to new name
@@ -205,7 +207,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'jlanzarotta/bufexplorer'
 
 "coding & auto-completion
-Plug 'sheerun/vim-polyglot'		" loads 70+ languages , disabled because it was causing slow loading of big files
+
+"Plug 'sheerun/vim-polyglot'		" loads 70+ languages , disabled its markdown because it was causing slow loading of big files
 Plug 'fatih/vim-go'				" loads full version. polyglot only gets highlight?
 Plug 'tpope/vim-repeat'
 Plug 'docunext/closetag.vim'  "closes html tag"
@@ -853,8 +856,9 @@ let g:airline#extensions#wordcount#enabled = 0
 	" disable word counting. 
 
 " ============== polyglot ==========================
-let g:polyglot_disabled = ['markdown']
-" since it is handled by plasticboy plugin. Polyglot's markdown conflicts with Plasticboy's -- causes slowdown?
+"let g:polyglot_disabled = ['markdown']
+" disabled markdown handling from polyglot, since it is handled by plasticboy plugin. Polyglot's markdown conflicts with Plasticboy's -- causes slowdown?
+" however, above still didn't help much...
 
 " ============== plasticboy/vim-markdown =====================
 " vim-markdown: folding is enabled by default. disable now
@@ -862,6 +866,7 @@ let g:polyglot_disabled = ['markdown']
 let g:vim_markdown_frontmatter=1  "highlight jekyll frontmatter
 
 " [..](...) will follow without need for .MD extension
+" [link](file1) works as [link](file1.md)
 let g:vim_markdown_no_extensions_in_markdown = 1
 
 " make sure to disable this, or $ will cause highlight to stop
@@ -878,6 +883,10 @@ let g:vim_markdown_math = 0
 let g:vim_markdown_new_list_item_indent = 0
 
 " also see autocmd above for additional `setlocal`
+
+"limit bold/italic to single line
+" also removes ugly situation where there's hanging _ or * 
+let g:vim_markdown_emphasis_multiline = 0
 
 " folding had to be disabled, as it was causing vim to slow down on any large files
 " it only affects plasticboy's plugin, as Foldexpr_markdown() was causing problems

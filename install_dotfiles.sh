@@ -95,19 +95,8 @@ curl -L http://install.ohmyz.sh | sh
 
 
 # make all the symlink. This step needs to come last, so it other install
-# such as vim and oh-my-zsh won't interfere.  
-#
-#echo "Ensuring backup directory exists"
-#mkdir -p "$HOME/.vim/backup"
-
-# create symlink for all directories (.vim, ...)
-# EXCEPT for all Directory that starts with underscore (such as _mac, _win, _optional)
-# and EXCEPT .git folder
-# TODO: instead of all folders except for underscore, just copy all folders starting with dot
-find . -maxdepth 1 -mindepth 1 \! -name "*.git" \! -name "_*" -type d -exec rm -rf ~/{} ";" -exec ln -sf `pwd`/{} ~/{} ";"
-
-# create symlink for dotfiles (.bashrc, .vimrc, ...)
-find . -mindepth 1 -maxdepth 1 -type f -name ".*" ! -name ".DS_Store" -exec ln -sf `pwd`/{} ~/{} ";"
+# moved to symlink.sh
+. "./symlink.sh"
 
 # Vim Plug
 echo "Vim-Plug: download all the scripts"

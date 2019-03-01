@@ -244,7 +244,7 @@ Plug 'mileszs/ack.vim'
 " somehow, the :Ack is not working at all
 
 "Markdown and text formatting
-Plug 'SidOfc/mkdx'   " New Markdown "
+"Plug 'SidOfc/mkdx'   " New Markdown "just testing for now
 Plug 'godlygeek/tabular' "required for vim-markdown. 
 Plug 'plasticboy/vim-markdown' 
 " Plasticboy's markdown is included in Polyglot but that is missing features
@@ -577,6 +577,23 @@ endif
 "nmap <leader>j :%!python -m json.tool
 "map <Leader>j !python -m json.tool<CR>
 
+
+
+"=============================================================================
+" tagbar
+"=============================================================================
+let g:tagbar_type_markdown = {
+	    \ 'ctagstype' : 'markdown',
+	    \ 'kinds' : [
+	        \ 'h:Heading_L1',
+	        \ 'i:Heading_L2',
+	        \ 'k:Heading_L3'
+	    \ ]
+\}
+
+"=============================================================================
+" Plasticboy vim-markdown TOC function (used internally when opening doc)
+"=============================================================================
 function! s:Toc()
 	" allows Toc to be loaded when document is opened, see autocmd below
 	" however, it seems to be slow, esp on bigger document

@@ -38,6 +38,25 @@ SendMode Input          ; recommended for input
 #NoEnv
 #SingleInstance Force ; it make sure only one instance of this script is running
 
+;===========================================================================
+; MENU: force it to run as Administrator
+; add it as Menu (not as hotkey, for now, hard to remember)
+;===========================================================================
+#Persistent  ; Keep the script running until the user exits it.
+Menu, Tray, Add  ; Creates a separator line.
+    Menu, Tray, Add, Run as Admin, RunAsAdmin ; Creates a new menu item.
+    return
+
+; RunAsAdmin:
+RunAsAdmin() {
+    ; MsgBox You selected %A_ThisMenuItem% from menu %A_ThisMenu%.
+    SetWorkingDir %A_ScriptDir%
+    if not A_IsAdmin {
+        Run *RunAs "%A_AhkPath%" "%A_ScriptFullPath%"
+        }
+}
+
+
 ;-------------------------------------------------------------------------
 ;[PAUSE/BREAK]
 ; Pressing Pause/Break will toggle AHK script; Useful when you want to quickly switch off AHK, esp when you want to share the keyboard with someone else
@@ -314,6 +333,7 @@ Launch_App2::
         buttonState := DllCall("user32.dll\SwapMouseButton", "UInt", 0)
     }
 return
+
 
 ;===========================================================================
 ; Function / media keys

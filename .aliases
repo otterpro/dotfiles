@@ -27,7 +27,7 @@ alias lsh="ls -ad .*"
 alias tree="tree -FC"
 
 alias du="du -h"
-alias du1="du -h -d=1"
+alias du1="du -h --max-depth=1"
 
 alias df="df -h"
 alias h="history"
@@ -42,6 +42,7 @@ alias ....="cd ../../.."
 
 # Colored up cat!
 # You must install Pygments first - "sudo easy_install Pygments"
+# TODO: change it with bat or another app
 alias c='pygmentize -O style=monokai -f console256 -g'
 
 #color grep
@@ -124,8 +125,8 @@ alias tmn='tmux new -s $(basename $(pwd))'
 # ffmpeg/ffprobe
 alias ffprobe='ffprobe -hide_banner'
 
-# imagemagick
-alias resize='mogrify -filter Triangle -define filter:support=2 -thumbnail 1024 -unsharp 0.25x0.25+8+0.065 -dither None -posterize 136 -quality 82 -define jpeg:fancy-upsampling=off -define png:compression-filter=5 -define png:compression-level=9 -define png:compression-strategy=1 -define png:exclude-chunk=all -interlace none -colorspace sRGB -strip' 
+# imagemagick -- moved to separate script
+# alias resize='mogrify -filter Triangle -define filter:support=2 -thumbnail 1024 -unsharp 0.25x0.25+8+0.065 -dither None -posterize 136 -quality 82 -define jpeg:fancy-upsampling=off -define png:compression-filter=5 -define png:compression-level=9 -define png:compression-strategy=1 -define png:exclude-chunk=all -interlace none -colorspace sRGB -strip' 
 
 # TODO: search for files with TODO / FIXME
 alias TODO='ag TODO'

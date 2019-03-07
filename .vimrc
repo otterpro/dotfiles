@@ -1063,10 +1063,11 @@ nmap <Leader>m :InstantMarkdownPreview
 "================= settings that must override all ========================
 
 " Highlight matching braces { }, [ ], ( ), etc
-"let loaded_matchparen = 0
-"DoMatchParen
-hi MatchParen ctermbg=yellow ctermfg=blue guifg=blue guibg=yellow
-" set color for matching braces, etc
+"Disable matchparen because it was slowing down Win Vim! Slowed down during match!
+" In the future, try enabling it again
+let loaded_matchparen = 1
+" set color for matching braces, etc.  Disabled since above is also disabled
+"hi MatchParen ctermbg=yellow ctermfg=blue guifg=blue guibg=yellow
 
 " comments in italic
 let &t_ZH="\e[3m"

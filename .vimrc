@@ -913,6 +913,14 @@ let g:vim_markdown_folding_disabled = 1
 " see if TOC autofit works well
 let g:vim_markdown_toc_autofit = 1
 
+" ============== Bullets.vim =======================
+let g:bullets_enabled_file_types = [
+    \ 'markdown',
+    \ 'text',
+    \ 'gitcommit',
+    \ 'scratch'
+    \]
+
 " ============== vim-table-mode =======================
 let g:table_mode_corner="|" " make table compatible with Markdown.
 

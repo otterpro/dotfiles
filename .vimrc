@@ -260,6 +260,9 @@ Plug 'dhruvasagar/vim-table-mode'    "Create table
 "bullets - add bullets easily and convert bullets easily
 Plug 'dkarter/bullets.vim'		" bullet points
 
+"bookmark - show bookmarks
+Plug 'kshenoy/vim-signature'
+
 "snippets
 " http://jmatthews.us/blog/2013/03/10/managing-vim-python-plugins/
 if (has('python') || has('python3'))

@@ -84,8 +84,8 @@ Pause::Suspend
 ; LCtrl & Tab:: AltTab -- this doesn't work in Admin mode in PS, CMD.exe
 ; Use RCtrl so that LCtrl is used for LCtrl-C for Stop, and RCtrl-C for copy
 
-; Ctrl & tab:: AltTab ; Using all Ctrl instead of ALT
-RCtrl & tab:: AltTab ; Using RCtrl instead of ALT
+Ctrl & tab:: AltTab ; Using all Ctrl instead of ALT
+;RCtrl & tab:: AltTab ; Using RCtrl instead of ALT
     ; this was needed when LAlt was mapped to RCTRL
 ; LWin & tab:: AltTab ; Windows key version
 

@@ -263,6 +263,9 @@ Plug 'dkarter/bullets.vim'		" bullet points
 "bookmark - show bookmarks
 Plug 'kshenoy/vim-signature'
 
+"Emoji
+Plug 'junegunn/vim-emoji'
+
 "snippets
 " http://jmatthews.us/blog/2013/03/10/managing-vim-python-plugins/
 if (has('python') || has('python3'))
@@ -1087,6 +1090,14 @@ highlight Comment cterm=italic gui=italic
 
 " conceals, hides markdown punctuations, etc
 set conceallevel=2
+
+"============= abbreviations ===========================================
+iab => ⇒ 
+iab ==> ⟹
+iab -> → 
+iab <= ⇐ 
+iab <- ← 
+iab euro €
 
 "================== Must be last line and in quote and modelines=1 ======================
 " currently disabled, since I didn't want to use modelines

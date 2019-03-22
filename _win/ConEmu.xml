@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <key name="Software">
 	<key name="ConEmu">
-		<key name=".Vanilla" modified="2019-03-15 19:25:18" build="190310">
+		<key name=".Vanilla" modified="2019-03-20 23:53:33" build="190310">
 			<value name="StartType" type="hex" data="02"/>
 			<value name="CmdLine" type="string" data=""/>
 			<value name="StartTasksFile" type="string" data=""/>
@@ -338,8 +338,8 @@
 			<value name="Cascaded" type="hex" data="01"/>
 			<value name="IntegralSize" type="hex" data="00"/>
 			<value name="WindowMode" type="dword" data="0000051f"/>
-			<value name="ConWnd X" type="long" data="420"/>
-			<value name="ConWnd Y" type="long" data="181"/>
+			<value name="ConWnd X" type="long" data="532"/>
+			<value name="ConWnd Y" type="long" data="202"/>
 			<value name="LastMonitor" type="string" data="0,0,1920,1160"/>
 			<value name="ConWnd Width" type="dword" data="00000097"/>
 			<value name="ConWnd Height" type="dword" data="00000034"/>
@@ -745,17 +745,18 @@
 				<value name="Count" type="long" data="0"/>
 			</key>
 			<value name="CmdLineHistory" type="multi">
-				<line data="{Otter::Powershell (Admin)}"/>
-				<line data="{Otter::Cygwin bash}"/>
-				<line data="{Otter::PowerShell}"/>
-				<line data="{Shells::PowerShell}"/>
+				<line data="{Shells::cmd (Admin)}"/>
+				<line data="{Shells::cmd}"/>
 				<line data="{Otter::WSL bash}"/>
+				<line data="{Otter::Powershell (Admin)}"/>
+				<line data="{Otter::PowerShell}"/>
+				<line data="{Otter::Cygwin bash}"/>
+				<line data="{Shells::PowerShell}"/>
 				<line data="{Bash::bash}"/>
 				<line data="{Helper::Show ANSI colors}"/>
 				<line data="{Shells::PowerShell (Admin)}"/>
 				<line data="{Bash::CygWin bash}"/>
 				<line data="{Bash::Git bash}"/>
-				<line data="{Shells::cmd}"/>
 			</value>
 			<value name="AutoTrimSingleLine" type="hex" data="00"/>
 		</key>

@@ -660,8 +660,19 @@ if has("autocmd") " Only do this part when compiled with support for autocommand
 	"also can be placed in .vim/after/indent/markdown.vim:
 	autocmd filetype markdown setlocal formatoptions=tqlnrcj comments=b:>
 	" ME: added 'j' to join comments without comment leaders
-	
 
+	"============= abbreviations ===========================================
+	" markdown-specific abbrev, as these may conflict with another language
+	" <buffer> ensures it is local, not global
+	autocmd filetype markdown iab <buffer> => ⇒
+	autocmd filetype markdown iab <buffer> ==> ⟹
+	autocmd filetype markdown iab <buffer> -> →
+	autocmd filetype markdown iab <buffer> <= ⇐
+	autocmd filetype markdown iab <buffer> <- ←
+	autocmd filetype markdown iab <buffer> euro €
+	" iab --^ ↑
+	" iab --v ↓
+	
 	" no longer needed? (was for TPope's md plugin)
     "autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 	
@@ -1091,13 +1102,6 @@ highlight Comment cterm=italic gui=italic
 " conceals, hides markdown punctuations, etc
 set conceallevel=2
 
-"============= abbreviations ===========================================
-iab => ⇒ 
-iab ==> ⟹
-iab -> → 
-iab <= ⇐ 
-iab <- ← 
-iab euro €
 
 "================== Must be last line and in quote and modelines=1 ======================
 " currently disabled, since I didn't want to use modelines

@@ -4,6 +4,7 @@
 # [${1:${VISUAL:Text}}](${3:http://${2:www.url.com}})$0
 # endsnippet
 
+
 snippet == "header"
 ==============================
 endsnippet
@@ -16,6 +17,15 @@ endsnippet
 snippet today
 Today:`date +%Y-%m-%d`
 endsnippet
+
+# https://castel.dev/post/lecture-notes-1/
+snippet box2 "Box"
+`!p snip.rv = '┌' + '─' * (len(t[1]) + 2) + '┐'`
+│ $1 │
+`!p snip.rv = '└' + '─' * (len(t[1]) + 2) + '┘'`
+$0
+endsnippet
+
 # Emojis and special chars
 snippet =>
 ⇒ 

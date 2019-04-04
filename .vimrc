@@ -210,6 +210,7 @@ Plug 'jlanzarotta/bufexplorer'
 
 "Plug 'sheerun/vim-polyglot'		" loads 70+ languages , disabled its markdown because it was causing slow loading of big files
 Plug 'fatih/vim-go'				" loads full version. polyglot only gets highlight?
+Plug 'PProvost/vim-ps1'			"powershell syntax
 Plug 'tpope/vim-repeat'
 Plug 'docunext/closetag.vim'  "closes html tag"
 
@@ -1101,7 +1102,6 @@ highlight Comment cterm=italic gui=italic
 
 " conceals, hides markdown punctuations, etc
 set conceallevel=2
-
 
 "================== Must be last line and in quote and modelines=1 ======================
 " currently disabled, since I didn't want to use modelines

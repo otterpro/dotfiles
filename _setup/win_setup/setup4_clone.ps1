@@ -51,7 +51,8 @@ New-Item -Path  "$env:USERPROFILE\cyghome\"  -ItemType SymbolicLink -Value "$cyg
 #   New-Item -path $profile -ItemType SymbolicLink -Value C:\cygwin64\home\DKim\bin\Microsoft.PowerShell_profile.ps1
 if (!(Test-Path -Path $profile.CurrentUserAllHosts)) { 
     Write-Host "creating symbolic link for PS profile"
-    New-Item -path $profile.CurrentUserAllHosts -ItemType SymbolicLink -Value "$PSScriptRoot\profile.ps1"
+    New-Item -path $profile.CurrentUserAllHosts -ItemType SymbolicLink -Value "$cygwinHomeDir\.dotfiles\_win\profile.ps1"
+    # "$PSScriptRoot\profile.ps1"
 }
 
 #===========================================================================

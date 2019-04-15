@@ -431,6 +431,8 @@ nn ;; ;
 " in cmd mode, ESC acts as CR. Use C-c instead, to prevent execution.
 cnoremap qq <C-c> 
 " also qq in normal mode was annoying, as it records macro. Disable it.
+"     I was hitting qq accidentally too often
+"     however, some use qq as quick throw-away macro
 nnoremap qq <Nop>
 
 " move vertically visual line, looks more natural when moving up/down. 

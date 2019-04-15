@@ -1,4 +1,6 @@
-﻿$cygwinBin="$env:ChocolateyToolsLocation\cygwin\bin"
+﻿# not using it anymore
+# conemu files get updated after each run!
+$cygwinBin="$env:ChocolateyToolsLocation\cygwin\bin"
 $cygwinHomeDir="$env:ChocolateyToolsLocation\cygwin\home\$env:username"
 
 # install conemu, if needed

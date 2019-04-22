@@ -57,7 +57,7 @@ set showcmd		" display incomplete commands
 "temporarily removed cryptmethod because of incompatibility with nvim
 
 set history=1000         " remember more commands and search history
-set undolevels=1000      " use many muchos levels of undo
+set undolevels=1000      " use many muchos levels of undo (also see undo below)
 
 " ignore files for ctrlp, etc
 set wildignore=*.swp,*.exe,*.dll,*.bak,*.pyc,*.class,node_modules
@@ -299,6 +299,7 @@ Plug 'terryma/vim-smooth-scroll'
 
 " Undotree (Vim 7.0+)
 Plug 'mbbill/undotree'
+" considering replacing it with Gundo, wc requires Python
 
 "Golden Ratio - automatically resize window to golden ratio
 Plug 'roman/golden-ratio'
@@ -756,11 +757,25 @@ else "if it doesn't have autocmd"
 	" TODO:this is already set somewhere above(?), 
 endif " has("autocmd")
 
+"-------------------------------------------
+" unlimited Undo - optional, works with Vim 7.3+
+" disabled, as I haven't tested it yet
+"-------------------------------------------
+	" "create dir if it doesn't exist
+	" if !isdirectory($HOME . "/.vim/undodir")
+	" 	call mkdir($HOME . "/.vim/undodir", "p")
+	" endif
+	" set undofile
+	" set undodir=~/.vim/undodir
+	" " delete undo older than 90 days
+	" let s:undos = split(globpath(&undodir, '*'), "\n")
+	" call filter(s:undos, 'getftime(v:val) < localtime() - (60 * 60 * 24 * 90)')
+	" call map(s:undos, 'delete(v:val)')
+
 "=============================================================================
 "  plugin settings
 "=============================================================================
-"
-" 
+
 " ============== surround ====================
 " CURRENTLY just using LEADER > instead... sometimes vv slows down v
 " quickly enclosing 'vv' encloses current text with angled bracket <>

@@ -18,7 +18,8 @@ fi
 alias ll="ls -lh"
 alias lla="ls -lhA"
 alias la="ls -A"
-alias l="ls"
+#alias l="ls"
+	# instead of above, see l() below instead
 # show only dir
 alias lsd="ls -d */"
 # show hidden files / dotfiles only
@@ -39,6 +40,14 @@ alias ~="cd ~"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
+
+# mkdir and cd into it
+# comment: https://news.ycombinator.com/item?id=18898523
+mdc() { mkdir -p "$@" && cd "$@"; }
+
+# open a file with less or a directory with ls
+# comment: https://news.ycombinator.com/item?id=18898523
+l() { if [ -f "$1" ]; then less "$1"; else ls "${1:-`pwd`}"; fi }
 
 # Colored up cat!
 # You must install Pygments first - "sudo easy_install Pygments"
@@ -110,6 +119,9 @@ alias ga='git add -A'
 alias gc='git commit -m' # requires you to type a commit message
 alias gp='git push'
 
+# go to root git directory
+alias cdgit='cd $(git rev-parse --show-toplevel)'
+
 ####### tmux ###################################################
 # tmux with -2=256 color
 # not sure if needed, and instead use screen256 instead.
@@ -136,5 +148,8 @@ alias TODO='ag TODO'
 
 # fasd
 alias fv='fasd -f -e vim' # quick opening files with vim
+
+# misc
+alias weather='curl wttr.in/jacksonville'
 
 ##############   END   #####################

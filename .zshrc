@@ -86,7 +86,7 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 # alias zshconfig="vi ~/.zshrc"
 # alias ohmyzsh="vi ~/.oh-my-zsh"
 #
-# load my own aliases
+# load my own aliases (and functions)
 if [ -f ~/.aliases ]; then
 	. ~/.aliases
 fi

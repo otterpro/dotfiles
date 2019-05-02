@@ -47,7 +47,8 @@ mdc() { mkdir -p "$@" && cd "$@"; }
 
 # open a file with less or a directory with ls
 # comment: https://news.ycombinator.com/item?id=18898523
-l() { if [ -f "$1" ]; then less "$1"; else ls "${1:-`pwd`}"; fi }
+# zsh complains... 
+l() { if [ -f "$1" ]; then less "$1"; else command ls "${1:-`pwd`}"; fi }
 
 # Colored up cat!
 # You must install Pygments first - "sudo easy_install Pygments"

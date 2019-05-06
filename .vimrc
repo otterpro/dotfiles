@@ -434,7 +434,8 @@ cnoremap qq <C-c>
 " also qq in normal mode was annoying, as it records macro. Disable it.
 "     I was hitting qq accidentally too often
 "     however, some use qq as quick throw-away macro
-nnoremap qq <Nop>
+"     ME: decided to keep qq as quick temp macro
+"nnoremap qq <Nop>
 
 " move vertically visual line, looks more natural when moving up/down. 
 " similar to ^n, ^

@@ -43,7 +43,23 @@ alias ....="cd ../../.."
 
 # mkdir and cd into it
 # comment: https://news.ycombinator.com/item?id=18898523
-mdc() { mkdir -p "$@" && cd "$@"; }
+mdc() { mkdir -p "$@" && builtin cd "$@"; }
+
+# after cd, list files
+# comment: https://news.ycombinator.com/item?id=18898523
+# removed, for now, no need to see it all the time
+# perhaps rename it to cdl instead of cd
+# function cd {
+#         builtin cd "${@}"
+#         if [[ "$(stat -c "%b" .)" -lt "100" ]]
+#         then
+#         if [ "$( ls -C -w $COLUMNS | wc -l )" -gt 30 ] ; then
+#             ls -C -w $COLUMNS --color=always | awk 'NR < 16 { print }; NR == 16 { print " (... snip ...)" }; { buffer[NR % 14] = $0 } END { for( i = NR + 1; i <= NR+14; i++ ) print buffer[i % 14] }'
+#         else
+#             ls
+#         fi
+#         fi
+#     }
 
 # open a file with less or a directory with ls
 # comment: https://news.ycombinator.com/item?id=18898523
@@ -121,7 +137,7 @@ alias gc='git commit -m' # requires you to type a commit message
 alias gp='git push'
 
 # go to root git directory
-alias cdgit='cd $(git rev-parse --show-toplevel)'
+alias cdgit='builtin cd $(git rev-parse --show-toplevel)'
 
 ####### tmux ###################################################
 # tmux with -2=256 color

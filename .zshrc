@@ -86,11 +86,18 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 # alias zshconfig="vi ~/.zshrc"
 # alias ohmyzsh="vi ~/.oh-my-zsh"
 #
-# load my own aliases (and functions)
+# load my own aliases (and functions), and in future, put them in .sh.d
 if [ -f ~/.aliases ]; then
 	. ~/.aliases
 fi
 # source ~/.aliases
+
+# for future, use this instead and common with .bash_profile
+# for i in ${HOME}/.sh.d/*; do
+# 	if [ -f $"i" ] ; then
+# 	. "$i"
+# 	fi
+# done
 
 # imagemagick resize script from Smashing
 # source ~/.dotfiles/smartresize.sh

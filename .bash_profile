@@ -2,6 +2,17 @@
 if [ -f ~/.aliases ]; then
 	. ~/.aliases
 fi
+# see below for future, move .aliases into ~/.sh/d
+
+#in future, put aliases and others in this folder
+# and common with .zshrc 
+# not activated yet, but to do in future
+
+#for i in ${HOME}/.sh.d/*; do
+#	if [ -f $"i" ] ; then
+#	. "$i"
+#	fi
+#done
 
 export TERM="xterm-256color" 
 export EDITOR=vim 

@@ -869,6 +869,9 @@ let g:ycm_autoclose_preview_window_after_completion=1
 nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 "		go to definition
 "
+"========== supertab =================================
+let g:SuperTabMappingBackward = '<nul>' 
+
 "========== snipmate/Utilsnips =========================
 "YouCompleteMe causes conflict as it overrides TAB
 "replace tab with C-J instead for now

@@ -273,24 +273,23 @@ Ctrl::Send {esc}    ; sometimes only this works (normal keyboard)
 ; Return
 
 ;===========================================================================
-; Shift only as ( )
+; Space Cadet shift as parenthesis -- Shift only as ( )
 ; NOTE: on remote deskotp, it doesn't work, printing 9 and 0
 ;===========================================================================
-
 ; https://autohotkey.com/board/topic/98742-remapping-shift-key/
-; ~LShift::
-; 	KeyWait, LShift
-; 	If (A_TimeSinceThisHotkey < 200 and A_PriorKey = "LShift") {
-; 		Send, (
-; 	}
-; return
-;
-; ~RShift::
-; 	KeyWait, RShift
-; 	If (A_TimeSinceThisHotkey < 200 and A_PriorKey = "RShift") {
-; 		Send, )
-; 	}
-; return
+~LShift::
+	KeyWait, LShift
+	If (A_TimeSinceThisHotkey < 200 and A_PriorKey = "LShift") {
+		Send, (
+	}
+return
+
+~RShift::
+	KeyWait, RShift
+	If (A_TimeSinceThisHotkey < 200 and A_PriorKey = "RShift") {
+		Send, )
+	}
+return
 ;
 ;===========================================================================
 ; Alt-backtick , just like Mac

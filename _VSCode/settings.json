@@ -136,14 +136,6 @@
             "before": ["\\","\\"],
             "after": ["<Esc>","y","s","i","W","`","E","a"]
         },
-        {
-            "before": ["<tab>"],
-            "after": ["a","b","c"]
-        },
-        {
-            "before": ["q"],
-            "after": ["1","q","q"]
-        },
         // {
         //     "before": ["k"],
         //     "after": ["g","k"]

@@ -37,7 +37,7 @@
 "sync.forceDownload": false,
 // =======================================================
 // VIM
-"vim.debug.loggingLevelForConsole": "debug",  // temporarily enabled debugging for keybinding stuff
+// "vim.debug.loggingLevelForConsole": "debug",  // temporarily enabled debugging for keybinding stuff
 "vim.leader": "<space>",
 "vim.useSystemClipboard": true,
 "vim.handleKeys": {

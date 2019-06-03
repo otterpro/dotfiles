@@ -181,8 +181,8 @@ call plug#begin()
 " arbitrary directory. I'm using plugged/, which is same as example
 
 " CSS-color, shows color for #ffffff
-Plug 'ap/vim-css-color'  
-" disabled for performance issue
+" Plug 'ap/vim-css-color'  
+" disabled for performance issue when scrolling (create_matches())
 
 " status line
 " Plug 'bling/vim-airline'  "OLD name, plugin moved to new name
@@ -312,6 +312,9 @@ Plug 'suan/vim-instant-markdown'
 
 " testing for now, not really worth it yet???
 " Plug 'bagrat/vim-workspace'
+
+" notational Vim
+"Plug 'https://github.com/Alok/notational-fzf-vim'
 
 " --- TO TRY ------
 " improve folding speed, as too many fold slows down 
@@ -1107,6 +1110,10 @@ nmap <Leader>wdn		<Plug>VimwikiDiaryNextDay
 "endif
 let g:instant_markdown_autostart = 0  "don't autostart...
 nmap <Leader>m :InstantMarkdownPreview
+
+"============== notational fzf vim ==================================
+" let g:nv_search_paths = ['~/notes','.']
+
 "================= settings that must override all ========================
 
 " Highlight matching braces { }, [ ], ( ), etc

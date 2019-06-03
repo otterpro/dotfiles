@@ -1,3 +1,7 @@
+# bash options
+shopt -s autocd
+# shopt -s autocd globstar
+
 # Load aliases
 if [ -f ~/.aliases ]; then
 	. ~/.aliases
@@ -17,10 +21,6 @@ fi
 export TERM="xterm-256color" 
 export EDITOR=vim 
 export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-#mac specific
-# $preview this.png
-alias preview="open -a Preview"
 
 #tell ls to be more colorful
 # not sure if it works

@@ -274,19 +274,23 @@ Ctrl::Send {esc}    ; sometimes only this works (normal keyboard)
 
 ;===========================================================================
 ; Space Cadet shift as parenthesis -- Shift only as ( )
+; (200ms too fast?  changed to 400ms)
 ; NOTE: on remote deskotp, it doesn't work, printing 9 and 0
+; ((())((((
 ;===========================================================================
 ; https://autohotkey.com/board/topic/98742-remapping-shift-key/
 ~LShift::
 	KeyWait, LShift
-	If (A_TimeSinceThisHotkey < 200 and A_PriorKey = "LShift") {
+	If (A_TimeSinceThisHotkey < 300 and A_PriorKey = "LShift") {
+	; If (A_TimeSinceThisHotkey < 500 and A_TimeSinceThisHotkey < 800 and A_PriorKey = "LShift") {
 		Send, (
 	}
 return
 
 ~RShift::
 	KeyWait, RShift
-	If (A_TimeSinceThisHotkey < 200 and A_PriorKey = "RShift") {
+	If (A_TimeSinceThisHotkey < 300 and A_PriorKey = "RShift") {
+	; If (A_TimeSinceThisHotkey < 500 and A_TimeSinceThisHotkey < 800 and A_PriorKey = "RShift") {
 		Send, )
 	}
 return

@@ -1,6 +1,5 @@
 ### aliases #####################################
-# ls, remembers alias cascades.
-if [[ $OSTYPE == linux* ]] || [[ $OSTYPE == cygwin ]]; then
+if [[ "${OSTYPE}" == "linux"* ]] || [[ $OSTYPE == cygwin ]]; then
 	   alias ls='ls -F --color=auto'
 	   alias sed='sed -r'
 	   # if encountering Mac/BSD scripts...
@@ -9,11 +8,15 @@ if [[ $OSTYPE == linux* ]] || [[ $OSTYPE == cygwin ]]; then
 	   alias gfind='find'
 	   alias gdate='date'
 	   #alias gsed, gtar, gmake
+	
+		# Export pbcopy / pbpaste to linux 
+		alias pbcopy="xclip -selection clipboard"
+		alias pbpaste="xclip -selection clipboard -o"
 
+# MAC OSX/BSD
+elif [[ "${OSTYPE}" == "darwin"* ]]; then 
 	# Open current OSX Finder directory in Terminal:
 	# faster than dragging from finder to terminal
-elif [[ $OSTYPE == darwin* ]]; then 
-	# MAC OSX/BSD
 	cdf () {
 	        target=`osascript -e 'tell application "Finder" to if (count of Finder windows) > 0 then get POSIX path of (target of front Finder window as text)'`
 	        if [ "$target" != "" ]
@@ -28,11 +31,12 @@ elif [[ $OSTYPE == darwin* ]]; then
 	   alias sed='sed -E'
 fi
 
+# ls, remembers alias cascades.
+alias l="ls"
+	# or use l() 
 alias ll="ls -lh"
 alias lla="ls -lhA"
 alias la="ls -A"
-#alias l="ls"
-	# instead of above, see l() below instead
 # show only dir
 alias lsd="ls -d */"
 # show hidden files / dotfiles only
@@ -56,7 +60,8 @@ alias ....="cd ../../.."
 
 # mkdir and cd into it
 # comment: https://news.ycombinator.com/item?id=18898523
-mdc() { mkdir -p "$@" && builtin cd "$@"; }
+mcd() { mkdir -p "$@" && builtin cd "$@"; }
+# renamed from mdc and mkcd to mcd()
 
 # after cd, list files
 # comment: https://news.ycombinator.com/item?id=18898523
@@ -181,5 +186,9 @@ alias fv='fasd -f -e vim' # quick opening files with vim
 
 # misc
 alias weather='curl wttr.in/jacksonville'
+
+# IP ADDRESS
+
+alias ip='curl checkip.amazonaws.com'
 
 ##############   END   #####################

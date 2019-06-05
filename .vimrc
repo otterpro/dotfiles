@@ -162,6 +162,9 @@ set diffopt+=vertical
 " spellfile. I don't have any spell file.
 " set spellfile=$HOME/.vim-spell-en.utf-8.add
 
+" `gf`: also find file with this file extension, if file extension is not set
+set suffixesadd=.md
+
 "=============================================================================
 "   Now using Plug, replacing Vundle
 "=============================================================================
@@ -465,7 +468,9 @@ nn Y y$
 
 " Don't use Ex mode, use Q for formatting
 vmap Q gq
-nmap Q gqap
+"nmap Q gqap
+" repeat last macro, more useful than gqap
+nnoremap Q @@
 
 " Capitalize the 1st letter of the line/sentence 
 " Current: <leader>u to capitalize OLD: use "uu" to capitalize, annoying -
@@ -775,6 +780,11 @@ endif " has("autocmd")
 	" let s:undos = split(globpath(&undodir, '*'), "\n")
 	" call filter(s:undos, 'getftime(v:val) < localtime() - (60 * 60 * 24 * 90)')
 	" call map(s:undos, 'delete(v:val)')
+
+"=============================================================================
+" useful user commands
+"=============================================================================
+command! Vimrc :vs $MYVIMRC
 
 "=============================================================================
 "  plugin settings

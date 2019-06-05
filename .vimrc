@@ -784,6 +784,8 @@ endif " has("autocmd")
 "=============================================================================
 " useful user commands
 "=============================================================================
+" :Vimrc -- edit .vimrc on split window
+" * alternative is to use bookmark, such as "v" for .vimrc
 command! Vimrc :vs $MYVIMRC
 
 "=============================================================================

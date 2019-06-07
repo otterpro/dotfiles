@@ -199,8 +199,7 @@ Plug 'unblevable/quick-scope'
 
 " File and Buffer
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-" Plug 'kien/ctrlp.vim'  "# no longer maintained?
-Plug 'ctrlpvim/ctrlp.vim'  " replaces old ctrlp
+Plug 'ctrlpvim/ctrlp.vim'  
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
@@ -216,8 +215,11 @@ Plug 'fatih/vim-go'				" loads full version. polyglot only gets highlight?
 Plug 'PProvost/vim-ps1'			"powershell syntax
 Plug 'tpope/vim-repeat'
 Plug 'docunext/closetag.vim'  "closes html tag"
-
 "Plug 'townk/vim-autoclose'    " close (,{, ... (Not tested yet)
+
+Plug 'Raimondi/delimitMate'  "closes < >, (), [], {}
+" Temporarily disabled, until I can selectively close delimiters"
+Plug 'valloric/MatchTagAlways'  "HTML tag is highlighted, requires python
 
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-surround'  "add surrounding brackets,quotes,tags"
@@ -226,9 +228,6 @@ Plug 'airblade/vim-gitgutter' " Temp disabled for perf check? so far, not too ba
 
 Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-fugitive'
-Plug 'Raimondi/delimitMate'  "closes < >, (), [], {}
-" Temporarily disabled, until I can selectively close delimiters"
-Plug 'valloric/MatchTagAlways'  "HTML tag is highlighted, requires python
 
 Plug 'prettier/vim-prettier'  "Prettier for Javascript
 

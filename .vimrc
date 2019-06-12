@@ -490,7 +490,7 @@ nn <Leader>p <F2>
 " refresh syntax highlighting - esp for long problemetic markdown
 " doesn't work always, and is also very slow operation
 " it's faster to :syntax sync minlines=500
-noremap <F5> <Esc>:syntax sync fromstart<CR>
+nnoremap <F5> <Esc>:syntax sync fromstart<CR>
 inoremap <F5> <C-o>:syntax sync fromstart<CR>
 
 " when tabbing using > to indent, stay in visual mode. Normal behavior is to
@@ -535,6 +535,11 @@ vn <Leader>d :g/^$/d<CR>
 
 " Tagbar
 nnoremap <Leader>t :TagbarToggle<CR>
+
+" <C-t> opens new tab instead of indent and 
+inoremap <C-t> :tabnew<CR>
+nnoremap <C-t> :tabnew<CR>
+
 
 " Rails 
 " <Leader>r call rake
@@ -681,9 +686,10 @@ if has("autocmd") " Only do this part when compiled with support for autocommand
 	autocmd filetype markdown iab <buffer> -> →
 	autocmd filetype markdown iab <buffer> <= ⇐
 	autocmd filetype markdown iab <buffer> <- ←
+	autocmd filetype markdown iab <buffer> ---^ ↑
+	autocmd filetype markdown iab <buffer> ---v ↓
 	autocmd filetype markdown iab <buffer> euro €
-	" iab --^ ↑
-	" iab --v ↓
+	autocmd filetype markdown iab <buffer> degree °
 	
 	" no longer needed? (was for TPope's md plugin)
     "autocmd BufNewFile,BufReadPost *.md set filetype=markdown

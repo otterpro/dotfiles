@@ -463,6 +463,10 @@ $>^v::Send +{Insert}
 $>^x::Send +{Del}
 ;#space::MsgBox "Pressed Win+Space in Mintty"
 
+; $!c:: Send ^{Insert}
+; $!v::Send +{Insert}
+; $!x::Send +{Del}
+
 ; Everything Search App
 ; Currently hotkey not needed, and using Wox (front-end to Everything) instead
 ; hotkey for Everything (currently set to Win+Shift+F)

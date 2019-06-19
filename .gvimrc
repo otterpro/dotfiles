@@ -8,9 +8,21 @@
 " fonts
 " set guifont=NanumGothicCoding:h16
 " set guifont=Ubuntu\ Mono:h16
-set guifont=Fantasque\ Sans\ Mono:h12
+" set guifont=Fantasque\ Sans\ Mono:h12
 if has("gui_macvim")
 	set guifont=Fantasque\ Sans\ Mono:h18
+elseif has("gui_win32")
+	"set guifont=Consolas:h12:cANSI
+	" set guifont=Consolas:h12
+	" set guifont=Lucida\ Console:h12
+	" set guifont=Lucida\ Sans\ Typewriter:h12
+	" (DejaVu Sans: supports unicode symbols)
+	set guifont=DejaVu\ Sans\ Mono:h11
+	"set guifont=Inconsolata:h12
+elseif has("gui_gtk2")
+    set guifont=Inconsolata\ 12
+elseif has("gui_gtk3")
+    set guifont=Inconsolata\ 12
 endif
 
 " v0.2.2 gets stuck if Guifont is in here, but works after nvim loads

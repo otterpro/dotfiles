@@ -38,6 +38,7 @@ SendMode Input          ; recommended for input
 #NoEnv
 #SingleInstance Force ; it make sure only one instance of this script is running
 
+; OutputDebug, starting the app
 ;===========================================================================
 ; MENU: force it to run as Administrator
 ; add it as Menu (not as hotkey, for now, hard to remember)
@@ -252,12 +253,12 @@ RCtrl & down::Send ^{end}
 ; for weird reason it works as momentary ESC/CTRL
 ; sometimes LCtrl works. Sometimes CTRL works
 ;-------------------------------------------------------
-Ctrl::Send {esc}    ; sometimes only this works (normal keyboard)
+; Ctrl::Send {esc}    ; sometimes only this works (normal keyboard)
     ; currently disabled since I'm running DZ60/QMK keyboard
 ;-------------------------------------------------------
 ; Alternative settings
 ;-------------------------------------------------------
-;LCtrl::Send {esc}   ;sometimes only this works (ex: Leopold keyboard)
+LCtrl::Send {esc}   ;sometimes only this works (ex: Leopold keyboard)
 ;-------------------------------------------------------
 ; original, but not working well ; use this only if the trick* doesn't work
 ;-------------------------------------------------------
@@ -324,6 +325,7 @@ return
 ;===========================================================================
 NumpadSub::Send {Volume_Up}
 NumpadAdd::Send {Volume_Down}
+Numpad0::KeyHistory
 
 ; Calculator button
 ;Launch_App2::Send {Volume_Down}

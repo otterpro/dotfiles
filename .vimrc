@@ -922,7 +922,6 @@ else
 	smap <C-J> <Plug>snipMateNextOrTrigger
 endif
 
-
 "============= airline  ================
 set laststatus=2 "without it, status bar is hidden for airline plugin. it forces status to be always visible
 let g:airline#extensions#whitespace#enabled = 0  "disable whitespace detection

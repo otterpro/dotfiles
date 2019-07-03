@@ -90,10 +90,28 @@ mcd() { mkdir -p "$@" && builtin cd "$@"; }
 # TODO: change it with bat or another app
 alias c='pygmentize -O style=monokai -f console256 -g'
 
+# grep 
 #color grep
 #alias grep='GREP_COLOR="1;37;45" grep --color=auto'
 # replaced grep with egrep (or grep -E for extended regex)
 alias grep='GREP_COLOR="1;37;45" egrep --color=auto'
+
+# [command line - Testing regex from stdin using grep|sed|awk - Unix & Linux Stack Exchange](https://unix.stackexchange.com/questions/368211/testing-regex-from-stdin-using-grepsedawk)
+# stdin to test if regex is working
+# $ testregex 'hello world'
+#	[aeiou]+  (STDIN)
+#	
+testregex() {
+	  [ "$#" -eq 1 ] || return 1
+	  while IFS= read -r line; do
+		# print only matching on its own line
+	    # printf '%s\n' "$1" | grep -Eoe "$line"
+
+		#  print matching in one line, highlighted by color
+	    printf '%s\n' "$1" | grep -Ee "$line"
+	  done
+}
+
 
 # otter.pro: colored pygmentized less
 # replaced with .lessfilter script.
@@ -181,6 +199,7 @@ alias ffprobe='ffprobe -hide_banner'
 alias TODO='ag TODO'
 # or could be done via
 # alias TODO="grep -E 'FIXME|TODO'"
+
 # similar to 'rake notes'
 
 # fasd

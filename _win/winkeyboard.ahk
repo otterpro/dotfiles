@@ -85,7 +85,7 @@ Pause::Suspend
 ; LCtrl & Tab:: AltTab -- this doesn't work in Admin mode in PS, CMD.exe
 ; Use RCtrl so that LCtrl is used for LCtrl-C for Stop, and RCtrl-C for copy
 
-Ctrl & tab:: AltTab ; Using all Ctrl instead of ALT
+;Ctrl & tab:: AltTab ; Using all Ctrl instead of ALT
 ;RCtrl & tab:: AltTab ; Using RCtrl instead of ALT
     ; this was needed when LAlt was mapped to RCTRL
 ; LWin & tab:: AltTab ; Windows key version
@@ -100,20 +100,20 @@ Ctrl & tab:: AltTab ; Using all Ctrl instead of ALT
 
 ;-------------------------------------------------------------------------
 ; Copy/Cut/Paste using ALT key -- note: causes problem with console, where ALT keys are intercepted???
-;$!a::Send ^a
-;$!c::Send ^c
-;$!v::Send ^v
-;$!x::Send ^x
-;$!z::Send ^z
+$!a::Send ^a
+$!c::Send ^c
+$!v::Send ^v
+$!x::Send ^x
+$!z::Send ^z
 ;; alt-tab, shift-alt tab
-;$!t::Send ^t
-;$!+t::Send ^+t
-;$!l::Send ^l
-;$!f::Send ^f
-;$!n::Send ^n
+$!t::Send ^t
+$!+t::Send ^+t
+$!l::Send ^l
+$!f::Send ^f
+$!n::Send ^n
 
 ;; alt-w => ctrl-w
-;$!w::Send ^w
+$!w::Send ^w
 
 ;-------------------------------------------------------------------------
 ; Copy/Cut/Paste using Win key
@@ -161,10 +161,10 @@ $>^+G::Send {Shift Down}{F3}{Shift Up}
 ; Quit, [CTRL]+[q]
 ;-------------------------------------------------------------------------
 ; Alt+F4  OR Alt+Space C
-;$!q::Send {Alt Down}{F4}{Alt Up} ; doesn't work see {below}'
-$>^q::Send !{f4}
+;$>^q::Send !{f4}
 ;$!w::Send !{f4}
-;#q::Send !{f4}
+#q::Send !{f4}
+;$!q::Send {Alt Down}{F4}{Alt Up} ; doesn't work. use send !{f4}
 
 ; this could also be Ctrl+F4, but not sure which one is more compatible
 
@@ -258,7 +258,8 @@ RCtrl & down::Send ^{end}
 ;-------------------------------------------------------
 ; Alternative settings
 ;-------------------------------------------------------
-LCtrl::Send {esc}   ;sometimes only this works (ex: Leopold keyboard)
+;LCtrl::Send {esc}   ;sometimes only this works (ex: Leopold keyboard)
+; not momentary in synergy + no mod + QMS?
 ;-------------------------------------------------------
 ; original, but not working well ; use this only if the trick* doesn't work
 ;-------------------------------------------------------
@@ -302,8 +303,8 @@ return
 ;===========================================================================
 ;^ESC::    ; Next window ; For Leopold keyboard only (ESC was mapped to ~)
 ;#`::    ; Next window if using Win-backtick
-;!`::    ; Next window if using alt-backtick
-^`::    ; Next window if using Ctrl-backtick (ME: LAlt -> RCTRL)
+!`::    ; Next window if using alt-backtick
+; ^`::    ; Next window if using Ctrl-backtick (ME: LAlt -> RCTRL)
     WinGetClass, ActiveClass, A
     WinGet, WinClassCount, Count, ahk_class %ActiveClass%
     IF WinClassCount = 1
@@ -313,6 +314,7 @@ return
     WinActivate, ahk_class %ActiveClass%
 return
 
+; probably should not do this
 ;^+ESC::    ; Last window; Leopold keyboard
 ; #+`::    ;Win-shift+backtick
 ^+`::    ; Next window if using Ctrl-shift+backtick
@@ -338,7 +340,6 @@ Launch_App2::
         buttonState := DllCall("user32.dll\SwapMouseButton", "UInt", 0)
     }
 return
-
 
 ;===========================================================================
 ; Function / media keys
@@ -390,8 +391,9 @@ return
 ^!i::Send {F12}
 ; Show source code with cmd + alt + u
 ;#^u::Send ^u ;howeer, cannot map #u?
-$^}::Send ^{Tab}
-$^{::Send ^+{Tab}
+
+; $^}::Send ^{Tab}
+; $^{::Send ^+{Tab}
 
 $!}::Send ^{Tab}
 $!{::Send ^+{Tab}
@@ -400,8 +402,8 @@ $!{::Send ^+{Tab}
 ; Firefox
 ;-------------------------------------------------------------------------
 #IfWinActive ahk_class MozillaWindowClass
-$^}::Send ^{Tab}
-$^{::Send ^+{Tab}
+; $^}::Send ^{Tab}
+; $^{::Send ^+{Tab}
 
 $!}::Send ^{Tab}
 $!{::Send ^+{Tab}
@@ -414,30 +416,38 @@ $!{::Send ^+{Tab}
 ; Cut,copy,paste
 ;Copy, paste, cut in WinVim
 
-;using Right control + C/V/X
-;{Shift down}{Insert}{Shift Up} is causing problem with shift getting stuck
-;$>^c:: Send {Ctrl Down}{Insert}{Ctrl Up}
-;$>^v::Send {Shift down}{Insert}{Shift Up}
-;$>^x::Send {Shift Down}{Del}{Shift Up}
-; so instead, use +{Insert} instead
-$>^c:: Send ^{Ins}
-; issue with ctrl-v
-; for some weird reason, ctrl+v sometimes get stuck with ctrl down
-; could be acting like CapsLock?  
-; or shift causing it to get stuck as capslock?
-;$>^v::Send {Esc}+{Ins}{Esc}
-;$>^v::Send "{+}gP
-; temporary solution: use mouse middle-button to paste (which is default behavior)
-; or use <leader>v to paste
-; TODO: when I get a new programmable keyboard, try again
+; using Right control + C/V/X
+; use +{Insert} instead
+; $>^c:: Send ^{Ins}
+; ctrl-v
+; $>^x::Send +{Del}
 
-$>^x::Send +{Del}
+; OLD -- below failed
+; ;{Shift down}{Insert}{Shift Up} is causing problem with shift getting stuck
+; ;$>^c:: Send {Ctrl Down}{Insert}{Ctrl Up}
+; ;$>^v::Send {Shift down}{Insert}{Shift Up}
+; ;$>^x::Send {Shift Down}{Del}{Shift Up}
+
+; ; issue with ctrl-v
+; ; for some weird reason, ctrl+v sometimes get stuck with ctrl down
+; ; could be acting like CapsLock?  
+; ; or shift causing it to get stuck as capslock?
+; ;$>^v::Send {Esc}+{Ins}{Esc}
+; ;$>^v::Send "{+}gP
+; ; temporary solution: use mouse middle-button to paste (which is default behavior)
+; ; or use <leader>v to paste
+; ; TODO: when I get a new programmable keyboard, try again
+
 
 ;; Use ALT+C/V/X
-;$!c:: Send {Ctrl Down}{Insert}{Ctrl Up}
-;; better paste, works with terminal, but doesn't work with Explorer
-;$!v::Send {Shift down}{Insert}{Shift Up}
-;$!x::Send {Shift Down}{Del}{Shift Up}
+$!c:: Send ^{Ins}
+$!v:: Send +{Ins}
+$!x:: Send +{Del}
+; ; OLD ----
+; ; better paste, works with terminal, but doesn't work with Explorer
+; ; $!c:: Send {Ctrl Down}{Insert}{Ctrl Up}
+; ; $!v::Send {Shift down}{Insert}{Shift Up}
+; ; $!x::Send {Shift Down}{Del}{Shift Up}
 
 ;; Use WIN+C/V/X
 ;#space::MsgBox "Pressed Win+Space in VIM"
@@ -449,24 +459,29 @@ $>^x::Send +{Del}
 ; SWITCH TAB
 ; this cannot be done in vimrc since {,[ cannot be mapped using ctrl
 ;; ALT+}, ALT+{
-;$!}::Send {Esc}:tabn{Enter}
-;$!{::Send {Esc}:tabp{Enter}
+$!}::Send {Esc}:tabn{Enter}
+$!{::Send {Esc}:tabp{Enter}
 ; using ctrl instead of ALT
 ; CTRL+}, CTRL+{
-$^}::Send {Esc}:tabn{Enter}
-$^{::Send {Esc}:tabp{Enter}
+; $^}::Send {Esc}:tabn{Enter}
+; $^{::Send {Esc}:tabp{Enter}
 
 ;=========================================================================
 ; Mintty, Cygwin,
+; NOTE: it uses right control, not left.  Could pose problem
 ;-------------------------------------------------------------------------
 #IfWinActive ahk_class mintty
-$>^c:: Send ^{Insert}
-$>^v::Send +{Insert}
-$>^x::Send +{Del}
+; $>^c:: Send ^{Insert}
+; $>^v::Send +{Insert}
+; $>^x::Send +{Del}
+;;$>^x::MsgBox "Ctrl-X"
+
+; TEST
 ;#space::MsgBox "Pressed Win+Space in Mintty"
 
-; $!c:: Send ^{Insert}
-; $!v::Send +{Insert}
+$!c:: Send ^{Insert}
+$!v::Send +{Insert}
+; there is no ^x/cut in mintty 
 ; $!x::Send +{Del}
 
 ; Everything Search App

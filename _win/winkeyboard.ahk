@@ -99,7 +99,9 @@ Pause::Suspend
 */
 
 ;-------------------------------------------------------------------------
+; ALT keys replacing Control key
 ; Copy/Cut/Paste using ALT key -- note: causes problem with console, where ALT keys are intercepted???
+;-------------------------------------------------------------------------
 $!a::Send ^a
 $!c::Send ^c
 $!v::Send ^v
@@ -111,6 +113,8 @@ $!+t::Send ^+t
 $!l::Send ^l
 $!f::Send ^f
 $!n::Send ^n
+$!r::Send ^r
+$!g::Send ^g
 
 ;; alt-w => ctrl-w
 $!w::Send ^w
@@ -253,12 +257,12 @@ RCtrl & down::Send ^{end}
 ; for weird reason it works as momentary ESC/CTRL
 ; sometimes LCtrl works. Sometimes CTRL works
 ;-------------------------------------------------------
-; Ctrl::Send {esc}    ; sometimes only this works (normal keyboard)
+Ctrl::Send {esc}    ; this works (on normal keyboard)
     ; currently disabled since I'm running DZ60/QMK keyboard
 ;-------------------------------------------------------
 ; Alternative settings
 ;-------------------------------------------------------
-;LCtrl::Send {esc}   ;sometimes only this works (ex: Leopold keyboard)
+;LCtrl::Send {esc}   ;this works on certain kb ie Leopold keyboard
 ; not momentary in synergy + no mod + QMS?
 ;-------------------------------------------------------
 ; original, but not working well ; use this only if the trick* doesn't work

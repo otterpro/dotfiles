@@ -208,8 +208,10 @@ Plug 'junegunn/fzf.vim'
 " Plug 'fholgado/minibufexpl.vim'
 Plug 'jlanzarotta/bufexplorer'
 
+"-----------------------------------------------------------------
 "coding & auto-completion
-
+"-----------------------------------------------------------------
+"coding & auto-completion
 "Plug 'sheerun/vim-polyglot'		" loads 70+ languages , disabled its markdown because it was causing slow loading of big files
 Plug 'fatih/vim-go'				" loads full version. polyglot only gets highlight?
 Plug 'PProvost/vim-ps1'			"powershell syntax
@@ -240,13 +242,17 @@ Plug 'ervandew/supertab'
 "Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 " Plug 'davidhalter/jedi-vim'
 "
+Plug 'AndrewRadev/inline_edit.vim'  " inline code editing"
+
 "Plug 'rking/ag.vim.git'	"silver searcher
 " according to maintainer, it is deprecated due to licensing
 " instead, use ack.vim to run ag.vim (as recommended)
 Plug 'mileszs/ack.vim'
 " somehow, the :Ack is not working at all
 
-"Markdown and text formatting
+"-----------------------------------------------------------------
+"Markdown 
+"-----------------------------------------------------------------
 "Plug 'SidOfc/mkdx'   " New Markdown "just testing for now
 Plug 'godlygeek/tabular' "required for vim-markdown. 
 Plug 'plasticboy/vim-markdown' 
@@ -258,9 +264,21 @@ Plug 'plasticboy/vim-markdown'
 "folding is not in tpope's version. we need this to fold, but we're using plasticboy so this is not needed?
 " Plug 'nelstrom/vim-markdown-folding'
 
-Plug 'dhruvasagar/vim-table-mode'    "Create table
 
+"-----------------------------------------------------------------
+" markdown preview
+"-----------------------------------------------------------------
+Plug 'suan/vim-instant-markdown'
+
+" livedown markdown preview, works, but not live in windows???
+" Plug 'shime/vim-livedown'
+
+"-----------------------------------------------------------------
+" text formatting
+"-----------------------------------------------------------------
+Plug 'dhruvasagar/vim-table-mode'    "Create table
 "bullets - add bullets easily and convert bullets easily
+
 Plug 'dkarter/bullets.vim'		" bullet points
 
 "bookmark - show bookmarks
@@ -269,7 +287,9 @@ Plug 'kshenoy/vim-signature'
 "Emoji
 Plug 'junegunn/vim-emoji'
 
+"-----------------------------------------------------------------
 "snippets
+"-----------------------------------------------------------------
 " http://jmatthews.us/blog/2013/03/10/managing-vim-python-plugins/
 if (has('python') || has('python3'))
 	Plug 'SirVer/ultisnips'
@@ -285,19 +305,20 @@ Plug 'flazz/vim-colorschemes'
 Plug 'xolox/vim-misc'  " requierd for colorscheme-switcher
 Plug 'xolox/vim-colorscheme-switcher' "quickly switch colorscheme with F8,sF8
 
+"-----------------------------------------------------------------
 "shell
+"-----------------------------------------------------------------
 " Plug 'Shougo/vimshell'  " shell, not as useful
 " Plug 'Shougo/vimproc'  "required by vimshell. also need to be 'make'
 
 " Plug 'lrvick/Conque-Shell'	" conque shell fork, works
 "Plug 'vim-scripts/Conque-Shell'  "shell, won't work in VUndle!
 
+"-----------------------------------------------------------------
+" Misc
+"-----------------------------------------------------------------
 " smooth scroll
 Plug 'terryma/vim-smooth-scroll'
-
-" Wakatime plugin for monitoring programming activity
-" - Slows down load time, disabled!!!
-" Plug 'wakatime/vim-wakatime'
 
 " Undotree (Vim 7.0+)
 Plug 'mbbill/undotree'
@@ -306,19 +327,9 @@ Plug 'mbbill/undotree'
 "Golden Ratio - automatically resize window to golden ratio
 Plug 'roman/golden-ratio'
 
-" testing livedown markdown preview
-" Plug 'shime/vim-livedown'
-" above works ok, but not live in windows
-
-Plug 'suan/vim-instant-markdown'
-
-" testing for now, not really worth it yet???
-" Plug 'bagrat/vim-workspace'
-
-" notational Vim
-"Plug 'https://github.com/Alok/notational-fzf-vim'
-
+"-----------------------------------------------------------------
 " --- TO TRY ------
+"-----------------------------------------------------------------
 " improve folding speed, as too many fold slows down 
 " Plug 'Konfekt/FastFold'
 
@@ -327,6 +338,21 @@ Plug 'suan/vim-instant-markdown'
 
 "Remember setting esp folded state
 " Plug 'zhimsel/vim-stay'
+
+" testing for now, not really worth it yet???
+" Plug 'bagrat/vim-workspace'
+
+" notational Vim
+"Plug 'https://github.com/Alok/notational-fzf-vim'
+
+"-----------------------------------------------------------------
+" Disabled
+"-----------------------------------------------------------------
+
+" Wakatime plugin for monitoring programming activity
+" - Slows down load time, disabled!!!
+" Plug 'wakatime/vim-wakatime'
+
 
 call plug#end()
 " call vundle#end()            " required

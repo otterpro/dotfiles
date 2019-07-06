@@ -248,7 +248,7 @@ Plug 'AndrewRadev/inline_edit.vim'  " inline code editing"
 " according to maintainer, it is deprecated due to licensing
 " instead, use ack.vim to run ag.vim (as recommended)
 Plug 'mileszs/ack.vim'
-" somehow, the :Ack is not working at all
+" :Ack works only if ack program exists, even if the engine is switched to rg
 
 "-----------------------------------------------------------------
 "Markdown 
@@ -263,7 +263,6 @@ Plug 'plasticboy/vim-markdown'
 " Plug 'tpope/vim-markdown'
 "folding is not in tpope's version. we need this to fold, but we're using plasticboy so this is not needed?
 " Plug 'nelstrom/vim-markdown-folding'
-
 
 "-----------------------------------------------------------------
 " markdown preview
@@ -387,12 +386,21 @@ if &t_Co >= 256 || has("gui_running")
 
 endif
 
+
+"================= set leaderkey ===============
+" needs to be placed before map
+" Leader is <Space> 
+let mapleader="\<Space>"
+" LocalLeader set to single backslash for now
+let maplocalleader="\\"
+
 "================= Search ===============
 set incsearch     " do incremental search / show search 
 
 " make regex search compatible with php,perl,etc. using very magic
 " uses magic. see help on "pattern" and "magic"
 nn / /\v
+cnoremap %s/ %s/\v
 
 " in Visual mode, allow selected text to become search text
 " by pressing // "slash twice"
@@ -418,11 +426,6 @@ set gdefault    "assumes that %s/abc/def/ is %s/abc/def/g, (no need for g)
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
-
-" Leader is <Space> 
-let mapleader="\<Space>"
-" LocalLeader set to single backslash for now
-let maplocalleader="\\"
 
 " remap <ctrl><space> to underscore, easier!!!
 " also it is same as <C-@>
@@ -1055,14 +1058,23 @@ vn ; :CtrlPBuffer<Enter>
 
 
 " ========= rg: ripgrep  ============="
+" rg for grep
 if executable('rg') 
     set grepprg=rg\ --vimgrep\ -i
 	"removed because it is case-sensitive by default, but ag is not
+	
+	" set grepprg=rg\ --color=never
+	" let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
+	" let g:ctrlp_use_caching = 0
+	
+	" Ack plugin
+	let g:ackprg = 'rg --vimgrep --no-heading -i'
 endif
 
 "temp testing
 "
 " ========= Ag silversearcher ============="
+" ag for ctrlp
 if executable('ag')
   " Use Ag over Grep
 	  " Problem with ag: some file with colon ":" not opening?
@@ -1089,10 +1101,8 @@ if executable('ag')
 
 	  "replace grep
 		"set grepprg=ag\ --nogroup\ --nocolor
-
 	  " Ack should also use ag instead, although considering ripgrep
-	  let g:ackprg = 'ag --vimgrep'
-	  "let g:ackprg = 'rg\ --vimgrep'
+	  " let g:ackprg = 'ag --vimgrep'
 	endif
 endif
 
@@ -1152,6 +1162,11 @@ nmap <Leader>wdn		<Plug>VimwikiDiaryNextDay
 "endif
 let g:instant_markdown_autostart = 0  "don't autostart...
 nmap <Leader>m :InstantMarkdownPreview
+
+"============== fzf ==================================
+nnoremap <C-g> :Rg 
+" nnoremap <C-g> :Rg<Cr>
+" override <c-g> which shows status
 
 "============== notational fzf vim ==================================
 " let g:nv_search_paths = ['~/notes','.']

@@ -306,10 +306,10 @@ Plug 'xolox/vim-colorscheme-switcher' "quickly switch colorscheme with F8,sF8
 
 "-----------------------------------------------------------------
 "shell
+" no longer needed since vim8.1 has `:terminal`
 "-----------------------------------------------------------------
 " Plug 'Shougo/vimshell'  " shell, not as useful
 " Plug 'Shougo/vimproc'  "required by vimshell. also need to be 'make'
-
 " Plug 'lrvick/Conque-Shell'	" conque shell fork, works
 "Plug 'vim-scripts/Conque-Shell'  "shell, won't work in VUndle!
 

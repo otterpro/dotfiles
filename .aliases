@@ -47,11 +47,14 @@ alias tree='tree -FC -I ".git"'
 
 alias du="du -h"
 alias du1="du -h --max-depth=1"
+alias du2="du -h --max-depth=2"
 
 alias df="df -h"
 alias h="history"
 
-alias f="find . -name"
+# alias f="find . -name"
+function f() { find . -iname "*$@*" ! -name ".git*" | sed 's|^./||' ; } 
+# alternative: `fd`
 
 # Quicker navigation
 alias ~="cd ~"

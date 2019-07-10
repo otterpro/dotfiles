@@ -276,8 +276,8 @@ Plug 'suan/vim-instant-markdown'
 " text formatting
 "-----------------------------------------------------------------
 Plug 'dhruvasagar/vim-table-mode'    "Create table
-"bullets - add bullets easily and convert bullets easily
 
+"bullets - add bullets easily and convert bullets easily
 Plug 'dkarter/bullets.vim'		" bullet points
 
 "bookmark - show bookmarks
@@ -451,7 +451,8 @@ inoremap >> <C-T>
 "nn ; :
 "vn ; :
 " also restore old ; by using ;; 
-nn ;; ; 
+	" but it was slowing down ; so got rid of it
+" nn ;; ; 
 
 " <ESC> alternative
 " remap ;; as Escape. but removed - interferes with java/c-type language 
@@ -552,7 +553,9 @@ ino <C-s> <C-o>:w<CR>
 nn <Leader><Leader> <c-^>
 
 " highlighted text - remove all empty lines
-vn <Leader>d :g/^$/d<CR>
+" vn <Leader>d :g/^$/d<CR>
+" but also delete lines that have whitespace only
+vn <Leader>d :g/^\s*$/d<CR>
 
 "
 " go to buffer quickly
@@ -590,6 +593,13 @@ nn <Leader>v "+gP
 
 " highlight last inserted text - does it work? 
 nnoremap gV `[v`]
+
+" convert visual highighted text to bullets
+" :noh is needed to prevent it from highlighting, which looks bad
+vnoremap <leader>b :s/^/* /<cr>:noh<cr>
+" remove bullets
+vnoremap <leader>B :s/*//<cr>:noh<cr>
+" nnoremap <m-n> vip:s/^/* /<cr>
 
 " Display extra whitespace
 " MAYBE: move it to code-specific files, setlocal
@@ -1052,16 +1062,32 @@ set noautochdir
 " YES.
 
 " semicolon - open buffers list
-" OR if not, load MRU using :CtrlPMRU as an alternative
-nn ; :CtrlPBuffer<Enter>
-vn ; :CtrlPBuffer<Enter>
+	" OR if not, load MRU using :CtrlPMRU as an alternative
+" nn ; :CtrlPBuffer<Enter>
+" vn ; :CtrlPBuffer<Enter>
+" instead, using it for Ack for now
 
+" ============ grep ===============
+" silent => no need to press enter after each term
+" ! => don't load the first match into buffer
+	" but the focus remains on main buffer
+" cnoreabbrev gr silent grep!
+" cnoreabbrev grep silent grep!
+cnoreabbrev gr silent grep
+cnoreabbrev grep silent grep
+
+" =========== Ack ================
+" semicolon - open Ack/grep
+	" OR if not, load MRU using :CtrlPMRU as an alternative
+" nn ; :Ack! 
+" vn ; :Ack! 
+nnoremap <leader>; :Ack! 
 
 " ========= rg: ripgrep  ============="
 " rg for grep
 if executable('rg') 
-    set grepprg=rg\ --vimgrep\ -i
-	"removed because it is case-sensitive by default, but ag is not
+    set grepprg=rg\ --vimgrep\ --no-heading\ -i
+    "set grepprg=rg\ --vimgrep\ -i
 	
 	" set grepprg=rg\ --color=never
 	" let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
@@ -1069,6 +1095,7 @@ if executable('rg')
 	
 	" Ack plugin
 	let g:ackprg = 'rg --vimgrep --no-heading -i'
+	"let g:ackprg = 'rg --vimgrep -i'
 endif
 
 "temp testing

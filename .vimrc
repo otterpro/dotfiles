@@ -414,7 +414,8 @@ vn <C-r> ""y:%s/<C-R>=escape(@", '/\')<CR>//g<Left><Left>")
 " g, : clear search highlights
 nn <leader>, :noh<cr> 
 
-set gdefault    "assumes that %s/abc/def/ is %s/abc/def/g, (no need for g)
+" set gdefault    "assumes that %s/abc/def/ is %s/abc/def/g, (no need for g)
+" not enabled, as it can cause confusion, if /g is added, as it does the OPPOSITE
 
 "set cmdheight=2 " status bar that is 2 rows. However, this is too high
 

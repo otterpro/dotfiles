@@ -499,8 +499,12 @@ nn Y y$
 " Don't use Ex mode, use Q for formatting
 vmap Q gq
 "nmap Q gqap
-" repeat last macro, more useful than gqap
-nnoremap Q @@
+
+" repeat last macro
+" nnoremap Q @@
+
+"Q: save all and quit, better than Q:Ex mode
+nnoremap Q :xa<cr>
 
 " Capitalize the 1st letter of the line/sentence 
 " Current: <leader>u to capitalize OLD: use "uu" to capitalize, annoying -

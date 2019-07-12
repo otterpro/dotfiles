@@ -166,6 +166,20 @@ set diffopt+=vertical
 set suffixesadd=.md
 
 "=============================================================================
+" platform-based
+"=============================================================================
+" get .vim/ path
+" this is mostly correct
+	" let s:dotvimpath = split(&rtp,",")[0]
+" this is awkward but more reliable?
+" if has("win32") || has("win64") 
+" 	let s:dotvimpath = "~/vimfiles"
+" else
+" 	let s:dotvimpath = "~/.vim"
+" endif
+
+
+"=============================================================================
 "   Now using Plug, replacing Vundle
 "=============================================================================
 filetype off " required here before plugin are loaded(?), but turned on later
@@ -955,10 +969,14 @@ if (has('python') || has('python3'))
 
 	" keep all private snippets in .vim/Ultisnips/ 
 	" however, public snippets are still available
-	let g:UltiSnipsSnippetsDir="~/.vim/UltiSnips"
+	" it turns out we don't need to set Dir if
+	" it is UltiSnips/ in .vim/
+	"let g:UltiSnipsSnippetsDir="~/.vim/my_ultisnips"
+	"let g:UltiSnipsSnippetsDir=s:dotvimpath . "/myultisnips"
+	"let g:UltiSnipsSnippetsDir="~/vimfiles/myultisnips"
+	"let g:UltiSnipsSnippetsDir="C:/users/daniel.kim/vimfiles/myultisnips"
 	" :UltiSnipsEdit to split window.
 	let g:UltiSnipsEditSplit="vertical"
-
 	
 else
 	"======== snipmate ====================
@@ -1140,11 +1158,6 @@ if executable('ag')
 	endif
 endif
 
-" Local config, not used yet.
-" if filereadable($HOME . "/.vimrc.local")
-"    source ~/.vimrc.local
-" endif
-"
 " Trim trailing whitespace
 "http://vi.stackexchange.com/a/456
 fun! TrimWhitespace()
@@ -1221,6 +1234,15 @@ highlight Comment cterm=italic gui=italic
 
 " conceals, hides markdown punctuations, etc
 set conceallevel=2
+
+"==========================================================
+" Per-project/directory vimrc -- cool feature
+" Local config, not used yet.  Someday...
+"==========================================================
+" if filereadable($HOME . "/.vimrc.local")
+"    source ~/.vimrc.local
+" endif
+
 
 "================== Must be last line and in quote and modelines=1 ======================
 " currently disabled, since I didn't want to use modelines

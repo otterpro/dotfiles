@@ -4,7 +4,6 @@
 # [${1:${VISUAL:Text}}](${3:http://${2:www.url.com}})$0
 # endsnippet
 
-
 snippet == "header"
 ==============================
 endsnippet
@@ -12,11 +11,15 @@ endsnippet
 snippet -- "header"
 ------------------------------
 endsnippet
-# works in *Nix, not in DOS
-# in DOS, need date /T
+
+# date
+# Unix/Mac: Today:`date +%Y-%m-%d`
+# Win: date /T
+# instead, use 
 snippet today
-Today:`date +%Y-%m-%d`
+`!v strftime('%Y-%d-%m')`
 endsnippet
+
 
 # https://castel.dev/post/lecture-notes-1/
 snippet box2 "Box"

@@ -102,22 +102,22 @@ Pause::Suspend
 ; ALT keys replacing Control key
 ; Copy/Cut/Paste using ALT key -- note: causes problem with console, where ALT keys are intercepted???
 ;-------------------------------------------------------------------------
-$!a::Send ^a
-$!c::Send ^c
-$!v::Send ^v
-$!x::Send ^x
-$!z::Send ^z
+$<!a::Send ^a
+$<!c::Send ^c
+$<!v::Send ^v
+$<!x::Send ^x
+$<!z::Send ^z
 ;; alt-tab, shift-alt tab
-$!t::Send ^t
-$!+t::Send ^+t
-$!l::Send ^l
-$!f::Send ^f
-$!n::Send ^n
-$!r::Send ^r
-$!g::Send ^g
+$<!t::Send ^t
+$<!+t::Send ^+t
+$<!l::Send ^l
+$<!f::Send ^f
+$<!n::Send ^n
+$<!r::Send ^r
+$<!g::Send ^g
 
 ;; alt-w => ctrl-w
-$!w::Send ^w
+$<!w::Send ^w
 
 ;-------------------------------------------------------------------------
 ; Copy/Cut/Paste using Win key
@@ -278,6 +278,7 @@ Ctrl::Send {esc}    ; this works (on normal keyboard)
 ;         Send {Blind}{LCtrl Up}
 ; Return
 
+
 ;===========================================================================
 ; Space Cadet shift as parenthesis -- Shift only as ( )
 ; (200ms too fast?  changed to 400ms)
@@ -392,15 +393,18 @@ return
 ; #IfWinActive, ahk_class Chrome_WidgetWin_1
 #IfWinActive, ahk_exe chrome.exe
 ; Show Web Developer Tools with cmd + alt + i
-^!i::Send {F12}
+^<!i::Send {F12}
 ; Show source code with cmd + alt + u
 ;#^u::Send ^u ;howeer, cannot map #u?
 
 ; $^}::Send ^{Tab}
 ; $^{::Send ^+{Tab}
 
-$!}::Send ^{Tab}
-$!{::Send ^+{Tab}
+$<!}::Send ^{Tab}
+$<!{::Send ^+{Tab}
+
+; Disable ALT key in chrome, as it focuses on Menu button!!!
+Alt::return  
 
 ;=========================================================================
 ; Firefox
@@ -409,8 +413,8 @@ $!{::Send ^+{Tab}
 ; $^}::Send ^{Tab}
 ; $^{::Send ^+{Tab}
 
-$!}::Send ^{Tab}
-$!{::Send ^+{Tab}
+$<!}::Send ^{Tab}
+$<!{::Send ^+{Tab}
 
 ;=========================================================================
 ; Vim, GVim
@@ -444,9 +448,9 @@ $!{::Send ^+{Tab}
 
 
 ;; Use ALT+C/V/X
-$!c:: Send ^{Ins}
-$!v:: Send +{Ins}
-$!x:: Send +{Del}
+$<!c:: Send ^{Ins}
+$<!v:: Send +{Ins}
+$<!x:: Send +{Del}
 ; ; OLD ----
 ; ; better paste, works with terminal, but doesn't work with Explorer
 ; ; $!c:: Send {Ctrl Down}{Insert}{Ctrl Up}
@@ -463,8 +467,8 @@ $!x:: Send +{Del}
 ; SWITCH TAB
 ; this cannot be done in vimrc since {,[ cannot be mapped using ctrl
 ;; ALT+}, ALT+{
-$!}::Send {Esc}:tabn{Enter}
-$!{::Send {Esc}:tabp{Enter}
+$<!}::Send {Esc}:tabn{Enter}
+$<!{::Send {Esc}:tabp{Enter}
 ; using ctrl instead of ALT
 ; CTRL+}, CTRL+{
 ; $^}::Send {Esc}:tabn{Enter}
@@ -483,8 +487,8 @@ $!{::Send {Esc}:tabp{Enter}
 ; TEST
 ;#space::MsgBox "Pressed Win+Space in Mintty"
 
-$!c:: Send ^{Insert}
-$!v::Send +{Insert}
+$<!c:: Send ^{Insert}
+$<!v::Send +{Insert}
 ; there is no ^x/cut in mintty 
 ; $!x::Send +{Del}
 

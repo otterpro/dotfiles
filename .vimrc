@@ -505,6 +505,7 @@ vmap Q gq
 
 "Q: save all and quit, better than Q:Ex mode
 nnoremap Q :xa<cr>
+nnoremap <Leader>q :close<cr>
 
 " Capitalize the 1st letter of the line/sentence 
 " Current: <leader>u to capitalize OLD: use "uu" to capitalize, annoying -
@@ -605,6 +606,7 @@ vnoremap <leader>b :s/^/* /<cr>:noh<cr>
 " remove bullets
 vnoremap <leader>B :s/*//<cr>:noh<cr>
 " nnoremap <m-n> vip:s/^/* /<cr>
+
 
 " Display extra whitespace
 " MAYBE: move it to code-specific files, setlocal

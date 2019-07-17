@@ -358,6 +358,31 @@ return
 ;F12::SendInput {Volume_Up}
 
 ;===========================================================================
+; Test
+;===========================================================================
+; ::btw::
+; Send, by the way
+; return
+;
+; :*:lol::Laughing Out Loud
+;
+; :*?:]dd::  ; This hotstring replaces "]d" with the current date and time via the functions below.
+; ;SendInput FormatTime(, "M/d/yyyy h:mm tt")  ; It will look like 9/1/2005 3:53 PM
+;     FormatTime, TimeString, "M/d/yyyy h:mm tt" 
+;     Send, %TimeString%
+;     return
+;
+; :*:]dt::
+;     FormatTime, TimeString, , yyyy-MM-dd HH:mm
+;     Send, %TimeString%
+;     Return
+;
+; :*?:]t::
+;     FormatTime, TimeString, , HHmm
+;     Send, %TimeString%
+;     Return
+
+;===========================================================================
 ; App-specific
 ;===========================================================================
 ;-------------------------------------------------------------------------

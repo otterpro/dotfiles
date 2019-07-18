@@ -161,7 +161,8 @@ case "$OSTYPE" in
 				export HOMEBREW_NO_ANALYTICS=1
                 ;;      
         linux*) # linux-specific
-			#export VISUAL=gvim
+			export VISUAL=gvim
+			export EDITOR=vim
 				PROMPT_EMOJI='🐧 '  # emoji penguin
 				# PROMPT_EMOJI='%{$reset_color%}⚛ '
                 ;;

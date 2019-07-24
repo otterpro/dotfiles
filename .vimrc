@@ -1218,6 +1218,11 @@ nnoremap <C-g> :Rg
 "============== notational fzf vim ==================================
 " let g:nv_search_paths = ['~/notes','.']
 
+
+"============== Golden-ratio ==================================
+" Disable on quickfix, help, and ToC windows
+let g:golden_ratio_exclude_nonmodifiable = 1
+
 "================= settings that must override all ========================
 
 " Highlight matching braces { }, [ ], ( ), etc

@@ -176,6 +176,7 @@ alias ga='git add -A'
 alias gc='git commit -m' # requires you to type a commit message
 alias gac='git add -A && git commit -m' # requires you to type a commit message
 alias gp='git push'
+alias gd='git diff'
 
 # go to root git directory
 alias cdgit='builtin cd $(git rev-parse --show-toplevel)'

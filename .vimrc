@@ -442,6 +442,7 @@ nn <leader>, :noh<cr>
 " so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
 
+" ---------------- <C-space> ---------------------
 " remap <ctrl><space> to underscore, easier!!!
 " also it is same as <C-@>
 " disabled: not used, underscore is rarely used and easy reach for finger"
@@ -450,15 +451,29 @@ inoremap <C-U> <C-G>u<C-U>
 
 " remap <ctrl><space> to <c-o> insert
 " hard to remember <c-o> during insert mode"
-inoremap <C-space> <c-o>
+" inoremap <C-space> <c-o>
+
+" <ctrl><space> -> switch to next window
+nnoremap <C-space> <c-w>w
+inoremap <C-space> <esc><c-w>w
+" MAYBE: preserve insert mode
+" inoremap <C-space> <c-o><c-w>w
 
 " I want to use <C-d> but that is taken by indent"
 " disabled: instead use <C-space>dd above (which is <C-o>dd)"
 " inoremap <C-l> <C-o>dd
 
+" ------------- << , >> , indent <, >------------------------
 " remap << and >> to tab/untab in insert"
 inoremap << <C-D>
 inoremap >> <C-T>
+
+
+" when tabbing using > to indent, stay in visual mode. Normal behavior is to
+" get out of visual mode
+vn > >gv
+vn < <gv
+
 
 " semicolon to colon
 "  use ; as : to save keystrokes. ex: :w can be ;w
@@ -487,6 +502,7 @@ cnoremap qq <C-c>
 "     ME: decided to keep qq as quick temp macro
 "nnoremap qq <Nop>
 
+" ------------ up, down, left, right ------------------------
 " move vertically visual line, looks more natural when moving up/down. 
 " similar to ^n, ^
 nn j gj
@@ -542,11 +558,6 @@ nn <Leader>p <F2>
 " it's faster to :syntax sync minlines=500
 nnoremap <F5> <Esc>:syntax sync fromstart<CR>
 inoremap <F5> <C-o>:syntax sync fromstart<CR>
-
-" when tabbing using > to indent, stay in visual mode. Normal behavior is to
-" get out of visual mode
-vn > >gv
-vn < <gv
 
 " toggle word-wrap
 nmap <Leader>w :set wrap!<CR>
@@ -1106,7 +1117,8 @@ cnoreabbrev grep silent grep
 	" OR if not, load MRU using :CtrlPMRU as an alternative
 " nn ; :Ack! 
 " vn ; :Ack! 
-nnoremap <leader>; :Ack! 
+" nnoremap <leader>; :Ack! 
+nnoremap <leader>/ :Ack! 
 
 " ========= rg: ripgrep  ============="
 " rg for grep

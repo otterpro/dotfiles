@@ -165,7 +165,7 @@ case "$OSTYPE" in
                 ;;
 
         cygwin) # linux-specific
-				PROMPT_EMOJI='©'  # copyright symbol
+				PROMPT_EMOJI='©'  # copyright symbol to represent Cygwin
                 ;;
         *)      # all other OS
 				PROMPT_EMOJI='😜'	# emoji smiley tongue 

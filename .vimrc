@@ -92,6 +92,10 @@ set smartcase     " ignore case if search pattern is all lowercase,
 set smarttab      " insert tabs on the start of a line according to shiftwidth, not tabstop
 set autoindent		" always set autoindenting on
 "set smartindent	" disabled because it was not indenting # 
+
+" show hidden characters
+
+set listchars=tab:>.,trail:.,extends:#,nbsp:.
 "
 "
 "=============================================================================

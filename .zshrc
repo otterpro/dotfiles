@@ -218,6 +218,8 @@ unset GREP_OPTIONS
 autoload -U promptinit; promptinit
 # PURE_PROMPT_SYMBOL="$PROMPT_EMOJI ❯"
 PURE_PROMPT_SYMBOL="${PROMPT_EMOJI} $"
+# user-defined colors
+zstyle :prompt:pure:prompt:success color green
 prompt pure
 # optional additional prompt setting
 # PROMPT='%F{white}%* '$PROMPT

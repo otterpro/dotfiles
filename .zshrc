@@ -1,17 +1,18 @@
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
-
-# Setting for the new UTF-8 terminal support in Lion
+#=============== UTF-8 support ==========================
+# --- Setting for the new UTF-8 terminal support in Lion
 LC_CTYPE=en_US.UTF-8
 LC_ALL=en_US.UTF-8
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-#ZSH_THEME="robbyrussell"  <-- default theme
-ZSH_THEME="fishy"
+#================== OH-my-ZSH ===================================
 
+#------------------- OH-My-ZSH themes --------------------
+# --- Set name of the theme to load.
+# --- Look in ~/.oh-my-zsh/themes/
+# --- Optionally, if you set this to "random", it'll load a random theme each # time that oh-my-zsh is loaded.
+# --- ZSH_THEME="robbyrussell"  # <-- default theme
+# ZSH_THEME="fishy"    # my favorite
+
+#------------------- OH-My-ZSH options -------------------------
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -46,17 +47,20 @@ ZSH_THEME="fishy"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-source $ZSH/oh-my-zsh.sh
+# ------------ load Oh-My-ZSH here ------------------------------------
+# -- Path to your oh-my-zsh installation.
+# -- uncomment these two lines to enable Oh-my-zsh
+# export ZSH=$HOME/.oh-my-zsh
+# source $ZSH/oh-my-zsh.sh
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
+# ----------- oh-my-zsh plugins --------------------------------------
+# --- Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# --- Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# --- Add wisely, as too many plugins slow down shell startup.
+# --- plugins=(fasd)  #disabled for now due to cygwin's performance issue, using z for now
 plugins=(git z)
-# plugins=(fasd)  #disabled for now due to cygwin's performance issue, using z for now
 
-# User configuration
-
+#================ Shell configuration ========================================
 export TERM="xterm-256color"
 export EDITOR=vim
 export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -104,40 +108,35 @@ fi
 
 stty -ixon #turn-off XOFF, so that vim can use Ctrl-S. 
 
-# override fishy theme's prompt. Replace > with $
-#PROMPT='%n@%m %{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.>) '
-#%{$fg[red]%}]
-#%F{magenta}
-#OLD
-#PROMPT='%F{red}%[%n@%m] %{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.$) '
+# ============== MISC func =========================================
+# see http://msol.io/blog/tech/2014/03/10/work-more-efficiently-on-your-mac-for-developers/
+# function f() { find . -iname "*$1*" ${@:2} }
+#	f png   # finds all png files
 #
-#
-# default PROMPT just in case we don't use emoji
-# This will be overriden below in Mac, Linux.  
-PROMPT='[%{$fg[yellow]%}%n%{$fg[red]%}@%m%{$fg[white]%}] %{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.$) '
-# Note: it won't work if it is in multiple lines
+# function r() { grep "$1" ${@:2} -R . })}
+#	r xyz  # grep for xyz 
 
-#less.  -x4=tab 4space,R=ansi color, N=show line S=don't wrap text#
-# 
-# LESS="-x4NR"
-# LESSOPEN handles colorized less using pygment. Make sure .lessfilter is +x
+# ========================== less ==================================
+# -- less.  -x4=tab 4space,R=ansi color, N=show line S=don't wrap text#
+# -- LESS="-x4NR"
+# -- LESSOPEN handles colorized less using pygment. Make sure .lessfilter is +x
 export LESS="-x4R"
 export LESSOPEN='|~/.lessfilter.sh %s'
 
-# https://github.com/rupa/z.git
+# ============== z.sh ===============================================
+# -- https://github.com/rupa/z.git
 . ~/bin/z.sh
 
-# fasd - replacing z.sh for now
+# ============== fasd ===============================================
+# -- fasd - replacing z.sh for now, as it was too slow on cygwin
 # eval "$(fasd --init auto)"
-# see plugin above
 
-# virtualenv in tmux
+# ================== virtualenv in tmux ============================
 if [ -n "$VIRTUAL_ENV" ]; then
     . "$VIRTUAL_ENV/bin/activate"
 fi
 
-
-# OS Specific 
+# ============== OS Specific =======================================
 case "$OSTYPE" in
         darwin*) # mac-specific
                 # fix iTerm2 - show pwd in Tab
@@ -152,11 +151,7 @@ case "$OSTYPE" in
 				PROMPT_EMOJI=''
 				#PROMPT_EMOJI='%{$reset_color%}%F{white}%f' # unicode - apple logo
 				#PROMPT_EMOJI='🍎'  # emoji-red apple
-				#PROMPT="[%{$fg[yellow]%}%n🍎 $fg[red]%}%m%{$fg[white]%}] %{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.$) "
-				#PROMPT='[%{$fg[yellow]%}%n%{$fg[red]%}@%m%{$fg[white]%}] %{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.$) '
-				#PROMPT='[%{$fg[yellow]%}%n🍎 $fg[red]%}%m%{$fg[white]%}] %{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.$) '
 				# PROMPT='%F{white}%f' # unicode - apple logo
-				
 				# Opt out of Homebrew analytics
 				export HOMEBREW_NO_ANALYTICS=1
                 ;;      
@@ -171,26 +166,32 @@ case "$OSTYPE" in
                 ;;
 esac
 
-# with emoji smiley
-# [otter ottermbp] ~$  
-PROMPT='[%{$fg[yellow]%}%n${PROMPT_EMOJI} %{$fg[red]%}%m%{$fg[white]%}] %{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.$) '
+# ======================= oh-my-zsh PROMPT with emoji ===================
+# Longer version with emoji smiley
+	# [otter ottermbp] ~$  
+	# PROMPT='[%{$fg[yellow]%}%n${PROMPT_EMOJI} %{$fg[red]%}%m%{$fg[white]%}] %{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.$) '
 # shortened version [] ~$  , override above
-PROMPT='[%{$fg[yellow]%}%n${PROMPT_EMOJI}] %{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.$) '
+	# PROMPT='[%{$fg[yellow]%}%n${PROMPT_EMOJI}] %{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.$) '
 
+# OLD PROMPT -- default, in case no emoji
+# override fishy theme's prompt. Replace > with $
+	# default PROMPT just in case we don't use emoji
+	# Note: it won't work if it is in multiple lines
+# PROMPT='[%{$fg[yellow]%}%n%{$fg[red]%}@%m%{$fg[white]%}] %{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.$) '
+	# PROMPT='%n@%m %{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.>) '
+	# PROMPT='%F{red}%[%n@%m] %{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.$) '
+	#
+
+# ==================== DropBox ==========================
+# run app from dropbox from terminal
 export PATH="$PATH:/Volumes/Samsung128/Dropbox/app"
 
-# misc 
-# see http://msol.io/blog/tech/2014/03/10/work-more-efficiently-on-your-mac-for-developers/
-# function f() { find . -iname "*$1*" ${@:2} }
-#	f png   # finds all png files
-#
-# function r() { grep "$1" ${@:2} -R . })}
-#	r xyz  # grep for xyz 
-#RVM
+
+# ============== RVM =========================================
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
-#NVM
+# ============== NVM =========================================
 #export NVM_DIR="/Users/otter/.nvm"
 export NVM_DIR="$HOME/.nvm"   # modeled after RVM
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -199,4 +200,13 @@ export NVM_DIR="$HOME/.nvm"   # modeled after RVM
 # which is still in Oh-My-ZSH
 unset GREP_OPTIONS
 
+# ============== FZF =========================================
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# ============== Pure Prompt ==================================
+# Requires installing pure prompt first!!!
+# TODO: test to see if pure prompt is installed...
+autoload -U promptinit; promptinit
+PURE_PROMPT_SYMBOL="$PROMPT_EMOJI ❯"
+prompt pure
+

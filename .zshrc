@@ -140,6 +140,9 @@ export TERM="xterm-256color"
 export EDITOR=vim
 export VISUAL=gvim
 
+# must explicitly say emac style or it will use it based on $EDITOR 
+bindkey -e    # emac style
+
 # ============== OS Specific Settings ===================================
 case "$OSTYPE" in
         darwin*) # mac-specific

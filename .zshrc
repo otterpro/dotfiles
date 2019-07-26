@@ -213,6 +213,7 @@ unset GREP_OPTIONS
 # Requires installing pure prompt first!!!
 # TODO: test to see if pure prompt is installed...
 autoload -U promptinit; promptinit
-PURE_PROMPT_SYMBOL="$PROMPT_EMOJI ❯"
+# PURE_PROMPT_SYMBOL="$PROMPT_EMOJI ❯"
+PURE_PROMPT_SYMBOL="${PROMPT_EMOJI}$"
 prompt pure
 

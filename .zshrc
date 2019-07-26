@@ -214,6 +214,8 @@ unset GREP_OPTIONS
 # TODO: test to see if pure prompt is installed...
 autoload -U promptinit; promptinit
 # PURE_PROMPT_SYMBOL="$PROMPT_EMOJI ❯"
-PURE_PROMPT_SYMBOL="${PROMPT_EMOJI}$"
+PURE_PROMPT_SYMBOL="${PROMPT_EMOJI} $"
 prompt pure
+# optional additional prompt setting
+# PROMPT='%F{white}%* '$PROMPT
 

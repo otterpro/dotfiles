@@ -222,3 +222,6 @@ prompt pure
 # optional additional prompt setting
 # PROMPT='%F{white}%* '$PROMPT
 
+# Right side Prompt
+RPROMPT="%F{8}%n@%m%f"   # user@server
+

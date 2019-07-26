@@ -61,8 +61,6 @@ LC_ALL=en_US.UTF-8
 plugins=(git z)
 
 #================ Shell configuration ========================================
-export TERM="xterm-256color"
-export EDITOR=vim
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 # You may need to manually set your language environment
@@ -136,7 +134,13 @@ if [ -n "$VIRTUAL_ENV" ]; then
     . "$VIRTUAL_ENV/bin/activate"
 fi
 
-# ============== OS Specific =======================================
+
+# ============== Settings =======================================
+export TERM="xterm-256color"
+export EDITOR=vim
+export VISUAL=gvim
+
+# ============== OS Specific Settings ===================================
 case "$OSTYPE" in
         darwin*) # mac-specific
                 # fix iTerm2 - show pwd in Tab
@@ -156,10 +160,12 @@ case "$OSTYPE" in
 				export HOMEBREW_NO_ANALYTICS=1
                 ;;      
         linux*) # linux-specific
-			export VISUAL=gvim
-			export EDITOR=vim
 				PROMPT_EMOJI='🐧 '  # emoji penguin
 				# PROMPT_EMOJI='%{$reset_color%}⚛ '
+                ;;
+
+        cygwin) # linux-specific
+				PROMPT_EMOJI='©'  # copyright symbol
                 ;;
         *)      # all other OS
 				PROMPT_EMOJI='😜'	# emoji smiley tongue 

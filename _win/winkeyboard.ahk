@@ -304,27 +304,24 @@ return
 ;
 ;===========================================================================
 ; Alt-backtick , just like Mac
-; https://superuser.com/a/768060
+; my post:https://superuser.com/a/1465387/790554
+; Modified heavily from https://superuser.com/a/768060
 ;===========================================================================
-;^ESC::    ; Next window ; For Leopold keyboard only (ESC was mapped to ~)
-;#`::    ; Next window if using Win-backtick
 !`::    ; Next window if using alt-backtick
-; ^`::    ; Next window if using Ctrl-backtick (ME: LAlt -> RCTRL)
-    WinGetClass, ActiveClass, A
-    WinGet, WinClassCount, Count, ahk_class %ActiveClass%
-    IF WinClassCount = 1
+    ;#`::    ; Next window if using Win-backtick
+    ; ^`::    ; Next window if using Ctrl-backtick (ME: LAlt -> RCTRL)
+    WinGet, ExeName, ProcessName , A
+    WinGet, ExeCount, Count, ahk_exe %ExeName%
+    If ExeCount = 1
         Return
     Else
-    WinSet, Bottom,, A
-    WinActivate, ahk_class %ActiveClass%
+        WinSet, Bottom,, A
+        WinActivate, ahk_exe %ExeName%
 return
 
-; probably should not do this
-;^+ESC::    ; Last window; Leopold keyboard
-; #+`::    ;Win-shift+backtick
-^+`::    ; Next window if using Ctrl-shift+backtick
-    WinGetClass, ActiveClass, A
-    WinActivateBottom, ahk_class %ActiveClass%
+!+`::    ; prev window, Alt+shift+backtick
+    WinGet, ExeName, ProcessName , A
+    WinActivateBottom, ahk_exe %ExeName%
 return
 
 ;===========================================================================

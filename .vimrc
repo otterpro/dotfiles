@@ -21,7 +21,12 @@ set nomodeline  " turn-off modeline, which interpretes text file as vim setting
 "set modelines=1	" enable modeline, interprets last line /commented as vim setting
 " disable autobackup"
 set nobackup
-set noswapfile
+
+" swap
+"set noswapfile
+set swapfile		" enable swap, save"
+set directory^=~/.vim/.swap//
+
 set autowrite	    " saves before changing to another buffer
 					" enabled on 2/2018, not sure how it will work
 "set autowriteall    " saves all buffer before quit,new,etc

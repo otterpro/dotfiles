@@ -12,6 +12,18 @@ if v:progname =~? "evim"
 endif
 
 "=============================================================================
+" platform-based
+"=============================================================================
+" get .vim/ path
+" this is mostly correct
+	" let s:vimdir = split(&rtp,",")[0]
+" this is awkward but more reliable?
+" let g:vimdir = "~/.vim"
+" if (has("win32") || has("win64") )
+" 	let g:vimdir = "~/vimfiles"
+" endif
+
+"=============================================================================
 " Global setting
 "=============================================================================
 " Use Vim settings, rather than Vi settings (much better!).
@@ -19,32 +31,60 @@ endif
 set nocompatible
 set nomodeline  " turn-off modeline, which interpretes text file as vim setting
 "set modelines=1	" enable modeline, interprets last line /commented as vim setting
-" disable autobackup"
-set nobackup
 
-" swap
-"set noswapfile
-set swapfile		" enable swap, save"
-
-" create swap dir if it doesn't exist
-if !isdirectory($HOME . "/.vim/.swap")
-	call mkdir($HOME . "/.vim/.swap", "p")
-endif
-set directory^=~/.vim/.swap//
-
-
-set autowrite	    " saves before changing to another buffer
-					" enabled on 2/2018, not sure how it will work
-"set autowriteall    " saves all buffer before quit,new,etc
-"set hidden		"open new file without having to save current file
+" regex engine
+"set regexpengine=1 " 1=use old regex engine, supports everything - faster in some cases"
 
 set fileformats=unix,dos "wanted to make sure it's only UNIX, and not DOS format
 					" unix = LF, DOS= CRLF
 					" by default, uses unix to read/write
 					" but also detects dos 
 
+" ---- save options -----------------------------------
+set autowrite	    " saves before changing to another buffer
+					" enabled on 2/2018, not sure how it will work
+"set autowriteall    " saves all buffer before quit,new,etc
+"set hidden		"open new file without having to save current file
 
-"set regexpengine=1 " 1=use old regex engine, supports everything - faster in some cases"
+
+" ----------- swap -------------------------------
+"set noswapfile
+set swapfile		" enable swap, save"
+
+" create swap dir if it doesn't exist
+" however, no longer needed as dir was added permanently in git
+" if !isdirectory($HOME . "/.vim/.swap")
+" 	call mkdir($HOME . "/.vim/.swap", "p")
+" endif
+
+" set directory where .swp files are saved temporarily
+" remove . path from directory, so it doesn't save *.swp into current dir
+set directory-=.
+" add .swap// to directory, consolidate where .swp gets saved, better than /tmp
+if (has("win32") || has("win64")) 
+	" create dir (only in Win) since it uses vimfiles, not .vim, and don't wnant to symlink for both!
+	if !isdirectory($HOME . "/vimfiles/.swap")
+		call mkdir($HOME . "/vimfiles/.swap", "p")
+	endif
+	set directory^=~/vimfiles/.swap//
+else
+	set directory^=~/.vim/.swap//
+endif
+
+" ----------- backup -------------------------------
+" backup: when saving file, it creates a backup for safety, filename starts with ~
+set writebackup
+" disable autobackup, don't persist writebackup"
+set nobackup
+" directory for backup files
+" however, not consolidated into single dir for now... perhaps in the future
+"set backupdir^=~/.vim/.backup//
+
+"set directory^=get(g:, 'vimdir', "default")
+"set directory^=g:vimdir 
+" set directory=g:vimdir 
+"let g:test1=g:vimdir
+
 
 "=============================================================================
 " Default Setting
@@ -179,19 +219,6 @@ set diffopt+=vertical
 
 " `gf`: also find file with this file extension, if file extension is not set
 set suffixesadd=.md
-
-"=============================================================================
-" platform-based
-"=============================================================================
-" get .vim/ path
-" this is mostly correct
-	" let s:dotvimpath = split(&rtp,",")[0]
-" this is awkward but more reliable?
-" if has("win32") || has("win64") 
-" 	let s:dotvimpath = "~/vimfiles"
-" else
-" 	let s:dotvimpath = "~/.vim"
-" endif
 
 
 "=============================================================================

@@ -25,7 +25,13 @@ set nobackup
 " swap
 "set noswapfile
 set swapfile		" enable swap, save"
+
+" create swap dir if it doesn't exist
+if !isdirectory($HOME . "/.vim/.swap")
+	call mkdir($HOME . "/.vim/.swap", "p")
+endif
 set directory^=~/.vim/.swap//
+
 
 set autowrite	    " saves before changing to another buffer
 					" enabled on 2/2018, not sure how it will work

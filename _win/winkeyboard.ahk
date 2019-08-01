@@ -469,10 +469,14 @@ $<!{::Send ^+{Tab}
 ; ; TODO: when I get a new programmable keyboard, try again
 
 
-;; Use ALT+C/V/X
+;; --- Use ALT+C/V/X
+;; This may not be necessary if vimrc `behave mswin` is enabled. 
+;; however, vim's behave mswin isn't working, so ...
+;; also I want to use ALT instead of CTRL
 $<!c:: Send ^{Ins}
 $<!v:: Send +{Ins}
 $<!x:: Send +{Del}
+
 ; ; OLD ----
 ; ; better paste, works with terminal, but doesn't work with Explorer
 ; ; $!c:: Send {Ctrl Down}{Insert}{Ctrl Up}

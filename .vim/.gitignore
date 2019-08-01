@@ -2,4 +2,4 @@
 .VimballRecord
 bundle/**
 plugged/**
-.swap/**
+.swap/*.swp

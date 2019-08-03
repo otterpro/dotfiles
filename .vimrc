@@ -375,6 +375,8 @@ Plug 'xolox/vim-colorscheme-switcher' "quickly switch colorscheme with F8,sF8
 " smooth scroll
 Plug 'terryma/vim-smooth-scroll'
 
+" Plug 'yuttie/comfortable-motion.vim'
+
 " Undotree (Vim 7.0+)
 Plug 'mbbill/undotree'
 " considering replacing it with Gundo, wc requires Python
@@ -553,10 +555,15 @@ nn k gk
 " ctrl-J and ctrl-K as page down/up
 " NOTE: <C-J> is also mapped to other pluggins in insert/ select mode/ NERDTREE, etc
 " Also on other system, I use 10j, 10k instead, moving only certain # of lines
-nn <C-J> <C-d>
-nn <C-K> <C-u>
-vn <C-J> <C-d>
-vn <C-K> <C-u>
+" nn <C-J> <C-d>
+" nn <C-K> <C-u>
+" vn <C-J> <C-d>
+" vn <C-K> <C-u>
+
+nn <C-J> :call smooth_scroll#down(&scroll, 0, 10)<CR>
+vn <C-J> :call smooth_scroll#down(&scroll, 0, 10)<CR>
+nn <C-K> :call smooth_scroll#up(&scroll, 0, 10)<CR>
+vn <C-K> :call smooth_scroll#up(&scroll, 0, 10)<CR>
 
 " <c-j>, <c-k> moves cursor up/down a line while in insert"
 inoremap <C-J> <down>
@@ -1223,15 +1230,13 @@ endfun
 "================= vim-smooth-scroll ========================
 " I may get rid of it... not as useful...
 " remap <c-b>,<c-f> vim scroll to plugin's smooth-scroll 
-"noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 10, 4)<CR>
-"noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 10, 4)<CR>
+"noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
+"noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
+" noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
+" noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
 
-noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
-noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
+"================= comfortable motion========================
 
-" noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
-" noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
-"
 "================= quick-scope ========================
 " Trigger a highlight in the appropriate direction when pressing these keys:
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']

@@ -557,13 +557,14 @@ nn k gk
 " Also on other system, I use 10j, 10k instead, moving only certain # of lines
 " nn <C-J> <C-d>
 " nn <C-K> <C-u>
-" vn <C-J> <C-d>
-" vn <C-K> <C-u>
+vn <C-J> <C-d>
+vn <C-K> <C-u>
 
 nn <C-J> :call smooth_scroll#down(&scroll, 0, 10)<CR>
-vn <C-J> :call smooth_scroll#down(&scroll, 0, 10)<CR>
 nn <C-K> :call smooth_scroll#up(&scroll, 0, 10)<CR>
-vn <C-K> :call smooth_scroll#up(&scroll, 0, 10)<CR>
+" smooth scroll doesn't work in visual mode
+" vn <C-J> :call smooth_scroll#down(&scroll, 0, 10)<CR>
+" vn <C-K> :call smooth_scroll#up(&scroll, 0, 10)<CR>
 
 " <c-j>, <c-k> moves cursor up/down a line while in insert"
 inoremap <C-J> <down>

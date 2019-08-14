@@ -267,44 +267,60 @@ Plug 'jlanzarotta/bufexplorer'
 "-----------------------------------------------------------------
 "coding & auto-completion
 "-----------------------------------------------------------------
-"coding & auto-completion
 "Plug 'sheerun/vim-polyglot'		" loads 70+ languages , disabled its markdown because it was causing slow loading of big files
-Plug 'fatih/vim-go'				" loads full version. polyglot only gets highlight?
-Plug 'PProvost/vim-ps1'			"powershell syntax
 Plug 'tpope/vim-repeat'
+
+" HTML-related
 Plug 'docunext/closetag.vim'  "closes html tag"
 "Plug 'townk/vim-autoclose'    " close (,{, ... (Not tested yet)
-
 Plug 'Raimondi/delimitMate'  "closes < >, (), [], {}
 " Temporarily disabled, until I can selectively close delimiters"
 Plug 'valloric/MatchTagAlways'  "HTML tag is highlighted, requires python
-
-Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-surround'  "add surrounding brackets,quotes,tags"
 
-Plug 'airblade/vim-gitgutter' " Temp disabled for perf check? so far, not too bad
+" COMMENT-related
+Plug 'tomtom/tcomment_vim'
 
-Plug 'majutsushi/tagbar'
+" GIT-related
+Plug 'airblade/vim-gitgutter' " Temp disabled for perf check? so far, not too bad
 Plug 'tpope/vim-fugitive'
 
+Plug 'majutsushi/tagbar'
+
+" .editorconfig
+Plug 'editorconfig/editorconfig-vim'
+
+" prettify/beautify related for js, html, css, etc
 Plug 'prettier/vim-prettier'  "Prettier for Javascript
+Plug 'maksimr/vim-jsbeautify'
 
 Plug 'scrooloose/syntastic'	"syntax checker engine
+
+" language-specific
 Plug 'nvie/vim-flake8'		" python syntax checker
 Plug 'tmhedberg/SimpylFold'	" python folding
+Plug 'fatih/vim-go'				" loads full version. polyglot only gets highlight?
+Plug 'PProvost/vim-ps1'			"powershell syntax
+
 Plug 'nathanaelkane/vim-indent-guides'   " show indent guidelines
+
 Plug 'ervandew/supertab'
 " Plug 'Shougo/neocomplete.vim'
 "Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 " Plug 'davidhalter/jedi-vim'
 "
 Plug 'AndrewRadev/inline_edit.vim'  " inline code editing"
+	" works only for ~~~, not useful for short snippet
 
+"-----------------------------------------------------------------
+" search, grep, ...
+"-----------------------------------------------------------------
 "Plug 'rking/ag.vim.git'	"silver searcher
 " according to maintainer, it is deprecated due to licensing
 " instead, use ack.vim to run ag.vim (as recommended)
 Plug 'mileszs/ack.vim'
 " :Ack works only if ack program exists, even if the engine is switched to rg
+
 
 "-----------------------------------------------------------------
 "Markdown 

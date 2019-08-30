@@ -101,6 +101,7 @@ Pause::Suspend
 ;-------------------------------------------------------------------------
 ; ALT keys replacing Control key
 ; Copy/Cut/Paste using ALT key -- note: causes problem with console, where ALT keys are intercepted???
+; also Problem with EMACS
 ;-------------------------------------------------------------------------
 $<!a::Send ^a
 $<!c::Send ^c
@@ -522,6 +523,24 @@ $<!v::Send +{Insert}
 ; Currently hotkey not needed, and using Wox (front-end to Everything) instead
 ; hotkey for Everything (currently set to Win+Shift+F)
 ; RCtrl & space::Send #F
+
+
+;=========================================================================
+; Emacs
+;-------------------------------------------------------------------------
+#IfWinActive ahk_class Emacs
+$<!a::Send !a
+$<!c::Send !c
+$<!v::Send !v
+$<!x::Send !x
+$<!z::Send !z
+$<!t::Send !t
+$<!l::Send !l
+$<!f::Send !f
+$<!n::Send !n
+$<!r::Send !r
+$<!g::Send !g
+$<!w::Send !w
 
 ;=========================================================================
 ; ConEmu

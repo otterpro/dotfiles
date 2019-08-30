@@ -1133,7 +1133,10 @@ let NERDTreeIgnore=['\~$', '^\.pyc','^\.git', '\.swp$', '\.DS_Store$']
 let NERDTreeShowHidden=1
 "nmap <LocalLeader>nn :NERDTreeToggle<cr>
 " added % at end of NERDTreeToggle so that it opens cwd(?) and not old dir
-nn <Leader>e :NERDTreeToggle %<cr>
+	" however,  with %, it fails on empty / new file
+" nn <Leader>e :NERDTreeToggle %<cr>
+nn <Leader>e :NERDTreeToggle<cr>
+
 "nn <C-e> :NERDTreeToggle %<cr>
 "vn <C-e> :NERDTreeToggle %<cr>
 "ino <C-e> <ESC>:NERDTreeToggle %<cr>

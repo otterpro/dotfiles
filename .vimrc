@@ -666,7 +666,7 @@ vn <Leader>d :g/^\s*$/d<CR>
 nnoremap <Leader>t :TagbarToggle<CR>
 
 " <C-t> opens new tab instead of indent and 
-inoremap <C-t> :tabnew<CR>
+inoremap <C-t> <esc>:tabnew<CR>
 nnoremap <C-t> :tabnew<CR>
 
 

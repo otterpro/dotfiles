@@ -13,11 +13,12 @@ snippet -- "header"
 endsnippet
 
 # date
-# Unix/Mac: Today:`date +%Y-%m-%d`
-# Win: date /T
-# instead, use vimscript
+# Unix/Mac only: Today:`date +%Y-%m-%d`
+# Win only: date /T
+# instead, use vimscript (works everywhere)
+# `!v strftime('%Y-%m-%d')`
 snippet today
-`!v strftime('%Y-%m-%d')`
+`!v strftime('%Y-%m-%d (%a)')`
 endsnippet
 
 # https://castel.dev/post/lecture-notes-1/

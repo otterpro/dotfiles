@@ -71,6 +71,15 @@ else
 	set directory^=~/.vim/.swap//
 endif
 
+"--------- set windows size for win (as they are too small) ----------------
+if ( (has("win32") || has("win64")) && has("gui_running"))
+	" GUI is running or is about to start.
+  " Maximize gvim window.
+  " set lines=999 columns=999
+  
+	set lines=120 columns=140
+endif
+
 " ----------- backup -------------------------------
 " backup: when saving file, it creates a backup for safety, filename starts with ~
 set writebackup
@@ -827,6 +836,9 @@ if has("autocmd") " Only do this part when compiled with support for autocommand
 	autocmd filetype markdown iab <buffer> ---v ↓
 	autocmd filetype markdown iab <buffer> euro €
 	autocmd filetype markdown iab <buffer> degree °
+
+	" this doesn't work as autocmd, may need to put it in ft markdown.vim instead
+	" autocmd filetype markdown iab <expr> today2 strftime("%c")
 	
 	" no longer needed? (was for TPope's md plugin)
     "autocmd BufNewFile,BufReadPost *.md set filetype=markdown
@@ -1222,6 +1234,7 @@ if executable('ag')
 		"		but will go back to AG if ok
 		"		if windows version won't work on Mac, change back to this or use
 		"TODO: change to rg?
+	
 	  let g:ctrlp_user_command = 'ag -l --nocolor -g "" %s'
 	  " ag is not fast enough in Windows
 	  " let g:ctrlp_use_caching = 0

@@ -168,7 +168,8 @@ $>^+G::Send {Shift Down}{F3}{Shift Up}
 ; Alt+F4  OR Alt+Space C
 ;$>^q::Send !{f4}
 ;$!w::Send !{f4}
-#q::Send !{f4}
+;#q::Send !{f4}
+$<!q::Send !{f4}
 ;$!q::Send {Alt Down}{F4}{Alt Up} ; doesn't work. use send !{f4}
 
 ; this could also be Ctrl+F4, but not sure which one is more compatible

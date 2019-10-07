@@ -20,6 +20,7 @@ elseif has("gui_win32")
 	" set guifont=DejaVu\ Sans\ Mono:h11
 	"set guifont=Inconsolata:h12
 	set guifont=Fantasque\ Sans\ Mono:h12
+	" set guifont=Cascadia\ Code:h12
 elseif has("gui_gtk2")
     set guifont=Inconsolata\ 12
 elseif has("gui_gtk3")

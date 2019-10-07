@@ -104,10 +104,20 @@ Pause::Suspend
 ; also Problem with EMACS
 ;-------------------------------------------------------------------------
 $<!a::Send ^a
+
+; alt+c,x,v doesn't work in notepad, but works in 
 $<!c::Send ^c
 $<!v::Send ^v
 $<!x::Send ^x
+
+; possibly, instead use alt, but this fails in File Explorer
+; $<!c:: Send ^{Ins}
+; $<!v:: Send +{Ins}
+; $<!x:: Send +{Del}
+
 $<!z::Send ^z
+; todo: isntead use alt+backspace
+
 ;; alt-tab, shift-alt tab
 $<!t::Send ^t
 $<!+t::Send ^+t

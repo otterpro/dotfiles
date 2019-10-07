@@ -51,7 +51,7 @@ then
 	# ln -sf `pwd`/.dotfiles/VSCode/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json
 	# ln -sf `pwd`/.dotfiles/VSCode/snippets/ ~/Library/Application\ Support/Code/User/snippets
 
-elif [[ "$OSTYPE" == "linux-gnu" ]]; then
+elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
     export OS="linux"
 	chsh -s $(which zsh)
 elif [[ "$OSTYPE" == "cygwin" ]]; then

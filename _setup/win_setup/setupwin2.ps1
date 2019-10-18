@@ -81,9 +81,13 @@ if (!($env:ChocolateyInstall)) {  #if choco is not installed
     choco install ripgrep -y
     choco install ag -y
     choco install fzf -y
-    choco install greenshot -y
+
     # utils
     choco install bginfo -y
+
+    # copyq is ok, could try another such as clipboardic or clcl
+    choco install copyq -y
+    choco install greenshot -y
     # broken?
     # choco install teracopy -y
 

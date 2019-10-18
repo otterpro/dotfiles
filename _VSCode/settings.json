@@ -102,6 +102,7 @@
             // nmap \\  ysiW'
             "before": ["'","'"],
             "after": ["y","s","i","W","'"]
+            // this is not enabled because of bookmarks.jumpToNext (see below)
 		},
 		// leader-leader (open )
         {
@@ -126,7 +127,21 @@
             "before": ["leader","o"],
             "commands": [ "outline.focus"]
                 //" workbench.action.showCommands", ]
-		},
+        },
+        // bookkmarks plugin, "m" -> toggle bookmark
+        // {
+        //     "before": ["m"],
+        //     "commands": [ "bookmarks.toggle" ]
+		// },
+        // {
+        //     "before": ["'"],
+        //     "commands": [ "bookmarks.jumpToNext" ]
+        //     // unfortunately, this overrides above quote shortcut
+		// },
+        // {
+        //     "before": [":mark"],
+        //     "commands": [ "bookmarks.list" ]
+		// },
 		 
     ],
 "vim.insertModeKeyBindingsNonRecursive": [

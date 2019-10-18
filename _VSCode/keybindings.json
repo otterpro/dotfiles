@@ -1,25 +1,25 @@
 // Place your key bindings in this file to overwrite the defaults
 [
+    // {
+    //     "key": "alt+shift+]",
+    //     "command": "-editor.unfold",
+    //     "when": "editorTextFocus"
+    // },
     {
-        "key": "ctrl+shift+]",
-        "command": "-editor.unfold",
-        "when": "editorTextFocus"
-    },
-    {
-        "key": "ctrl+shift+]",
+        "key": "alt+shift+]",
         "command": "workbench.action.nextEditor"
     },
     {
         "key": "ctrl+pagedown",
         "command": "-workbench.action.nextEditor"
     },
+    // {
+    //     "key": "alt+shift+[",
+    //     "command": "-editor.fold",
+    //     "when": "editorTextFocus"
+    // },
     {
-        "key": "ctrl+shift+[",
-        "command": "-editor.fold",
-        "when": "editorTextFocus"
-    },
-    {
-        "key": "ctrl+shift+[",
+        "key": "alt+shift+[",
         "command": "workbench.action.previousEditor"
     },
     {

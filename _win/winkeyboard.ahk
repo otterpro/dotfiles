@@ -119,17 +119,20 @@ $<!z::Send ^z
 ; todo: isntead use alt+backspace
 
 ;; alt-tab, shift-alt tab
-$<!t::Send ^t
-$<!+t::Send ^+t
-$<!l::Send ^l
+
+; $<!`::Send ^`
+$<!b::Send ^b
 $<!f::Send ^f
+$<!g::Send ^g
+$<!i::Send ^i
+$<!l::Send ^l
 $<!n::Send ^n
 $<!r::Send ^r
-$<!g::Send ^g
-
-;; alt-w => ctrl-w
+$<!t::Send ^t
+$<!+t::Send ^+t
 $<!w::Send ^w
 
+;; alt-w => ctrl-w
 ;-------------------------------------------------------------------------
 ; Copy/Cut/Paste using Win key
 ;
@@ -507,6 +510,7 @@ $<!x:: Send +{Del}
 ;; ALT+}, ALT+{
 $<!}::Send {Esc}:tabn{Enter}
 $<!{::Send {Esc}:tabp{Enter}
+
 ; using ctrl instead of ALT
 ; CTRL+}, CTRL+{
 ; $^}::Send {Esc}:tabn{Enter}

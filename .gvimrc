@@ -18,9 +18,12 @@ elseif has("gui_win32")
 	" set guifont=Lucida\ Sans\ Typewriter:h12
 	" (DejaVu Sans: supports unicode symbols)
 	" set guifont=DejaVu\ Sans\ Mono:h11
-	"set guifont=Inconsolata:h12
-	set guifont=Fantasque\ Sans\ Mono:h12
+	" set guifont=Inconsolata:h12
+	" set guifont=Fantasque\ Sans\ Mono:h12
 	" set guifont=Cascadia\ Code:h12
+	" set guifont=IosevkaCC:h12
+	" set guifont=Iosevka:h12
+	set guifont=sudo:h14
 elseif has("gui_gtk2")
     set guifont=Inconsolata\ 12
 elseif has("gui_gtk3")

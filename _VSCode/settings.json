@@ -176,8 +176,8 @@
 	"workbench.statusBar.feedback.visible": false,
 	"editor.renderControlCharacters": true,
     "editor.renderWhitespace": "none",
-    "workbench.colorTheme": "Cobalt2",
     "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
     "workbench.iconTheme": "material-icon-theme",
     "sync.forceUpload": true,
+    "workbench.colorTheme": "Material Theme Darker High Contrast",
 }

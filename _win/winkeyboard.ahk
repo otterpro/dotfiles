@@ -105,18 +105,19 @@ Pause::Suspend
 ;-------------------------------------------------------------------------
 $<!a::Send ^a
 
-; alt+c,x,v doesn't work in notepad, but works in 
+; alt+c,x,v doesn't work in some app (notepad, visual studio CE), but works in others?
 $<!c::Send ^c
 $<!v::Send ^v
 $<!x::Send ^x
+
+$<!z::Send ^z
+; todo: isntead use alt+backspace
 
 ; possibly, instead use alt, but this fails in File Explorer
 ; $<!c:: Send ^{Ins}
 ; $<!v:: Send +{Ins}
 ; $<!x:: Send +{Del}
 
-$<!z::Send ^z
-; todo: isntead use alt+backspace
 
 ;; alt-tab, shift-alt tab
 

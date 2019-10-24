@@ -7,10 +7,21 @@
 
 " fonts
 " set guifont=NanumGothicCoding:h16
-" set guifont=Ubuntu\ Mono:h16
 " set guifont=Fantasque\ Sans\ Mono:h12
 if has("gui_macvim")
 	set guifont=Fantasque\ Sans\ Mono:h18
+	" set guifont=Menlo:h16
+	" set guifont=D2Coding:h16
+	" set guifont=Code\ New\ Roman:h16
+	" set guifont=Input\ Mono:h16
+	" set guifont=Liberation\ Mono:h16
+	" set guifont=Monoid\ Tight:h16
+	" set guifont=DejaVu\ Sans\ Mono:h16
+	" set guifont=mononoki:h16
+	" set guifont=source\ code\ pro:h16
+	" set guifont=Ubuntu\ Mono:h18
+	" set guifont=Bitstream\ Vera\ Sans\ Mono:h16
+	" set guifont=Cascadia\ Code:h16
 elseif has("gui_win32")
 	"set guifont=Consolas:h12:cANSI
 	" set guifont=Consolas:h12

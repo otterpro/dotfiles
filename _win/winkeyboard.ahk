@@ -569,18 +569,23 @@ $<!w::Send !w
 ;-------------------------------------------------------------------------
 #IfWinActive ahk_class VirtualConsoleClass
 $!q::Send #{f4}
-; $^}::send
-; $^{::send #q
-;;Won't work because #q is reserved.
-; only works one direction for now...
+; next/prev tab
 ; $!}::Send ^+{Tab}
 ; $!{::Send ^+{Tab}
+; $^}::Send ^+{Tab}
+; $^{::Send ^{Tab}
+$<!{::Send ^{Tab}
 
 ; ctrl+shift+tab
 ; was disabled: was using conemu's own hotkey instead of autohotkey
 ; not perfect, but better than nothing
-$^}::Send ^+{Tab}
-$^{::Send ^{Tab}
+$<!}::Send ^+{Tab}
+
+; old
+; $^}::send
+; $^{::send #q
+;;Won't work because #q is reserved.
+; only works one direction for now...
 
 #IfWinActive
 ; End app-specific code here

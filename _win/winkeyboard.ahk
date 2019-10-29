@@ -559,6 +559,16 @@ $<!g::Send !g
 $<!w::Send !w
 
 ;=========================================================================
+; Visual Studio
+;-------------------------------------------------------------------------
+#IfWinActive ahk_exe devenv.exe
+
+;Next/Prev tab: `ctrl+alt+pageup`, `ctrl+alt+pagedown`
+
+$<!}::Send ^!{PgDn}
+$<!{::Send ^!{PgUp}
+
+;=========================================================================
 ; ConEmu
 ; Better to set hotkey in ConEmu setting
 ; change switch-next-Console, console-prev to ctrl-shift [,]

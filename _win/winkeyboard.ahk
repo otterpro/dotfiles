@@ -230,10 +230,13 @@ RCtrl & down::Send ^{end}
 ; move through desktop spaces
 ;RCtrl & Tab::send #A
 
-; weird, works with right ctrl, but not left
-; needed only if Winkey is replaced with ctrl
-; $>^]::^#Right
-; $>^[::^#Left
+; Alt+win+left/right
+; Note: if you need to repeat this action, you need to release the key and press again
+; unlike default Win+ctrl+arrow, where you can just hold down key to continue 
+; todo: use {blind} ... but not sure how to do it...
+$!#right::Send ^#{Right}
+$!#left::Send ^#{Left}
+
 
 ;===========================================================================
 ; Remap Caps Lock in Windows (escape *and* control) https://superuser.com/a/581988

@@ -85,6 +85,11 @@ if (!($env:ChocolateyInstall)) {  #if choco is not installed
     # utils
     choco install bginfo -y
 
+    # file size
+    choco install wiztree -y
+    choco install spacesniffer -y
+    choco install treesizefree -y
+
     # copyq is ok, could try another such as clipboardic or clcl
     choco install copyq -y
     choco install greenshot -y

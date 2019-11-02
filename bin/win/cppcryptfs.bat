@@ -10,7 +10,7 @@ timeout /t 1 >nul
 @rem ====================================================
 
 @rem cppcryptfs.exe --mount=o:\HD0\_he0 --drive=k  --saved-password --tray  --exit
-cppcryptfs.exe --mount=o:\HD0\_he0 --mount=o:\HE0  --saved-password --tray  --exit
+cppcryptfs --mount=o:\hd0\_he0 -P --drive=c:\_mount\he0 --tray --exit
 
 @rem ====================================================
 @rem Mount drive V:

@@ -9,6 +9,6 @@ date "+%Y-%m-%d:%H:%M:%S"
 # 	rsync -av --del /cygdrive/o/TM0.sparsebundle/ /cygdrive/p/TM0.sparsebundle
 # fi
 
-if [ -d /cygdrive/o/hd0 ] && [ -d /cygdrive/p ] ; then
-	rsync -av --del /cygdrive/o/hd0/ /cygdrive/p/hd0
+if [ -d /cygdrive/n ] && [ -d /cygdrive/q ] ; then
+	rsync -av --del /cygdrive/n/1/ /cygdrive/q/1
 fi

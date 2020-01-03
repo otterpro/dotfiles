@@ -1,4 +1,5 @@
 .config/*
+.config/karabiner/automatic_backups/*
 !.config/karabiner/
 !.config/nvim/
 

@@ -1,6 +1,6 @@
 #!/bin/sh
 echo "======================"
-echo "HD0: "
+echo ": "
 # echo "HD0(TM0.sparsebundle): "
 date "+%Y-%m-%d:%H:%M:%S"
 
@@ -9,6 +9,6 @@ date "+%Y-%m-%d:%H:%M:%S"
 # 	rsync -av --del /cygdrive/o/TM0.sparsebundle/ /cygdrive/p/TM0.sparsebundle
 # fi
 
-if [ -d /cygdrive/n ] && [ -d /cygdrive/q ] ; then
-	rsync -av --del /cygdrive/n/1/ /cygdrive/q/1
+if [ -d /cygdrive/m/10b1 ] && [ -d /cygdrive/t ] ; then
+	rsync -av --del /cygdrive/m/10b1/ /cygdrive/t/10b2
 fi

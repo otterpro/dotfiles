@@ -245,3 +245,5 @@ prompt pure
 # Right side Prompt
 RPROMPT="%F{8}%n@%m%f"   # user@server
 # zprof
+
+source /Users/otter/Library/Preferences/org.dystroy.broot/launcher/bash/br

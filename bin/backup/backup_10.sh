@@ -15,6 +15,7 @@ if [ -d /Volumes/10 ] && [ -d /Users/otter/Documents/doc.sparsebundle ] ; then
 	--exclude .Spotlight-*/ \
 	--exclude .TemporaryItems \
 	--exclude .DS_Store \
+	--exclude .fseventsd \
 	/Users/otter/Documents/doc.sparsebundle/ /Volumes/10/doc_backup/doc.sparsebundle 
 fi
 # copies HDD "10" to WD4T
@@ -25,6 +26,7 @@ if [ -d /Volumes/WD4T/10b1 ] && [ -d /Volumes/10 ] ; then
 	--exclude .Spotlight-*/ \
 	--exclude .TemporaryItems \
 	--exclude .DS_Store \
+	--exclude .fseventsd \
 	/Volumes/10/ /Volumes/WD4T/10b1 
 fi
 # if [ -d /Volumes/WD4T/HD0 ] && [ -d /Users/otter/Documents/doc.sparsebundle ] ; then

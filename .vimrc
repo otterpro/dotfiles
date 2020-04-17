@@ -661,9 +661,12 @@ nn <Leader><Leader> <c-^>
 " highlighted text - remove all empty lines
 " vn <Leader>d :g/^$/d<CR>
 " but also delete lines that have whitespace only
-vn <Leader>d :g/^\s*$/d<CR>
+" gv = re-select highlighted text
+vn <Leader>d :g/^\s*$/d<CR>gv
 
-"
+" convert to > and stay selected in visual mode"
+vnoremap <leader>c :s/^/> /<cr>:noh<cr>gv
+
 " go to buffer quickly
 " control-] overrides tag lookup
 " control-[ overrides esc/etc, but doesn't work. cannot override esc

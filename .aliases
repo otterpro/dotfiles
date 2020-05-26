@@ -15,6 +15,13 @@ if [[ "${OSTYPE}" == "linux"* ]] || [[ $OSTYPE == cygwin ]]; then
 
 # MAC OSX/BSD
 elif [[ "${OSTYPE}" == "darwin"* ]]; then 
+
+	# alias flush='dscacheutil -flushcache'
+	
+	# browser
+	#alias browse="open -a /Applications/Google\ Chrome.app"
+	#alias google="browse https://google.com"
+
 	# Open current OSX Finder directory in Terminal:
 	# faster than dragging from finder to terminal
 	cdf () {

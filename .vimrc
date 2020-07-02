@@ -675,7 +675,10 @@ vnoremap <leader>c :s/^/> /<cr>:noh<cr>gv
 " TODO: :b# as well
 
 " Tagbar
-nnoremap <Leader>t :TagbarToggle<CR>
+" nnoremap <Leader>t :TagbarToggle<CR>
+" ToC for markdown
+"     TODO: do this only in markdown, and also move to text buffer, not Toc 
+nnoremap <Leader>t :only<CR>:Toc<CR>
 
 " <C-t> opens new tab instead of indent and 
 inoremap <C-t> <esc>:tabnew<CR>

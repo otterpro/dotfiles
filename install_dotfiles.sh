@@ -41,13 +41,18 @@ cd $(dirname $0) ; pwd -P
 if [[ "$OSTYPE" =~ "darwin" ]]
 then
     export OS="mac"
-	# first install brew
-	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-	# git, vim, etc
+	if ! command -v brew >/dev/null 2>&1; then
+		# first install brew
+		/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+		# git, vim, etc
+	fi
 	brew install git vim
+
 	# zsh
-    brew install zsh && \
-    sudo sh -c 'echo $(brew --prefix)/bin/zsh >> /etc/shells' && \
+	if ! command -v zsh >/dev/null 2>&1; then
+		brew install zsh 
+		sudo sh -c 'echo $(brew --prefix)/bin/zsh >> /etc/shells'
+	fi
     chsh -s $(brew --prefix)/bin/zsh
 
 	#Visual Code - assuming it exists. Hopefully it does

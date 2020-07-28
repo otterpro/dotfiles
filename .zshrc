@@ -121,6 +121,7 @@ stty -ixon #turn-off XOFF, so that vim can use Ctrl-S.
 # -- LESSOPEN handles colorized less using pygment. Make sure .lessfilter is +x
 export LESS="-x4R"
 export LESSOPEN='|~/.lessfilter.sh %s'
+# TODO: use 'highlight' instead of pygment?
 
 # ============== z.sh ===============================================
 # -- https://github.com/rupa/z.git
@@ -140,6 +141,9 @@ fi
 export TERM="xterm-256color"
 export EDITOR=vim
 export VISUAL=gvim
+
+# enable color for those app that supports CLICOLOR env var
+export CLICOLOR=1
 
 # must explicitly say emac style or it will use it based on $EDITOR 
 bindkey -e    # emac style

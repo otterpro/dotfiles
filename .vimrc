@@ -371,7 +371,8 @@ Plug 'junegunn/vim-emoji'
 "snippets
 "-----------------------------------------------------------------
 " http://jmatthews.us/blog/2013/03/10/managing-vim-python-plugins/
-if (has('python') || has('python3'))
+"if (has('python') || has('python3'))
+if (has('python3'))
 	Plug 'SirVer/ultisnips'
 else
 	Plug 'MarcWeber/vim-addon-mw-utils' "pre-requisites

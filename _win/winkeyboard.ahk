@@ -38,6 +38,9 @@ SendMode Input          ; recommended for input
 #NoEnv
 #SingleInstance Force ; it make sure only one instance of this script is running
 
+; --- Enable Numlock ----
+SetNumLockState, AlwaysOn
+
 ; OutputDebug, starting the app
 ;===========================================================================
 ; MENU: force it to run as Administrator
@@ -348,13 +351,16 @@ return
 ;===========================================================================
 NumpadSub::Send {Volume_Up}
 NumpadAdd::Send {Volume_Down}
-Numpad0::KeyHistory
+; Numpad0::KeyHistory
+
+Numpad0::Send {F5}
+Numlock::DllCall("LockWorkStation")
 
 ; Calculator button
 ;Launch_App2::Send {Volume_Down}
 Launch_App2::
-    ; SWAP mouse button 
-    ;https://github.com/jNizM/AHK_DllCall_WinAPI/blob/master/src/Mouse%20Input%20Functions/SwapMouseButton.ahk
+    ; ==== SWAP mouse button  ====
+    ; https://github.com/jNizM/AHK_DllCall_WinAPI/blob/master/src/Mouse%20Input%20Functions/SwapMouseButton.ahk
     buttonState := DllCall("user32.dll\SwapMouseButton", "UInt", 1)
     if buttonState <> 0
     {

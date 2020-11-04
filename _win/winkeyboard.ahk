@@ -355,8 +355,9 @@ NumpadAdd::Send {Volume_Down}
 
 Numpad0::Send {F5}
 Numlock::DllCall("LockWorkStation")
+; NumDel::Send {PrintScreen}
 
-; Calculator button
+; Calculator button, doesn't work if using Synergy from Mac
 ;Launch_App2::Send {Volume_Down}
 Launch_App2::
     ; ==== SWAP mouse button  ====

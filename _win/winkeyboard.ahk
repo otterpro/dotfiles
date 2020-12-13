@@ -352,9 +352,13 @@ return
 NumpadSub::Send {Volume_Up}
 NumpadAdd::Send {Volume_Down}
 ; Numpad0::KeyHistory
-
 Numpad0::Send {F5}
-Numlock::DllCall("LockWorkStation")
+;NumPad1::Send {Volume_Up}
+NumpadDiv::DllCall("LockWorkStation")
+;NumpadMult::Send {}
+;NumpadEnter::Send {}
+;NumpadDot::Send {}
+; Numlock::DllCall("LockWorkStation")
 ; NumDel::Send {PrintScreen}
 
 ; Calculator button, doesn't work if using Synergy from Mac
@@ -580,6 +584,7 @@ $<!{::Send ^!{PgUp}
 
 ;=========================================================================
 ; ConEmu
+;
 ; Better to set hotkey in ConEmu setting
 ; change switch-next-Console, console-prev to ctrl-shift [,]
 ; change new-console to ctrl-t

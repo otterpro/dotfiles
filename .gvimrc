@@ -9,7 +9,7 @@
 " set guifont=NanumGothicCoding:h16
 " set guifont=Fantasque\ Sans\ Mono:h12
 if has("gui_macvim")
-	set guifont=Fantasque\ Sans\ Mono:h18
+	set guifont=Fantasque\ Sans\ Mono:h16
 	" set guifont=Menlo:h16
 	" set guifont=D2Coding:h16
 	" set guifont=Code\ New\ Roman:h16

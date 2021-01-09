@@ -177,7 +177,7 @@
 	"editor.renderControlCharacters": true,
     "editor.renderWhitespace": "none",
     "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-    "workbench.iconTheme": "material-icon-theme",
+    "workbench.iconTheme": "vscode-icons",
     "sync.forceUpload": true,
     "workbench.colorTheme": "Cobalt2",
     "python.jediEnabled": false,

@@ -1139,6 +1139,8 @@ let g:bullets_enabled_file_types = [
     \ 'scratch'
     \]
 
+let g:bullets_outline_levels = ['ROM', 'ABC', 'num', 'abc', 'rom', 'std*']
+
 " ============== vim-table-mode =======================
 let g:table_mode_corner="|" " make table compatible with Markdown.
 

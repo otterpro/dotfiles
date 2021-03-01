@@ -198,12 +198,12 @@ esac
 
 # ==================== DropBox ==========================
 # run app from dropbox from terminal
-export PATH="$PATH:/Volumes/Samsung128/Dropbox/app"
+# export PATH="$PATH:/Volumes/Samsung128/Dropbox/app"
 
 
 # ============== RVM =========================================
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+#export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+#[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
 # ============== NVM =========================================
 # This is too slow
@@ -212,20 +212,20 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 # alternative
 # [Lazy load nvm for faster shell start : node](https://www.reddit.com/r/node/comments/4tg5jg/lazy_load_nvm_for_faster_shell_start/)
-declare -a NODE_GLOBALS=(`find ~/.nvm/versions/node -maxdepth 3 -type l -wholename '*/bin/*' | xargs -n1 basename | sort | uniq`)
-
-NODE_GLOBALS+=("node")
-NODE_GLOBALS+=("nvm")
-
-load_nvm () {
-    export NVM_DIR=~/.nvm
-    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-}
-
-for cmd in "${NODE_GLOBALS[@]}"; do
-    eval "${cmd}(){ unset -f ${NODE_GLOBALS}; load_nvm; ${cmd} \$@ }"
-done
-
+# declare -a NODE_GLOBALS=(`find ~/.nvm/versions/node -maxdepth 3 -type l -wholename '*/bin/*' | xargs -n1 basename | sort | uniq`)
+# 
+# NODE_GLOBALS+=("node")
+# NODE_GLOBALS+=("nvm")
+# 
+# load_nvm () {
+#     export NVM_DIR=~/.nvm
+#     [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+# }
+# 
+# for cmd in "${NODE_GLOBALS[@]}"; do
+#     eval "${cmd}(){ unset -f ${NODE_GLOBALS}; load_nvm; ${cmd} \$@ }"
+# done
+# 
 # ============== GREP
 # temporary fix for grep_options deprecated bug
 # which is still in Oh-My-ZSH
@@ -234,20 +234,24 @@ unset GREP_OPTIONS
 # ============== FZF =========================================
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# ============== Prompt ==================================
+autoload -U promptinit; promptinit
+prompt fire
+
 # ============== Pure Prompt ==================================
 # Requires installing pure prompt first!!!
-# TODO: test to see if pure prompt is installed...
-autoload -U promptinit; promptinit
+
 # PURE_PROMPT_SYMBOL="$PROMPT_EMOJI ❯"
-PURE_PROMPT_SYMBOL="${PROMPT_EMOJI} $"
+#PURE_PROMPT_SYMBOL="${PROMPT_EMOJI} $"
 # user-defined colors
-zstyle :prompt:pure:prompt:success color green
-prompt pure
-# optional additional prompt setting
+#zstyle :prompt:pure:prompt:success color green
+#prompt pure
+## optional additional prompt setting
 # PROMPT='%F{white}%* '$PROMPT
 
-# Right side Prompt
-RPROMPT="%F{8}%n@%m%f"   # user@server
-# zprof
+## Right side Prompt
+#RPROMPT="%F{8}%n@%m%f"   # user@server
+## zprof
 
-source /Users/otter/Library/Preferences/org.dystroy.broot/launcher/bash/br
+#???
+# source /Users/otter/Library/Preferences/org.dystroy.broot/launcher/bash/br

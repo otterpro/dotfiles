@@ -7,7 +7,7 @@ apt install -y git vim htop curl wget
 # other essentials
 apt install -y rsync build-essential unzip imagemagick ffmpeg tmux emacs
 
-# install node.js
+# install node.js (V15)
 curl -fsSL https://deb.nodesource.com/setup_15.x
 apt install -y nodejs
 

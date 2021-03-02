@@ -11,6 +11,7 @@ $ComputerName = $null
 $keyboardRemapCapslock = $false
 $MyChocolateyToolsPath="C:\bin\choco"
 $emacs = $null  #if $true, install emacs and do settings
+$cygwin = $null  #if $true, install cygwin/cyg-get
 
     # make sure to change choco install path for certain packages 
     #TODO: add the same for pstools , usually c:\tools\, but this needs to be changed
@@ -67,20 +68,15 @@ if (!($env:ChocolateyInstall)) {  #if choco is not installed
 # choco update
     choco upgrade chocolatey -y
     # Base
-    choco install git -y
-    choco install git-credential-winstore -y
-    choco install poshgit -y
-    choco install cmake -y
-    choco install python -y  
-    choco install python2 -y
-    # python2 required for gvim
+    choco install git git-credential-winstore poshgit -y
+    choco install oh-my-posh cmake -y
+    # choco install python -y  
+    # choco install python2 -y
+    # python2 required for gvim?
 
     # tools essential
-    choco install autohotkey -y
-    choco install 7zip -y
-    choco install ripgrep -y
-    choco install ag -y
-    choco install fzf -y
+    choco install -y delta everything ripgrep powertoys 7zip autohotkey
+    # choco install ag fzf -y
 
     # utils
     choco install bginfo -y
@@ -97,31 +93,30 @@ if (!($env:ChocolateyInstall)) {  #if choco is not installed
     # choco install teracopy -y
 
     # Network tool
-    # zerotier choco package is "possibly broken"
     choco install zerotier-one -y
     
     # editors
-    choco install vim -y
-    choco install sourcecodepro -y   #font
-    # maybe: spacemacs
+	choco install -y vim vscode notepadplusplus neovim
+    # maybe: spacemacs/emacs
 
     # Media
-    choco install ffmpeg -y
-    choco install vlc -y
-    choco install foobar2000 -y
-    choco install musicbee -y
+    choco install -y ffmpeg vlc foobar2000 musicbee 
     
-    # possibly broken/ fails, but would like
+    # possibly broken/ fails / not latest, but would like
     # choco install synergy -y
 
-    # windows  - home 
+    # FONTS
+    # Korean font
     # choco install nanumfont -y  # don't install. install fantasq istaed
         # problem: requires user to interact on GUI on setup!!!
-    # TODO: no fantasq font yet
+        
+    # fixed-width fonts
+    # TODO: iosveka?
+    choco install -y sourcecodepro fantasque-sans.font nanum-gothic-coding-font
     
     # browsers
-    choco install firefox -y
-    choco install GoogleChrome -y
+    choco install GoogleChrome Firefox -y
+    #optional: vivaldi
     
     # add to path: C:\ProgramData\chocolatey\bin\  (ffmpeg)
     #TODO: ? is this required? or is this set with chocolatey install?
@@ -131,6 +126,7 @@ if (!($env:ChocolateyInstall)) {  #if choco is not installed
 #===========================================================================
 # Enable Remote Desktop (RDP)
 # http://windowsitpro.com/windows/enable-remote-desktop-using-powershell
+# TODO: test if it works on W10 HOME, since it doesn't have RDP server
 #===========================================================================
 (Get-WmiObject Win32_TerminalServiceSetting -Namespace root\cimv2\TerminalServices).SetAllowTsConnections(1,1) | Out-Null
 (Get-WmiObject -Class "Win32_TSGeneralSetting" -Namespace root\cimv2\TerminalServices -Filter "TerminalName='RDP-tcp'").SetUserAuthenticationRequired(0) | Out-Null
@@ -209,18 +205,19 @@ if (!$propValue) {  #if reg value doesn't exist
 # DO I use cygwin? or git-windows-bash? cygwin is too heavy?!
 # install git-win-bash, using DOS script, use it to bootstrap and 
 # Currently using cygwin as git, since cygwin is more versatile
-
+if ($cygwin) {
 #choco install cygwin -y  # automatically installed by cyg-get?
-choco install cyg-get -y
-cyg-get git zip unzip vim zsh python curl tree
+    choco install cyg-get -y
+    cyg-get git zip unzip vim zsh python curl tree
 
-# CONTINUE HERE!!!
-$cygwinBin="$env:ChocolateyToolsLocation\cygwin\bin"
-$cygwinHomeDir="$env:ChocolateyToolsLocation\cygwin\home\$env:username"
+    # CONTINUE HERE!!!
+    $cygwinBin="$env:ChocolateyToolsLocation\cygwin\bin"
+    $cygwinHomeDir="$env:ChocolateyToolsLocation\cygwin\home\$env:username"
 
 # cygwin has to run at least once, as it creates username and home directory
 # not sure if this will work... hopefully it's not interactive???  icon has mintty.exe -i (-i = ???)
-&"$cygwinBin\mintty.exe"
+    &"$cygwinBin\mintty.exe"
+}
 
 
 #===========================================================================
@@ -229,16 +226,24 @@ $cygwinHomeDir="$env:ChocolateyToolsLocation\cygwin\home\$env:username"
 if ($emacs) {
 
     choco install emacs -y  
-$key = 'HKCU:\SOFTWARE\GNU\Emacs'
-$attribute = "Home"
-$propValue = (Get-ItemProperty $key).$attribute 
-if (!$propValue) {  #if reg value doesn't exist
+    $key = 'HKCU:\SOFTWARE\GNU\Emacs'
+    $attribute = "Home"
+    $propValue = (Get-ItemProperty $key).$attribute 
+    if (!$propValue) {  #if reg value doesn't exist
+    
+        Write-Host "Setting HOME value in Gnu Emacs"
+        New-Item -Path $key -Force | Out-Null
+        New-ItemProperty -Path $key -Name $attribute -PropertyType String -Value $HOME   -Force | Out-Null
+    }
+}
 
-    Write-Host "Setting HOME value in Gnu Emacs"
-    New-Item -Path $key -Force | Out-Null
-    New-ItemProperty -Path $key -Name $attribute -PropertyType String -Value $HOME   -Force | Out-Null
-}
-}
+#===========================================================================
+# OBS: TODO
+#===========================================================================
+# obs-studio
+# 	obs-virtualcam // check ver???
+# 	obs-ndi // check ver??
+
 
 #===========================================================================
 # Computer Name

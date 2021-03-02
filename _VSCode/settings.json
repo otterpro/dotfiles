@@ -182,4 +182,14 @@
     "workbench.colorTheme": "Cobalt2",
     "python.jediEnabled": false,
     "html.mirrorCursorOnMatchingTag": false,
+    "bracket-pair-colorizer-2.colors": [
+
+        "Gold",
+        "Orchid",
+        "LightSkyBlue"
+    ],
+    "bracket-pair-colorizer-2.excludedLanguages": [
+    
+    ],
+    "tabnine.experimentalAutoImports": true,
 }

@@ -90,10 +90,9 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 # alias ohmyzsh="vi ~/.oh-my-zsh"
 #
 # load my own aliases (and functions), and in future, put them in .sh.d
-if [ -f ~/.aliases ]; then
-	. ~/.aliases
-fi
-# source ~/.aliases
+	# source ~/.aliases
+[ -f ~/.aliases ] && . ~/.aliases
+
 
 # for future, use this instead and common with .bash_profile
 # for i in ${HOME}/.sh.d/*; do
@@ -128,14 +127,11 @@ export LESSOPEN='|~/.lessfilter.sh %s'
 . ~/bin/z.sh
 
 # ============== fasd ===============================================
-# -- fasd - replacing z.sh for now, as it was too slow on cygwin
+# -- fasd - replacing z.sh for now, as fasd was too slow on cygwin
 # eval "$(fasd --init auto)"
 
 # ================== virtualenv in tmux ============================
-if [ -n "$VIRTUAL_ENV" ]; then
-    . "$VIRTUAL_ENV/bin/activate"
-fi
-
+[[ -n "$VIRTUAL_ENV" ]] && . "$VIRTUAL_ENV/bin/activate"
 
 # ============== Settings =======================================
 export TERM="xterm-256color"
@@ -150,34 +146,34 @@ bindkey -e    # emac style
 
 # ============== OS Specific Settings ===================================
 case "$OSTYPE" in
-        darwin*) # mac-specific
-                # fix iTerm2 - show pwd in Tab
-                function precmd {
-                        echo -ne "\033]0;$PWD\007"
-                }
-				export EDITOR=mvim
-				export VISUAL=mvim
-				# PROMPT_EMOJI='%{$reset_color%}' # unicode - apple logo
-				# PROMPT_EMOJI='%{$reset_color%}⚛ '
-				# PROMPT_EMOJI='%{$reset_color%}⚛  '
-				PROMPT_EMOJI=''
-				#PROMPT_EMOJI='%{$reset_color%}%F{white}%f' # unicode - apple logo
-				#PROMPT_EMOJI='🍎'  # emoji-red apple
-				# PROMPT='%F{white}%f' # unicode - apple logo
-				# Opt out of Homebrew analytics
-				export HOMEBREW_NO_ANALYTICS=1
-                ;;      
-        linux*) # linux-specific
-				PROMPT_EMOJI='🐧 '  # emoji penguin
-				# PROMPT_EMOJI='%{$reset_color%}⚛ '
-                ;;
+    darwin*) # mac-specific
+        # fix iTerm2 - show pwd in Tab
+        function precmd {
+                echo -ne "\033]0;$PWD\007"
+        }
+		export EDITOR=mvim
+		export VISUAL=mvim
+		# PROMPT_EMOJI='%{$reset_color%}' # unicode - apple logo
+		# PROMPT_EMOJI='%{$reset_color%}⚛ '
+		# PROMPT_EMOJI='%{$reset_color%}⚛  '
+		PROMPT_EMOJI=''
+		#PROMPT_EMOJI='%{$reset_color%}%F{white}%f' # unicode - apple logo
+		#PROMPT_EMOJI='🍎'  # emoji-red apple
+		# PROMPT='%F{white}%f' # unicode - apple logo
+		# Opt out of Homebrew analytics
+		export HOMEBREW_NO_ANALYTICS=1
+        ;;      
+    linux*) # linux-specific
+			PROMPT_EMOJI='🐧 '  # emoji penguin
+			# PROMPT_EMOJI='%{$reset_color%}⚛ '
+            ;;
 
-        cygwin) # linux-specific
-				PROMPT_EMOJI='©'  # copyright symbol to represent Cygwin
-                ;;
-        *)      # all other OS
-				PROMPT_EMOJI='😜'	# emoji smiley tongue 
-                ;;
+    cygwin) # linux-specific
+			PROMPT_EMOJI='©'  # copyright symbol to represent Cygwin
+            ;;
+    *)      # all other OS
+			PROMPT_EMOJI='😜'	# emoji smiley tongue 
+            ;;
 esac
 
 # ======================= oh-my-zsh PROMPT with emoji ===================
@@ -206,11 +202,11 @@ esac
 #[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 
 # ============== NVM =========================================
-# This is too slow
+# This is too slow (TODO: alternative is to use fvm)
 # export NVM_DIR="$HOME/.nvm"   # modeled after RVM
 # [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
-# alternative
+# alternative 
 # [Lazy load nvm for faster shell start : node](https://www.reddit.com/r/node/comments/4tg5jg/lazy_load_nvm_for_faster_shell_start/)
 # declare -a NODE_GLOBALS=(`find ~/.nvm/versions/node -maxdepth 3 -type l -wholename '*/bin/*' | xargs -n1 basename | sort | uniq`)
 # 
@@ -232,7 +228,7 @@ esac
 unset GREP_OPTIONS
 
 # ============== FZF =========================================
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 
 # ============== Prompt ==================================
 autoload -U promptinit; promptinit

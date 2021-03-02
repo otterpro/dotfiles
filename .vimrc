@@ -291,7 +291,7 @@ Plug 'tpope/vim-surround'  "add surrounding brackets,quotes,tags"
 Plug 'tomtom/tcomment_vim'
 
 " GIT-related
-Plug 'airblade/vim-gitgutter' " Temp disabled for perf check? so far, not too bad
+"Plug 'airblade/vim-gitgutter' " Temp disabled for perf check? so far, not too bad
 Plug 'tpope/vim-fugitive'
 
 Plug 'majutsushi/tagbar'

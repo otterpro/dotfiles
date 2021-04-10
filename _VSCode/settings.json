@@ -192,4 +192,5 @@
     
     ],
     "tabnine.experimentalAutoImports": true,
+    "webhint.enableTelemetry": "disabled",
 }

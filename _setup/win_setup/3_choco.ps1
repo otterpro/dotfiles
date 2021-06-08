@@ -72,7 +72,7 @@ if (!($env:ChocolateyInstall)) {  #if choco is not installed
     # python2 required for gvim?
 
     # tools essential
-    choco install -y delta everything ripgrep powertoys 7zip autohotkey
+    choco install -y delta everything ripgrep powertoys 7zip autohotkey python
     # choco install ag fzf -y
 
     # utils

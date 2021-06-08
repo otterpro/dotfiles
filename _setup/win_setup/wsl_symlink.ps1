@@ -1,5 +1,7 @@
 ﻿#Requires -RunAsAdministrator
 # admin mode required for making symlink
+#
+# Create symlink for .vim, .vimrc, PSProfile, and .dotfiles to Windows side
 
 # map the L:\ to WSL drive
 # disabled: this only works in non-admin, as it fails in admin mode
@@ -55,13 +57,16 @@ New-Item -Path  "$env:USERPROFILE\vimfiles\"  -ItemType SymbolicLink -Value "$ws
     # Windows Vim uses vimfiles/, not .vim/
 New-Item -Path  "$env:USERPROFILE\.gvimrc"  -ItemType SymbolicLink -Value "$wslHomeDir\.dotfiles\.gvimrc" -Force
 
-# NOT YET: create symlink to wsl/home/USERNAME, (TODO: not sure if I want to do this)
-# WIN:~/wslHome -> //wsl$/debian/home/USER/
-#New-Item -Path  "$env:USERPROFILE\wslHome\"  -ItemType SymbolicLink -Value "$wslHomeDir\"
+#===========================================================================
+# create symlink WIN:/users/USERNAME/.dotfiles -> wsl/home/USERNAME
+# ie WIN:~/wslHome -> //wsl$/debian/home/USER/
+# for convenience, but not necessary, not sure if it will be used that much
+#===========================================================================
+New-Item -Path  "$env:USERPROFILE\wsl\"  -ItemType SymbolicLink -Value "$wslHomeDir\"
 
 #===========================================================================
 # create symbolic link for PS profile (includes aliases, etc)
-#  ~/bin/profile.ps1 ==> C:\Users\<USERNAME>\Documents\WindowsPowershell\profile.ps1
+#  ~/.dotfiles/_win/profile.ps1 ==> C:\Users\<USERNAME>\Documents\WindowsPowershell\profile.ps1
 #  * Warning: Make sure not to delete existing profile.ps1, 
 #  * esp if working on other's PC (or based on company's policy)
 #=========================================================================== 

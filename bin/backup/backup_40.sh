@@ -8,26 +8,26 @@ date "+%Y-%m-%d:%H:%M:%S"
 
 # copies WD4t/4 to HDD 500gb
 echo "backup_4.sh"
-if [ -d /Volumes/WD4T/4 ] && [ -d /Volumes/500gb2 ] ; then
-	echo "backing up WD4t/3/ to 500gb2"
+if [ -d /Volumes/WD4T/4 ] && [ -d /Volumes/500g ] ; then
+	echo "backing up WD4t/4/ to 500gb2"
 	/usr/bin/rsync -avS --del --delete-excluded \
 	--exclude .Trashes \
 	--exclude .Spotlight-*/ \
 	--exclude .TemporaryItems \
 	--exclude .DS_Store \
 	--exclude .fseventsd \
-	/Volumes/WD4T/4/ /Volumes/500gb2/4
+	/Volumes/WD4T/4/ /Volumes/500g/4
 fi
 
 # copies WD4t/42 to HDD 300GB
 echo "backup_42.sh"
-if [ -d /Volumes/WD4T/42 ] && [ -d /Volumes/300GB ] ; then
-	echo "backing up WD4t/3/ to 500gb2"
+if [ -d /Volumes/WD4T/42 ] && [ -d /Volumes/500g ] ; then
+	echo "backing up WD4t/42/ to 500gb2"
 	/usr/bin/rsync -avS --del --delete-excluded \
 	--exclude .Trashes \
 	--exclude .Spotlight-*/ \
 	--exclude .TemporaryItems \
 	--exclude .DS_Store \
 	--exclude .fseventsd \
-	/Volumes/WD4T/42/ /Volumes/300GB/42
+	/Volumes/WD4T/42/ /Volumes/500g/42
 fi

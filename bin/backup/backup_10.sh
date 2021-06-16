@@ -33,7 +33,7 @@ if [ -d /Volumes/WD4T/10 ] && [ -d /Volumes/1000G ] ; then
 	--exclude .TemporaryItems \
 	--exclude .DS_Store \
 	--exclude .fseventsd \
-	Volumes/WD4T/10/ /Volumes/1000G/10b1
+	Volumes/WD4T/10/ /Volumes/1000G/10
 fi
 # if [ -d /Volumes/WD4T/HD0 ] && [ -d /Users/otter/Documents/doc.sparsebundle ] ; then
 # 	/usr/bin/rsync -av --del /Users/otter/Documents/doc.sparsebundle/ /Volumes/WD4T/HD0/doc_backup/doc.sparsebundle 

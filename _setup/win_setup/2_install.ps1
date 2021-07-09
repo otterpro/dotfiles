@@ -1,4 +1,6 @@
-﻿#Start-Process PowerShell -ArgumentList "Set-ExecutionPolicy Restricted -Force" -Verb RunAs
+﻿#Requires -RunAsAdministrator
+#
+#Start-Process PowerShell -ArgumentList "Set-ExecutionPolicy Restricted -Force" -Verb RunAs
 # 
 cd $PSScriptRoot
 
@@ -18,16 +20,6 @@ $cygwin = $null  #if $true, install cygwin/cyg-get
 Write-Host "windows user's personal setup"
 # Write-click on this script and run as Powershell script
 
-# ensure ExecutionPolicy to either AllSigned or Bypass
-# TODO: THIS should be in DOS SCRIPT
-#Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Force
-
-# if above line doesn't work, try this
-# (https://superuser.com/questions/616106/set-executionpolicy-using-batch-file-powershell-script)
-# Start-Process PowerShell -ArgumentList "Set-ExecutionPolicy unrestricted -Force" -Verb RunAs
-
-# MYVIMRC="C:\cygwin64\home\Dkim"
-# [Environment]::SetEnvironmentVariable("MYVIMRC", "C:\Cygwin64\home\$env:username", "User")
 
 # Must cd into install/dotfiles/bin folder (haven't decided where to put this)
 
@@ -35,7 +27,6 @@ Write-Host "windows user's personal setup"
 # Enable Developer Mode (may require reboot?)
 # [powershell - Enable Windows 10 Developer Mode programmatically - Stack Overflow](https://stackoverflow.com/questions/40033608/enable-windows-10-developer-mode-programmatically?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa)
 #===========================================================================
-
 	# Create AppModelUnlock if it doesn't exist, required for enabling Developer Mode
 	$RegistryKeyPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock"
 	if (-not(Test-Path -Path $RegistryKeyPath)) {
@@ -44,84 +35,15 @@ Write-Host "windows user's personal setup"
 	
 	# Add registry value to enable Developer Mode
 	New-ItemProperty -Path $RegistryKeyPath -Name AllowDevelopmentWithoutDevLicense -PropertyType DWORD -Value 1
-# 
+
+#===========================================================================
+# TODO: # install WSL2 if possible
+#===========================================================================
+
 #===========================================================================
 # Chocolatey
 #===========================================================================
-if (!($env:ChocolateyInstall)) {  #if choco is not installed
-    Write-Host "Installing Chocolatey"
-
-    # install and update choco
-    iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-}
-
-
-    #[Environment]::SetEnvironmentVariable($env:ChocolateyToolsLocation, "c:\bin\choco", [EnvironmentVariableTarget]::Machine)
-    # Turns out I need to use User, not Machine
-    # permanently
-    [Environment]::SetEnvironmentVariable("ChocolateyToolsLocation", $MyChocolateyToolsPath, "User")
-    # also for this session
-    $env:ChocolateyToolsLocation= $MyChocolateyToolsPath   
-    
-    #NOTE: also might change it to c:\ProgramData\chocolatey\bin, as this is where some bin files are going to.
-
-# choco update
-    choco upgrade chocolatey -y
-    # Base
-    choco install git git-credential-winstore poshgit -y
-    choco install oh-my-posh cmake -y
-    # choco install python -y  
-    # choco install python2 -y
-    # python2 required for gvim?
-
-    # tools essential
-    choco install -y delta everything ripgrep powertoys 7zip autohotkey
-    # choco install ag fzf -y
-
-    # utils
-    choco install bginfo -y
-
-    # file size
-    choco install wiztree -y
-    choco install spacesniffer -y
-    choco install treesizefree -y
-
-    # copyq is ok, could try another such as clipboardic or clcl
-    choco install copyq -y
-    choco install greenshot -y
-    # broken?
-    # choco install teracopy -y
-
-    # Network tool
-    choco install zerotier-one -y
-    
-    # editors
-	choco install -y vim vscode notepadplusplus neovim
-    # maybe: spacemacs/emacs
-
-    # Media
-    choco install -y ffmpeg vlc foobar2000 musicbee 
-    
-    # possibly broken/ fails / not latest, but would like
-    # choco install synergy -y
-
-    # FONTS
-    # Korean font
-    # choco install nanumfont -y  # don't install. install fantasq istaed
-        # problem: requires user to interact on GUI on setup!!!
-        
-    # fixed-width fonts
-    # TODO: iosveka?
-    choco install -y sourcecodepro fantasque-sans.font nanum-gothic-coding-font
-    
-    # browsers
-    choco install GoogleChrome Firefox -y
-    #optional: vivaldi
-    
-    # add to path: C:\ProgramData\chocolatey\bin\  (ffmpeg)
-    #TODO: ? is this required? or is this set with chocolatey install?
-    # [Environment]::SetEnvironmentVariable("Path", $env:Path + ";"+$env:ProgramData+"\chocolatey\bin", [EnvironmentVariableTarget]::Machine)
-    # not sure, so commented out for now.  If 'ffmpeg' won't launch, check
+#TODO: launch 3_choco.ps1
 
 #===========================================================================
 # Enable Remote Desktop (RDP)
@@ -199,29 +121,10 @@ if (!$propValue) {  #if reg value doesn't exist
 # TODO: git clone my dotfiles and cd into that folder 
 # then do the following
 
-#===========================================================================
-# TODO: install cygwin and then git clone my repository first!!!
-#===========================================================================
-# DO I use cygwin? or git-windows-bash? cygwin is too heavy?!
-# install git-win-bash, using DOS script, use it to bootstrap and 
-# Currently using cygwin as git, since cygwin is more versatile
-if ($cygwin) {
-#choco install cygwin -y  # automatically installed by cyg-get?
-    choco install cyg-get -y
-    cyg-get git zip unzip vim zsh python curl tree
-
-    # CONTINUE HERE!!!
-    $cygwinBin="$env:ChocolateyToolsLocation\cygwin\bin"
-    $cygwinHomeDir="$env:ChocolateyToolsLocation\cygwin\home\$env:username"
-
-# cygwin has to run at least once, as it creates username and home directory
-# not sure if this will work... hopefully it's not interactive???  icon has mintty.exe -i (-i = ???)
-    &"$cygwinBin\mintty.exe"
-}
-
 
 #===========================================================================
-# emacs : set $HOME (for domain user only), as it has problem finding it
+# emacs (choco) : set $HOME (for domain user only), as it has problem finding it
+# TODO: move this to choco.ps1
 #===========================================================================
 if ($emacs) {
 

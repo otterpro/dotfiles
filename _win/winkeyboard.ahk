@@ -192,6 +192,12 @@ $<!q::Send !{f4}
 ; this could also be Ctrl+F4, but not sure which one is more compatible
 
 ;-------------------------------------------------------------------------
+; Alt+Shift+[, alt+shift+] -> go to next/prev tab (Chrome, FF) 
+;-------------------------------------------------------------------------
+$<!}::Send ^{Tab}
+$<!{::Send ^+{Tab}
+
+;-------------------------------------------------------------------------
 ; Ctrl+arrow
 ;-------------------------------------------------------------------------
 ; Alt+ uparrow => Ctrl+Home / go to top of document
@@ -443,6 +449,12 @@ return
 ;SetTitleMatchMode 2 ;- Mode 2 is window title substring.
 ;#IfWinActive, OneNote ; Only apply this script to onenote.
 
+
+;=========================================================================
+; TESTING only
+;=========================================================================
+;if WinActive("ahk_class Notepad") or WinActive("ahk_exe chrome.exe")
+
 ;=========================================================================
 ; Google Chrome, but ignore VSCode, and Electron apps
 ;-------------------------------------------------------------------------
@@ -458,11 +470,27 @@ return
 ; $^}::Send ^{Tab}
 ; $^{::Send ^+{Tab}
 
-$<!}::Send ^{Tab}
-$<!{::Send ^+{Tab}
 
 ; Disable ALT key in chrome, as it focuses on Menu button!!!
 Alt::return  
+
+;=========================================================================
+; Vivaldi browser
+;-------------------------------------------------------------------------
+#IfWinActive, ahk_exe vivaldi.exe
+;$<!}::Send ^{PgDn}
+;$<!{::Send ^{PgUp}
+
+$<!::
+    ; Send ^{PgDn}
+    ; -- continue to repeat key as long as } or { is held down
+    If(Get)
+    buttonState := DllCall("user32.dll\SwapMouseButton", "UInt", 1)
+    if buttonState <> 0
+    {
+        buttonState := DllCall("user32.dll\SwapMouseButton", "UInt", 0)
+    }
+return
 
 ;=========================================================================
 ; Firefox
@@ -470,9 +498,8 @@ Alt::return
 #IfWinActive ahk_class MozillaWindowClass
 ; $^}::Send ^{Tab}
 ; $^{::Send ^+{Tab}
-
-$<!}::Send ^{Tab}
-$<!{::Send ^+{Tab}
+; $<!}::Send ^{Tab}
+; $<!{::Send ^+{Tab}
 
 ;=========================================================================
 ; Vim, GVim
@@ -527,8 +554,7 @@ $<!x:: Send +{Del}
 ;#x::Send {Shift Down}{Del}{Shift Up}
 ;--------------------------------------------
 ; SWITCH TAB
-; this cannot be done in vimrc since {,[ cannot be mapped using ctrl
-;; ALT+}, ALT+{
+; this cannot be done in vimrc since {,[ cannot be mapped using ctrl ALT+}, ALT+{
 $<!}::Send {Esc}:tabn{Enter}
 $<!{::Send {Esc}:tabp{Enter}
 
@@ -538,12 +564,19 @@ $<!{::Send {Esc}:tabp{Enter}
 ; $^{::Send {Esc}:tabp{Enter}
 
 ;=========================================================================
-; neovim-qt
+; Neovim GUI apps: neovim-qt, neovide, goneovim,...
 ;=========================================================================
 #IfWinActive ahk_exe nvim-qt.exe
 ; SWITCH TAB
-; this cannot be done in vimrc since {,[ cannot be mapped using ctrl
-;; ALT+}, ALT+{
+; this cannot be done in vimrc since {,[ cannot be mapped using ctrl ALT+}, ALT+{
+$<!}::Send {Esc}:tabn{Enter}
+$<!{::Send {Esc}:tabp{Enter}
+
+#IfWinActive ahk_exe neovide.exe
+$<!}::Send {Esc}:tabn{Enter}
+$<!{::Send {Esc}:tabp{Enter}
+
+#IfWinActive ahk_exe goneovim.exe
 $<!}::Send {Esc}:tabn{Enter}
 $<!{::Send {Esc}:tabp{Enter}
 

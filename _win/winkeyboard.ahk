@@ -538,6 +538,16 @@ $<!{::Send {Esc}:tabp{Enter}
 ; $^{::Send {Esc}:tabp{Enter}
 
 ;=========================================================================
+; neovim-qt
+;=========================================================================
+#IfWinActive ahk_exe nvim-qt.exe
+; SWITCH TAB
+; this cannot be done in vimrc since {,[ cannot be mapped using ctrl
+;; ALT+}, ALT+{
+$<!}::Send {Esc}:tabn{Enter}
+$<!{::Send {Esc}:tabp{Enter}
+
+;=========================================================================
 ; Mintty, Cygwin,
 ; NOTE: it uses right control, not left.  Could pose problem
 ;-------------------------------------------------------------------------

@@ -50,7 +50,9 @@ endif
 "ighlight Comment cterm=italic term
 " v0.2.2 gets stuck if Guifont is in here, but works after nvim loads
 if has('nvim')
-	"Guifont Fantasque\ Sans\ Mono:h12
+" if has('nvim') && !has("ttyin") 
+" "no need for checking ttyin since gvimrc assumes we're already using GUI-based vim
+	Guifont Fantasque\ Sans\ Mono:h14
 endif
 
 " Disable all cursor blinking:

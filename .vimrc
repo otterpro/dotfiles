@@ -399,9 +399,11 @@ Plug 'xolox/vim-colorscheme-switcher' "quickly switch colorscheme with F8,sF8
 " Misc
 "-----------------------------------------------------------------
 " smooth scroll
-Plug 'terryma/vim-smooth-scroll'
+Plug 'psliwka/vim-smoothie'
 
-" Plug 'yuttie/comfortable-motion.vim'
+"Plug 'terryma/vim-smooth-scroll'
+
+"Plug 'yuttie/comfortable-motion.vim'
 
 " Undotree (Vim 7.0+)
 Plug 'mbbill/undotree'
@@ -578,17 +580,17 @@ cnoremap qq <C-c>
 nn j gj
 nn k gk
 
-" ctrl-J and ctrl-K as page down/up
+" ------------ ctrl-J and ctrl-K as page down/up
 " NOTE: <C-J> is also mapped to other pluggins in insert/ select mode/ NERDTREE, etc
 " Also on other system, I use 10j, 10k instead, moving only certain # of lines
 " nn <C-J> <C-d>
 " nn <C-K> <C-u>
+" see vim-smoothie or vim-smooth-scroll instead
+
 vn <C-J> <C-d>
 vn <C-K> <C-u>
-
-nn <C-J> :call smooth_scroll#down(&scroll, 0, 10)<CR>
-nn <C-K> :call smooth_scroll#up(&scroll, 0, 10)<CR>
-" smooth scroll doesn't work in visual mode
+" vim-smooth-scroll instead
+" smooth scroll doesn't work in visual mode, so disabled below
 " vn <C-J> :call smooth_scroll#down(&scroll, 0, 10)<CR>
 " vn <C-K> :call smooth_scroll#up(&scroll, 0, 10)<CR>
 
@@ -599,6 +601,7 @@ inoremap <C-K> <up>
 inoremap <C-h> <left>
 inoremap <C-l> <right>
 
+" --------
 " common remap, also found in :help yank
 nn Y y$
 
@@ -1269,15 +1272,28 @@ fun! TrimWhitespace()
     call winrestview(l:save)
 endfun
 
+
+"================= vim-smoothie ========================
+" make it scroll faster, 10 by default
+let g:smoothie_speed_linear_factor = 20  
+silent! nmap <unique> <C-j>      <Plug>(SmoothieDownwards)
+silent! nmap <unique> <C-k>      <Plug>(SmoothieUpwards)
+
 "================= vim-smooth-scroll ========================
 " I may get rid of it... not as useful...
 " remap <c-b>,<c-f> vim scroll to plugin's smooth-scroll 
+" faster
+" nn <C-J> :call smooth_scroll#down(&scroll, 0, 10)<CR>
+" nn <C-K> :call smooth_scroll#up(&scroll, 0, 10)<CR>
+"
+" Slower
 "noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
 "noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 " noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
 " noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
 
 "================= comfortable motion========================
+"
 
 "================= quick-scope ========================
 " Trigger a highlight in the appropriate direction when pressing these keys:
@@ -1380,6 +1396,7 @@ if has("gui_macvim")
 	" set guifont=Bitstream\ Vera\ Sans\ Mono:h16
 	" set guifont=Cascadia\ Code:h16
 elseif has("gui_win32")
+	" gVim for Windows
 	"set guifont=Consolas:h12:cANSI
 	" set guifont=Consolas:h12
 	" set guifont=Lucida\ Console:h12
@@ -1399,10 +1416,18 @@ elseif has("gui_gtk3")
     set guifont=Inconsolata\ 12
 " --- Neovim
 elseif has('nvim') 
+	" Neovim
 	" if has('nvim') && !has("ttyin") 
 	" set guifont is safe for normal vim, it seems no need to check if GUI only
 	" Guifont Fantasque Sans Mono:h14
 	set guifont=Fantasque\ Sans\ Mono:h12
+
+	" ---- neovide  --------------
+	if exists('g:neovide')
+	"  disable cursor animation
+		let g:neovide_cursor_animation_length=0.0
+		set guifont=Fantasque\ Sans\ Mono:h16
+	endif
 endif
 
 "highlight Comment cterm=italic term=italic gui=italic 

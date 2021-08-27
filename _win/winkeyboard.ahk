@@ -478,19 +478,8 @@ Alt::return
 ; Vivaldi browser
 ;-------------------------------------------------------------------------
 #IfWinActive, ahk_exe vivaldi.exe
-;$<!}::Send ^{PgDn}
-;$<!{::Send ^{PgUp}
-
-$<!::
-    ; Send ^{PgDn}
-    ; -- continue to repeat key as long as } or { is held down
-    If(Get)
-    buttonState := DllCall("user32.dll\SwapMouseButton", "UInt", 1)
-    if buttonState <> 0
-    {
-        buttonState := DllCall("user32.dll\SwapMouseButton", "UInt", 0)
-    }
-return
+$<!}::Send ^{PgDn}
+$<!{::Send ^{PgUp}
 
 ;=========================================================================
 ; Firefox

@@ -17,3 +17,6 @@ function gcm { git commit -m $args}
 # function v {gvim $args}
 # -p --remote... allows opening text file into same instance with new tabs
 function v {gvim.exe -p --remote-tab-silent $args}
+
+# emacs or console vim for now?
+function e {vim.exe $args}

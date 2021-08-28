@@ -83,8 +83,9 @@ Temporary Items
 # intellij
 .idea/
 
-# vim - WIN?
+# vim
 .stackdump
+.*~
 
 # node
 node_modules/

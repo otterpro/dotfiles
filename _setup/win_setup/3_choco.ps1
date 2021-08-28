@@ -62,7 +62,7 @@ if (!($env:ChocolateyInstall)) {  #if choco is not installed
     
     #NOTE: also might change it to c:\ProgramData\chocolatey\bin, as this is where some bin files are going to.
 
-# choco update
+    # choco update
     choco upgrade chocolatey -y
     # Base
     choco install git git-credential-winstore poshgit -y
@@ -72,8 +72,19 @@ if (!($env:ChocolateyInstall)) {  #if choco is not installed
     # python2 required for gvim?
 
     # tools essential
-    choco install -y delta everything ripgrep powertoys 7zip autohotkey python
-    # choco install ag fzf -y
+    choco install -y delta everything ripgrep powertoys 7zip autohotkey python fzf zoxide
+    #choco install ag -y
+
+    # file manager
+    choco install qdir -y
+	# choco install altap-salamander # salamander
+	# choco xyplorerfree # broken??? haven't tried
+    
+    # RUST
+    choco install -y rust-ms
+    # rust: may instead use rustup-init.exe from rust, which is better?
+    # add path to cargo bin
+    [Environment]::SetEnvironmentVariable("Path", $env:Path + ";$($env:userprofile)\.cargo\bin\", "User")
 
     # utils
     choco install bginfo -y
@@ -97,7 +108,7 @@ if (!($env:ChocolateyInstall)) {  #if choco is not installed
     # maybe: spacemacs/emacs
 
     # Media
-    choco install -y ffmpeg vlc foobar2000 musicbee 
+    choco install -y ffmpeg vlc foobar2000 musicbee mpc-be exiftool
     
     # possibly broken/ fails / not latest, but would like
     # choco install synergy -y
@@ -108,7 +119,7 @@ if (!($env:ChocolateyInstall)) {  #if choco is not installed
         # problem: requires user to interact on GUI on setup!!!
         
     # fixed-width fonts
-    # TODO: iosveka?
+    # TODO: iosveka, not available yet
     choco install -y sourcecodepro fantasque-sans.font nanum-gothic-coding-font
     
     # browsers

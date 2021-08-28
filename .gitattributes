@@ -1,6 +1,7 @@
+# .gitattributes example
+# per-repo, not global
 *.sh eol=lf
-*.ps1 eol=lf
+*.ps1 eol=crlf
 *.vim eol=lf
 *.md eol=lf
-.* eol=lf
-
+# .* eol=lf

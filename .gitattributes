@@ -12,4 +12,5 @@
 *.json eol=lf
 *.snippets eol=lf
 # everything else by default
-.* eol=lf  # dotfiles are lf by default
+# dotfiles are lf by default
+.* eol=lf

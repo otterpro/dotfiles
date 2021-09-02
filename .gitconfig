@@ -9,8 +9,7 @@
 	# eol = lf
 	# autocrlf = input # CRLF to LF on commit
 	autocrlf = false  # default, preserve
-
-	fileMode = false  # ignore executable-bit changes
+	filemode = false
 [push]
 	default = matching
 [alias]

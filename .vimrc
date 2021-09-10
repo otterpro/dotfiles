@@ -505,6 +505,12 @@ nn <leader>, :noh<cr>
 
 "set cmdheight=2 " status bar that is 2 rows. However, this is too high
 
+"========== User-defined functions =============================
+"  user-defined func must start as uppercase according to vim
+"------------- copy current file path to clipboard  ----------------
+" `:Copypath`
+:command! Copypath let @+ = expand('%:p')
+
 "================== keyboard remapping ======================
 "  00 => ), 99=> (.  avoid pressing shift
 "inoremap 00 )

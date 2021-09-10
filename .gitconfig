@@ -5,11 +5,16 @@
 	ui = true
 [core]
 	excludesfile = ~/.gitignore_global
-	eol = lf
-	autocrlf = input
+	eol = native
+	# eol = lf
+	# autocrlf = input # CRLF to LF on commit
+	autocrlf = false  # default, preserve
+	filemode = false
 [push]
 	default = matching
 [alias]
 	hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
 	unstage = reset HEAD --
 	ignore = update-index --assume-unchanged
+[pull]
+	rebase = false

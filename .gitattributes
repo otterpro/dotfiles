@@ -1,6 +1,16 @@
+# .gitattributes  for .dotfiles/
+# per-repo, not global
+# windows
+*.ps1 eol=crlf
+*.ahk eol=crlf
+*.exe eol=binary
+# others
 *.sh eol=lf
-*.ps1 eol=lf
 *.vim eol=lf
 *.md eol=lf
+*.xml eol=lf
+*.json eol=lf
+*.snippets eol=lf
+# everything else by default
+# dotfiles are lf by default
 .* eol=lf
-

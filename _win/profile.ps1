@@ -13,10 +13,22 @@ function gpl { git pull }
 function gps { git push }
 function gadd { git add -A }
 function gcm { git commit -m $args}
-#function v {vim $args}
+
 # function v {gvim $args}
 # -p --remote... allows opening text file into same instance with new tabs
-function v {gvim.exe -p --remote-tab-silent $args}
+#function oldv {gvim.exe -p --remote-tab-silent $args}
+function v {
+    if ($args.count) {
+        gvim.exe -p --remote-tab-silent $args
+    }
+    else {
+        gvim.exe
+    }
+}
 
 # emacs or console vim for now?
-function e {vim.exe $args}
+function e { vim.exe $args}
+
+# neovim implementations, flavor of the day
+# nvim-qt, neovide, etc...
+function n { nvim-qt.exe $args}

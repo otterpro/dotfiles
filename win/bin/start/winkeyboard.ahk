@@ -106,6 +106,7 @@ RCtrl & tab:: AltTab ; Using RCtrl instead of ALT
 ; ALT keys replacing Control key
 ; Copy/Cut/Paste using ALT key -- note: causes problem with console, where ALT keys are intercepted???
 ; also Problem with EMACS
+; NOTE: can remove this now, since I'm using RCTRL instead of ALT
 ;-------------------------------------------------------------------------
 $<!a::Send ^a
 
@@ -184,19 +185,25 @@ $>^+G::Send {Shift Down}{F3}{Shift Up}
 ; Quit, [CTRL]+[q]
 ;-------------------------------------------------------------------------
 ; Alt+F4  OR Alt+Space C
-;$>^q::Send !{f4}
+; CTRL version
+$>^q::Send !{f4}
 ;$!w::Send !{f4}
+; WIN VERSION
 ;#q::Send !{f4}
-$<!q::Send !{f4}
+; ALT version
+;$<!q::Send !{f4}
 ;$!q::Send {Alt Down}{F4}{Alt Up} ; doesn't work. use send !{f4}
 
 ; this could also be Ctrl+F4, but not sure which one is more compatible
 
 ;-------------------------------------------------------------------------
-; Alt+Shift+[, alt+shift+] -> go to next/prev tab (Chrome, FF) 
+; Alt+Shift+[, alt+shift+] -> go to next/prev tab (Chrome, FF, etc) 
 ;-------------------------------------------------------------------------
-$<!}::Send ^{Tab}
-$<!{::Send ^+{Tab}
+; $<!}::Send ^{Tab}
+; $<!{::Send ^+{Tab}
+; -- CTRL VERSION
+$>^}::Send ^{Tab}
+$>^{::Send ^+{Tab}
 
 ;-------------------------------------------------------------------------
 ; Ctrl+arrow
@@ -244,8 +251,10 @@ RCtrl & down::Send ^{end}
 ; Note: if you need to repeat this action, you need to release the key and press again
 ; unlike default Win+ctrl+arrow, where you can just hold down key to continue 
 ; todo: use {blind} ... but not sure how to do it...
-$!#right::Send ^#{Right}
-$!#left::Send ^#{Left}
+
+; ALT VERSION: disabled currently as I'm using CTRL instead
+; $!#right::Send ^#{Right}
+; $!#left::Send ^#{Left}
 
 
 ;===========================================================================
@@ -336,9 +345,9 @@ Ctrl::Send {esc}    ; this works (on normal keyboard)
 ; my post:https://superuser.com/a/1465387/790554
 ; Modified heavily from https://superuser.com/a/768060
 ;===========================================================================
-!`::    ; Next window if using alt-backtick
+; !`::    ; Next window if using alt-backtick
     ;#`::    ; Next window if using Win-backtick
-    ; ^`::    ; Next window if using Ctrl-backtick (ME: LAlt -> RCTRL)
+^`::    ; Next window if using Ctrl-backtick (ME: LAlt -> RCTRL)
     WinGet, ExeName, ProcessName , A
     WinGet, ExeCount, Count, ahk_exe %ExeName%
     If ExeCount = 1
@@ -348,7 +357,8 @@ Ctrl::Send {esc}    ; this works (on normal keyboard)
         WinActivate, ahk_exe %ExeName%
 return
 
-!+`::    ; prev window, Alt+shift+backtick
+; !+`::    ; prev window, Alt+shift+backtick
+^+`::    ; prev window, CTRL+shift+backtick
     WinGet, ExeName, ProcessName , A
     WinActivateBottom, ahk_exe %ExeName%
 return
@@ -457,20 +467,22 @@ return
 ;if WinActive("ahk_class Notepad") or WinActive("ahk_exe chrome.exe")
 
 ;=========================================================================
-; Google Chrome, but ignore VSCode, and Electron apps
-;-------------------------------------------------------------------------
+; Google Chrome'
+; but ignore VSCode, and Electron apps
 ; use chrome.exe instead, as it Chrome_WidgetWin_1 works on all Electron app, including VSCode
 ; I don't want to apply it to VSCode
 ; #IfWinActive, ahk_class Chrome_WidgetWin_1
+;-------------------------------------------------------------------------
 #IfWinActive, ahk_exe chrome.exe
 ; Show Web Developer Tools with cmd + alt + i
-^<!i::Send {F12}
+; ALT
+; ^<!i::Send {F12}
+
 ; Show source code with cmd + alt + u
 ;#^u::Send ^u ;howeer, cannot map #u?
 
 ; $^}::Send ^{Tab}
 ; $^{::Send ^+{Tab}
-
 
 ; Disable ALT key in chrome, as it focuses on Menu button!!!
 Alt::return  
@@ -479,8 +491,10 @@ Alt::return
 ; Vivaldi browser
 ;-------------------------------------------------------------------------
 #IfWinActive, ahk_exe vivaldi.exe
-$<!}::Send ^{PgDn}
-$<!{::Send ^{PgUp}
+; $<!}::Send ^{PgDn}
+; $<!{::Send ^{PgUp}
+$^}::Send ^{PgDn}
+$^{::Send ^{PgUp}
 
 ;=========================================================================
 ; Firefox
@@ -545,13 +559,13 @@ $<!x:: Send +{Del}
 ;--------------------------------------------
 ; SWITCH TAB
 ; this cannot be done in vimrc since {,[ cannot be mapped using ctrl ALT+}, ALT+{
-$<!}::Send {Esc}:tabn{Enter}
-$<!{::Send {Esc}:tabp{Enter}
-
-; using ctrl instead of ALT
+; ALT version
+; $<!}::Send {Esc}:tabn{Enter}
+; $<!{::Send {Esc}:tabp{Enter}
+; -- using ctrl instead of ALT
 ; CTRL+}, CTRL+{
-; $^}::Send {Esc}:tabn{Enter}
-; $^{::Send {Esc}:tabp{Enter}
+$^}::Send {Esc}:tabn{Enter}
+$^{::Send {Esc}:tabp{Enter}
 
 ;=========================================================================
 ; Neovim GUI apps: neovim-qt, neovide, goneovim,...
@@ -559,8 +573,12 @@ $<!{::Send {Esc}:tabp{Enter}
 #IfWinActive ahk_exe nvim-qt.exe
 ; SWITCH TAB
 ; this cannot be done in vimrc since {,[ cannot be mapped using ctrl ALT+}, ALT+{
-$<!}::Send {Esc}:tabn{Enter}
-$<!{::Send {Esc}:tabp{Enter}
+; -- ALT
+; $<!}::Send {Esc}:tabn{Enter}
+; $<!{::Send {Esc}:tabp{Enter}
+; -- CTRL 
+$^}::Send {Esc}:tabn{Enter}
+$^{::Send {Esc}:tabp{Enter}
 
 #IfWinActive ahk_exe neovide.exe
 $<!}::Send {Esc}:tabn{Enter}
@@ -617,9 +635,12 @@ $<!w::Send !w
 #IfWinActive ahk_exe devenv.exe
 
 ;Next/Prev tab: `ctrl+alt+pageup`, `ctrl+alt+pagedown`
-
-$<!}::Send ^!{PgDn}
-$<!{::Send ^!{PgUp}
+; -- ALT version
+; $<!}::Send ^!{PgDn}
+; $<!{::Send ^!{PgUp}
+; -- CTRL 
+$>^}::Send ^!{PgDn}
+$>^{::Send ^!{PgUp}
 
 ;=========================================================================
 ; ConEmu

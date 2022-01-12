@@ -60,7 +60,6 @@ RunAsAdmin() {
         }
 }
 
-
 ;-------------------------------------------------------------------------
 ;[PAUSE/BREAK]
 ; Pressing Pause/Break will toggle AHK script; Useful when you want to quickly switch off AHK, esp when you want to share the keyboard with someone else
@@ -202,8 +201,8 @@ $>^q::Send !{f4}
 ; $<!}::Send ^{Tab}
 ; $<!{::Send ^+{Tab}
 ; -- CTRL VERSION
-$>^}::Send ^{Tab}
-$>^{::Send ^+{Tab}
+$^}::Send ^{Tab}
+$^{::Send ^+{Tab}
 
 ;-------------------------------------------------------------------------
 ; Ctrl+arrow
@@ -212,8 +211,10 @@ $>^{::Send ^+{Tab}
 ; Alt+ downarrow => Ctrl+End / go to bottom of document
 ; Alt up/down is useful in Visual Code, as it moves lines up/down
 ; so use Right Alt to do this, since it is still preserved on RAlt
-RCtrl & up::Send ^{home}
-RCtrl & down::Send ^{end}
+; RCtrl & XYZ: -- causes issues, problems with all CTRL-related keys, weird... don't use
+    ;  use >^ instead
+; RCtrl & up::Send ^{home}
+; RCtrl & down::Send ^{end}
 >^left::Send {home}
 
 ; RCtrl & left::Send {home} ; Don't use this as it also captures Windows key
@@ -295,7 +296,7 @@ RCtrl & down::Send ^{end}
 ; for weird reason it works as momentary ESC/CTRL
 ; sometimes LCtrl works. Sometimes CTRL works
 ;-------------------------------------------------------
-Ctrl::Send {esc}    ; this works (on normal keyboard)
+; Ctrl::Send {esc}    ; this works (on normal keyboard)
     ; currently disabled since I'm running DZ60/QMK keyboard
 ;-------------------------------------------------------
 ; Alternative settings
@@ -315,7 +316,6 @@ Ctrl::Send {esc}    ; this works (on normal keyboard)
 ;     Else
 ;         Send {Blind}{LCtrl Up}
 ; Return
-
 
 ;===========================================================================
 ; Space Cadet shift as parenthesis -- Shift only as ( )
@@ -358,7 +358,7 @@ Ctrl::Send {esc}    ; this works (on normal keyboard)
 return
 
 ; !+`::    ; prev window, Alt+shift+backtick
-^+`::    ; prev window, CTRL+shift+backtick
+^~::    ; prev window, CTRL+shift+backtick
     WinGet, ExeName, ProcessName , A
     WinActivateBottom, ahk_exe %ExeName%
 return
@@ -485,7 +485,7 @@ return
 ; $^{::Send ^+{Tab}
 
 ; Disable ALT key in chrome, as it focuses on Menu button!!!
-Alt::return  
+;Alt::return  
 
 ;=========================================================================
 ; Vivaldi browser
@@ -560,8 +560,8 @@ $<!x:: Send +{Del}
 ; SWITCH TAB
 ; this cannot be done in vimrc since {,[ cannot be mapped using ctrl ALT+}, ALT+{
 ; ALT version
-; $<!}::Send {Esc}:tabn{Enter}
-; $<!{::Send {Esc}:tabp{Enter}
+ $<!}::Send {Esc}:tabn{Enter}
+ $<!{::Send {Esc}:tabp{Enter}
 ; -- using ctrl instead of ALT
 ; CTRL+}, CTRL+{
 $^}::Send {Esc}:tabn{Enter}
@@ -638,9 +638,9 @@ $<!w::Send !w
 ; -- ALT version
 ; $<!}::Send ^!{PgDn}
 ; $<!{::Send ^!{PgUp}
-; -- CTRL 
-$>^}::Send ^!{PgDn}
-$>^{::Send ^!{PgUp}
+; -- CTRL , temp disabled to test vim
+; $>^}::Send ^!{PgDn}
+; $>^{::Send ^!{PgUp}
 
 ;=========================================================================
 ; ConEmu

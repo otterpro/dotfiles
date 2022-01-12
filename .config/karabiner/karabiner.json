@@ -84,14 +84,6 @@
                     "simple_modifications": [
                         {
                             "from": {
-                                "key_code": "keypad_enter"
-                            },
-                            "to": {
-                                "key_code": "f2"
-                            }
-                        },
-                        {
-                            "from": {
                                 "key_code": "left_command"
                             },
                             "to": {
@@ -104,6 +96,30 @@
                             },
                             "to": {
                                 "key_code": "left_command"
+                            }
+                        },
+                        {
+                            "from": {
+                                "key_code": "keypad_slash"
+                            },
+                            "to": {
+                                "key_code": "f16"
+                            }
+                        },
+                        {
+                            "from": {
+                                "key_code": "keypad_asterisk"
+                            },
+                            "to": {
+                                "key_code": "f17"
+                            }
+                        },
+                        {
+                            "from": {
+                                "key_code": "keypad_hyphen"
+                            },
+                            "to": {
+                                "key_code": "f18"
                             }
                         }
                     ]

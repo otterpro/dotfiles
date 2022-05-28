@@ -850,8 +850,9 @@ if has("autocmd") " Only do this part when compiled with support for autocommand
 	autocmd filetype markdown iab <buffer> <- ←
 	autocmd filetype markdown iab <buffer> ---^ ↑
 	autocmd filetype markdown iab <buffer> ---v ↓
-	autocmd filetype markdown iab <buffer> euro €
-	autocmd filetype markdown iab <buffer> degree °
+	autocmd filetype markdown iab <buffer> EURO €
+	autocmd filetype markdown iab <buffer> WON ₩
+	autocmd filetype markdown iab <buffer> DEGREE °
 
 	" this doesn't work as autocmd, may need to put it in ft markdown.vim instead
 	" autocmd filetype markdown iab <expr> today2 strftime("%c")

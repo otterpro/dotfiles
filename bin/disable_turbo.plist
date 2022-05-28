@@ -8,7 +8,7 @@
 	<string>disable_turbo</string>
 	<key>ProgramArguments</key>
 	<array>
-		<string>/Users/otter/bin/disable_turbo.sh</string>
+		<string>/Users/otter/.dotfiles/bin/disable_turbo.sh</string>
 	</array>
 	<key>RunAtLoad</key>
 	<true/>

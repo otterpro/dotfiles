@@ -97,6 +97,7 @@ if (!($env:ChocolateyInstall)) {  #if choco is not installed
     # copyq is ok, could try another such as clipboardic or clcl
     choco install copyq -y
     choco install greenshot -y
+    choco install flameshot -y
     # broken?
     # choco install teracopy -y
 

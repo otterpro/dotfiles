@@ -607,6 +607,14 @@ inoremap <C-K> <up>
 inoremap <C-h> <left>
 inoremap <C-l> <right>
 
+
+" ------------ Mac style cmd-}, cmd-{ to change tab -----------------------
+" macvim
+nmap <D-{>
+
+" win/gtk2 gvim
+
+
 " --------
 " common remap, also found in :help yank
 nn Y y$

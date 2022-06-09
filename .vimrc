@@ -608,12 +608,14 @@ inoremap <C-h> <left>
 inoremap <C-l> <right>
 
 
-" ------------ Mac style cmd-}, cmd-{ to change tab -----------------------
-" macvim
-nmap <D-{>
+" ------------ Mac style cmd-}, cmd-{ to change tab for nvim ------------
+" nvim
+" not sure if it works
+nmap <D-{> <esc>:tabp<cr>
+nmap <D-}> <esc>:tabn<cr>
+" nmap <C-[>
 
 " win/gtk2 gvim
-
 
 " --------
 " common remap, also found in :help yank
@@ -626,7 +628,7 @@ vmap Q gq
 " repeat last macro
 " nnoremap Q @@
 
-"Q: save all and quit, better than Q:Ex mode
+" Q: save all and quit, better than Q:Ex mode
 nnoremap Q :xa<cr>
 nnoremap <Leader>q :close<cr>
 
@@ -1006,7 +1008,7 @@ vmap \\ S`
 " surround ` ` for entire line
 nmap <Leader>\ 0ys$`
 " remove surrounding backticks ` ` 
-" nmap d\ ds`
+" [map d\ ds`
 " same as ||, but | must be escaped or use <bar>
 nmap <bar><bar> ds`
 

@@ -612,6 +612,16 @@ inoremap <C-K> <up>
 inoremap <C-h> <left>
 inoremap <C-l> <right>
 
+
+" ------------ Mac style cmd-}, cmd-{ to change tab for nvim ------------
+" nvim
+" not sure if it works
+nmap <D-{> <esc>:tabp<cr>
+nmap <D-}> <esc>:tabn<cr>
+" nmap <C-[>
+
+" win/gtk2 gvim
+
 " --------
 " common remap, also found in :help yank
 nn Y y$
@@ -623,7 +633,7 @@ vmap Q gq
 " repeat last macro
 " nnoremap Q @@
 
-"Q: save all and quit, better than Q:Ex mode
+" Q: save all and quit, better than Q:Ex mode
 nnoremap Q :xa<cr>
 nnoremap <Leader>q :close<cr>
 
@@ -855,8 +865,9 @@ if has("autocmd") " Only do this part when compiled with support for autocommand
 	autocmd filetype markdown iab <buffer> <- ←
 	autocmd filetype markdown iab <buffer> ---^ ↑
 	autocmd filetype markdown iab <buffer> ---v ↓
-	autocmd filetype markdown iab <buffer> euro €
-	autocmd filetype markdown iab <buffer> degree °
+	autocmd filetype markdown iab <buffer> EURO €
+	autocmd filetype markdown iab <buffer> WON ₩
+	autocmd filetype markdown iab <buffer> DEGREE °
 
 	" this doesn't work as autocmd, may need to put it in ft markdown.vim instead
 	" autocmd filetype markdown iab <expr> today2 strftime("%c")
@@ -1002,7 +1013,7 @@ vmap \\ S`
 " surround ` ` for entire line
 nmap <Leader>\ 0ys$`
 " remove surrounding backticks ` ` 
-" nmap d\ ds`
+" [map d\ ds`
 " same as ||, but | must be escaped or use <bar>
 nmap <bar><bar> ds`
 

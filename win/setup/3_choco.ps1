@@ -72,7 +72,7 @@ if (!($env:ChocolateyInstall)) {  #if choco is not installed
     # python2 required for gvim?
 
     # tools essential
-    choco install -y delta everything ripgrep powertoys 7zip autohotkey python fzf zoxide
+    choco install -y delta everything ripgrep powertoys 7zip autohotkey python fzf zoxide fd llvm
     #choco install ag -y
 
     # file manager
@@ -106,7 +106,6 @@ if (!($env:ChocolateyInstall)) {  #if choco is not installed
     
     # editors
 	choco install -y vim vscode notepadplusplus neovim
-    # maybe: spacemacs/emacs
 
     # Media
     choco install -y ffmpeg vlc foobar2000 musicbee mpc-be exiftool

@@ -62,10 +62,11 @@ LC_ALL=en_US.UTF-8
 plugins=(git z)
 
 #================ Shell configuration ========================================
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH="$HOME/bin:/usr/local/bin:$HOME/.emacs.d/bin:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
+
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -135,6 +136,16 @@ export LESSOPEN='|~/.lessfilter.sh %s'
 
 # ============== Settings =======================================
 export TERM="xterm-256color"
+
+# fallback for EDITOR
+# if command -v nvim >/dev/null; then
+#   export EDITOR=nvim
+# elif hash vim 2>/dev/null; then
+#   export EDITOR=vim
+# else
+#   export EDITOR=vi
+# fi
+
 export EDITOR=vim
 export VISUAL=gvim
 
@@ -251,3 +262,31 @@ prompt fire
 
 #???
 # source /Users/otter/Library/Preferences/org.dystroy.broot/launcher/bash/br
+#
+
+# ================= boop on last exit value ======================================
+# [home/zsh/.config/zsh/aliases.zsh · ece393e625bb8254fe05774df33bb5af8a73d7e7 · Evan Hahn / dotfiles · GitLab](https://gitlab.com/EvanHahn/dotfiles/-/blob/ece393e625bb8254fe05774df33bb5af8a73d7e7/home/zsh/.config/zsh/aliases.zsh#L48-56)
+# > boop plays a happy sound if the previous command exited successfully (i.e., exited with status code 0) and a sad sound otherwise. For example, if I’m running a long-running test, I might run npm test ; boop. It helps me know whether something finished, and whether something went wrong.
+#
+# TODO: add `sfx` and bad/good sfx for linux
+
+# boop () {
+#   local last="$?"
+#   if [[ "$last" == '0' ]]; then
+#     sfx good
+#   else
+#     sfx bad
+#   fi
+#   $(exit "$last")
+# }
+# 
+### MAC OS
+# boop () {
+#   local last="$?"
+#   if [[ "$last" == '0' ]]; then
+#     afplay /System/Library/Sounds/Glass.aiff
+#   else
+#     afplay /System/Library/Sounds/Submarine.aiff
+#   fi
+#   $(exit "$last")
+# }

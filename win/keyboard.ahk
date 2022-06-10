@@ -89,6 +89,7 @@ Pause::Suspend
 ; also CTRL & TAB won't work in another IME, only works in English???
 
 ;Ctrl & tab:: AltTab ; Using all Ctrl instead of ALT
+
 RCtrl & tab:: AltTab ; Using RCtrl instead of ALT
     ; this was needed when LAlt was mapped to RCTRL
 ; LWin & tab:: AltTab ; Windows key version

@@ -542,9 +542,14 @@ inoremap <C-space> <esc><c-w>w
 " inoremap <C-l> <C-o>dd
 
 " ------------- << , >> , indent <, >------------------------
+" Use ctrl+., ctrl-, to indent/unindent while in insert-mode
+inoremap <C-,> <C-D>
+inoremap <C-.> <C-T>
+" OLD WAY
 " remap << and >> to tab/untab in insert"
 inoremap << <C-D>
 inoremap >> <C-T>
+" MAYBE: use C-TAB, but awkward for fingers
 
 
 " when tabbing using > to indent, stay in visual mode. Normal behavior is to

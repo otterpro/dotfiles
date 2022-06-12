@@ -1011,7 +1011,8 @@ nmap \\  ysiW`
 "vmap `` S`
 vmap \\ S`
 " surround ` ` for entire line
-nmap <Leader>\ 0ys$`
+nmap <Leader>\ ^ys$`
+" nmap <Leader>\ 0ys$`
 " remove surrounding backticks ` ` 
 " [map d\ ds`
 " same as ||, but | must be escaped or use <bar>

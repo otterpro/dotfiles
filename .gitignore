@@ -3,4 +3,5 @@
 !.config/karabiner/
 !.config/nvim/
 .vim/.swap/
+autosave
 

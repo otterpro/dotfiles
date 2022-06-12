@@ -58,6 +58,9 @@ New-Item -Path  "$xdg_config_home\nvim\init.vim" -ItemType SymbolicLink -Value "
 New-Item -Path  "$xdg_config_home\nvim\vimfiles\"  -ItemType SymbolicLink -Value "$targetPath\.vim\" -Force
 New-Item -Path  "$xdg_config_home\nvim\"  -ItemType SymbolicLink -Value "$targetPath\.gvimrc" -Force
 
+# doom emacs 
+New-Item -Path  "$env:USERPROFILE\.doom.d\"  -ItemType SymbolicLink -Value "$targetPath\.doom.d\" -Force
+
 #===========================================================================
 # create symlink WIN:/users/USERNAME/.dotfiles -> wsl/home/USERNAME
 # ie WIN:~/wsl-> //wsl$/debian/home/USER/

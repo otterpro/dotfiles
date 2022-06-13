@@ -158,3 +158,10 @@
       ((eq system-type 'gnu/linux)
        ;; Linux-specific code goes here.
        ))
+
+;; ======= TODO ============================
+; " highlighted text - remove all empty lines
+; " vn <Leader>d :g/^$/d<CR>
+; " but also delete lines that have whitespace only
+; " gv = re-select highlighted text
+; vn <Leader>d :g/^\s*$/d<CR>gv

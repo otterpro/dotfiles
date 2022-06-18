@@ -336,7 +336,10 @@ Plug 'mileszs/ack.vim'
 "-----------------------------------------------------------------
 "Plug 'SidOfc/mkdx'   " New Markdown "just testing for now
 Plug 'godlygeek/tabular' "required for vim-markdown. 
-Plug 'plasticboy/vim-markdown' 
+
+"Plug 'plasticboy/vim-markdown' 
+Plug 'preservim/vim-markdown' 
+
 " Plasticboy's markdown is included in Polyglot but that is missing features
 " such as TOC, so it is loaded here 
 

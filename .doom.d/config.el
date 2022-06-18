@@ -23,7 +23,21 @@
 ;;
 ;;(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
 ;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
-(setq doom-font (font-spec :family "Fantasque Sans Mono" :size 16))
+(setq doom-font (font-spec :family "Fantasque Sans Mono" :size 16)
+	doom-variable-pitch-font (font-spec :family "Arial" :size 32)
+)
+
+;; from DistroTube
+;; (setq doom-font (font-spec :family "Source Code Pro" :size 15)
+;;       doom-variable-pitch-font (font-spec :family "Ubuntu" :size 15)
+;;       doom-big-font (font-spec :family "Source Code Pro" :size 24))
+;; enable italic
+;; (after! doom-themes
+;;   (setq doom-themes-enable-bold t
+;;         doom-themes-enable-italic t))
+;; (custom-set-faces!
+;;   '(font-lock-comment-face :slant italic)
+;;   '(font-lock-keyword-face :slant italic))
 
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
@@ -79,18 +93,47 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
+;; allow mouse in terminal (xterm)
+(xterm-mouse-mode 1)
+
+;; if file is updated outside of emacs, this will update the buffer to change
+(global-auto-revert-mode 1)
+(setq global-auto-revert-non-file-buffers t)
+
+;; from Distrotube
+;; This setting ensures that emacsclient always opens on dashboard rather than scratch.
+(setq doom-fallback-buffer-name "*dashboard*")
+
+
 ;; turn off whitespace mode, otherwise, it will highlight all whitespace (not verified)
 (setq global-whitespace-mode nil)
-;;(setq global-whitespace-mode t)
+;; (setq whitespace-mode nil)
 ;;
-;;(setq-default tab-width 4)
+;; free of trailing whitespace and to use 80-column width, standard indentation
+;;(setq whitespace-style nil)
+;;(setq whitespace-style '(trailing lines space-before-tab
+;;                                  indentation space-after-tab)
+;;)
+(setq whitespace-style '(lines-tail tab-mark))
+(setq whitespace-line-column 80)
+(whitespace-mode nil)
+;; highlight 80th column
+    ;;(setq test)
 
+;; `test'  abcdefg hhh abcdefg habcdefg habcdefg habcdefg habcdefg habcdefg habcdefg habcdefg habcdefg habcdefg habcdefg habcdefg habcdefg habcdefg habcdefg habcdefg habcdefg habcdefg h
+;; `test'  abcdefg hhh abcdefg habcdefg habcdefg habcdefg habcdefg habcd abc abc abc abc abdef afgdf
+	                                           ;;abc
+	                                           ;;abc
+						   ;;
+;;(setq-default tab-width imenu)
 
-;; imenu-list (markdown, etc)
+;; imenu-list
+;; 4-list (markdown, etc)
 (imenu-list-minor-mode)
 (after! imenu-list (map! :niv "C-'" #'imenu-list-smart-toggle))
 
-;; keyboard mapping
+;;===========================================================================
+;;; keyboard mapping
 (map! :niv "C-j" #'evil-scroll-down)
 (map! :niv "C-k" #'evil-scroll-up)
 
@@ -113,11 +156,12 @@
 (map! :i "C-," #'evil-shift-left)
 
 
-;; ======== surround ==========================
+;;===========================================================================
+;;; surround
 ;; \\ => surround with `backtick` for markdown codes
 (map! :n "\\\\" "ysiW`")
 (map! :i "\\\\" "<ESC>ysiW`Ea")
-(map! :leader  "\\\\" "^ys$`")
+(map! :leader  "\\" "^ys$`")
 
 ;; (map! :i "\\\\" ("abc" "def"))
 ;; (map! :leader
@@ -139,29 +183,92 @@
 ;; word-wrapping off
 ;; general text
 (setq-default truncate-lines t)
+(map! :leader
+      (:prefix ("t" . "toggle")
+       :desc "Toggle truncate lines" "t" #'toggle-truncate-lines))
+
 ;; for markdown-mode
 (add-hook 'markdown-mode-hook (lambda () (setq truncate-lines t)))
 
+
+;;===========================================================================
+;;;markdown-mode
+;;
 ;; show nested instead of flat tree in imenu
 ;;(setq markdown-nested-imenu-heading-index t)
+;;(add-hook 'markdown-mode-hook 'visual-line-mode)
+;;(add-hook 'prog-mode-hook 'enable-tabs)
+
+;; (add-hook 'lisp-mode-hook 'disable-tabs)
+;; (add-hook 'emacs-lisp-mode-hook 'disabl;e-tabs)(add-hook 'markdown-mode-hook 'as/markdown-config)
+
+;; from DistroTube
+(custom-set-faces
+ '(markdown-header-face ((t (:inherit font-lock-function-name-face :weight bold :family "variable-pitch"))))
+ '(markdown-header-face-1 ((t (:inherit markdown-header-face :height 1.8))))
+ '(markdown-header-face-2 ((t (:inherit markdown-header-face :height 1.4))))
+ '(markdown-header-face-3 ((t (:inherit markdown-header-face :height 1.2)))))
+
+
 
 ;;(global-visual-line-mode t)
 
 ;; use tab instead of space
 (setq-default indent-tabs-mode t)
 
-;; =========== WINDOWS only ====================
+
+;; ============ Use UTF-8 LF (not CRLF) =================
+;; affects any new file. This was problematic in Windows as it was creating CRLF text
+(setq-default buffer-file-coding-system 'utf-8-unix)
+
+;;===========================================================================
+;;;Platform specific
 (cond ((eq system-type 'windows-nt)
        ;; Windows-specific code goes here.
+       ;; window uses UTF16,... paste is incorrect
 	(set-clipboard-coding-system 'utf-16le-dos)
+       )
+      ((eq system-type 'darwin)
+       ;; Mac-specific code goes here.
        )
       ((eq system-type 'gnu/linux)
        ;; Linux-specific code goes here.
        ))
 
-;; ======= TODO ============================
+
+;; ======= delete all blank lines in region ============================
 ; " highlighted text - remove all empty lines
-; " vn <Leader>d :g/^$/d<CR>
-; " but also delete lines that have whitespace only
-; " gv = re-select highlighted text
-; vn <Leader>d :g/^\s*$/d<CR>gv
+; from [Removing blank lines in a buffer - Mastering Emacs](https://www.masteringemacs.org/article/removing-blank-lines-buffer)
+(defun flush-blank-lines (start end) (interactive "r") (flush-lines "^\\s-*$" start end nil))
+(map! :leader "d" #'flush-blank-lines)
+
+;;===========================================================================
+;;;Clippy
+;; from DistroTube
+(map! :leader
+      (:prefix ("c h" . "Help info from Clippy")
+       :desc "Clippy describes function under point" "f" #'clippy-describe-function
+       :desc "Clippy describes variable under point" "v" #'clippy-describe-variable))
+
+;; (after! org-superstar-mode
+;; 	(org-superstar-configure-like-org-bullets))
+
+;;===========================================================================
+;;; org mode
+;; from DistroTube
+;;===========================================================================
+(custom-set-faces
+  '(org-level-1 ((t (:inherit outline-1 :height 1.4 :weight bold :family "variable-pitch"))))
+  ;'(org-level-1 ((t (:inherit outline-1 :height 1.4))))
+  '(org-level-2 ((t (:inherit outline-2 :height 1.3))))
+  '(org-level-3 ((t (:inherit outline-3 :height 1.2))))
+  '(org-level-4 ((t (:inherit outline-4 :height 1.1))))
+  '(org-level-5 ((t (:inherit outline-5 :height 1.0))))
+)
+
+
+
+;; show menu-bar
+(menu-bar-mode 1)
+
+;;===========================================================================

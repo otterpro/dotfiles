@@ -80,6 +80,9 @@ if (!($env:ChocolateyInstall)) {  #if choco is not installed
 	# choco install altap-salamander # salamander
 	# choco xyplorerfree # broken??? haven't tried
     
+    # Programming Languages
+    # Golang
+    choco install -y golang
     # RUST
     choco install -y rust-ms
     # rust: may instead use rustup-init.exe from rust, which is better?

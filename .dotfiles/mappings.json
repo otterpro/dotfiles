@@ -1,0 +1,5 @@
+{
+  ".gitconfig": "~/.gitconfig",
+  ".gitignore_global": "~/.gitignore_global",
+  ".doom.d": "~/.doom.d"
+}

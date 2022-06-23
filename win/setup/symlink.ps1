@@ -40,26 +40,29 @@ $xdg_config_home = "$env:USERPROFILE\.config"
 # prerequisite: cygwin and .dotfiles/ (and maybe win VIM)
 #===========================================================================
 
-Write-Host "creating symbolic link for vim"
-#cmd /c mklink "$env:USERPROFILE\.vimrc" -ItemType SymbolicLink -Value "$targetPath\.dotfiles\.vimrc"
-New-Item -Path  "$env:USERPROFILE\.vimrc" -ItemType SymbolicLink -Value "$targetPath\.vimrc" -Force
-if (!(Test-Path -Path "$env:USERPROFILE\vimfiles_old\")) { 
-    Move-Item -Path "$env:USERPROFILE\vimfiles\" "$env:USERPROFILE\vimfiles_old\"
-    # Remove-Item -Path "$env:USERPROFILE\vimfiles\" -Recurse -Force
-    # also delete existing vimfiles\ since I can't create new symlink on existin dir
-    # but instead of deleting, move it to temp folder for safety!!!
-}
-New-Item -Path  "$env:USERPROFILE\vimfiles\"  -ItemType SymbolicLink -Value "$targetPath\.vim\" -Force
-    # Windows Vim uses vimfiles/, not .vim/
-New-Item -Path  "$env:USERPROFILE\.gvimrc"  -ItemType SymbolicLink -Value "$targetPath\.gvimrc" -Force
+# Write-Host "creating symbolic link for vim"
+# symlink now handled by dotfiles.exe
+# # OLD WAY: cmd /c mklink "$env:USERPROFILE\.vimrc" -ItemType SymbolicLink -Value "$targetPath\.dotfiles\.vimrc"
+# New-Item -Path  "$env:USERPROFILE\.vimrc" -ItemType SymbolicLink -Value "$targetPath\.vimrc" -Force
+# if (!(Test-Path -Path "$env:USERPROFILE\vimfiles_old\")) { 
+#     Move-Item -Path "$env:USERPROFILE\vimfiles\" "$env:USERPROFILE\vimfiles_old\"
+#     # OLD WAY:Remove-Item -Path "$env:USERPROFILE\vimfiles\" -Recurse -Force
+#     # also delete existing vimfiles\ since I can't create new symlink on existin dir
+#     # but instead of deleting, move it to temp folder for safety!!!
+# }
+# New-Item -Path  "$env:USERPROFILE\vimfiles\"  -ItemType SymbolicLink -Value "$targetPath\.vim\" -Force
+#     # Windows Vim uses vimfiles/, not .vim/
+# New-Item -Path  "$env:USERPROFILE\.gvimrc"  -ItemType SymbolicLink -Value "$targetPath\.gvimrc" -Force
 
 # neovim 
-New-Item -Path  "$xdg_config_home\nvim\init.vim" -ItemType SymbolicLink -Value "$targetPath\.vimrc" -Force
-New-Item -Path  "$xdg_config_home\nvim\vimfiles\"  -ItemType SymbolicLink -Value "$targetPath\.vim\" -Force
-New-Item -Path  "$xdg_config_home\nvim\"  -ItemType SymbolicLink -Value "$targetPath\.gvimrc" -Force
+# symlink now handled by dotfiles.exe
+    #New-Item -Path  "$xdg_config_home\nvim\init.vim" -ItemType SymbolicLink -Value "$targetPath\.vim\vimrc" -Force
+    #New-Item -Path  "$xdg_config_home\nvim\vimfiles\"  -ItemType SymbolicLink -Value "$targetPath\.vim\" -Force
+    #New-Item -Path  "$xdg_config_home\nvim\ginit.vim"  -ItemType SymbolicLink -Value "$targetPath\.vim\gvimrc" -Force
 
 # doom emacs 
-New-Item -Path  "$env:USERPROFILE\.doom.d\"  -ItemType SymbolicLink -Value "$targetPath\.doom.d\" -Force
+# symlink now handled by dotfiles.exe
+#New-Item -Path  "$env:USERPROFILE\.doom.d\"  -ItemType SymbolicLink -Value "$targetPath\.doom.d\" -Force
 
 #===========================================================================
 # create symlink WIN:/users/USERNAME/.dotfiles -> wsl/home/USERNAME
@@ -74,16 +77,19 @@ New-Item -Path  "$env:USERPROFILE\wsl\"  -ItemType SymbolicLink -Value "$wslHome
 #  * Warning: Make sure not to delete existing profile.ps1, 
 #  * esp if working on other's PC (or based on company's policy)
 #=========================================================================== 
-#if (!(Test-Path -Path $profile.CurrentUserAllHosts)) { 
-    Write-Host "PS Profile: creating symink for PS profile"
-    New-Item -path $profile.CurrentUserAllHosts -ItemType SymbolicLink -Value "$targetPath\win\profile.ps1" -Force
-#}
+# symlink now handled by dotfiles.exe
+# #if (!(Test-Path -Path $profile.CurrentUserAllHosts)) { 
+#     Write-Host "PS Profile: creating symink for PS profile"
+#     New-Item -path $profile.CurrentUserAllHosts -ItemType SymbolicLink -Value "$targetPath\win\profile.ps1" -Force
+# #}
 
 #===========================================================================
 # 1. symlink ~/bin 
 # 2. add ~/bin/win/ to %PATH%
 #===========================================================================
-New-Item -Path  "$env:USERPROFILE\bin\" -ItemType SymbolicLink -Value "$targetPath\win\bin\" -Force
+# symlink now handled by dotfiles.exe
+    # New-Item -Path  "$env:USERPROFILE\bin\" -ItemType SymbolicLink -Value "$targetPath\win\bin\" -Force
+#
 # Add `$home/tool/` to user's `$PATH` (Local, recommended, no need to be admin)
 $UserPath = [Environment]::GetEnvironmentVariable("Path","User") 
 [Environment]::SetEnvironmentVariable("Path", $UserPath + ";$($env:userprofile)\bin", "User")

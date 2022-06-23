@@ -1,2 +1,5 @@
 {
+  "win/bin": "~/bin",
+  "win/profile.ps1": "~/Documents/WindowsPowershell/profile.ps1",
+  "win/start/start.bat": "~/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/start.bat"
 }

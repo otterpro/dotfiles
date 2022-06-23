@@ -1,2 +1,5 @@
 {
+  ".aliases": "~/.aliases",
+  ".inputrc": "~/.inputrc",
+  "bin": "~/bin"
 }

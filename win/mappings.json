@@ -1,8 +1,0 @@
-{
-  ".gitconfig": "~/.gitconfig",
-  ".gitignore_global": "~/.gitignore_global",
-  ".tmux.conf": "~/.tmux.conf",
-  ".zshrc": "~/.zshrc",
-  ".bash_profile": "~/.bash_profile",
-  ".doom.d": "~/.doom.d",
-}

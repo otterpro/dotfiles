@@ -1,5 +1,6 @@
 {
   ".aliases": "~/.aliases",
   ".inputrc": "~/.inputrc",
+  ".ssh": "~/.ssh",
   "bin": "~/bin"
 }

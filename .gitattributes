@@ -14,3 +14,7 @@
 # everything else by default
 # dotfiles are lf by default
 .* eol=lf
+
+# git-crypt
+*.key filter=git-crypt diff=git-crypt
+.ssh/** filter=git-crypt diff=git-crypt

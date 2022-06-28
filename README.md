@@ -2,10 +2,13 @@ Dotfiles
 ============
 My dotfiles (  .vimrc, .bashrc, .tmux.conf, .vim/,... ) and vim plugins in my github account. 
 
-Download and install
+I am now using [rhysd/dotfiles](https://github.com/rhysd/dotfiles) to manage symlinks.
 
-	git clone https://github.com/otterpro/dotfiles.git .dotfiles
-	.dotfiles/dotfiles.sh
+Download and install/deploy
+
+	git clone --recursive https://github.com/otterpro/dotfiles.git 
+	dotfiles/dotfiles link --dry
+	dotfiles/dotfiles link
 	
 Warning
 -------------

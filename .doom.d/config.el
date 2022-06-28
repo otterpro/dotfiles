@@ -130,7 +130,8 @@
 ;; imenu-list
 ;; 4-list (markdown, etc)
 (imenu-list-minor-mode)
-(after! imenu-list (map! :niv "C-'" #'imenu-list-smart-toggle))
+(after! imenu-list (map! :niv "C-'" #'imenu-list-smart-toggle)
+  )
 
 ;;===========================================================================
 ;;; keyboard mapping
@@ -142,6 +143,12 @@
 ;; go to next buffer Cmd+shift+], Cmd+shift+[, emulate tab
 ; (map! :niv "s-}" #'switch-to-next-buffer)
 ; (map! :niv "s-{" #'switch-to-prev-buffer)
+
+;; C-s  Save all buffers
+;; replace C-s to save all
+;; C-s was `isearch-forward' (same as vim / ?)
+(map! :niv "C-s" #'evil-write-all)
+
 
 ;; tabs
 (map! :niv "M-}" #'tab-next)
@@ -155,6 +162,13 @@
 ;; C-, doesn't work for shift-left!, need something else...
 (map! :i "C-," #'evil-shift-left)
 
+;;===========================================================================
+;;; orderless
+;; filter file using most flexible
+;; original doom emacs: ('(orderless-regexp orderless-literal))
+(after! orderless
+  (setq orderless-matching-styles '(orderless-flex orderless-regexp))
+  )
 
 ;;===========================================================================
 ;;; surround
@@ -210,6 +224,9 @@
  '(markdown-header-face-3 ((t (:inherit markdown-header-face :height 1.2)))))
 
 
+;;(add-hook 'markdown-mode-hook (lambda () (setq truncate-lines t)))
+;;(add-hook 'markdown-mode-hook 'imenu-list-minor-mode)
+;;(add-hook 'markdown-mode-hook 'imenu-list-smart-toggle)
 
 ;;(global-visual-line-mode t)
 
@@ -272,3 +289,8 @@
 (menu-bar-mode 1)
 
 ;;===========================================================================
+;;; Maximized windows
+;; the t parameter apends to the hook, instead of prepending
+;; this means it'd be run after other hooks that might fiddle
+;; with the frame size
+(add-hook 'window-setup-hook 'toggle-frame-maximized t)

@@ -24,7 +24,7 @@
 ;;(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
 ;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
 (setq doom-font (font-spec :family "Fantasque Sans Mono" :size 16)
-	doom-variable-pitch-font (font-spec :family "Arial" :size 32)
+	;; doom-variable-pitch-font (font-spec :family "Fantasque Sans Mono" :size 32)
 )
 
 ;; from DistroTube

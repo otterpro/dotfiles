@@ -32,5 +32,8 @@ export CLICOLOR=1
 # eval "$(fasd --init auto)"
 # disabled, because it slowed down the bash in Cygwin; introduces some delay
 
+# starship prompt
+# eval "$(starship init bash)"
+
 # z.sh
 . ~/bin/z.sh

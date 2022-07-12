@@ -192,7 +192,11 @@ esac
 	# [otter ottermbp] ~$  
 	# PROMPT='[%{$fg[yellow]%}%n${PROMPT_EMOJI} %{$fg[red]%}%m%{$fg[white]%}] %{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.$) '
 # shortened version [] ~$  , override above
-	# PROMPT='[%{$fg[yellow]%}%n${PROMPT_EMOJI}] %{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.$) '
+	#PROMPT='[%{$fg[yellow]%}%n${PROMPT_EMOJI}] %{$fg[$user_color]%}$(_fishy_collapsed_wd)%{$reset_color%}%(!.#.$) '
+
+# simple
+	PROMPT="[%n@%M]:%~ $"
+	RPROMPT="%D%t"
 
 # OLD PROMPT -- default, in case no emoji
 # override fishy theme's prompt. Replace > with $
@@ -242,8 +246,8 @@ unset GREP_OPTIONS
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 
 # ============== Prompt ==================================
-autoload -U promptinit; promptinit
-prompt fire
+# autoload -U promptinit; promptinit
+# prompt fire
 
 # ============== Pure Prompt ==================================
 # Requires installing pure prompt first!!!
@@ -262,7 +266,9 @@ prompt fire
 
 #???
 # source /Users/otter/Library/Preferences/org.dystroy.broot/launcher/bash/br
-#
+
+# ============= starship ====================================================
+eval "$(starship init zsh)"
 
 # ================= boop on last exit value ======================================
 # [home/zsh/.config/zsh/aliases.zsh · ece393e625bb8254fe05774df33bb5af8a73d7e7 · Evan Hahn / dotfiles · GitLab](https://gitlab.com/EvanHahn/dotfiles/-/blob/ece393e625bb8254fe05774df33bb5af8a73d7e7/home/zsh/.config/zsh/aliases.zsh#L48-56)

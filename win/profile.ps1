@@ -32,3 +32,6 @@ function e { vim.exe $args}
 # neovim implementations, flavor of the day
 # nvim-qt, neovide, etc...
 function n { nvim-qt.exe $args}
+
+# starship prompt
+#Invoke-Expression (&starship init powershell)

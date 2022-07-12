@@ -1,5 +1,6 @@
 # based on pastel powerline
 # https://starship.rs/presets/pastel-powerline.html
+# [](#9A348E)\
 format = """
 [](#9A348E)\
 $username\
@@ -44,28 +45,28 @@ format = '[@$hostname ]($style)'
 [directory]
 style = "bg:#DA627D"
 format = "[ $path ]($style)"
-truncation_length = 40
+truncation_length = 0
 truncation_symbol = "…/"
 
 [custom.linux]
 #command = "uname"
 os = "linux"
 when = true
-style = "bg:#9A348E"
+style = "bg:#9A348E fg:bright-yellow"
 #format = "[$output]($style)"
-format = "[Linux]($style)"
+format = "[🐧Linux]($style)"
 
 [custom.mac]
 os = "macos"
 when = true
-style = "bg:#9A348E"
-format = "[Mac]($style)"
+style = "bg:#9A348E fg:bright-yellow"
+format = "[🍎Mac]($style)"
 
 [custom.windows]
 os = "windows"
 when = true
-style = "bg:#9A348E"
-format = "[Win]($style)"
+style = "bg:#9A348E fg:bright-yellow"
+format = "[🪟Win]($style)"
 
 # Here is how you can shorten some long paths by text replacement
 # similar to mapped_locations in Oh My Posh:

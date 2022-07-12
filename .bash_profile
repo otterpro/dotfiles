@@ -13,11 +13,13 @@
 #fi
 
 # Load aliases
-if [ -f ~/.aliases ]; then
-	. ~/.aliases
-fi
-# see below for future, move .aliases into ~/.sh/d
+[ -s ~/.aliases ] && . ~/.aliases
+# below script fails if it is symlink?
+# if [ -f ~/.aliases ]; then
+# 	. ~/.aliases
+# fi
 
+# see below for future, move .aliases into ~/.sh/d
 #in future, put aliases and others in this folder
 # and common with .zshrc 
 # not activated yet, but to do in future

@@ -92,7 +92,7 @@ export PATH="$HOME/bin:/usr/local/bin:$HOME/.emacs.d/bin:$PATH"
 #
 # load my own aliases (and functions), and in future, put them in .sh.d
 	# source ~/.aliases
-[ -f ~/.aliases ] && . ~/.aliases
+[ -s ~/.aliases ] && . ~/.aliases
 
 
 # for future, use this instead and common with .bash_profile
@@ -243,7 +243,7 @@ esac
 unset GREP_OPTIONS
 
 # ============== FZF =========================================
-[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
+[[ -s ~/.fzf.zsh ]] && source ~/.fzf.zsh
 
 # ============== Prompt ==================================
 # autoload -U promptinit; promptinit

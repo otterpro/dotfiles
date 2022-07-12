@@ -2,6 +2,7 @@
 .config/karabiner/automatic_backups/*
 !.config/karabiner/
 !.config/nvim/
+!.config/starship.toml
 .vim/.swap/
 autosave
 *~

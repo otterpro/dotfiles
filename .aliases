@@ -1,6 +1,6 @@
 ### aliases #####################################
 if [[ "${OSTYPE}" == "linux"* ]] || [[ $OSTYPE == cygwin ]]; then
-	   alias ls='ls -F --color=auto'
+	   alias ls='ls -F --color=auto -I "NTUSER.DAT*" -I "ntuser.dat*" '
 	   alias sed='sed -r'
 	   # if encountering Mac/BSD scripts...
 	   # alternative: sudo ln -s $(which date) /bin/gdate

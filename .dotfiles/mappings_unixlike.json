@@ -1,6 +1,7 @@
 {
   ".aliases": "~/.aliases",
   ".inputrc": "~/.inputrc",
+  ".lessfilter.sh": "~/.lessfilter.sh",
   ".ssh": "~/.ssh",
   "bin": "~/bin"
 }

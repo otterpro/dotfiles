@@ -6,6 +6,9 @@
 ;; use 'M-x doom/reload'.
 
 
+;; disable evil-escape, ie 'jk' as escape
+(package! evil-escape :disable t)
+
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;(package! some-package)
 (package! imenu-list)
@@ -18,6 +21,15 @@
 
 ;; clippy -- good for showing highlighted var/function using describe, convenient
 ;(package! clippy)
+;
+
+
+(package! key-chord)
+
+
+;; org-roam
+;; dependency
+(package! emacsql-sqlite3)
 
 ;; To install a package directly from a remote git repo, you must specify a
 ;; `:recipe'. You'll find documentation on what `:recipe' accepts here:

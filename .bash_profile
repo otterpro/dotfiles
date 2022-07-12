@@ -1,6 +1,16 @@
 # bash options
-shopt -s autocd
 # shopt -s autocd globstar
+#if [ -n "$BASH" ]; then
+  # see http://www.gnu.org/software/bash/manual/html_node/The-Shopt-Builtin.html#The-Shopt-Builtin
+	shopt -s autocd globstar
+	#shopt -s cdspell                  # fix minor cd errors
+	shopt -s checkhash                # check that a command exists in the hash table before executing it
+	shopt -s checkwinsize             # update LINES and COLUMNS after each command to detect window size changes
+	#shopt -s expand_aliases           # expand aliases when not interactive
+	#shopt -s hostcomplete             # attempt hostname completion (on words containing '@')
+	shopt -s nocaseglob               # case-insensitive filename match
+	shopt -s no_empty_cmd_completion  # don't search PATH for command completion if the line is empty
+#fi
 
 # Load aliases
 if [ -f ~/.aliases ]; then

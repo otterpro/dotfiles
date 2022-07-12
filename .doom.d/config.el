@@ -163,6 +163,16 @@
 (map! :i "C-," #'evil-shift-left)
 
 ;;===========================================================================
+;;; key-chord
+;; << and >> in insert-mode will indent properly
+;;(after! key-chord
+	(key-chord-mode 1)
+	(key-chord-define evil-insert-state-map  "<<" 'evil-markdown-shift-left-line)
+	(key-chord-define evil-insert-state-map  ">>" 'evil-markdown-shift-right-line)
+	(key-chord-define evil-insert-state-map  "->" "→") ;; doesn't work well, as it needs to be typed within 0.1sec!
+;;)
+
+;;===========================================================================
 ;;; orderless
 ;; filter file using most flexible
 ;; original doom emacs: ('(orderless-regexp orderless-literal))
@@ -174,17 +184,10 @@
 ;;; surround
 ;; \\ => surround with `backtick` for markdown codes
 (map! :n "\\\\" "ysiW`")
-(map! :i "\\\\" "<ESC>ysiW`Ea")
 (map! :leader  "\\" "^ys$`")
 
-;; (map! :i "\\\\" ("abc" "def"))
-;; (map! :leader
-;;       :desc "New journal entry"
-;;       "a j j" #'org-journal-new-entry)
-;; nmap <Leader>\ ^ys$`
-; nmap \\  ysiW`
-; vmap \\ S`
-; (map! :i "\\\\" (an)"bbb")idef qqqdef  def qqq def
+;; TODO: change to yasnippet (is it possible?)
+;; (map! :i "\\\\" "<ESC>ysiW`Ea")
 
 
 ;; persp.el instead of tab
@@ -204,7 +207,6 @@
 ;; for markdown-mode
 (add-hook 'markdown-mode-hook (lambda () (setq truncate-lines t)))
 
-
 ;;===========================================================================
 ;;;markdown-mode
 ;;
@@ -215,6 +217,13 @@
 
 ;; (add-hook 'lisp-mode-hook 'disable-tabs)
 ;; (add-hook 'emacs-lisp-mode-hook 'disabl;e-tabs)(add-hook 'markdown-mode-hook 'as/markdown-config)
+
+;; wiki links
+;; [[my wiki link ]] -> `my_wiki_link.md` vs `my wiki link.md`
+;; String, default: "_" in markdown-mode and "-" in gfm-mode.
+;; Character to replace spaces when mapping wiki links to filenames. For example, use an underscore for compatibility with the Python Markdown WikiLinks extension. In GFM Mode, this is set to "-" to conform with the GitHub wiki link conventions.
+;; ME: use space instead of _
+(setq markdown-link-space-sub-char " ")
 
 ;; from DistroTube
 (custom-set-faces

@@ -34,4 +34,7 @@ function e { vim.exe $args}
 function n { nvim-qt.exe $args}
 
 # starship prompt
+#function Invoke-Starship-PreCommand {
+#  $host.ui.Write("`e]0; PS> $env:USERNAME@$env:COMPUTERNAME`: $pwd `a")
+#}
 #Invoke-Expression (&starship init powershell)

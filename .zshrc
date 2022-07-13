@@ -268,6 +268,17 @@ unset GREP_OPTIONS
 # source /Users/otter/Library/Preferences/org.dystroy.broot/launcher/bash/br
 
 # ============= starship ====================================================
+# -- set win title for zsh/bash
+# other to use $HOST, $HOSTNAME
+function set_win_title(){
+    echo -ne "\033]0; $PWD \007"
+    #echo -ne "\033]0; $(basename "$PWD")/ \007"    # only basename of pwd
+	#echo -ne "\033]0;$(basename "$PWD")/ ${BASH_COMMAND}\007"  # need to fix
+}
+precmd_functions+=(set_win_title) # zsh
+## starship_precmd_user_func="set_win_title" # bash
+
+# -- launch starship
 eval "$(starship init zsh)"
 
 # ================= boop on last exit value ======================================

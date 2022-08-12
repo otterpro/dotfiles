@@ -29,7 +29,7 @@
 
 ;; org-roam
 ;; dependency
-(package! emacsql-sqlite3)
+(package! emacsql-sqlite)
 
 ;; To install a package directly from a remote git repo, you must specify a
 ;; `:recipe'. You'll find documentation on what `:recipe' accepts here:

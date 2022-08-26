@@ -1,6 +1,5 @@
 {
   ".gitconfig": "~/.gitconfig",
-  ".gitattributes": "~/.gitattributes",
   ".gitignore_global": "~/.gitignore_global",
   "doomemacs": "~/.emacs.d",
   ".doom.d": "~/.doom.d",

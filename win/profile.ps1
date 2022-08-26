@@ -33,6 +33,9 @@ function e { vim.exe $args}
 # nvim-qt, neovide, etc...
 function n { nvim-qt.exe $args}
 
+# touch
+function touch { New-Item -ItemType file $args}
+
 # starship prompt
 #function Invoke-Starship-PreCommand {
 #  $host.ui.Write("`e]0; PS> $env:USERNAME@$env:COMPUTERNAME`: $pwd `a")

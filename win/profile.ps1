@@ -7,7 +7,6 @@
 #function Set-GitCommit { git commit -am $args }
 #New-Alias -Name gc -Value Set-GitCommit
 
-
 function gs { git status  }
 function gpl { git pull }
 function gps { git push }
@@ -35,6 +34,15 @@ function n { nvim-qt.exe $args}
 
 # touch
 function touch { New-Item -ItemType file $args}
+
+# tere
+#function Invoke-Tere() {
+#    $result = . (Get-Command -CommandType Application tere.exe) $args
+#    if ($result) {
+#        Set-Location $result
+#    }
+#}
+#Set-Alias zz Invoke-Tere
 
 # starship prompt
 #function Invoke-Starship-PreCommand {

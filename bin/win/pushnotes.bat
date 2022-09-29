@@ -1,4 +1,13 @@
 echo off
+pushd .
+cd %USERPROFILE%/notes
+git add -A
+git commit -am"daily update"
+git pull --no-edit
+git push
+popd
+
+REM CYGWIN version
 @REM %chocolateyToolsLocation%\cygwin\bin\bash.exe -c -l "/home/%username%/bin/pushnotes.sh >> /home/%username%/log.txt 2>&1"
 rem GIT=/usr/bin/git
 rem #DATE=/usr/bin/date

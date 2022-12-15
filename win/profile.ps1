@@ -12,6 +12,8 @@ function gpl { git pull }
 function gps { git push }
 function gadd { git add -A }
 function gcm { git commit -m $args}
+function gac { git add -A; git commit -m $args}
+
 
 # function v {gvim $args}
 # -p --remote... allows opening text file into same instance with new tabs

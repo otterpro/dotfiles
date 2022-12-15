@@ -35,6 +35,7 @@ $xdg_config_home = "$env:USERPROFILE\.config"
 #OLD &"$cygwinBin\bash.exe" "$DotfileTargetPath\dotfiles.sh"
 
 #===========================================================================
+# *** HANDLED BY DOTFILES.EXE *****
 # symlink .vim, .vimrc, .gvim
 # symlink cygwin's ~/ to Win's ~/cyghome/
 # prerequisite: cygwin and .dotfiles/ (and maybe win VIM)
@@ -72,6 +73,7 @@ $xdg_config_home = "$env:USERPROFILE\.config"
 New-Item -Path  "$env:USERPROFILE\wsl\"  -ItemType SymbolicLink -Value "$wslHomePath\"
 
 #===========================================================================
+# *** HANDLED BY DOTFILES.EXE *****
 # create symbolic link for PS profile (includes aliases, etc)
 #  ~/.dotfiles/_win/profile.ps1 ==> C:\Users\<USERNAME>\Documents\WindowsPowershell\profile.ps1
 #  * Warning: Make sure not to delete existing profile.ps1, 
@@ -82,10 +84,14 @@ New-Item -Path  "$env:USERPROFILE\wsl\"  -ItemType SymbolicLink -Value "$wslHome
 #     Write-Host "PS Profile: creating symink for PS profile"
 #     New-Item -path $profile.CurrentUserAllHosts -ItemType SymbolicLink -Value "$targetPath\win\profile.ps1" -Force
 # #}
+#if (!(Test-Path -Path $profile.AllUsersCurrentHost)) { 
+#     Write-Host "PS Profile: creating symink for PS profile"
+#     New-Item -path $profile.AllUsersCurrentHost -ItemType SymbolicLink -Value "$targetPath\win\profile.ps1" -Force
+#}
 
 #===========================================================================
-# 1. symlink ~/bin 
-# 2. add ~/bin/win/ to %PATH%
+# 1. symlink ~/bin/
+# 2. add ~/bin/ to %PATH%
 #===========================================================================
 # symlink now handled by dotfiles.exe
     # New-Item -Path  "$env:USERPROFILE\bin\" -ItemType SymbolicLink -Value "$targetPath\win\bin\" -Force

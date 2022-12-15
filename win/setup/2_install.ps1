@@ -37,8 +37,10 @@ Write-Host "windows user's personal setup"
 	New-ItemProperty -Path $RegistryKeyPath -Name AllowDevelopmentWithoutDevLicense -PropertyType DWORD -Value 1
 
 #===========================================================================
-# TODO: # install WSL2 if possible
+# install WSL2 with Debian
 #===========================================================================
+
+wsl --install -d Debian
 
 #===========================================================================
 # Set XDG Directory EnvVar
@@ -146,7 +148,7 @@ if ($emacs) {
 }
 
 #===========================================================================
-# OBS: TODO
+# OBS: TODO/choco?
 #===========================================================================
 # obs-studio
 # 	obs-virtualcam // check ver???

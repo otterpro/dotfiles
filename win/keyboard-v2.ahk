@@ -335,6 +335,7 @@ $^{::Send "^+{Tab}"
 ;-------------------------------------------------------
 ; V2 only
 ; [CapsLock to Control and Escape while retaining modifiers - AutoHotkey Community](https://www.autohotkey.com/boards/viewtopic.php?t=92738)
+; This works only if capslock was remapped to CTRL (using reg hack or sharpkey). Doesn't work with PowerToy Keyboard mapper
 ;-------------------------------------------------------
 ih := InputHook("B L1 T1", "{Esc}")
 

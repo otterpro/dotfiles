@@ -1,7 +1,7 @@
 @echo off
 
 REM #### autohotkey
-start %USERPROFILE%\dotfiles\win\keyboard.ahk
+start %USERPROFILE%\dotfiles\win\keyboard-v2.ahk
 
 REM #### gocryptfs / cppcryptfs
 REM *** use GUI's automount to load the encrypted drive using saved password, no need to use param if using AutoMount

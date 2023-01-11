@@ -136,12 +136,10 @@ RCtrl & tab:: AltTab ; Using RCtrl instead of ALT
 ; NOTE: can remove this now, since I'm using RCTRL instead of ALT
 ;-------------------------------------------------------------------------
 $<!a::Send "^a"
-
 ; alt+c,x,v doesn't work in some app (notepad, visual studio CE), but works in others?
 $<!c::Send "^c"
 $<!v::Send "^v"
 $<!x::Send "^x"
-
 $<!z::Send "^z"
 ; todo: isntead use alt+backspace
 
@@ -149,9 +147,6 @@ $<!z::Send "^z"
 ; $<!c:: Send ^{Ins}
 ; $<!v:: Send +{Ins}
 ; $<!x:: Send +{Del}
-
-
-;; alt-tab, shift-alt tab
 
 ; $<!`::Send ^`
 $<!b::Send "^b"
@@ -229,11 +224,11 @@ $>^q::Send "!{f4}"
 ;-------------------------------------------------------------------------
 ; Alt+Shift+[, alt+shift+] -> go to next/prev tab (Chrome, FF, etc) 
 ;-------------------------------------------------------------------------
-; $<!}::Send ^{Tab}
-; $<!{::Send ^+{Tab}
+$<!}::Send "^{Tab}"
+$<!{::Send "^+{Tab}"
 ; -- CTRL VERSION
-$^}::Send "^{Tab}"
-$^{::Send "^+{Tab}"
+; $^}::Send "^{Tab}"
+; $^{::Send "^+{Tab}"
 
 ;-------------------------------------------------------------------------
 ; Ctrl+arrow
@@ -592,10 +587,10 @@ return
 ; Show source code with cmd + alt + u
 ;#^u::Send ^u ;howeer, cannot map #u?
 
-; $^}::Send "^{Tab}"
-; $^{::Send "^+{Tab}"
+; $!}::Send "^{Tab}"
+; $!{::Send "^+{Tab}"
 
-; Disable ALT key in chrome, as it focuses on Menu button!!!
+;?? Disable ALT key in chrome, as it focuses on Menu button!!!
 ;Alt::return  
 }
 
@@ -603,8 +598,8 @@ return
 ; Vivaldi browser
 ;-------------------------------------------------------------------------
 #HotIf WinActive("ahk_exe vivaldi.exe") 
-$^}::Send "^{PgDn}"
-$^{::Send "^{PgUp}"
+$!}::Send "^{PgDn}"
+$!{::Send "^{PgUp}"
 
 ;=========================================================================
 ; Firefox
@@ -769,7 +764,9 @@ $!q::Send "#{f4}"
 ; $!{::Send ^+{Tab}
 ; $^}::Send ^+{Tab}
 ; $^{::Send ^{Tab}
+
 $<!{::Send "^{Tab}"
+; must send $ first for conemu
 
 ; ctrl+shift+tab
 ; was disabled: was using conemu's own hotkey instead of autohotkey

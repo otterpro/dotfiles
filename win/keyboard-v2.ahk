@@ -117,7 +117,8 @@ Pause::Suspend
 
 ;Ctrl & tab:: AltTab ; Using all Ctrl instead of ALT
 
-RCtrl & tab:: AltTab ; Using RCtrl instead of ALT
+/* TEMP commented Rctrl & tab */
+;RCtrl & tab:: AltTab ; Using RCtrl instead of ALT
     ; this was needed when LAlt was mapped to RCTRL
 ; LWin & tab:: AltTab ; Windows key version
 

@@ -117,9 +117,11 @@ Pause::Suspend
 
 ;Ctrl & tab:: AltTab ; Using all Ctrl instead of ALT
 
+/* TEMPORAILY DISABLED 
 RCtrl & tab:: AltTab ; Using RCtrl instead of ALT
     ; this was needed when LAlt was mapped to RCTRL
 ; LWin & tab:: AltTab ; Windows key version
+*/
 
 /*
 ; TODO: not sure whether to use LAlt or RAlt???

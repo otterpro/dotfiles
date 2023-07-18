@@ -415,6 +415,9 @@ Plug 'mbbill/undotree'
 "Golden Ratio - automatically resize window to golden ratio
 Plug 'roman/golden-ratio'
 
+"Remember setting esp folded state -- doesn't work???
+" Plug 'zhimsel/vim-stay'
+
 "-----------------------------------------------------------------
 " --- TO TRY ------
 "-----------------------------------------------------------------
@@ -423,9 +426,6 @@ Plug 'roman/golden-ratio'
 
 " highlight sections/paragraphs
 " Plug 'limelight.vim'
-
-"Remember setting esp folded state
-" Plug 'zhimsel/vim-stay'
 
 " testing for now, not really worth it yet???
 " Plug 'bagrat/vim-workspace'
@@ -752,6 +752,7 @@ vnoremap <leader>B :s/*//<cr>:noh<cr>
 " dont fold by default. If not set, it will open text as folded
 " set nofoldenable
 set foldenable
+setlocal foldmethod=indent   " fold based on indent
 set foldlevelstart=10	"open most folds by default"
 set foldnestmax=10		" maximum folding level. beyond 10 is crazy
 
@@ -1126,7 +1127,8 @@ let g:airline#extensions#wordcount#enabled = 0
 " however, above still didn't help much...
 
 " ============== plasticboy/vim-markdown =====================
-" vim-markdown: folding is enabled by default. disable now
+" vim-markdown: folding is enabled by default.    
+" would disable due to performance issue, but so far so good?
 "let g:vim_markdown_folding_disabled=1
 let g:vim_markdown_frontmatter=1  "highlight jekyll frontmatter
 
@@ -1361,6 +1363,8 @@ nnoremap <C-g> :Rg
 "============== notational fzf vim ==================================
 " let g:nv_search_paths = ['~/notes','.']
 
+"============== vim-stay ==================================
+" set viewoptions=cursor,folds,slash,unix
 
 "============== Golden-ratio ==================================
 " Disable on quickfix, help, and ToC windows

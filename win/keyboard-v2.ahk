@@ -117,7 +117,8 @@ Pause::Suspend
 
 ;Ctrl & tab:: AltTab ; Using all Ctrl instead of ALT
 
-RCtrl & tab:: AltTab ; Using RCtrl instead of ALT
+/* TEMP commented Rctrl & tab */
+;RCtrl & tab:: AltTab ; Using RCtrl instead of ALT
     ; this was needed when LAlt was mapped to RCTRL
 ; LWin & tab:: AltTab ; Windows key version
 
@@ -144,11 +145,10 @@ $<!z::Send "^z"
 ; todo: isntead use alt+backspace
 
 ; possibly, instead use alt, but this fails in File Explorer
+;; alt-tab, shift-alt tab
 ; $<!c:: Send "^{Ins}"
 ; $<!v:: Send "+{Ins}"
 ; $<!x:: Send "+{Del}"
-
-;; alt-tab, shift-alt tab
 
 ; $<!`::Send ^`
 $<!b::Send "^b"
@@ -226,11 +226,11 @@ $>^q::Send "!{f4}"
 ;-------------------------------------------------------------------------
 ; Alt+Shift+[, alt+shift+] -> go to next/prev tab (Chrome, FF, etc) 
 ;-------------------------------------------------------------------------
-; $<!}::Send ^{Tab}
-; $<!{::Send ^+{Tab}
+$<!}::Send "^{Tab}"
+$<!{::Send "^+{Tab}"
 ; -- CTRL VERSION
-$^}::Send "^{Tab}"
-$^{::Send "^+{Tab}"
+; $^}::Send "^{Tab}"
+; $^{::Send "^+{Tab}"
 
 ;-------------------------------------------------------------------------
 ; Ctrl+arrow
@@ -589,10 +589,10 @@ return
 ; Show source code with cmd + alt + u
 ;#^u::Send ^u ;howeer, cannot map #u?
 
-; $^}::Send "^{Tab}"
-; $^{::Send "^+{Tab}"
+; $!}::Send "^{Tab}"
+; $!{::Send "^+{Tab}"
 
-; Disable ALT key in chrome, as it focuses on Menu button!!!
+;?? Disable ALT key in chrome, as it focuses on Menu button!!!
 ;Alt::return  
 }
 
@@ -600,8 +600,8 @@ return
 ; Vivaldi browser
 ;-------------------------------------------------------------------------
 #HotIf WinActive("ahk_exe vivaldi.exe") 
-$^}::Send "^{PgDn}"
-$^{::Send "^{PgUp}"
+$!}::Send "^{PgDn}"
+$!{::Send "^{PgUp}"
 
 ;=========================================================================
 ; Firefox
@@ -767,7 +767,9 @@ $!q::Send "#{f4}"
 ; $!{::Send ^+{Tab}
 ; $^}::Send ^+{Tab}
 ; $^{::Send ^{Tab}
+
 $<!{::Send "^{Tab}"
+; must send $ first for conemu
 
 ; ctrl+shift+tab
 ; was disabled: was using conemu's own hotkey instead of autohotkey

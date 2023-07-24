@@ -1,4 +1,0 @@
-[submodule "doomemacs"]
-	path = doomemacs
-	url = https://github.com/doomemacs/doomemacs
-	shallow = false

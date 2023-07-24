@@ -37,6 +37,12 @@ function n { nvim-qt.exe $args}
 # touch
 function touch { New-Item -ItemType file $args}
 
+# zoxide -- doesn't work?  
+# $result = Get-Command -ErrorAction Ignore -Type Application zoxide.exe
+# if ($result) {
+#     Invoke-Expression (& { (zoxide init powershell | Out-String) })
+# }
+
 # tere
 #function Invoke-Tere() {
 #    $result = . (Get-Command -CommandType Application tere.exe) $args

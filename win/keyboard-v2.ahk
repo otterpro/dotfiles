@@ -135,21 +135,18 @@ RCtrl & tab:: AltTab ; Using RCtrl instead of ALT
 ; also Problem with EMACS
 ; NOTE: can remove this now, since I'm using RCTRL instead of ALT
 ;-------------------------------------------------------------------------
-$<!a::Send "^a"
-
 ; alt+c,x,v doesn't work in some app (notepad, visual studio CE), but works in others?
+$<!a::Send "^a"
 $<!c::Send "^c"
 $<!v::Send "^v"
 $<!x::Send "^x"
-
 $<!z::Send "^z"
 ; todo: isntead use alt+backspace
 
 ; possibly, instead use alt, but this fails in File Explorer
-; $<!c:: Send ^{Ins}
-; $<!v:: Send +{Ins}
-; $<!x:: Send +{Del}
-
+; $<!c:: Send "^{Ins}"
+; $<!v:: Send "+{Ins}"
+; $<!x:: Send "+{Del}"
 
 ;; alt-tab, shift-alt tab
 
@@ -703,6 +700,7 @@ $<!{::Send "{Esc}:tabp{Enter}"
 ; NOTE: it uses right control, not left.  Could pose problem
 ;-------------------------------------------------------------------------
 #HotIf WinActive("ahk_class mintty")
+
 ; $>^c:: Send ^{Insert}
 ; $>^v::Send +{Insert}
 ; $>^x::Send +{Del}

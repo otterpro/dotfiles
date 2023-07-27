@@ -37,6 +37,9 @@ function n { nvim-qt.exe $args}
 # touch
 function touch { New-Item -ItemType file $args}
 
+# z
+Import-Module z
+
 # zoxide -- doesn't work?  
 # $result = Get-Command -ErrorAction Ignore -Type Application zoxide.exe
 # if ($result) {

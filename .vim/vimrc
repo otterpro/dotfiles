@@ -999,14 +999,16 @@ imap [[ <Esc>ysiW]<Esc>Ea
 " vmap [[ S]
 
 imap '' <Esc>ysiW'Ea
-nmap '' ysiW'
 vmap '' S'
 nmap <Leader>' ysiW'
+" commented out below to preserve "go to previous jump"
+" nmap '' ysiW'
 
 imap "" <Esc>ysiW"Ea
-nmap ""  ysiW"
 vmap "" S"
 nmap <Leader>" ysiW"
+" TODO: comment out below? since we're no longer using nmap '', keep it consistent?
+nmap ""  ysiW"
 
 	" as testing this h
 " \\ => surround with `backtick` for markdown codes 

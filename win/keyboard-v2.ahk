@@ -92,7 +92,9 @@ RunAsAdmin(*) {
 ; Pressing Pause/Break will toggle AHK script; Useful when you want to quickly switch off AHK, esp when you want to share the keyboard with someone else
 ; Suspend means all hotkeys are disabled
 ;-------------------------------------------------------------------------
+#SuspendExempt ; Disable exemption for any hotkeys/hotstrings below this.
 Pause::Suspend
+#SuspendExempt False ; Disable exemption for any hotkeys/hotstrings below this.
 
 ;-------------------------------------------------------------------------
 ; DISABLED: swap Alt with Win

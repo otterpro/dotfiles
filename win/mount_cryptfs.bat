@@ -1,7 +1,8 @@
 @rem ====================================================
 @rem run cppcryptfs in background and give it time to start up
 @rem
-@rem NOT USING
+@rem USING another version, gocryptfs.bat in win/start/
+@rem NOT USING THIS VERSION
 @rem As of now (11/2019), cppcryptfs does not work well
 @rem It doesn't mount reverse mode via command line
 @rem It is flakey with normal mount as well

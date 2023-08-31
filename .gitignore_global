@@ -55,6 +55,11 @@ Thumbs.db
 .AppleDouble
 .LSOverride
 
+.DocumentRevisions-V100
+.fseventsd
+.TemporaryItems
+.VolumeIcon.icns
+
 # Directories potentially created on remote AFP share
 .AppleDB
 .AppleDesktop
@@ -64,21 +69,6 @@ Temporary Items
 
 # vagrant's hidden files
 .vagrant/
-
-# Files that might appear in the root of a volume
-.DocumentRevisions-V100
-.fseventsd
-.Spotlight-V100
-.TemporaryItems
-.Trashes
-.VolumeIcon.icns
-
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
 
 # intellij
 .idea/

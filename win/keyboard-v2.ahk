@@ -291,26 +291,31 @@ $<!{::Send "^+{Tab}"
 ;===========================================================================
 ; Remap Caps Lock in Windows (escape *and* control) https://superuser.com/a/581988
 ; However, it won't be able to do momentary ESCAPE
+; * currently using Sharpkey
+; CAPSLOCK -> Right CTRL
+; Important: reason we need Right CTRL is so that momentary ESC/CTRL only affects RCTRL, not LCTRL
+; LCTRL is used for other key shortcuts or otherwise, it will not work properly with QMK sending LCTRL
 ;===========================================================================
 ;-------------------------
-; * switch capslock with control just in case it didn't
-; * only because Leopold kb is switched
-; * was using L/RCtrl instead of Ctrl to avoid loops (from LCtrl -double function)
+; OLD: ignore... use sharpkeys / registry hack
+;     * switch capslock with control just in case it didn't
+;     * only because Leopold kb is switched
+;     * was using L/RCtrl instead of Ctrl to avoid loops (from LCtrl -double function)
 ;-------------------------
 ; Capslock::Ctrl
 
 ;-------------------------
-; * uses hardware switch
-; * but capslock (no matter where it is) should be ctrl
-; * in case of Leopold keyboard, it switches Capslock with Ctrl
-; *   but I want new capslock (CTRL) to act as ctrl, still
-; * Capslock dual function - original , but not workin gwell
+; OLD: ignore... use sharpkeys / registry hack along with dual function below
+;     * uses hardware switch
+;     * but capslock (no matter where it is) should be ctrl
+;     * in case of Leopold keyboard, it switches Capslock with Ctrl
+;     *   but I want new capslock (CTRL) to act as ctrl, still
+;     * Capslock dual function - original , but not working well
 ;-------------------------
 ; *CapsLock::
 ;     Send {Blind}{Ctrl Down}
 ;     cDown := A_TickCount
 ; Return
-
 ; *CapsLock up::
 ;     If ((A_TickCount-cDown)<200)  ; Modify press time as needed (milliseconds)
 ;         Send {Blind}{Ctrl Up}{Esc}
@@ -322,23 +327,24 @@ $<!{::Send "^+{Tab}"
 ; DUal function - CTRL as both ESC and CTRL
 ;===========================================================================
 ;-------------------------------------------------------
-; NOTE: trick* - it works for some reason, but only on hardware CTRL (unmapped)
-; for weird reason it works as momentary ESC/CTRL
-; sometimes LCtrl works. Sometimes CTRL works
-; remapped capslock won't work, as it will only send {ESC}, not CTRL
+; OLD: trick* - it works for some reason, but only on hardware CTRL (unmapped)
+;     * for weird reason it works as momentary ESC/CTRL
+;     * sometimes LCtrl works. Sometimes CTRL works
+;     * remapped capslock won't work, as it will only send {ESC}, not CTRL
 ;-------------------------------------------------------
 ; Ctrl::Send "{esc}"    ; this works (on normal keyboard)
     ; disable if using QMK keyboard
     ; works on true ctrl, not mapped ctrl (ie capslock)
 
 ;-------------------------------------------------------
-; V2 only
-; [CapsLock to Control and Escape while retaining modifiers - AutoHotkey Community](https://www.autohotkey.com/boards/viewtopic.php?t=92738)
-; This works only if capslock was remapped to CTRL (using reg hack or sharpkey). Doesn't work with PowerToy Keyboard mapper
+; V2 only: WORKS (needs sharpkey/reg hack)
+;     * [CapsLock to Control and Escape while retaining modifiers - AutoHotkey Community](https://www.autohotkey.com/boards/viewtopic.php?t=92738)
+;     * This works only if capslock was remapped to CTRL (using reg hack or sharpkey). Doesn't work with PowerToy Keyboard mapper
+;     * also works with Right CTRL (as well as Left CTRL)
 ;-------------------------------------------------------
 ih := InputHook("B L1 T1", "{Esc}")
 
-*Ctrl::
+*RCtrl::
 {
 	ih.Start()
 	reason := ih.Wait()
@@ -348,7 +354,7 @@ ih := InputHook("B L1 T1", "{Esc}")
 		Send "{Blind}{Ctrl down}" ih.Input
 	}
 }
-*Ctrl up::
+*RCtrl up::
 {
 	if (ih.InProgress) {
 		ih.Stop()
@@ -357,15 +363,14 @@ ih := InputHook("B L1 T1", "{Esc}")
 	}
 }
 ;-------------------------------------------------------
-; works only if keyboard has capslock remapped in hardware, not software
+; OLD: works only if keyboard has capslock remapped in hardware, not software
 ;-------------------------------------------------------
 ;LCtrl::Send {esc}   ;this works on certain kb ie Leopold keyboard
 ; not momentary in synergy + no mod + QMS?
 
 ;-------------------------------------------------------
-; original, but not working well ; use this only if the trick* doesn't work
+; OLD: original, but not working well ; use this only if the trick* doesn't work
 ;-------------------------------------------------------
-; TODO
 ; *LCtrl::
 ;     Send {Blind}{LCtrl Down}
 ;     cDown := A_TickCount
@@ -377,7 +382,6 @@ ih := InputHook("B L1 T1", "{Esc}")
 ;         Send {Blind}{LCtrl Up}
 ; Return
 
-; TODO
 ; [CapsLock to Control and Escape while retaining modifiers - AutoHotkey Community](https://www.autohotkey.com/boards/viewtopic.php?t=92738)
 ; this works only if capslock is disabled,... but cannot disable it yet..
 ; modified from capslock to lctrl -- me; doesn't work? ...
@@ -413,15 +417,11 @@ ih := InputHook("B L1 T1", "{Esc}")
 ; 		}
 ; 	}
 ; 	Return
-;
-;
-
 
 ;===========================================================================
 ; Space Cadet shift as parenthesis -- Shift only as ( )
-; (200ms too fast?  changed to 400ms)
-; DISABLED IT BECAUSE on remote deskotp, it doesn't work, printing 9 and 0
-; ((())((((
+;     * (200ms too fast?  changed to 400ms)
+;     * DISABLED IT BECAUSE on remote deskotp, it doesn't work, printing 9 and 0
 ;===========================================================================
 ; https://autohotkey.com/board/topic/98742-remapping-shift-key/
 ; ~LShift::
@@ -442,8 +442,8 @@ ih := InputHook("B L1 T1", "{Esc}")
 ;
 ;===========================================================================
 ; Alt-backtick , just like Mac
-; my post:https://superuser.com/a/1465387/790554
-; Modified heavily from https://superuser.com/a/768060
+;     * my post:https://superuser.com/a/1465387/790554
+;     * Modified heavily from https://superuser.com/a/768060
 ;===========================================================================
 ; !`::    ; Next window if using alt-backtick
     ;#`::    ; Next window if using Win-backtick
@@ -473,17 +473,21 @@ return
 ; Others
 ;===========================================================================
 ; replace INSERT key, as it is annoying
-INSERT::return
+; send F13 on insert
+INSERT::F13
+
+; DO NOTHING if pressed INSERT
+; INSERT::return
 
 ;===========================================================================
 ; Numeric keypad
 ;===========================================================================
 NumpadSub::Send "{Volume_Up}"
 NumpadAdd::Send "{Volume_Down}"
-; Numpad0::KeyHistory
 Numpad0::Send "{F5}"
-;NumPad1::Send {Volume_Up}
 NumpadDiv::DllCall("LockWorkStation")
+; OLD keys
+; Numpad0::KeyHistory
 ;NumpadMult::Send {}
 ;NumpadEnter::Send {}
 ;NumpadDot::Send {}
@@ -608,7 +612,6 @@ $!{::Send "^{PgUp}"
 ;=========================================================================
 ; Firefox
 ;-------------------------------------------------------------------------
-
 #HotIf WinActive("ahk_class MozillaWindowClass") 
 ; $^}::Send ^{Tab}
 ; $^{::Send ^+{Tab}
@@ -619,6 +622,24 @@ $!{::Send "^{PgUp}"
 ; Vim, GVim
 ;-------------------------------------------------------------------------
 #HotIf WinActive("ahk_class Vim") 
+;;--------------------------------------------
+;; Use ALT+C/V/X
+;; This may not be necessary if vimrc `behave mswin` is enabled. 
+;; however, vim's behave mswin isn't working, so ...
+;; also I want to use ALT instead of CTRL
+$<!c:: Send "^{Ins}"
+$<!v:: Send "+{Ins}"
+$<!x:: Send "+{Del}"
+;--------------------------------------------
+; SWITCH TAB
+; this cannot be done in vimrc since {,[ cannot be mapped using ctrl ALT+}, ALT+{
+; ALT version
+ $<!}::Send "{Esc}:tabn{Enter}"
+ $<!{::Send "{Esc}:tabp{Enter}"
+; -- using ctrl instead of ALT
+; CTRL+}, CTRL+{
+$^}::Send "{Esc}:tabn{Enter}"
+$^{::Send "{Esc}:tabp{Enter}"
 ;--------------------------------------------
 ; Cut,copy,paste
 ;Copy, paste, cut in WinVim
@@ -646,13 +667,6 @@ $!{::Send "^{PgUp}"
 ; ; TODO: when I get a new programmable keyboard, try again
 
 
-;; --- Use ALT+C/V/X
-;; This may not be necessary if vimrc `behave mswin` is enabled. 
-;; however, vim's behave mswin isn't working, so ...
-;; also I want to use ALT instead of CTRL
-$<!c:: Send "^{Ins}"
-$<!v:: Send "+{Ins}"
-$<!x:: Send "+{Del}"
 
 ; ; OLD ----
 ; ; better paste, works with terminal, but doesn't work with Explorer
@@ -666,20 +680,10 @@ $<!x:: Send "+{Del}"
 ; better paste, works with terminal, but doesn't work with Explorer
 ;#v::Send {Shift down}{Insert}{Shift Up}
 ;#x::Send {Shift Down}{Del}{Shift Up}
-;--------------------------------------------
-; SWITCH TAB
-; this cannot be done in vimrc since {,[ cannot be mapped using ctrl ALT+}, ALT+{
-; ALT version
- $<!}::Send "{Esc}:tabn{Enter}"
- $<!{::Send "{Esc}:tabp{Enter}"
-; -- using ctrl instead of ALT
-; CTRL+}, CTRL+{
-$^}::Send "{Esc}:tabn{Enter}"
-$^{::Send "{Esc}:tabp{Enter}"
 
-;=========================================================================
-; Neovim GUI apps: neovim-qt, neovide, goneovim,...
-;=========================================================================
+;;=========================================================================
+;; Neovim GUI apps: neovim-qt, neovide, goneovim,...
+;;=========================================================================
 #HotIf WinActive("ahk_exe nvim-qt.exe") 
 ; SWITCH TAB
 ; this cannot be done in vimrc since {,[ cannot be mapped using ctrl ALT+}, ALT+{
@@ -697,10 +701,10 @@ $<!{::Send "{Esc}:tabp{Enter}"
 #HotIf WinActive("ahk_exe goneovim.exe")
 $<!}::Send "{Esc}:tabn{Enter}"
 $<!{::Send "{Esc}:tabp{Enter}"
-;=========================================================================
-; Mintty, Cygwin,
-; NOTE: it uses right control, not left.  Could pose problem
-;-------------------------------------------------------------------------
+;;=========================================================================
+;; Mintty, Cygwin,
+;; NOTE: it uses right control, not left.  Could pose problem
+;;-------------------------------------------------------------------------
 #HotIf WinActive("ahk_class mintty")
 
 ; $>^c:: Send ^{Insert}
@@ -721,22 +725,22 @@ $<!v::Send "+{Insert}"
 ; hotkey for Everything (currently set to Win+Shift+F)
 ; RCtrl & space::Send #F
 
-;=========================================================================
-; Emacs
-;-------------------------------------------------------------------------
-#HotIf WinActive("ahk_class Emacs") 
-$<!a::Send "!a"
-$<!c::Send "!c"
-$<!v::Send "!v"
-$<!x::Send "!x"
-$<!z::Send "!z"
-$<!t::Send "!t"
-$<!l::Send "!l"
-$<!f::Send "!f"
-$<!n::Send "!n"
-$<!r::Send "!r"
-$<!g::Send "!g"
-$<!w::Send "!w"
+;;=========================================================================
+;; Emacs
+;;-------------------------------------------------------------------------
+; #HotIf WinActive("ahk_class Emacs") 
+; $<!a::Send "!a"
+; $<!c::Send "!c"
+; $<!v::Send "!v"
+; $<!x::Send "!x"
+; $<!z::Send "!z"
+; $<!t::Send "!t"
+; $<!l::Send "!l"
+; $<!f::Send "!f"
+; $<!n::Send "!n"
+; $<!r::Send "!r"
+; $<!g::Send "!g"
+; $<!w::Send "!w"
 
 ;=========================================================================
 ; Visual Studio
@@ -784,7 +788,6 @@ $<!}::Send "^+{Tab}"
 ;;Won't work because #q is reserved.
 ; only works one direction for now...
 ; End app-specific code here
-
 
 ;--------------------------
 ; EOF: Nothing else below

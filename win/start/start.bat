@@ -21,14 +21,16 @@ REM )
 REM unmount H
 REM "c:\Program Files\VeraCrypt\VeraCrypt.exe" /q /d h
 
-REM ##### WSL2 
-start wsl.exe --status
 
-REM WAIT until WSL2 has finished loading...sleep 5 sec, cannot skip using key, and don't show prompt
-timeout /T 5 /NOBREAK > NUL
+REM #####    WSL2 ###########################
+REM start wsl.exe --status
+REM # Currently we don't run WSL here anymore, since Terminal loads automatically in setting (set to launch on login)
+REM # WAIT until WSL2 has finished loading...sleep 5 sec, cannot skip using key, and don't show prompt
+REM timeout /T 5 /NOBREAK > NUL
 
-REM launch anything that depends on wsl2 here
-REM
+REM # launch anything that depends on wsl2 here
+REM #
 
+REM #####    END  ###########################
 REM finally { popd } # if using powershell
 

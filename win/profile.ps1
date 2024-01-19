@@ -37,7 +37,12 @@ function n { nvim-qt.exe $args}
 # touch
 function touch { New-Item -ItemType file $args}
 
+###############
 # fzf + bat + rg (https://news.ycombinator.com/item?id=38471822)
+$env:EDITOR="C:\Program Files\Neovide\neovide.exe"
+    # semi-permanent way to set EDITOR
+    # use Add-Content for more permanent
+    # vim works, but gvim doesn't work (file extension is not added for some reason)
 function frg {
     $result = rg --ignore-case --color=always --line-number --no-heading @Args |
       fzf --ansi `
@@ -73,3 +78,5 @@ Import-Module z
 #  $host.ui.Write("`e]0; PS> $env:USERNAME@$env:COMPUTERNAME`: $pwd `a")
 #}
 #Invoke-Expression (&starship init powershell)
+
+. C:\Users\Otter\AppData\Roaming\dystroy\broot\config\launcher\powershell\br.ps1

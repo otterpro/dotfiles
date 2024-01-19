@@ -49,8 +49,8 @@ alias lsd="ls -d */"
 # show hidden files / dotfiles only
 alias lsh="ls -ad .*"
 
-alias tree='tree -FC -I ".git"'
-# ignore .git/*
+alias tree='tree -FC --dirsfirst -I ".git"'
+# tree: color, dirFirstignore .git/*
 
 alias du="du -h"
 alias du1="du -h --max-depth=1"

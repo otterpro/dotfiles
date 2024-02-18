@@ -5,7 +5,7 @@
 	ui = true
 [core]
 	excludesfile = ~/.gitignore_global
-	eol = native
+	# eol = native
 	# eol = lf
 	# autocrlf = input # CRLF to LF on commit
 	autocrlf = false  # default, preserve
@@ -18,3 +18,10 @@
 	ignore = update-index --assume-unchanged
 [pull]
 	rebase = false
+[merge]
+	conflictStyle = zdiff3
+[diff]
+	wsErrorHighlight = all
+	# wsErrorHighlight -- does it work with difftastic / difft ???
+	external = difft
+

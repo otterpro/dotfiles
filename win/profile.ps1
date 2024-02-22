@@ -7,6 +7,8 @@
 #function Set-GitCommit { git commit -am $args }
 #New-Alias -Name gc -Value Set-GitCommit
 
+function g { git }
+function gd { git diff }
 function gs { git status  }
 function gpl { git pull }
 function gps { git push }

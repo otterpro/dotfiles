@@ -1,6 +1,21 @@
 [user]
 	name = otter.pro
 	email = coconutstudio@yahoo.com
+[alias]
+	### decorative tree
+	hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+
+	### more decorative version of above
+	lg = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+
+	unstage = reset HEAD --
+	ignore = update-index --assume-unchanged
+
+    zip = archive -o latest.zip HEAD
+
+	### MAYBE
+	# tip = log -1 HEAD
+	# fix = commit --fixup
 [color]
 	ui = true
 [core]
@@ -12,15 +27,6 @@
 	filemode = false
 [push]
 	default = matching
-[alias]
-	### decorative tree
-	hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
-
-	### more decorative version of above
-	lg = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
-
-	unstage = reset HEAD --
-	ignore = update-index --assume-unchanged
 [pull]
 	rebase = false
 [merge]

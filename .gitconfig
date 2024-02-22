@@ -13,15 +13,22 @@
 [push]
 	default = matching
 [alias]
+	### decorative tree
 	hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+
+	### more decorative version of above
+	lg = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+
 	unstage = reset HEAD --
 	ignore = update-index --assume-unchanged
 [pull]
 	rebase = false
 [merge]
+	### latest, recommended
 	conflictStyle = zdiff3
 [diff]
 	wsErrorHighlight = all
 	# wsErrorHighlight -- does it work with difftastic / difft ???
+
 	external = difft
 

@@ -87,4 +87,6 @@ Import-Module z
 #}
 #Invoke-Expression (&starship init powershell)
 
-. C:\Users\Otter\AppData\Roaming\dystroy\broot\config\launcher\powershell\br.ps1
+# be able to launch broot.exe as br
+# ME: commented out, since I will use broot for now?
+#. C:\Users\Otter\AppData\Roaming\dystroy\broot\config\launcher\powershell\br.ps1

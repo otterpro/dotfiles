@@ -1,6 +1,12 @@
 #profile for powershell
 # should be $ `$profile.CurrentUserAllHosts`
 # `C:\Users\USERNAME\Documents\WindowsPowerShell\profile.ps1`
+
+### env var ###################################
+### $EDITOR: used by broot to find editor
+$env:EDITOR="gvim"
+
+### function ##################################
 #function Get-GitStatus { git status $args }
 # New-Alias -Name gs -Value Get-GitStatus
 

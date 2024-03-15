@@ -219,8 +219,7 @@ alias fv='fasd -f -e vim' # quick opening files with vim
 # misc
 alias weather='curl wttr.in/jacksonville'
 
-# IP ADDRESS
-
-alias ip='curl checkip.amazonaws.com'
+# IP ADDRESS: get my public IP address
+alias whatismyip='curl checkip.amazonaws.com'
 
 ##############   END   #####################

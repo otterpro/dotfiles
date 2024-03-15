@@ -166,14 +166,32 @@ if has('mouse')
   set mouse=a
 endif
 
-"make sure color is running. doesn't seem to be necessary, as t_Co is set to 256.
+" --- fix color on windows terminal/cmd --------
+" set color to 256 on Windows Terminal
+" this fixes color but not sure how it affects linux side
+set termguicolors
+
+" these didn't help....
+"if &term == 'win32'
+"	"" https://github.com/microsoft/terminal/issues/4335
+"	let &t_SI="\<CSI>5\ q"
+"	let &t_SR="\<CSI>7\ q"
+"	"let &t_EI="\<CSI>2\ q"
+"	"" https://github.com/microsoft/terminal/issues/832
+"	set t_ut= | set ttyscroll=1
+"endif
+
+"--- old redundant ------------
+" make sure color is running. doesn't seem to be necessary, as t_Co is set to 256.
+" this is redundant
 "if $TERM == "xterm-256color" || $TERM == "screen-256color" || $COLORTERM == "gnome-terminal"
 "	set t_Co=256
 "endif
 
-" Disable BCE (background-color-erase), because it causes color problem in
-" tmux
+"--- tmux fix -- if in linux/mac desk terminal --------------
+" Disable BCE (background-color-erase), because it causes color problem in " tmux
 if &term =~ '256color'
+	" =~ -> regex contains, since it could be term-256color or screen-256color
 	" disable Background Color Erase (BCE) so that color schemes
 	" render properly when inside 256-color tmux and GNU screen.
 	" see also http://snk.tuxfamily.org/log/vim-256color-bce.html
@@ -321,6 +339,7 @@ Plug 'ervandew/supertab'
 Plug 'AndrewRadev/inline_edit.vim'  " inline code editing"
 	" works only for ~~~, not useful for short snippet
 
+
 "-----------------------------------------------------------------
 " search, grep, ...
 "-----------------------------------------------------------------
@@ -384,7 +403,9 @@ else
 endif
 Plug 'honza/vim-snippets'		" all snippets"
 
-" colorschemes-related 
+"-----------------------------------------------------------------
+" colorschemes...
+"-----------------------------------------------------------------
 Plug 'flazz/vim-colorschemes'
 Plug 'xolox/vim-misc'  " requierd for colorscheme-switcher
 Plug 'xolox/vim-colorscheme-switcher' "quickly switch colorscheme with F8,sF8
@@ -418,6 +439,8 @@ Plug 'roman/golden-ratio'
 "Remember setting esp folded state -- doesn't work???
 " Plug 'zhimsel/vim-stay'
 
+"####### color 8bit
+Plug 'guns/xterm-color-table.vim'
 "-----------------------------------------------------------------
 " --- TO TRY ------
 "-----------------------------------------------------------------

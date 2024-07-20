@@ -1,8 +1,8 @@
 {
   ".gitconfig": "~/.gitconfig",
   ".gitignore_global": "~/.gitignore_global",
-  "doomemacs": "~/.emacs.d",
-  ".doom.d": "~/.doom.d",
   ".config/starship.toml":  "~/.config/starship.toml",
-  ".vim/vimrc":  "~/.config/nvim/init.vim"
+  ".vim/vimrc":  "~/.config/nvim/vimrc",
+  ".config/nvim/init.lua":  "~/.config/nvim/init.lua",
+  ".config/nvim/starship.toml":  "~/.config/starship.toml"
 }

@@ -1,8 +1,5 @@
 {
   ".gitconfig": "~/.gitconfig",
-  ".gitignore_global": "~/.gitignore_global",
-  ".config/starship.toml":  "~/.config/starship.toml",
-  ".vim/vimrc":  "~/.config/nvim/vimrc",
-  ".config/nvim/init.lua":  "~/.config/nvim/init.lua",
-  ".config/nvim/starship.toml":  "~/.config/starship.toml"
+  ".config": "~/.config",
+  ".gitignore_global": "~/.gitignore_global"
 }

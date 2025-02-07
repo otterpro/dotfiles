@@ -1,5 +1,6 @@
 {
   ".gitconfig": "~/.gitconfig",
   ".config": "~/.config",
+  ".vim": "~/vimfiles",
   ".gitignore_global": "~/.gitignore_global"
 }

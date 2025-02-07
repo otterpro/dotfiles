@@ -4,7 +4,7 @@
 !.config/nvim/
 !.config/vim/
 !.config/starship.toml
-.vim/.swap/
+.config/vim/.swap/
 autosave
 *~
 .ssh/*

@@ -67,7 +67,10 @@ function frg {
 Import-Module z
 
 ### posh-git
-Import-Module 'C:\tools\poshgit\dahlbyk-posh-git-9bda399\src\posh-git.psd1'
+Import-Module posh-git   ### use default prompt
+#### use custom prompt?
+##### Import-Module 'C:\tools\poshgit\dahlbyk-posh-git-9bda399\src\posh-git.psd1'
+##### Import-Module "C:\Program Files\WindowsPowerShell\Modules\posh-git\1.1.0\posh-git.psd1"
 
 # Chocolatey profile
 $ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"

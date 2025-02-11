@@ -66,6 +66,15 @@ function frg {
 # z
 Import-Module z
 
+### posh-git
+Import-Module 'C:\tools\poshgit\dahlbyk-posh-git-9bda399\src\posh-git.psd1'
+
+# Chocolatey profile
+$ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
+if (Test-Path($ChocolateyProfile)) {
+  Import-Module "$ChocolateyProfile"
+}
+
 # zoxide -- doesn't work?  
 # $result = Get-Command -ErrorAction Ignore -Type Application zoxide.exe
 # if ($result) {
